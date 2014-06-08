@@ -1,0 +1,11 @@
+Paris, Edgar County Airport, IL, United States (KPRG) 39-42-01N 087-40-11W
+Jun 06, 2014 - 02:35 PM EDT / 2014.06.06 1835 UTC
+Wind: Calm:0
+Visibility: 10 mile(s):0
+Sky conditions: clear
+Temperature: 78.6 F (25.9 C)
+Dew Point: 54.7 F (12.6 C)
+Relative Humidity: 43%
+Pressure (altimeter): 30 in. Hg (1015 hPa)
+ob: KPRG 061835Z AUTO 00000KT 10SM CLR 26/13 A3000 RMK AO2 T02590126
+cycle: 18
