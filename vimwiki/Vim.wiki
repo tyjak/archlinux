@@ -1,0 +1,5 @@
+= Vim tips =
+== Divers ==
+* [http://vimwiki.googlecode.com/hg/misc/vimwikiqrc.pdf vimwiki refcards]
+* 
+
