@@ -1,0 +1,4 @@
+= Tips Github =
+== Authentification ==
+	* fichier ~/.git-credentials TODO:command pour générer ce ficher
+	* command `git config credential.helper 'store'` pour utiliser l'authentification permanente
