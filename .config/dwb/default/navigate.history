@@ -1,0 +1,24 @@
+g python unsuported local settings
+g best irc client archlinux
+g dwb history command like vim
+dwb navigation throx history command
+firefox dwb plugin
+split http://www.jobintree.com http://www.jemepropose.com
+streetview 135 rue danielle casanova 93300 aubervilliers france
+streetview 135 rue Dannielle casanova 93300 Aubervilliers 
+ls
+http://yubnub.org/example/split?type=t&urls=http://www.bing.com+http://www.google.com
+http://yubnub.org/example/split?type=t&urls=http://www.google.com+http://www.bing.com
+split www.google.com www.bing.com
+ls split
+vsplit www.google.com www.bing.com
+test
+http://www.yubnub.org
+http://www.yubnug.com
+google.com
+google
+www.google.com
+g test
+dwb.com
+dwb
+www.jobintree.com
