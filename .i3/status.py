@@ -9,8 +9,22 @@ status = Status(standalone=True)
 # Displays clock like this:
 # Tue 30 Jul 11:59:46 PM KW31
 #                          ^-- calendar week
-status.register("clock",
-    format="%a %-d %b %X",)
+status.register("clock")
+
+# Show sound
+status.register("alsa")
+
+# Show battery
+status.register("battery",
+	format="{remaining} {status}")
+
+# Show network
+status.register("network",
+	interface="wlp2s0"
+	)
+#Show backlight
+status.register("backlight",
+	format="{percentage}%")
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
@@ -28,8 +42,6 @@ status.register("disk",
 status.register("weather",
         location_code="FRXX5264",
         colorize=True,
-        format="{current_temp} {humidity}%",)
-
-
+        format="{current_temp} {current_wind} {humidity}%",)
 
 status.run()
