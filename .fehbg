@@ -1,1 +1,1 @@
-git-archlinux/.fehbg
+feh --no-fehbg --bg-fill ~/.config/wallpaper/solarized-dark.png
