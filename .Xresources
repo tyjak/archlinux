@@ -3,14 +3,14 @@ URxvt*url-launcher: firefox
 URxvt*scrollBar: false
 URxvt*scrollBar_reight: false
 URxvt*scrollBar_floating: false
-URxvt*iso14755: false
+!URxvt*iso14755: false
 URxvt.clipboard.copycmd:  xclip -i -selection clipboard
 URxvt.clipboard.pastecmd: xclip -o -selection clipboard
 URxvt*keysym.M-c: perl:clipboard:copy
 URxvt*keysym.M-v: perl:clipboard:paste
 URxvt*intensityStyles: false
-URxvt*letterSpace: -2
 URxvt*font: xft: Meslo LG S DZ for Powerline:size=9
+!URxvt*letterSpace: -2
 
 
 

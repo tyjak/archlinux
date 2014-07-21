@@ -1,4 +1,4 @@
-g:*default
+g:camping
 -71 dwb:bookmarks dwb
 -70 dwb:keys dwb
 -69 dwb:settings dwb
@@ -71,12 +71,6 @@ g:*default
 -2 https://github.com/tyjak/archlinux/blob/macbook/.xinitrc archlinux/.xinitrc
 -1 https://github.com/tyjak/archlinux/tree/macbook tyjak/archlinux
 0|0 http://portix.bitbucket.org/dwb/resources/manpage.html DWB(1)
--5 http://lesfutons.fr/ Futon,
--4 http://lesfutons.fr/futon-memoire.php Acheter
--3 http://lesfutons.fr/tatami.php Tatami
--2 http://lesfutons.fr/tatami-sur-mesure.php Acheter
--1 http://lesfutons.fr/tatami.php Tatami
-0|0 http://lesfutons.fr/tatamis/tatami-n-TADA.php Tatami dalle spécial sol - TADA
 -6 http://lesfutons.fr/contact.php Contact
 -5 http://lesfutons.fr/futon-voyage.php Futon
 -4 http://lesfutons.fr/sitemap.php Plan
@@ -84,49 +78,6 @@ g:*default
 -2 http://lesfutons.fr/garantie-achat-futon-tatami.php Les
 -1 http://lesfutons.fr/futon-voyage.php Futon
 0|0 http://lesfutons.fr/futons/futon-voyage-matelas-futon-n-FUVOST.php Acheter matelas futon Voyage Standard
--41 http://www.outwell.com/ Tents
--40 http://www.outwell.com/fr-FR.aspx Outwell,
--39 http://www.outwell.com/fr-FR/Products/FlocksMats.aspx Matelas
--38 http://www.outwell.com/fr-FR/Products/FlocksMats/Airbeds/AirbedBoxDouble.aspx Matelas
--37 http://www.outwell.com/fr-FR/Dealers.aspx?categoryid=3784&categoryName=matelas%20gonflables%20et%20matelas%20mousse Revendeurs
--36 http://www.outwell.com/fr-FR/Dealers.aspx?saddr=93300%20Danmark Revendeurs
--35 http://www.outwell.com/fr-FR/Dealers.aspx?saddr=93300%20Danmark ...
--34 http://www.outwell.com/fr-FR/Dealers.aspx?saddr=93300%20france ...
--33 https://www.google.com/search?q=matelas+gonflable+solide&gws_rd=ssl matelas
--32 http://www.journaldutrek.com/comparatif-matelas-de-randonnee/matelas-gonflables/ matelas-gonflables
--31 http://www.journaldutrek.com/choisir-un-matelas-de-randonnee/ Choisir
--30 http://www.journaldutrek.com/comparatif-matelas-de-randonnee/ Comparatif
--29 http://www.journaldutrek.com/comparatif-matelas-de-randonnee/matelas-en-mousse/ matelas-en-mousse
--28 http://www.journaldutrek.com/comparatif-matelas-de-randonnee/matelas-autogonflants/ matelas-autogonflants
--27 https://www.google.com/search?q=matelas+camping&gws_rd=ssl matelas
--26 https://www.google.com/search?q=matelas+camping&source=lnms&tbm=isch&sa=X&ei=eKi9U9vBMebQ7AbJ44DQCQ&ved=0CAgQ_AUoAQ&biw=1440&bih=836#facrc=_&imgdii=_&imgrc=XQmcU4WkXYIYfM%253A%3B3BOmKc4PvyQKEM%3Bhttp%253A%252F%252Fwww.tentes-materiel-camping.com%252Fuserfiles%252Fcatalogue%252Fcouchage%252Fphotos%252F__housse-kit-couple-outwell_600.jpg%3Bhttp%253A%252F%252Fwww.tentes-materiel-camping.com%252Ffr%252Fcatalogue%252Fmatelas%252Fmatelas-autogonflants%252Fkit-couple-housse-outwell_R_247_1492_%3B600%3B400 matelas
--25 http://www.tentes-materiel-camping.com/fr/catalogue/matelas/matelas-autogonflants/kit-couple-housse-outwell_R_247_1492_ Matelas
--24 http://www.tentes-materiel-camping.com/fr/catalogue/matelas/matelas-autogonflants_R_246_475_ Matelas
--23 http://www.tentes-materiel-camping.com/fr/catalogue/matelas/matelas-autogonflants/matelas-autogonflable-outwell-deepsleep-double_R_247_2475_ Matelas
--22 https://www.google.com/search?q=amazon+matelas+autogonflant&gws_rd=ssl amazon
--21 http://www.amazon.fr/Black-Canyon-BC4193-Matelas-autogonflant/dp/B003KG7ANQ Black
--20 http://www.amazon.fr/s/ref=nb_sb_noss_1/280-6874014-0363763?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Dsports&field-keywords=outwell 
--19 http://www.amazon.fr/Outwell-Deepsleep-Tapis-double-autogonflant/dp/B00HQ0IXKG/ref=sr_1_10?s=sports&ie=UTF8&qid=1404938999&sr=1-10&keywords=outwell Outwell
--18 http://www.amazon.fr/s/ref=nb_sb_noss?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Dsports&field-keywords=outwell 
--17 http://www.amazon.fr/Outwell-Flock-Excellent-Matelas-gonflable/dp/B003E67Y0G/ref=sr_1_14?s=sports&ie=UTF8&qid=1404939095&sr=1-14&keywords=outwell Outwell
--16 http://www.amazon.fr/10T-Double-Matelas-gonflable-personnes/dp/B0027Q8GU6/ref=pd_cp_sports_0 10T
--15 http://www.amazon.fr/10T-Single-Matelas-gonflable-personne/dp/B0027Q8GTC/ref=pd_bxgy_sports_img_y 10T
--14 http://www.amazon.fr/10T-Single-Matelas-gonflable-personne/product-reviews/B0027Q8GTC/ref=dpx_acr_txt?showViewpoints=1 Amazon.fr :
--13 http://www.amazon.fr/10T-Single-Matelas-gonflable-personne/dp/B0027Q8GTC/ref=cm_cr_pr_product_top 10T
--12 http://www.amazon.fr/s/ref=bl_sr_sports?ie=UTF8&field-brandtextbin=10T&node=325614031 
--11 http://www.amazon.fr/s/ref=sr_pg_2?rh=n%3A325614031%2Cp_4%3A10T&page=2&ie=UTF8&qid=1404939246 
--10 http://www.amazon.fr/s/ref=sr_pg_3?rh=n%3A325614031%2Cp_4%3A10T&page=3&ie=UTF8&qid=1404939300 
--9 http://www.amazon.fr/s/ref=sr_pg_4?rh=n%3A325614031%2Cp_4%3A10T&page=4&ie=UTF8&qid=1404939402 
--8 http://www.amazon.fr/10T-KORSIKA-Abri-plage-Vert/dp/B003Y55JS6/ref=sr_1_147?s=sports&ie=UTF8&qid=1404939402&sr=1-147 10T
--7 http://www.amazon.fr/s/ref=nb_sb_noss?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Dsports&field-keywords=air+bed+ox+doubleb 
--6 http://www.amazon.fr/s/ref=nb_sb_noss?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Dsports&field-keywords=air+bed+box+double&rh=n%3A325614031%2Ck%3Aair+bed+box+double 
--5 http://www.amazon.fr/Outwell-Airbed-Box-matelas-gonflable/dp/B00HOHV03I/ref=sr_1_sc_1?s=sports&ie=UTF8&qid=1404939910&sr=1-1-spell&keywords=air+bed+box+double Outwell Airbed Box - - Double beige matelas gonflable: Amazon.fr: Sports et Loisirs
--4 http://www.amazon.fr/10T-Double-Matelas-gonflable-personnes/dp/B0027Q8GU6/ref=pd_sim_sbs_sports_1/280-5483462-5899057?ie=UTF8&refRID=1W210Z95A81EQ91VAR4D 10T Ruby Double Box Matelas gonflable en coton pour 2 personnes Rouge/Bleu 190 x 120 x 19 cm: Amazon.fr: Sports et Loisirs
--3 http://www.amazon.fr/10T-Double-Matelas-gonflable-personnes/product-reviews/B0027Q8GU6/ref=dpx_acr_txt?showViewpoints=1 Amazon.fr : Commentaires en ligne : 10T Ruby Double Box Matelas gonflable en coton pour 2 personnes Rouge/Bleu 190 x 120 x 19 cm
--2 http://www.amazon.fr/10T-Single-Matelas-gonflable-personne/dp/B0027Q8GTC/ref=cm_cr_pr_sims_t 10T Ruby Single Box Matelas gonflable en coton pour 1 personne Rouge/Bleu 190 x 64 x 19 cm: Amazon.fr: Sports et Loisirs
--1 https://www.google.com/search?q=ruby+single+box&gws_rd=ssl ruby single box - Recherche Google
-0|0 http://www.ebay.fr/sch/sis.html?_nkw=10T%20matelas%20gonflable%20coton%20RUBY%20SINGLE%20BOX%20190x64x19&_itemId=280866001710 10T matelas gonflable coton RUBY SINGLE BOX 190x64x19 | eBay
-1 http://www.ebay.fr/itm/Matelas-gonflable-2-BOX-COTON-200-x-130-x-8cm-neuf-toile-/141341673612?hash=item20e89ec88c&pt=FR_JG_Sports_Camping Matelas Gonflable 2 Personnes BOX Coton 200 X 130 X 8cm Neuf Toile | eBay
 -3 http://www.outwell.com/fr-FR/Products/FlocksMats/Airbeds/AirbedBoxDouble.aspx Matelas
 -2 http://www.outwell.com/fr-FR/Dealers.aspx Revendeurs
 -1 http://www.outwell.com/fr-FR/Products/FlocksMats.aspx Matelas
@@ -150,87 +101,6 @@ g:*default
 -2 http://camping.forum-actif.eu/t1012p40-existe-il-encore-des-matelas-gonflables-etanches#55710 Existe
 -1 http://camping.forum-actif.eu/f15-materiels-divers Materiels
 0|0 http://camping.forum-actif.eu/t5515-matelas-aerobed-ou-thermarest Matelas Aerobed ou thermarest
--18 http://www.campz.fr/thermarest.html?gclid=CK_shIGZub8CFUTItAodeAsAwg&_cid=21_1_2_g_b0320b_b0320b_39597356062_+thermarest&ef_id=U7225wAABVAGtPX5:20140709214055:s Thermarest sur la boutique Camping & Outdoor - CAMPZ.FR
--17 https://www.google.com/search?q=vieux+camper+thermarest&gws_rd=ssl vieux camper thermarest - Recherche Google
--16 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--15 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas#page-1_ Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--14 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas/couple-kit-53827.html COUPLE KIT - Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--13 http://www.auvieuxcampeur.fr/checkout/cart/ Sac Vert
--12 http://www.auvieuxcampeur.fr/boutiques Au Vieux Campeur
--11 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--10 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--9 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas#page-1_ Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--8 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas#page-2_ Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--7 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas#page-3_ Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--6 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas#page-2_ Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--5 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas/neoair-venture-reg-matelas.html? NEOAIR VENTURE REG MATELAS - Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--4 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--3 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas#page-1_ Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--2 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas#page-2_ Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--1 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas#page-3_ Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
-0|0 http://www.auvieuxcampeur.fr/terre/camping-et-randonnee/couchage/matelas/neoair-campeur-l-matelas.html? NEOAIR CAMPEUR L MATELAS - Matelas - Couchage - Matériel (Trail, Montagne, Camping, Voyage,...) - TERRE
--3 https://www.google.com/search?q=decathlon+matelas+autogonflant&gws_rd=ssl decathlon matelas autogonflant - Recherche Google
--2 http://www.decathlon.fr/matelas-autogonflant-a300-id_8172440.html?LGWCODE=1338640;11737;809&utm_source=google_shopping&utm_term=Matelas%20Autogonflant%20A300&utm_medium=cpc&utm_campaign=ecommerce_shopbot&gclid=CLeOnKifub8CFWETwwodtxAA2A Matelas Autogonflant A300 QUECHUA - Tapis de sol, matelas, pompes Randonnée,...
--1 http://www.decathlon.fr/F-50646-tapis-de-sol%2c-matelas%2c-pompes Matelas Décathlon - Matelas gonflable pas cher, accessoire matelas, gonfleur
-0|0 http://www.decathlon.fr/F-50646-tapis-de-sol%2c-matelas%2c-pompes# Matelas Décathlon - Matelas gonflable pas cher, accessoire matelas, gonfleur
-1 http://www.decathlon.fr/matelas-gonflable-140-pompe-id_8206650.html Matelas gonflable 140 Pompe QUECHUA - Tapis de sol, matelas, pompes Randonnée,...
--13 https://www.google.com/search?q=ikea+surmatelas&gws_rd=ssl ikea
--12 http://www.ikea.com/fr/fr/catalog/categories/departments/bedroom/24826/ Surmatelas
--11 http://www.ikea.com/fr/fr/catalog/products/30152515/ SULTAN
--10 http://www.ikea.com/fr/fr/search/?query=matelas Résultat
--9 http://www.ikea.com/fr/fr/search/?query=matelas&pageNumber=2 Résultat
--8 http://www.ikea.com/fr/fr/search/?query=matelas&pageNumber=3 Résultat
--7 http://www.ikea.com/fr/fr/search/?query=matelas&category=products&range_subcategory=24824 Résultat
--6 http://www.ikea.com/fr/fr/catalog/products/40140541/ SKYDDA
--5 http://www.ikea.com/fr/fr/catalog/categories/departments/bedroom/24824/ Alèses
--4 http://www.ikea.com/fr/fr/catalog/products/20255547/ KUNGSMYNTA
--3 http://www.ikea.com/fr/fr/search/?query=sur+matelas Résultat
--2 http://www.ikea.com/fr/fr/search/?query=sur+matelas&sorting=price Résultat
--1 http://www.ikea.com/fr/fr/search/?query=sur+matelas&sorting=price&pageNumber=2 Résultat
-0|0 http://www.ikea.com/fr/fr/search/?query=sur+matelas&sorting=price&pageNumber=3 Résultat de la recherche - IKEA
-1 http://www.ikea.com/fr/fr/catalog/products/70260117/ KUNGSÖ
--34 http://r.twenga.fr/g1.php?cpz=VZHditswEIXfxWV9lTiW_2QHzLK0UHq3obsLC4EgyePaYFuqNLEdSt-9I6fQ7d3MN4czw5lfwZt-FtgFx6BDNMfz4XwY5KyjuTeRleuRcRaz88GBsKp7NBYQbzULHTjX6-nSNzWXORdtnmdxmuVA8kqBapkQTSkAWha2_YBgXa0Ekv4h_cKKsnxICoFoe3lFcMRSViRVTlR1YppgILSApN6O_eTnSZTxrRXrZpFGeezlejTa9QgeUg-rEVNzMVY3V4XufzrAvDl_QNo2YAkJp_5Bpy0SM7ZXECo9IaxYOxQb9VsnScW2vxUK8K_lVl_0NNy8LNQGKSJXOxhAobaXSYz-TClQdQSDHYV_uoK9fWsof7fKr24Zb_Pr6Z2__zzR-NUOHx-zLEuEC0w_RNRa-lOP-wb2Soxmn-wNRawpORd1OA6fVO1TDh3WcahG-hiagUoxs_oeNdk_--DoxOCY7IInY2jX3f6-ersqkayMJVdFzuMGiixWsmWxzNqSM5lCSVKvYynLqpTzLE94lZV5lpe74OVmgCxeSPOdPuR1RZbEZcV3wWejaBRHLA1-_wE%2A&dir=9&link_type=4&dd_seq=2&pmt=0&ctok=&air=1&pos=2&_i=1404929893345 
--33 http://martinbabystore.com/lang-fr/lits-camping/251-voyage-lit-quotidien-plus-2014-cam.html?gs=si Voyage
--32 https://www.google.com/search?q=matela+futon&gws_rd=ssl matela
--31 https://www.google.com/search?q=matela+futon&gws_rd=ssl#q=matela+futon+voyage matela
--30 https://www.google.com/search?q=matela+futon+voyage&tbm=isch&tbo=u&source=univ&sa=X&ei=dYe9U7PyFaT00gXi6YGIAg&ved=0CEwQsAQ&biw=1440&bih=836#facrc=_&imgdii=_&imgrc=3DJqi1c_QsSiQM%253A%3BH3nSjXQVu5QDdM%3Bhttp%253A%252F%252Fwww.lesfutons.com%252Fimages%252Fvoyage1.jpg%3Bhttp%253A%252F%252Fwww.lesfutons.com%252F%3B791%3B545 matela
--29 http://www.lesfutons.com/ Lesfutons.com
--28 http://www.lesfutons.com/futon-voyage.php#FUVOST Lesfutons.com
--27 http://www.lesfutons.com/ Lesfutons.com
--26 http://www.lesfutons.com/societe-adresses.php Lesfutons.com
--25 http://www.lesfutons.com/societe-adresses.php# Lesfutons.com
--24 http://www.lesfutons.com/societe-contact.php Lesfutons.com
--23 http://www.lesfutons.com/societe-contact.php# Lesfutons.com
--22 http://www.lesfutons.com/societe-showroom.php Lesfutons.com
--21 http://www.lesfutons.com/societe-showroom.php# Lesfutons.com
--20 http://www.lesfutons.com/societe-info-enlev.php Lesfutons.com
--19 http://www.lesfutons.com/societe-info-enlev.php# Lesfutons.com
--18 http://www.lesfutons.com/societe-adresses.php Lesfutons.com
--17 http://www.lesfutons.com/societe-adresses.php# Lesfutons.com
--16 http://www.lesfutons.com/societe-faq.php Lesfutons.com
--15 http://www.lesfutons.com/societe-faq.php#10 Lesfutons.com
--14 http://www.lesfutons.com/societe-faq.php#9 Lesfutons.com
--13 http://www.lesfutons.com/societe-faq.php#8 Lesfutons.com
--12 http://www.lesfutons.com/societe-faq.php#7 Lesfutons.com
--11 http://www.lesfutons.com/societe-faq.php#6 Lesfutons.com
--10 http://www.lesfutons.com/societe-faq.php# Lesfutons.com
--9 http://www.lesfutons.com/futon-voyage.php Lesfutons.com
--8 http://www.lesfutons.com/futon-voyage.php# Lesfutons.com
--7 http://www.lesfutons.com/societe-contact.php Lesfutons.com
--6 http://www.lesfutons.com/societe-contact.php# Lesfutons.com
--5 http://www.lesfutons.com/societe-guide-achat.php Lesfutons.com
--4 http://www.lesfutons.com/societe-guide-achat.php# Lesfutons.com
--3 http://www.lesfutons.com/societe-faq.php Lesfutons.com
--2 http://www.lesfutons.com/societe-faq.php#8 Lesfutons.com
--1 http://www.lesfutons.com/societe-faq.php#9 Lesfutons.com
-0|0 http://www.lesfutons.com/societe-faq.php#6 Lesfutons.com - Societe - Reponses à vos questions
-1 http://www.lesfutons.com/societe-faq.php# Lesfutons.com
-2 http://www.lesfutons.com/futon-voyage.php Lesfutons.com
-3 http://www.lesfutons.com/societe-satisfactions.php Lesfutons.com
-4 http://www.lesfutons.com/societe-adresses.php Lesfutons.com
-5 http://www.lesfutons.com/societe-adresses.php# Lesfutons.com
-6 http://www.lesfutons.com/societe-fabrication.php Lesfutons.com
-7 http://www.lesfutons.com/societe-fabrication.php# Lesfutons.com
 -20 https://www.google.com/search?q=sibley+400&gws_rd=ssl sibley
 -19 http://www.canvascamp.com/en/sibley-400.html Sibley
 -18 http://www.canvascamp.com/fr/?msvav=yep CanvasCamp
@@ -273,3 +143,41 @@ g:*default
 -2 http://i3wm.org/docs/ i3
 -1 http://i3wm.org/docs/userguide.html i3:
 0|0 http://i3wm.org/docs/userguide.html#_scratchpad i3: i3 User’s Guide
+g:*default
+-20 https://www.google.com/search?q=dwb+visual+mode+can't+select&gws_rd=ssl dwb
+-19 https://www.google.com/search?q=dwb+visual+mode+can't+select&gws_rd=ssl#q=dwb+insert+mode dwb
+-18 https://bbs.archlinux.org/viewtopic.php?pid=1266566 dwb
+-17 https://www.google.com/search?q=dwb+visual+go+directly+to+insert+mode&gws_rd=ssl dwb
+-16 https://wiki.archlinux.org/index.php/Dwb dwb
+-15 http://www.davidbreyer.com/index.php?s= 
+-14 https://www.google.com/search?q=dwb&gws_rd=ssl dwb
+-13 http://portix.bitbucket.org/dwb/ dwb
+-12 https://www.google.com/search?q=dwb+visual+mode&gws_rd=ssl dwb
+-11 https://bbs.archlinux.org/viewtopic.php?id=95589&p=35 dwb
+-10 https://www.google.com/search?q=dwb-git&gws_rd=ssl dwb-git
+-9 https://aur.archlinux.org/packages/dwb-git/ AUR (en) - dwb-git
+-8 https://www.google.com/search?q=dwb+visual+mode+howto&gws_rd=ssl dwb visual mode howto - Recherche Google
+-7 https://wiki.archlinux.org/index.php/Dwb dwb - ArchWiki
+-6 dwb:settings dwb - Settings
+-5 dwb:keys dwb - Keys
+-4 http://www.yubnub.org/parser/parse?command=g%20ENV%7BDISPLAY%7D 
+-3 https://www.google.com/search?q=add+udev+rules+howto&gws_rd=ssl add udev rules howto - Recherche Google
+-2 http://ubuntuforums.org/showthread.php?t=168221 Create your own udev rules to control removable devices
+-1 https://www.google.com/search?q=archlinux+custom+udev+rules&gws_rd=ssl archlinux custom udev rules - Recherche Google
+0|0 https://wiki.archlinux.org/index.php/udev udev - ArchWiki
+-3 https://www.google.com/search?q=archlinux+aborting+journal+and+mount+read+only&gws_rd=ssl archlinux aborting journal and mount read only - Recherche Google
+-2 https://www.google.com/search?q=archlinux+aborting+journal+and+mount+read+only&gws_rd=ssl#gws_rd=ssl&pws=0&q=archlinux+aborting+journal+and+mount+read+only archlinux aborting journal and mount read only after wakup - Recherche Google
+-1 https://www.google.com/search?q=archlinux+aborting+journal+and+mount+read+only&gws_rd=ssl#pws=0&q=archlinux+aborting+journal+and+mount+read+only+after+wakup archlinux aborting journal and mount read only after wakup - Recherche Google
+0|0 https://bbs.archlinux.org/viewtopic.php?id=122493 Resuming from pm-suspend puts my EXT4 filesystem into Read Only mode (Page 1) / Kernel & Hardware / Arch Linux Forums
+-3 https://www.google.com/search?q=archlinux+power+state+freeze&gws_rd=ssl archlinux power state freeze - Recherche Google
+-2 https://wiki.archlinux.org/index.php/Suspend_and_Hibernate Suspend and Hibernate - ArchWiki
+-1 https://wiki.archlinux.org/index.php/Power_management#Power_management_with_systemd Power management - ArchWiki
+0|0 https://wiki.archlinux.org/index.php/Uswsusp Uswsusp - ArchWiki
+-1 https://www.google.com/search?q=archlinux+udev+rules+on+boot&gws_rd=ssl archlinux udev rules on boot - Recherche Google
+0|0 https://wiki.archlinux.org/index.php/udev udev - ArchWiki
+1 https://wiki.archlinux.org/index.php/udev#udevd_hangs_at_boot udev - ArchWiki
+-4 https://www.google.com/search?q=archlinux+detect+external+monitor+on+boot&gws_rd=ssl archlinux detect external monitor on boot - Recherche Google
+-3 https://wiki.archlinux.org/index.php/xrandr xrandr - ArchWiki
+-2 dwb:bookmarks dwb - Bookmarks
+-1 dwb:quickmarks dwb - Quickmarks
+0|0 https://github.com/tyjak tyjak (tyjak) · GitHub
