@@ -18,7 +18,7 @@ set $mod Mod4
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-# font pango:DejaVu Sans Mono 10
+#font pango:DejaVu Sans Mono 10
 font pango:Meslo LG S DZ for Powerline 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -56,10 +56,14 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+#bindsym $mod+Shift+Left move left
+#bindsym $mod+Shift+Down move down
+#bindsym $mod+Shift+Up move up
+#bindsym $mod+Shift+Right move right
+
+# cycle throw workspace
+bindsym $mod+Shift+Left workspace prev
+bindsym $mod+Shift+Right workspace next
 
 # split in horizontal orientation
 bindsym $mod+Shift+v split h
@@ -88,9 +92,9 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
+bindsym $mod+1 workspace console
+bindsym $mod+2 workspace web
+bindsym $mod+3 workspace gvim
 bindsym $mod+4 workspace graphic
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
@@ -100,10 +104,10 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+1 move container to workspace console
+bindsym $mod+Shift+2 move container to workspace web
+bindsym $mod+Shift+3 move container to workspace gvim
+bindsym $mod+Shift+4 move container to workspace graphic
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
@@ -147,7 +151,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  status_command python ~/.i3/status.py
+  status_command python ~/.config/i3/status.py
 	position top
   colors {
     separator #93a1a1
@@ -162,6 +166,13 @@ bar {
 
 hide_edge_borders both
 
+#floating window
+bindsym $mod+t floating toggle
+
+#scratchpad
+bindsym $mod+m move scratchpad
+bindsym $mod+o scratchpad show
+
 #automatic back-and-forth switch workspace
 workspace_auto_back_and_forth yes
 
@@ -170,13 +181,20 @@ for_window [title="Twitter - Vimperator"] move right; resize shrink left 30 px o
 
 for_window [class="URxvt"] border 1pixel
 for_window [class="Dwb"] border 1pixel
+for_window [class="Gvim"] border 1pixel
 
 # start a firefox
 bindsym $mod+Shift+Return exec firefox
 
 # assign graphic app to dedicated workspace
-assign [class="pinta"] graphic
-assign [class="Inkscape"] graphic
+assign [class="(pinta|Inkscpae)"] graphic
+for_window [class="(pinta|Inkscape)"] focus
+#assign [class="Dwb"] web
+#for_window [class="Dwb"] focus
+assign [class="Gvim"] gvim
+for_window [class="Gvim"] focus
+assign [class="Urxvt"] console
+for_window [class="Urxvt"] focus
 
 client.focused #859900 #859900 #eee8d5 #859900
 client.focused_inactive #073642 #073642 #586e75 #6c71c4
