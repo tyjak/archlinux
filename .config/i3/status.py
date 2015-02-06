@@ -12,7 +12,7 @@ status = Status(standalone=True)
 status.register("clock")
 
 # Show sound
-status.register("alsa")
+#status.register("alsa")
 
 # Show battery
 status.register("battery",
@@ -20,7 +20,8 @@ status.register("battery",
 
 # Show network
 status.register("network",
-	interface="wlp2s0"
+	interface="wlp2s0",
+        format_up="{essid} {quality}%"
 	)
 #Show backlight
 status.register("backlight",
@@ -43,5 +44,9 @@ status.register("weather",
         location_code="FRXX5264",
         colorize=True,
         format="{current_temp} {current_wind} {humidity}%",)
+
+
+status.register("bitcoin",
+        currency="EUR")
 
 status.run()
