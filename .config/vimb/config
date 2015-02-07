@@ -1,6 +1,5 @@
 set hintkeys=sdfghjkl
 nn d :q<CR>
-cn github :o http://www.github.com<CR>
-cn tgithub :tabopen http://www.github.com<CR>
-nmap H <C-I>
-nmap L <C-O>
+cn gh :o http://www.github.com<CR>
+nmap H <C-O>
+nmap L <C-I>

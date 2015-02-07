@@ -93,7 +93,7 @@ bindsym $mod+a focus parent
 
 # switch to workspace
 bindsym $mod+1 workspace console
-bindsym $mod+2 workspace web
+bindsym $mod+2 workspace web; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb
 bindsym $mod+3 workspace gvim
 bindsym $mod+4 workspace graphic
 bindsym $mod+5 workspace 5
@@ -200,3 +200,6 @@ client.focused #859900 #859900 #eee8d5 #859900
 client.focused_inactive #073642 #073642 #586e75 #6c71c4
 client.unfocused #073642 #073642 #93a1a1 #586e75
 client.urgent #d33682 #d33682 #fdf6e3 #dc322f
+
+
+
