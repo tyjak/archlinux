@@ -21,7 +21,10 @@ status.register("battery",
 # Show network
 status.register("network",
 	interface="wlp2s0",
-        format_up="{kbs}KB/s {essid} {quality}%"
+        format_up="{network_graph}{kbs}KB/s {essid} {quality}%",
+        dynamic_color = True,
+        graph_style = 'braille-fill',
+        graph_width = 20
 	)
 #Show backlight
 status.register("backlight",
