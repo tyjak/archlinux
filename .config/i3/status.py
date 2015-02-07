@@ -21,7 +21,7 @@ status.register("battery",
 # Show network
 status.register("network",
 	interface="wlp2s0",
-        format_up="{essid} {quality}%"
+        format_up="{kbs}KB/s {essid} {quality}%"
 	)
 #Show backlight
 status.register("backlight",
