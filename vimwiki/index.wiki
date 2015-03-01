@@ -1,4 +1,0 @@
-= My knowledge base =
-	* [[Archlinux]]
-	* [[github]]
-	* [[Python]]
