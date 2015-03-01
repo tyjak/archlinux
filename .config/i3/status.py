@@ -15,8 +15,8 @@ status.register("clock")
 #status.register("alsa")
 
 # Show battery
-status.register("battery",
-	format="{remaining} {status}")
+#status.register("battery",
+#	format="{remaining} {status}")
 
 # Show network
 status.register("network",
@@ -27,8 +27,8 @@ status.register("network",
         graph_width = 20
 	)
 #Show backlight
-status.register("backlight",
-	format="{percentage}%")
+#status.register("backlight",
+#	format="{percentage}%")
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
