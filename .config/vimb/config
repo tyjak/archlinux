@@ -1,0 +1,5 @@
+set hintkeys=sdfghjkl
+nn d :q<CR>
+cn gh :o http://www.github.com<CR>
+nmap H <C-O>
+nmap L <C-I>

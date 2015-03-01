@@ -1,1 +1,1 @@
-feh  --bg-fill '~/.config/wallpaper/solarized-dark.png' 
+feh --no-fehbg --bg-fill ~/.config/wallpaper/solarized-dark.png
