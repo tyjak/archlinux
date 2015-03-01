@@ -22,9 +22,9 @@ status.register("clock")
 status.register("network",
 	interface="wlp2s0",
         format_up="{network_graph}{kbs}KB/s {essid} {quality}%",
-        dynamic_color = True,
-        graph_style = 'braille-fill',
-        graph_width = 20
+        #dynamic_color = True,
+        #graph_style = 'braille-fill',
+        #graph_width = 20
 	)
 #Show backlight
 #status.register("backlight",

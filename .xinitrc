@@ -1,4 +1,4 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+setxkbmap -layout fr
 dunst &
-syndaemon -t -k -i 2 &
 exec i3

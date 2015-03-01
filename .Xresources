@@ -15,7 +15,7 @@ URxvt*keysym.M-c: perl:clipboard:copy
 URxvt*keysym.M-v: perl:clipboard:paste
 URxvt*intensityStyles: false
 URxvt*font: xft: Meslo LG S DZ for Powerline:size=9
-!URxvt*letterSpace: -2
+URxvt*letterSpace: -1
 
 
 
