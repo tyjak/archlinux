@@ -28,7 +28,8 @@ status.register("network",
 	)
 #Show backlight
 status.register("backlight",
-	format="{percentage}%")
+	format="\u263C {percentage}%",
+        backlight="intel_backlight")
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
