@@ -8,3 +8,5 @@ set status-color-bg=#eee8d5
 nn d :q<CR>
 nmap H <C-O>
 nmap L <C-I>
+shortcut-add G=https://duckduckgo.com/html/?q=!gifl%20$0
+shortcut-add g=https://encrypted.google.com/#q=$0
