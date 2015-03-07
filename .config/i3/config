@@ -7,7 +7,7 @@
 
 # i3 config file (v4)
 #
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# Please see http://i3wm.org/docs/userguide.html for a complete referenceG
 
 set $mod Mod4
 
@@ -94,12 +94,10 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-#bindsym $mod+1 workspace console; layout default; exec [ $(ps h -C urxvt | wc -l) = 0 ] && /usr/bin/urxvt;
-#bindsym $mod+3 workspace gvim; layout default; exec [ $(ps h -C vim | wc -l) = 0 ] && /usr/bin/urxvt -e vim
 # switch to workspace
-bindsym $mod+1 workspace console; layout toggle split; exec i3-sensible-terminal
+bindsym $mod+1 workspace console; layout splitv; exec [ $( ps -eo cmd | grep -c '[u]rxvt -name console' ) -eq 2 ] && urxvt -name console
 bindsym $mod+2 workspace web; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb
-bindsym $mod+3 workspace gvim; layout toggle split; exec --no-startup-id [ $(ps -eo command | grep -c "[u]rxvt -e vim") = 0 ] && /usr/bin/urxvt -e vim
+bindsym $mod+3 workspace vim; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -name uvim -e vim' ) -eq 2 ] && urxvt -name uvim -e vim
 bindsym $mod+4 workspace graphic
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
@@ -187,18 +185,19 @@ for_window [title="Twitter"] move right; resize shrink left 30 px or 30 ppt;
 
 for_window [class="URxvt"] border 1pixel
 for_window [class="Dwb"] border 1pixel
+for_window [class="Vimb"] border 1pixel
 for_window [class="Gvim"] border 1pixel
 
 # start a firefox
-bindsym $mod+Shift+Return exec firefox
+bindsym $mod+Shift+Return exec Vimb
 
 # assign graphic app to dedicated workspace
 assign [class="(pinta|Inkscpae)"] graphic
 for_window [class="(pinta|Inkscape)"] focus
-#assign [class="Dwb"] web
-#for_window [class="Dwb"] focus
-assign [class="Gvim"] gvim
-for_window [class="Gvim"] focus
+assign [class="Dwb"] web
+for_window [class="Dwb"] focus
+assign [class="Vimb"] web
+for_window [class="Vimb"] focus
 assign [class="Urxvt"] console
 for_window [class="Urxvt"] focus
 
@@ -206,6 +205,4 @@ client.focused #859900 #859900 #eee8d5 #859900
 client.focused_inactive #073642 #073642 #586e75 #6c71c4
 client.unfocused #073642 #073642 #93a1a1 #586e75
 client.urgent #d33682 #d33682 #fdf6e3 #dc322f
-
-
 

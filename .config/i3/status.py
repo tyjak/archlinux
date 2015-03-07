@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import subprocess
+import os.path
 
 from i3pystatus import Status
 
@@ -15,19 +16,21 @@ status.register("clock")
 #status.register("alsa")
 
 # Show battery
-status.register("battery",
-	format="{remaining} {status}")
+if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
+    status.register("battery",
+            format="{remaining} {status}")
 
 # Show network
 status.register("network",
-	interface="wlp2s0",
+	interface="net0",
         format_up="{network_graph}{kbs}KB/s {essid} {quality}%",
         dynamic_color = True,
         graph_style = 'braille-fill',
         graph_width = 20
 	)
 #Show backlight
-status.register("backlight",
+if os.path.isfile("/sys/class/acpi_video0/brightness"):
+    status.register("backlight",
 	format="\u263C {percentage}%",
         backlight="intel_backlight")
 
