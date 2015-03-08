@@ -18,11 +18,18 @@ status.register("clock")
 # Show battery
 if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
     status.register("battery",
-            format="{remaining} {status}")
+            format="{remaining} {status}",
+            alert=True,
+            alert_percentage= 10,
+            status={"DPL":"\uf212",
+                    "CHR":"\uf211",
+                    "DIS":"\uf215",
+                    "FULL":"\uf213"}
+            )
 
 # Show network
 status.register("network",
-	interface="net0",
+	interface="wlp2s0",
         format_up="{network_graph}{kbs}KB/s {essid} {quality}%",
         dynamic_color = True,
         graph_style = 'braille-fill',
@@ -50,10 +57,12 @@ status.register("disk",
 status.register("weather",
         location_code="FRXX5264",
         colorize=True,
-        format="{current_temp} {current_wind} {humidity}%",)
+        format="{current_temp} {current_wind} {humidity}%",
+        )
 
 
 status.register("bitcoin",
-        currency="EUR")
+        currency="EUR",
+        symbol="\uF15A")
 
 status.run()
