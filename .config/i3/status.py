@@ -2,6 +2,7 @@
 
 import subprocess
 import os.path
+import netifaces
 
 from i3pystatus import Status
 
@@ -28,8 +29,9 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
             )
 
 # Show network
+net_interfaces = netifaces.interfaces()[-1]
 status.register("network",
-	interface="wlp2s0",
+	interface=net_interfaces,
         format_up="{network_graph}{kbs}KB/s {essid} {quality}%",
         dynamic_color = True,
         graph_style = 'braille-fill',
