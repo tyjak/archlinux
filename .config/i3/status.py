@@ -36,9 +36,9 @@ status.register("network",
         graph_width = 20
 	)
 #Show backlight
-if os.path.isfile("/sys/class/acpi_video0/brightness"):
+if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
     status.register("backlight",
-	format="\u263C {percentage}%",
+	format="\uf185 {percentage}%",
         backlight="intel_backlight")
 
 # Shows the average load of the last minute and the last 5 minutes

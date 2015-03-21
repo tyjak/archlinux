@@ -29,7 +29,7 @@ font pango:Meslo LG S DZ for Powerline 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return split horizontal; exec i3-sensible-terminal;
+bindsym $mod+Return exec i3-sensible-terminal;
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -98,9 +98,9 @@ bindsym $mod+a focus parent
 # switch to workspace
 bindsym $mod+1 workspace console; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title console' ) -eq 2 ] && urxvt -title console
 bindsym $mod+2 workspace web; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb
-bindsym $mod+3 workspace vim; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title uvim -e vim' ) -eq 2 ] && urxvt -title uvim -e vim
+bindsym $mod+3 workspace vim; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title uvim -e vim' ) -eq 2 ] && urxvt -title uvim -e vim
 bindsym $mod+4 workspace graphic
-bindsym $mod+5 workspace 5
+bindsym $mod+5 workspace mutt; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title mutt -e mutt' ) -eq 2 ] && urxvt -title mutt -e mutt
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -188,22 +188,23 @@ for_window [title="david_adsnovo - Skype*"] focus; move right; resize shrink lef
 for_window [class="uvim"] border 1pixel
 for_window [class="URxvt"] border 1pixel
 for_window [class="Dwb"] border 1pixel
-for_window [class="Vimb"] border 1pixel
+#for_window [class="Vimb"] border 1pixel
 for_window [class="Gvim"] border 1pixel
 
 # start a firefox
-bindsym $mod+Shift+Return exec Vimb
+bindsym $tabKey+Return exec Vimb
 
 # assign graphic app to dedicated workspace
 assign [class="(pinta|Inkscpae)"] graphic
 for_window [class="(pinta|Inkscape)"] focus
 assign [class="Dwb"] web
 for_window [class="Dwb"] focus
-assign [class="Vimb"] web
-for_window [class="Vimb"] layout tabbed; focus
-assign [class="Urxvt"] console
-for_window [class="Urxvt"] layout splith; focus
+#assign [class="Vimb"] web
+#for_window [class="Vimb"] layout tabbed; focus
+#assign [class="Urxvt"] console
+#for_window [class="Urxvt"] layout splith; focus
 for_window [title="vimwiki_scratchpad"] move scratchpad; scratchpad show
+for_window [title="vimb_scratchpad"] move scratchpad; scratchpad show
 
 client.focused #859900 #859900 #eee8d5 #859900
 client.focused_inactive #073642 #073642 #586e75 #6c71c4
@@ -214,5 +215,6 @@ client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 bindsym $mod+x shmlog toggle
 
 bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[u]rxvt -title vimwiki_scratchpad -e vim -c VimwikiDiaryIndex' ) -eq 2 ] && urxvt -title vimwiki_scratchpad -e vim -c VimwikiDiaryIndex;
+bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[u]rxvt -title vimb_scratchpad -e vim ~/.config/vimb/config' ) -eq 2 ] && urxvt -title vimb_scratchpad -e vim ~/.config/vimb/config;
 exec [ $( ps -eo cmd | grep -c '[u]rxvt -title console' ) -eq 2 ] && urxvt -title console
 #focus; move scratchpad; scratchpad show
