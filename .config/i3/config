@@ -100,8 +100,8 @@ bindsym $mod+1 workspace console; layout splith; exec [ $( ps -eo cmd | grep -c 
 bindsym $mod+2 workspace web; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb
 bindsym $mod+3 workspace vim; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title uvim -e vim' ) -eq 2 ] && urxvt -title uvim -e vim
 bindsym $mod+4 workspace graphic
-bindsym $mod+5 workspace mutt; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title mutt -e mutt' ) -eq 2 ] && urxvt -title mutt -e mutt
-bindsym $mod+6 workspace 6
+bindsym $mod+5 workspace mail-JIT; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttjit -e mutt' ) -eq 2 ] && urxvt -title muttjit -e mutt -e "source ~/.mutt/jobintree.com"
+bindsym $mod+6 workspace mail-Perso; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttperso -e mutt' ) -eq 2 ] && urxvt -title muttperso -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
@@ -110,10 +110,10 @@ bindsym $mod+0 workspace 10
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace console
 bindsym $mod+Shift+2 move container to workspace web
-bindsym $mod+Shift+3 move container to workspace gvim
+bindsym $mod+Shift+3 move container to workspace vim
 bindsym $mod+Shift+4 move container to workspace graphic
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+5 move container to workspace mail-JIT
+bindsym $mod+Shift+6 move container to workspace mail-Perso
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9

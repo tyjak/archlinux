@@ -3,7 +3,7 @@ URxvt*url-launcher: vimb
 URxvt*scrollBar: false
 URxvt*scrollBar_reight: false
 URxvt*scrollBar_floating: false
-!URxvt*iso14755: false
+URxvt*iso14755: false
 URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:       perl:keyboard-select:search

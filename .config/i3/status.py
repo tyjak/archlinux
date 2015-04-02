@@ -29,7 +29,7 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
             )
 
 # Show network
-net_interfaces = netifaces.interfaces()[-1]
+net_interfaces = "wlp2s0b1"
 status.register("network",
 	interface=net_interfaces,
         format_up="{network_graph}{kbs}KB/s {essid} {quality}%",
@@ -37,6 +37,14 @@ status.register("network",
         graph_style = 'braille-fill',
         graph_width = 20
 	)
+
+status.register("runwatch",
+        path="/var/run/ppp0.pid",
+        name="VPN adsnovo",
+        format_up="{name}",
+        format_down="",
+        )
+
 #Show backlight
 if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
     status.register("backlight",
