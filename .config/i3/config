@@ -100,8 +100,8 @@ bindsym $mod+1 workspace console; layout splith; exec [ $( ps -eo cmd | grep -c 
 bindsym $mod+2 workspace web; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb
 bindsym $mod+3 workspace vim; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title uvim -e vim' ) -eq 2 ] && urxvt -title uvim -e vim
 bindsym $mod+4 workspace graphic
-bindsym $mod+5 workspace mail-JIT; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttjit -e mutt' ) -eq 2 ] && urxvt -title muttjit -e mutt -e "source ~/.mutt/jobintree.com"
-bindsym $mod+6 workspace mail-Perso; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttperso -e mutt' ) -eq 2 ] && urxvt -title muttperso -e mutt -e "source ~/.mutt/gmail.com"
+bindsym $mod+5 workspace mail-JIT; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttjit -e mutt' ) -eq 2 ] && urxvt -title muttjit -e mutt -e "source ~/.mutt/jobintree.com"
+bindsym $mod+6 workspace mail-Perso; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttperso -e mutt' ) -eq 2 ] && urxvt -title muttperso -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
@@ -214,7 +214,8 @@ client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 # Enable/disable logging
 bindsym $mod+x shmlog toggle
 
-bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[u]rxvt -title vimwiki_scratchpad -e vim -c VimwikiDiaryIndex' ) -eq 2 ] && urxvt -title vimwiki_scratchpad -e vim -c VimwikiDiaryIndex;
+bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[u]rxvt -title vimwiki_scratchpad -e vim -c VimwikiIndex' ) -eq 2 ] && urxvt -title vimwiki_scratchpad -e vim -c VimwikiIndex;
+bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[u]rxvt -title vimwiki_scratchpad -e vim -c VimwikiDiaryIndex' ) -eq 2 ] && urxvt -title vimwiki_scratchpad -e vim -c VimwikiDiaryIndex;
 bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[u]rxvt -title vimb_scratchpad -e vim ~/.config/vimb/config' ) -eq 2 ] && urxvt -title vimb_scratchpad -e vim ~/.config/vimb/config;
 exec [ $( ps -eo cmd | grep -c '[u]rxvt -title console' ) -eq 2 ] && urxvt -title console
 #focus; move scratchpad; scratchpad show
