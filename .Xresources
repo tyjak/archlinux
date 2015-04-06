@@ -1,3 +1,4 @@
+URxvt*loginShell: true
 URxvt*perl-ext-common: default,clipboard,url-select,keyboard-select
 URxvt*url-launcher: vimb
 URxvt*scrollBar: false
@@ -7,7 +8,6 @@ URxvt*iso14755: false
 URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:       perl:keyboard-select:search
-URxvt.url-select.launcher:  vimb
 URxvt.url-select.underline: true
 !URxvt.clipboard.copycmd:  xclip -i -selection clipboard
 !URxvt.clipboard.pastecmd: xclip -o -selection clipboard
@@ -16,7 +16,6 @@ URxvt*keysym.M-v: perl:clipboard:paste
 URxvt*intensityStyles: false
 URxvt*font: xft: Meslo LG S DZ for Powerline:size=9
 #URxvt*letterSpace: -2
-
 
 
 ! Solarized color scheme for the X Window System
