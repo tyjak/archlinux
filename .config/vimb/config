@@ -6,7 +6,7 @@ set status-ssl-color-fg=#002b36
 set status-ssl-color-bg=#839496
 set status-color-fg=#586e75
 set status-color-bg=#eee8d5
-set download-path:downloads/
+set download-path=~/downloads/
 nn d :q<CR>
 nmap H <C-O>
 nmap L <C-I>
