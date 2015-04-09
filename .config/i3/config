@@ -96,24 +96,24 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace console; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title console' ) -eq 2 ] && urxvt -title console
-bindsym $mod+2 workspace web; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb
-bindsym $mod+3 workspace vim; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title uvim -e vim' ) -eq 2 ] && urxvt -title uvim -e vim
-bindsym $mod+4 workspace mail-Perso; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttperso -e mutt' ) -eq 2 ] && urxvt -title muttperso -e mutt -e "source ~/.mutt/gmail.com"
-bindsym $mod+5 workspace mail-JIT; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttjit -e mutt' ) -eq 2 ] && urxvt -title muttjit -e mutt -e "source ~/.mutt/jobintree.com"
-bindsym $mod+6 workspace tmux-weechat; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
+bindsym $mod+1 workspace 1_console; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title console' ) -eq 2 ] && urxvt -title console
+bindsym $mod+2 workspace 2_web; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb
+bindsym $mod+3 workspace 3_vim; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title uvim -e vim' ) -eq 2 ] && urxvt -title uvim -e vim
+bindsym $mod+4 workspace 4_mail-Perso; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttperso -e mutt' ) -eq 2 ] && urxvt -title muttperso -e mutt -e "source ~/.mutt/gmail.com"
+bindsym $mod+5 workspace 5_mail-JIT; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttjit -e mutt' ) -eq 2 ] && urxvt -title muttjit -e mutt -e "source ~/.mutt/jobintree.com"
+bindsym $mod+6 workspace 6_tmux-weechat; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace console
-bindsym $mod+Shift+2 move container to workspace web
-bindsym $mod+Shift+3 move container to workspace vim
-bindsym $mod+Shift+4 move container to workspace mail-Perso
-bindsym $mod+Shift+5 move container to workspace mail-JIT
-bindsym $mod+Shift+6 move container to workspace tmux-weechat
+bindsym $mod+Shift+1 move container to workspace 1_console
+bindsym $mod+Shift+2 move container to workspace 2_web
+bindsym $mod+Shift+3 move container to workspace 3_vim
+bindsym $mod+Shift+4 move container to workspace 4_mail-Perso
+bindsym $mod+Shift+5 move container to workspace 5_mail-JIT
+bindsym $mod+Shift+6 move container to workspace 6_tmux-weechat
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
@@ -187,7 +187,7 @@ for_window [title="david_adsnovo - Skype*"] focus; move right; resize shrink lef
 
 for_window [class="uvim"] border 1pixel
 for_window [class="URxvt"] border 1pixel
-for_window [class="Dwb"] border 1pixel
+for_window [class="Vimb"] border 1pixel
 #for_window [class="Vimb"] border 1pixel
 for_window [class="Gvim"] border 1pixel
 
@@ -197,8 +197,6 @@ bindsym $tabKey+Return exec Vimb
 # assign graphic app to dedicated workspace
 assign [class="(pinta|Inkscpae)"] graphic
 for_window [class="(pinta|Inkscape)"] focus
-assign [class="Dwb"] web
-for_window [class="Dwb"] focus
 #assign [class="Vimb"] web
 #for_window [class="Vimb"] layout tabbed; focus
 #assign [class="Urxvt"] console
