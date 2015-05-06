@@ -12,6 +12,9 @@ nmap H <C-O>
 nmap L <C-I>
 shortcut-add G=https://duckduckgo.com/html/?q=!gifl%20$0
 shortcut-add g=https://encrypted.google.com/#q=$0
+
+nmap ,,i ::e! instapaper()<CR>
+
 set proxy=true
-nmap ,,i :e instapaper()<CR>
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
+
