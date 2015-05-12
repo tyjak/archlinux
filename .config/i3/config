@@ -41,6 +41,8 @@ bindsym $mod+d exec dmenu_run -i -nb '#859900' -nf '#eee8d5' -sb '#cb4b16' -fn '
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+focus_follows_mouse no
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
