@@ -7,11 +7,14 @@ set status-ssl-color-bg=#839496
 set status-color-fg=#586e75
 set status-color-bg=#eee8d5
 set download-path=~/downloads/
+set webinspector=true
 nn d :q<CR>
 nmap H <C-O>
 nmap L <C-I>
 shortcut-add G=https://duckduckgo.com/html/?q=!gifl%20$0
 shortcut-add g=https://encrypted.google.com/#q=$0
+
+nmap ,,; ::sh! ~/share/bin/vimbmkpwd<CR>
 
 nmap ,,i ::e! instapaper()<CR>
 
