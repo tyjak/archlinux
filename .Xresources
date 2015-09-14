@@ -1,4 +1,4 @@
-URxvt*perl-ext-common: default,clipboard,url-select,keyboard-select,vim-scrollback
+URxvt*perl-ext-common: default,clipboard,url-select,keyboard-select
 URxvt*url-launcher: vimb
 URxvt*scrollBar: false
 URxvt*scrollBar_reight: false
@@ -9,10 +9,10 @@ URxvt*iso14755: false
 !URxvt.keysym.M-s:       perl:keyboard-select:search
 URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
-!URxvt.clipboard.copycmd:  xclip -i -selection clipboard
-!URxvt.clipboard.pastecmd: xclip -o -selection clipboard
-!URxvt*keysym.M-c: perl:clipboard:copy
-!URxvt*keysym.M-v: perl:clipboard:paste
+URxvt.clipboard.copycmd:  xclip -i -selection clipboard
+URxvt.clipboard.pastecmd: xclip -o -selection clipboard
+URxvt*keysym.M-c: perl:clipboard:copy
+URxvt*keysym.M-v: perl:clipboard:paste
 URxvt.keysym.M-Up:     perl:font-size:increase
 URxvt.keysym.M-Down:   perl:font-size:decrease
 URxvt.keysym.M-S-Up:   perl:font-size:incglobal
@@ -23,10 +23,10 @@ URxvt*font: xft: Meslo LG S DZ for Powerline:size=9
 !URxvt*letterSpace: -2
 
 ! configURe alt-s as the keybinding to enter vim scrollback mode.
-URxvt.vim-scrollback: M-s
+!URxvt.vim-scrollback: M-s
 
 ! configURe alt-p as the keybinding to paste mode.
-URxvt.vim-scrollback-paste: M-p
+!URxvt.vim-scrollback-paste: M-p
 
 ! configURe the background and foreground colors used for the status bar while
 ! in scrollback mode.

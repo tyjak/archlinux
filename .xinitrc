@@ -16,4 +16,5 @@ dunst &
 syndaemon -t -k -i 2 &
 eval $(ssh-agent)
 unclutter &
+stty -ixon
 exec i3
