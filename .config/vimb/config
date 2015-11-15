@@ -17,6 +17,7 @@ shortcut-add g=https://encrypted.google.com/#q=$0
 nmap ,,; ::sh! ~/share/bin/vimbmkpwd<CR>
 
 nmap ,,i ::e! instapaper()<CR>
+nmap ,,f ::e! facebook()<CR>
 
 set proxy=true
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
