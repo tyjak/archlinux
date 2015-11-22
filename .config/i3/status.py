@@ -2,7 +2,7 @@
 
 import subprocess
 import os.path
-import netifaces
+#import netifaces
 
 from i3pystatus import Status
 
