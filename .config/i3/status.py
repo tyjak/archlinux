@@ -20,12 +20,20 @@ status.register("clock")
 
 # Show network
 status.register("network",
-	interface="wlp2s0",
-        format_up="{network_graph}{kbs}KB/s {essid} {quality}%",
-        #dynamic_color = True,
-        #graph_style = 'braille-fill',
-        #graph_width = 20
+	interface="wlan0",
+    format_up=" {network_graph}{kbs}KB/s {essid} {quality}%",
+    dynamic_color=True,
+    graph_style="braille-fill",
+    graph_width=20
 	)
+
+# Show vpn
+status.register("runwatch",
+    path="/var/run/ppp0.pid",
+    name="VPN ADSNOVO ",
+    format_up="{name}",
+    format_down=""
+    )
 #Show backlight
 #status.register("backlight",
 #	format="{percentage}%")
