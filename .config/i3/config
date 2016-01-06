@@ -212,6 +212,7 @@ for_window [class="(pinta|Inkscape)"] focus
 for_window [title="vimwiki_scratchpad"] move scratchpad; scratchpad show
 for_window [title="vimdiary_scratchpad"] move scratchpad; scratchpad show
 for_window [title="vimb_scratchpad"] move scratchpad; scratchpad show
+for_window [title="preview_scratchpad"] move scratchpad; scratchpad show
 
 client.focused #859900 #859900 #eee8d5 #859900
 client.focused_inactive #073642 #073642 #586e75 #6c71c4
