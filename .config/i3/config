@@ -101,24 +101,24 @@ bindsym $mod+a focus parent
 bindsym $mod+1 workspace 1:console; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title console' ) -eq 2 ] && urxvt -title console
 bindsym $mod+2 workspace 2:web; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb -s
 bindsym $mod+3 workspace 3:vim; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title uvim -e vim' ) -eq 2 ] && urxvt -title uvim -e vim
-bindsym $mod+4 workspace 4:mail-Perso; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttperso -e mutt' ) -eq 2 ] && urxvt -title muttperso -e mutt -e "source ~/.mutt/gmail.com"
-bindsym $mod+5 workspace 5:mail-JIT; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttjit -e mutt' ) -eq 2 ] && urxvt -title muttjit -e mutt -e "source ~/.mutt/jobintree.com"
-bindsym $mod+6 workspace 6:tmux-weechat; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
-bindsym $mod+7 workspace 7
+bindsym $mod+4 workspace 4:mail-gmail; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
+bindsym $mod+5 workspace 5:mail-Perso; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttperso -e mutt' ) -eq 2 ] && urxvt -title muttperso -e mutt -e "source ~/.mutt/newmanity.com"
+bindsym $mod+6 workspace 6:mail-JIT; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttjit -e mutt' ) -eq 2 ] && urxvt -title muttjit -e mutt -e "source ~/.mutt/jobintree.com"
+bindsym $mod+7 workspace 7:tmux-weechat; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+9 workspace 9:reddit; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title reddit' ) -eq 2 ] && urxvt -title reddit -e rtv
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1:console
 bindsym $mod+Shift+2 move container to workspace 2:web
 bindsym $mod+Shift+3 move container to workspace 3:vim
-bindsym $mod+Shift+4 move container to workspace 4:mail-Perso
-bindsym $mod+Shift+5 move container to workspace 5:mail-JIT
-bindsym $mod+Shift+6 move container to workspace 6:tmux-weechat
-bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+4 move container to workspace 4:mail-Gmail
+bindsym $mod+Shift+5 move container to workspace 5:mail-Perso
+bindsym $mod+Shift+6 move container to workspace 6:mail-JIT
+bindsym $mod+Shift+7 move container to workspace 7:tmux-weechat
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+9 move container to workspace 9:reddit
 bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
