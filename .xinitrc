@@ -1,4 +1,5 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+[[ -f /usr/bin/feh ]] && sh ~/.fehbg &
 
 # var settings
 export PRINTER=Brother_HL_2030_series
