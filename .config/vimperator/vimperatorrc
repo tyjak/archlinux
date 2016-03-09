@@ -1,0 +1,9 @@
+"3.8.2 (created: 2014/02/13 23:52:43)
+
+set noscrollbars
+set toolbars=nonavigation,notabs
+set hintchars=hjklfdsq
+source! ~/.config/vimperator/vimperatorrc.local
+source! ~/.config/vimperator/colorscheme
+
+" vim: set ft=vimperator:

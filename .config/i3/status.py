@@ -47,6 +47,13 @@ status.register("runwatch",
         format_down="",
         )
 
+status.register("runwatch",
+        path="/run/openvpn@adsnovo.pid",
+        name="VPN adsnovo",
+        format_up="{name}",
+        format_down="",
+        )
+
 #Show backlight
 if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
     status.register("backlight",

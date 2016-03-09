@@ -183,7 +183,7 @@ filextype *.djvu
 " Audio
 filetype *.wav,*.mp3,*.flac,*.ogg,*.m4a,*.wma,*.ape,*.ac3
        \ {Play using ffplay}
-       \ ffplay -nodisp %c,
+       \ ffplay -fs %c,
        \ {Play using MPlayer}
        \ mplayer %f,
        \ ffplay %c,
