@@ -13,7 +13,11 @@ nmap H <C-O>
 nmap L <C-I>
 shortcut-add G=https://duckduckgo.com/html/?q=!gifl%20$0
 shortcut-add g=https://encrypted.google.com/#q=$0
+shortcut-add a=https://duckduckgo.com/html/?q=!gifl%20ansible+$0
 
+#nmap ,,v :source ~/.config/vimb/config
+nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
+nmap ,,D :sh /bin/sh -c "rm ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,;b :o ./.config/vimb/bookmark<CR>
 nmap ,,; ::sh! ~/share/bin/vimbmkpwd<CR>
 
