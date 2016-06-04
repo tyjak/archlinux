@@ -3,5 +3,6 @@
 set noscrollbars
 set gui=nonavigation,notabs
 source! /root/.vimperatorrc.local
+source! ~/.vimperator_colorscheme
 
 " vim: set ft=vimperator:

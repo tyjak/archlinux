@@ -12,7 +12,7 @@ nn D :q<CR>
 nmap H <C-O>
 nmap L <C-I>
 shortcut-add G=https://duckduckgo.com/html/?q=!gifl%20$0
-shortcut-add g=https://encrypted.google.com/#q=$0
+shortcut-add g=http://search.uselilo.org/searchweb.php?q=$0
 shortcut-add a=https://duckduckgo.com/html/?q=!gifl%20ansible+$0
 
 #nmap ,,v :source ~/.config/vimb/config
@@ -26,7 +26,7 @@ nmap ,,f ::e! facebook()<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
 nmap ,;a ::e! getArchive()<CR>
 
-set proxy=true
+set proxy=false
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
 
 aug bookmark
