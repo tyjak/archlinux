@@ -288,7 +288,8 @@ filetype *.7z
 fileviewer *.7z 7z l %c
 
 " Office files
-filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
+filetype *.xls,*.xlsx,*.csv gnumeric %f &
+filextype *.odt,*.doc,*.docx,*.odp,*.pptx abiword %f &
 fileviewer *.doc catdoc %c
 fileviewer *.docx, docx2txt.pl %f -
 
@@ -329,7 +330,7 @@ fileviewer .*/,*/ tree %f
 " uncommenting one of lines below will result in ignoring 'vi[x]cmd' option
 " for unknown file types.
 " For *nix:
-filetype * i3-msg exec urxvt -title preview_scratchpad -e xdg-open
+filetype * xdg-open
 " For OS X:
 " filetype * open
 " For Windows:

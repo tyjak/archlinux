@@ -15,7 +15,7 @@ status.register("clock")
 
 # Show sound
 status.register("pulseaudio",
-        format="\U0001D160{volume}",
+        format="\U0001D160  {volume}",
         )
 
 # Show battery

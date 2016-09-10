@@ -14,6 +14,7 @@ nmap L <C-I>
 shortcut-add G=https://duckduckgo.com/html/?q=!gifl%20$0
 shortcut-add g=http://search.uselilo.org/searchweb.php?q=$0
 shortcut-add a=https://duckduckgo.com/html/?q=!gifl%20ansible+$0
+set strict-ssl=false
 
 #nmap ,,v :source ~/.config/vimb/config
 nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
@@ -26,7 +27,7 @@ nmap ,,f ::e! facebook()<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
 nmap ,;a ::e! getArchive()<CR>
 
-set proxy=false
+set proxy=true
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
 
 aug bookmark
