@@ -28,12 +28,20 @@ status.register("network",
 	)
 
 # Show vpn
+
 status.register("runwatch",
-    path="/var/run/ppp0.pid",
-    name="VPN ADSNOVO ",
-    format_up="{name}",
-    format_down=""
-    )
+        path="/var/run/ppp0.pid",
+        name="VPN adsnovo",
+        format_up="{name}",
+        format_down="",
+        )
+
+status.register("runwatch",
+        path="/run/openvpn@adsnovo.pid",
+        name="VPN adsnovo",
+        format_up="{name}",
+        format_down="",
+        )
 #Show backlight
 #status.register("backlight",
 #	format="{percentage}%")
@@ -54,10 +62,12 @@ status.register("disk",
 status.register("weather",
         location_code="FRXX5264",
         colorize=True,
-        format="{current_temp} {current_wind} {humidity}%",)
+        format="{current_temp} {current_wind} {humidity}%",
+        )
 
 
 status.register("bitcoin",
-        currency="EUR")
+        currency="EUR",
+        symbol="\uF15A")
 
 status.run()
