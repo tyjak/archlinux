@@ -1,4 +1,5 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+[[ -f /usr/bin/feh ]] && sh ~/.fehbg &
 
 export EDITOR=/usr/bin/vim
 export PATH=~/share/bin:/usr/bin:/usr/local/bin:$PATH
