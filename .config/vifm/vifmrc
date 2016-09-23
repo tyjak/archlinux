@@ -288,8 +288,8 @@ filetype *.7z
 fileviewer *.7z 7z l %c
 
 " Office files
-filetype *.xls,*.xlsx,*.csv gnumeric %f &
-filextype *.odt,*.doc,*.docx,*.odp,*.pptx abiword %f &
+filetype *.xls,*.xlsx,*.csv gnumeric %f 2>/dev/null &
+filextype *.odt,*.doc,*.docx,*.odp,*.pptx abiword %f 2>/dev/null &
 fileviewer *.doc catdoc %c
 fileviewer *.docx, docx2txt.pl %f -
 
