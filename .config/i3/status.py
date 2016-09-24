@@ -3,6 +3,7 @@
 import subprocess
 
 from i3pystatus import Status
+from i3pystatus.weather import weathercom
 
 status = Status(standalone=True)
 
@@ -58,12 +59,35 @@ status.register("disk",
     #format="{used}/{total}G [{avail}G]",)
     format="{avail}G",)
 
-# Show weather
+# Show weather => need ttf-weather-icons
+color_icon_values={
+	'Cloudy': ('<span font="Weather Icons 10">\uf013</span>', '#f8f8ff'),
+	'Fog': ('<span font="Weather Icons 10">\uf014</span>', '#949494'),
+	'Thunderstorm': ('<span font="Weather Icons 10">\uf016</span>', '#cbd2c0'),
+	'Fair': ('<span font="Weather Icons 10">\uf00c</span>', '#ffcc00'),
+	'Rainy': ('<span font="Weather Icons 10">\uf019</span>', '#cbd2c0'),
+	'Partly Cloudy': ('<span font="Weather Icons 10">\uf002</span>', '#f8f8ff'),
+	'Snow': ('<span font="Weather Icons 10">\uf01b</span>', '#ffffff'),
+	'default': ('', None),
+	'Sunny': ('<span font="Weather Icons 10">\uf00d</span>', '#ffff00')
+}
+
 status.register("weather",
-        location_code="FRXX5264",
+        #location_code="FRXX5264",
+	interval=900,
         colorize=True,
-        format="{current_temp} {current_wind} {humidity}%",
-        )
+	color_icons=color_icon_values,
+	refresh_icon='<span font="Weather Icons 10">\uf04c</span>',
+        #format="{current_temp} {current_wind} {humidity}%",
+	format='{condition} {current_temp}{temp_unit}[ {icon}][ Max: {high_temp}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][ {pressure_trend}][ {update_error}]',
+
+	hints={'markup': 'pango'},
+	backend=weathercom.Weathercom(
+	    location_code='FRXX0007:1:FR',
+	    units='metric',
+	    update_error='<span color="#ff0000">!</span>',
+	),
+)
 
 
 status.register("bitcoin",
