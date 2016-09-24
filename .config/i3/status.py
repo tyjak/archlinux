@@ -93,7 +93,7 @@ status.register("weather",
 	color_icons=color_icon_values,
 	refresh_icon='<span font="Weather Icons 10">\uf04c</span>',
         #format="{current_temp} {current_wind} {humidity}%",
-	format='{condition} {current_temp}{temp_unit}[ {icon}][ Max: {high_temp}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][ {pressure_trend}][ {update_error}]',
+	format='{condition} {current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][ {pressure_trend}][ {update_error}]',
 
 	hints={'markup': 'pango'},
 	backend=weathercom.Weathercom(

@@ -5,7 +5,7 @@
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 export EDITOR=/usr/bin/vim
-export PATH=~/share/bin:/usr/bin:/usr/local/bin:$PATH
+export PATH=~/share/bin/i3:~/share/bin:/usr/bin:/usr/local/bin:$PATH
 export PATH=~/.gem/ruby/2.1.0/bin/:$PATH
 export PYTHONPATH=/usr/lib/python3.3/site-packages
 export BROWSER=/usr/bin/vimb
