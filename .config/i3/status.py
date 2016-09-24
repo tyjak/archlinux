@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import subprocess
+import os.path
 
 from i3pystatus import Status
 from i3pystatus.weather import weathercom
@@ -13,23 +14,33 @@ status = Status(standalone=True)
 status.register("clock")
 
 # Show sound
-#status.register("alsa")
+status.register("pulseaudio",
+        format="\U0001D160  {volume}",
+        )
 
 # Show battery
-#status.register("battery",
-#	format="{remaining} {status}")
+if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
+    status.register("battery",
+            format="{remaining} {status}",
+            alert=True,
+            alert_percentage= 10,
+            status={"DPL":"\uf212",
+                    "CHR":"\uf211",
+                    "DIS":"\uf215",
+                    "FULL":"\uf213"}
+            )
 
 # Show network
+net_interfaces = "wlan0"
 status.register("network",
-	interface="wlan0",
-    format_up=" {network_graph}{kbs}KB/s {essid} {quality}%",
-    dynamic_color=True,
-    graph_style="braille-fill",
-    graph_width=20
+	interface=net_interfaces,
+        format_up="\uf1eb {network_graph} {kbs}KB/s {essid} {quality}%",
+        dynamic_color = True,
+        graph_style = 'braille-fill',
+        graph_width = 20
 	)
 
 # Show vpn
-
 status.register("runwatch",
         path="/var/run/ppp0.pid",
         name="VPN adsnovo",
@@ -44,8 +55,10 @@ status.register("runwatch",
         format_down="",
         )
 #Show backlight
-#status.register("backlight",
-#	format="{percentage}%")
+if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
+    status.register("backlight",
+	format="\uf185 {percentage}%",
+        backlight="intel_backlight")
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
