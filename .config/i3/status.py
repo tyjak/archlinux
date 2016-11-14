@@ -9,6 +9,10 @@ from i3pystatus.weather import weathercom
 
 status = Status(standalone=True)
 
+
+#show a dot
+status.register("anybar")
+
 # Displays clock like this:
 # Tue 30 Jul 11:59:46 PM KW31
 #                          ^-- calendar week
@@ -40,6 +44,8 @@ status.register("network",
         graph_style = 'braille-fill',
         graph_width = 20
 	)
+
+status.register("syncthing")
 
 status.register("runwatch",
         path="/var/run/ppp0.pid",
@@ -93,7 +99,7 @@ status.register("weather",
 	color_icons=color_icon_values,
 	refresh_icon='<span font="Weather Icons 10">\uf04c</span>',
         #format="{current_temp} {current_wind} {humidity}%",
-	format='{condition} {current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][ {pressure_trend}][ {update_error}]',
+	format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][ {pressure_trend}][ {update_error}]',
 
 	hints={'markup': 'pango'},
 	backend=weathercom.Weathercom(
@@ -108,4 +114,7 @@ status.register("bitcoin",
         currency="EUR",
         symbol="\uF15A")
 
+status.register("pomodoro",
+        sound="~/share/sounds/196106__aiwha__ding.wav",
+        format="\uE001 {current_pomodoro}/{total_pomodoro} {time}")
 status.run()
