@@ -2,7 +2,7 @@
 exec_always compton -f
 
 # start a concole if not starting
-exec [ $( ps -eo cmd | grep -c '[u]rxvt -title console' ) -eq 2 ] && urxvt -title console
+exec [ $( ps -eo cmd | grep -c '[t]ermite --title console' ) -eq 2 ] && termite --title console
 
 # special keys
 set $mod Mod4
@@ -112,12 +112,13 @@ set $menu7 7:tmux-weechat
 
 
 # switch to workspace
-bindsym $mod+1 workspace $menu1; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title console' ) -eq 2 ] && urxvt -title console
+bindsym $mod+1 workspace $menu1; layout tabbed; exec [ $( ps -eo cmd | grep -c '[t]ermite --title console' ) -eq 2 ] && termite --title console
 bindsym $mod+2 workspace $menu2; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb -s
 bindsym $mod+3 workspace $menu3; layout splith; exec [ $( ps -eo cmd | grep -c '[t]ermite --title uvim -e vim' ) -eq 2 ] && termite --title uvim -e vim
-bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
-bindsym $mod+5 workspace $menu5; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttperso -e mutt' ) -eq 2 ] && urxvt -title muttperso -e mutt -e "source ~/.mutt/newmanity.com"
-bindsym $mod+6 workspace $menu6; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttjit -e mutt' ) -eq 2 ] && urxvt -title muttjit -e mutt -e "source ~/.mutt/jobintree.com"
+#bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
+bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttgmail' ) -eq 2 ] && termite --title muttgmail -e 'mutt -e "source ~/.mutt/gmail.com"'
+bindsym $mod+5 workspace $menu5; layout tabbed; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttperso' ) -eq 2 ] && termite --title muttperso -e 'mutt -e "source ~/.mutt/newmanity.com"'
+bindsym $mod+6 workspace $menu6; layout tabbed; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttjit' ) -eq 2 ] && termite --title muttjit -e 'mutt -e "source ~/.mutt/jobintree.com"'
 bindsym $mod+7 workspace $menu7; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
@@ -146,6 +147,9 @@ set $sink `pactl list short sinks | grep RUNNING | head -1 | cut -f1`
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioPause exec mpc toggle
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -182,10 +186,12 @@ for_window [title="david_adsnovo - Skype*"] focus, sticky enable, move right, re
 #for_window [title="vim"] title_format "<span font='devicons'> </span>%title"
 for_window [title="uvim"] border 1pixel
 for_window [class="URxvt"] border 1pixel
+for_window [class="Termite"] border 1pixel
 for_window [class="Vimb"] border 1pixel
 #for_window [class="Vimb"] border 1pixel
 for_window [class="Gvim"] border 1pixel
 for_window [title="filemanager"] border 1pixel, layout tabbed;
+for_window [title="JACK.*"] float;
 
 # assign graphic app to dedicated workspace
 assign [class="(pinta|Inkscpae)"] graphic
@@ -200,6 +206,9 @@ for_window [class="(pinta|Inkscape)"] focus
 for_window [title="scratchpad_vimwiki"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
 for_window [title="scratchpad_vimdiary"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
 for_window [title="scratchpad_vimb"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
+for_window [title="Franz"] sticky enable, border 1pixel, move scratchpad, resize set 720 874, scratchpad show, move absolute position 720px 24px; 
+for_window [title="scratchpad_ncmpcpp"] sticky enable, border 1pixel, move scratchpad, resize set 640  400, scratchpad show; 
+for_window [title="scratchpad_cal"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
 
 client.focused #859900 #859900 #eee8d5 #859900
 client.focused_inactive #073642 #073642 #586e75 #6c71c4
@@ -292,9 +301,12 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg scratchpad show;
-bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim -c VimwikiDiaryIndex' || i3-msg scratchpad show;
-bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimb' ) -eq 2 ] && termite --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg scratchpad show;
+bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg [title=scratchpad_vimwiki] scratchpad show;
+bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim -c VimwikiDiaryIndex' || i3-msg [title=scratchpad_vimdiary] scratchpad show;
+bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimb' ) -eq 2 ] && termite --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg [title=scratchpad_vimb] scratchpad show;
+bindsym $tabKey+c exec [ $( ps -eo cmd | grep -c '[/]usr/bin/franz-bin' ) -eq 2 ] && /usr/bin/franz-bin || i3-msg [title=Franz] scratchpad show;
+bindsym $tabKey+m exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_ncmpcpp' ) -eq 2 ] && termite --title scratchpad_ncmpcpp -e 'ncmpcpp' || i3-msg [title=scratchpad_ncmpcpp] scratchpad show;
+bindsym $tabKey+e exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_cal' ) -eq 2 ] && termite --title scratchpad_cal -e 'pal -m' || i3-msg [title=scratchpad_cal] scratchpad show;
 #bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg kill;
 #bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim -c VimwikiDiaryIndex' || i3-msg kill;
 #bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimb' ) -eq 2 ] && termite --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg kill;
