@@ -23,7 +23,7 @@ set $tabKey Mode_switch
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 #font pango:DejaVu Sans Mono 10
-font pango:Meslo LG S DZ for Powerline 10
+font pango:MesloLGSDZ Nerd Font 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -102,7 +102,7 @@ bindsym $mod+a focus parent
 
 # switch to workspace
 bindsym $mod+1 workspace 1:console; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title console' ) -eq 2 ] && urxvt -title console
-bindsym $mod+2 workspace 2:web; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb -s
+bindsym $mod+2 workspace 2:web; layout tabbed; exec [ $(ps h -C vimb | wc -l) = 0 ] && /usr/bin/vimb
 bindsym $mod+3 workspace 3:vim; layout splith; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title uvim -e vim' ) -eq 2 ] && urxvt -title uvim -e vim
 bindsym $mod+4 workspace 4:mail-gmail; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+5 workspace 5:mail-Perso; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttperso -e mutt' ) -eq 2 ] && urxvt -title muttperso -e mutt -e "source ~/.mutt/newmanity.com"
@@ -156,10 +156,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $sink `pactl list short sinks | grep RUNNING | head -1 | cut -f1`
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +10%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -10%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
+# Startset $sink `pactl list short sinks | grep RUNNING | head -1 | cut -f1`
+# Startbindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +10%
+# Startbindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -10%
+# Startbindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -221,7 +221,7 @@ client.focused_inactive #073642 #073642 #586e75 #6c71c4
 client.unfocused #073642 #073642 #93a1a1 #586e75
 client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
-set $Locker i3lock -i ~/.config/wallpaper/solarized-dark.png && sleep 1
+set $Locker i3lock -f && sleep 1
 
 # Press $mod+o followed by either f, t, Esc or Return to launch firefox,
 # thunderbird or return to the default mode, respectively.
@@ -261,4 +261,5 @@ bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[u]rxvt -title vimwiki_scratch
 bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[u]rxvt -title vimdiary_scratchpad -e vim -c VimwikiDiaryIndex' ) -eq 2 ] && urxvt -title vimdiary_scratchpad -e vim -c VimwikiDiaryIndex || i3-msg scratchpad show;
 bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[u]rxvt -title vimb_scratchpad -e vim ~/.config/vimb/config' ) -eq 2 ] && urxvt -title vimb_scratchpad -e vim ~/.config/vimb/config || i3-msg scratchpad show;
 exec [ $( ps -eo cmd | grep -c '[u]rxvt -title console' ) -eq 2 ] && urxvt -title console
+exec clipmenud
 #focus; move scratchpad; scratchpad show

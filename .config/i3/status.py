@@ -14,9 +14,10 @@ status = Status(standalone=True)
 status.register("clock")
 
 # Show sound
-status.register("pulseaudio",
-        format="\U0001D160  {volume}",
-        )
+if os.path.isfile("/etc/pulse/daemon.conf"):
+    status.register("pulseaudio",
+            format="\U0001D160  {volume}",
+            )
 
 # Show battery
 if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
@@ -31,29 +32,15 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
             )
 
 # Show network
-net_interfaces = "wlan0"
 status.register("network",
-	interface=net_interfaces,
-        format_up="\uf1eb {network_graph} {kbs}KB/s {essid} {quality}%",
-        dynamic_color = True,
-        graph_style = 'braille-fill',
-        graph_width = 20
+	interface="eth1",
+    format_up=" {network_graph}{kbs}kb/s ",
+    dynamic_color=True,
+    graph_style="braille-fill",
+    graph_width=20
 	)
 
-# Show vpn
-status.register("runwatch",
-        path="/var/run/ppp0.pid",
-        name="VPN adsnovo",
-        format_up="{name}",
-        format_down="",
-        )
 
-status.register("runwatch",
-        path="/run/openvpn@adsnovo.pid",
-        name="VPN adsnovo",
-        format_up="{name}",
-        format_down="",
-        )
 #Show backlight
 if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
     status.register("backlight",
@@ -90,7 +77,7 @@ status.register("weather",
 	interval=900,
         colorize=True,
 	color_icons=color_icon_values,
-	refresh_icon='<span font="Weather Icons 10">\uf04c</span>',
+	#refresh_icon='<span font="Weather Icons 10">\uf04c</span>',
         #format="{current_temp} {current_wind} {humidity}%",
 	format='{condition} {current_temp}{temp_unit}[ {icon}][ Max: {high_temp}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][ {pressure_trend}][ {update_error}]',
 
@@ -98,7 +85,6 @@ status.register("weather",
 	backend=weathercom.Weathercom(
 	    location_code='FRXX0007:1:FR',
 	    units='metric',
-	    update_error='<span color="#ff0000">!</span>',
 	),
 )
 
