@@ -24,6 +24,12 @@ status.register("pulseaudio",
         format="\U0001D160  {volume}",
         )
 
+#status.register("alsa",
+#        format="\U0001D160  {volume}",
+#        color_muted="#FF0000",
+#        on_leftclick="pavucontrol"
+#        )
+
 # Show battery
 if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
     status.register("battery",
@@ -98,15 +104,13 @@ status.register("weather",
 	interval=900,
         colorize=True,
 	color_icons=color_icon_values,
-	refresh_icon='<span font="Weather Icons 10">\uf04c</span>',
         #format="{current_temp} {current_wind} {humidity}%",
-	format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][ {pressure_trend}][ {update_error}]',
+	format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
 
 	hints={'markup': 'pango'},
 	backend=weathercom.Weathercom(
 	    location_code='FRXX0007:1:FR',
 	    units='metric',
-	    update_error='<span color="#ff0000">!</span>',
 	),
 )
 
@@ -115,7 +119,8 @@ status.register("bitcoin",
         currency="EUR",
         symbol="\uF15A")
 
-status.register("pomodoro",
-        sound="~/share/sounds/196106__aiwha__ding.wav",
-        format="\uE001 {current_pomodoro}/{total_pomodoro} {time}")
+#status.register("pomodoro",
+#        sound="~/share/sounds/196106__aiwha__ding.wav",
+#        format="\uE001 {current_pomodoro}/{total_pomodoro} {time}")
+
 status.run()
