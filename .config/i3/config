@@ -103,17 +103,17 @@ bindsym $mod+a focus parent
 set $vimIcon 
 
 #menu title
-set $menu1 1:console
-set $menu2 2:web
+set $menu1 1: terminal
+set $menu2 2: web
 set $menu3 3:<span font="devicons"></span>
-set $menu4 4:<span>mail-gmail</span>
-set $menu5 5:<span>mail-perso</span>
-set $menu6 6:<span>mail-JIT</span>
+set $menu4 4:  gmail
+set $menu5 5:  perso
+set $menu6 6:  JIT
 set $menu7 7:tmux-weechat
 
 
 # switch to workspace
-bindsym $mod+1 workspace $menu1; exec [ $( ps -eo cmd | grep -c '[t]ermite --title console' ) -eq 2 ] && termite --title console
+bindsym $mod+1 workspace $menu1; exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite --title terminal
 bindsym $mod+2 workspace $menu2; exec [ $(ps h -C vimb | grep -v "autohide" | wc -l) = 0 ] && /usr/bin/vimb
 bindsym $mod+3 workspace $menu3; layout splith; exec [ $( ps -eo cmd | grep -c '[t]ermite --title uvim -e vim' ) -eq 2 ] && termite --title uvim -e vim
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
@@ -171,6 +171,7 @@ bar {
     inactive_workspace #073642 #eee8d5 #002b36
     urgent_workspace #d33682 #d33682 #fdf6e3
   }
+  #separator_symbol " "
   strip_workspace_numbers yes 
 }
 
@@ -197,6 +198,7 @@ for_window [class="Vimb"] border 1pixel
 for_window [class="Gvim"] border 1pixel
 for_window [title="filemanager"] border 1pixel, layout tabbed;
 for_window [title="JACK.*"] floating enable;
+for_window [title="Molotov"] floating enable, resize set 1000 600, move absolute position center, sticky enable;
 for_window [title="pinentry"] floating enable;
 
 # assign graphic app to dedicated workspace
@@ -280,14 +282,24 @@ bindsym $mod+Shift+d mode "$mode_filemanager"
 
 mode "$mode_filemanager" {
 
-    bindsym h exec  filemanager ~/., mode "default"
-    bindsym d exec  filemanager ~/downloads, mode "default"
-    bindsym s exec  filemanager ~/share, mode "default"
-    bindsym Shift+d exec  filemanager ~/Desktop, mode "default"
+    bindsym h exec filemanager ~/., mode "default"
+    bindsym d exec filemanager ~/downloads, mode "default"
+    bindsym s exec filemanager ~/share, mode "default"
+    bindsym Shift+d exec filemanager ~/Desktop, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
+}
+
+#USB mount file
+set $mode_usbmount USB [m]ount or [u]mount
+bindsym $mod+u mode "$mode_usbmount"
+mode "$mode_usbmount" {
+	bindsym m exec zsh -i -c 'udiskie-mount -2ar', mode "default"
+	bindsym u exec zsh -i -c 'udiskie-umount /run/media/*/*', mode "default"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
 
 

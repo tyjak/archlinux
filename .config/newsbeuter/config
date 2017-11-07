@@ -5,18 +5,29 @@
 # your terminal emulator to use the Solarized palette.
 # See <http://ethanschoonover.com/solarized/> for more information.
 
-color background   default   default
-color listnormal   default   default
-color listfocus    black     yellow
-color info         default   black
-color article      default   default
+color background          yellow    default
+color listnormal          yellow    default
+color listfocus           yellow    black     bold
+color listnormal_unread   blue      default   
+color listfocus_unread    blue      black     bold
+color info                white     green     bold
+color article             default   default
+
+bind-key j next
+bind-key k prev
+bind-key l open
+bind-key h quit
+bind-key SPACE toggle-show-read-feeds
 
 # highlights
-highlight article "^(Title):.*$" blue default
-highlight article "https?://[^ ]+" red default
-highlight article "\\[image\\ [0-9]+\\]" green default
+#highlight article "^(Title):.*$" red default
+#highlight article "https?://[^ ]+" red default
+#highlight article "\\[image\\ [0-9]+\\]" green default
 # more on solarized: http://ethanschoonover.com/solarized
 
 browser "xdg-open %u"
+
+bookmark-cmd "sh ~/share/bin/instaper.sh"
+
 
 #macro y set browser "mpv %u"; open-in-browser ; set browser "xdg-open %u"
