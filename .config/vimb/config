@@ -21,10 +21,11 @@ set strict-ssl=false
 handler-add mailto=gmail %s
 handler-add ftp=termite -e wget %s -P ~/downloads
 
-#nmap ,,v :source ~/.config/vimb/config
+nmap ,,v :source ~/.config/vimb/config
 nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,,D :sh /bin/sh -c "rm ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
-nmap ,;b ::e! bookmarkFileToHtml('file:///home/david/.config/vimb/bookmark')<CR>
+#nmap ,;b ::e! bookmarkFileToHtml('file:///home/david/.config/vimb/bookmark')<CR>
+nmap ,;b :o ./.config/vimb/bookmark<CR>
 nmap ,,; ::sh! ~/share/bin/vimbmkpwd<CR>
 
 nmap ,,i ::e! instapaper()<CR>
@@ -35,9 +36,10 @@ nmap ,;a ::e! getArchive()<CR>
 #set proxy=true
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
 
-#aug bookmark
-#	autocmd LoadFinished file:///*/bookmark e! bookmarkFileToHtml();
-#aug end
+augroup bookmark
+	autocmd LoadFinished file:///*/bookmark e! bookmarkFileToHtml();
+	autocmd LoadFinished file:///*/bookmark.d/* e! bookmarkFileToHtml();
+augroup end
 
 # GUI color settings
 # Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
