@@ -46,7 +46,7 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
 net_interfaces = "wlp2s0b1"
 status.register("network",
 	interface=net_interfaces,
-        format_up="\uf1eb {network_graph} {kbs}KB/s {essid} {quality}%",
+        format_up="\uf1eb {network_graph_recv} {bytes_recv}KB/s {essid} {quality}%",
         dynamic_color = True,
         graph_style = 'braille-fill',
         graph_width = 20
@@ -117,6 +117,7 @@ status.register("weather",
 
 status.register("bitcoin",
         currency="EUR",
+        colorize=True,
         symbol="\uF15A")
 
 #status.register("pomodoro",

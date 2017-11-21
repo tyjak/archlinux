@@ -2,7 +2,7 @@
 exec_always compton -f
 
 # start a concole if not starting
-exec [ $( ps -eo cmd | grep -c '[t]ermite --title console' ) -eq 2 ] && termite --title console
+exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite --title terminal
 
 # special keys
 set $mod Mod4
@@ -206,7 +206,7 @@ assign [class="(pinta|Inkscape)"] graphic
 for_window [class="(pinta|Inkscape)"] focus
 #assign [class="Vimb"] web
 #for_window [class="Vimb"] layout tabbed; focus
-#assign [class="Urxvt"] console
+#assign [class="Urxvt"] terminal
 #for_window [class="Urxvt"] layout splith; focus
 
 #vimb with title starting by "scratchpad_" are moved to the scratch pad and show
