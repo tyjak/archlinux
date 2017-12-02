@@ -18,7 +18,6 @@ workspace_layout tabbed
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-#font pango:DejaVu Sans Mono 10
 font pango:Meslo LG S DZ for Powerline, icons, FontAwesome, Devicons, 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -105,7 +104,7 @@ set $vimIcon 
 #menu title
 set $menu1 1: terminal
 set $menu2 2: web
-set $menu3 3:<span font="devicons"></span>
+set $menu3 3:
 set $menu4 4:  gmail
 set $menu5 5:  perso
 set $menu6 6:  JIT
@@ -217,6 +216,7 @@ for_window [title="scratchpad_vimb"] sticky enable, border 1pixel, move scratchp
 for_window [title="Franz"] sticky enable, border 1pixel, move scratchpad, resize set 720 874, scratchpad show, move absolute position 720px 24px; 
 for_window [title="scratchpad_ncmpcpp"] sticky enable, border 1pixel, move scratchpad, resize set 640  400, scratchpad show; 
 for_window [title="scratchpad_cal"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
+for_window [title="skype"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
 for_window [title="iCloud"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
 
 client.focused #859900 #859900 #eee8d5 #859900
@@ -336,5 +336,8 @@ bindsym $tabKey+e exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_c
 
 # Enable/disable logging
 #bindsym $mod+x shmlog toggle
+
+# Screensaver
+# exec xautolock -locker "termite --title screensaver -e 'asciiquarium'"
 
 
