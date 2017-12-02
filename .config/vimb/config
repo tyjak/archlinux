@@ -2,15 +2,9 @@ set home-page=https://github.com/fanglingsu/vimb
 set hint-keys=sdfghjkl
 set caret=true
 set input-autohide=true
-#set input-fg-normal=#839496
-#set input-bg-normal=#002b36
-#set status-ssl-color-fg=#002b36
-#set status-ssl-color-bg=#839496
-#set status-color-fg=#586e75
-#set status-color-bg=#eee8d5
 set download-path=~/downloads/
 set webinspector=true
-nn D :q<CR>
+nmap D :q<CR>
 nmap H <C-O>
 nmap L <C-I>
 shortcut-add G=https://duckduckgo.com/html/?q=!gifl%20$0
@@ -19,7 +13,7 @@ shortcut-add a=https://duckduckgo.com/html/?q=!gifl%20ansible+$0
 set strict-ssl=false
 
 handler-add mailto=gmail %s
-handler-add ftp=termite -e wget %s -P ~/downloads
+#handler-add ftp=termite -e wget %s -P ~/downloads
 
 nmap ,,v :source ~/.config/vimb/config
 nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
