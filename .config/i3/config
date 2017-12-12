@@ -47,10 +47,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+#bindsym $mod+Left focus left
+#bindsym $mod+Down focus down
+#bindsym $mod+Up focus up
+#bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -97,6 +97,9 @@ bindsym $mod+a focus parent
 #bindsym $mod+Shift+s sticky toggle
 # focus the child container
 #bindsym $mod+d focus child
+
+bindsym $mod+Left move workspace to output left
+bindsym $mod+Right move workspace to output right
 
 #icon
 set $vimIcon 
@@ -217,6 +220,7 @@ for_window [title="Franz"] sticky enable, border 1pixel, move scratchpad, resize
 for_window [title="scratchpad_ncmpcpp"] sticky enable, border 1pixel, move scratchpad, resize set 640  400, scratchpad show; 
 for_window [title="scratchpad_cal"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
 for_window [title="skype"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
+for_window [title=".*? Pole Emploi - Valoriser les données Slack$"] sticky enable, resize set 1000 600, border 1pixel, move scratchpad, scratchpad show; 
 for_window [title="iCloud"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
 
 client.focused #859900 #859900 #eee8d5 #859900
