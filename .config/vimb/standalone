@@ -1,0 +1,4 @@
+#config dor standalone app like ical or skype via web interface
+set status-bar=false
+set input-autohide=true
+#set cookie-timeout=4800

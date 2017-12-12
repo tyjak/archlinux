@@ -33,6 +33,17 @@ URxvt*letterSpace: -2
 ! http://ethanschoonover.com/solarized
 
 
+! Light
+
+! #define S_base03        #fdf6e3
+! #define S_base02        #eee8d5
+! #define S_base01        #93a1a1
+! #define S_base00        #839496
+! #define S_base0         #657b83
+! #define S_base1         #586e75
+! #define S_base2         #073642
+! #define S_base3         #002b36
+
 ! Common
 
 #define S_yellow        #b58900
@@ -57,18 +68,6 @@ URxvt*letterSpace: -2
 #define S_base3         #fdf6e3
 
 
-! Light
-
-! #define S_base03        #fdf6e3
-! #define S_base02        #eee8d5
-! #define S_base01        #93a1a1
-! #define S_base00        #839496
-! #define S_base0         #657b83
-! #define S_base1         #586e75
-! #define S_base2         #073642
-! #define S_base3         #002b36
-
-
 ! To only apply colors to your terminal, for example, prefix
 ! the color assignment statement with its name. Example:
 !
@@ -84,36 +83,20 @@ URxvt*letterSpace: -2
 
 
 *color0:                  S_base02
-*color235:              S_base02
 *color1:                  S_red
-*color160:              S_red
 *color2:                  S_green
-*color64:               S_green
 *color3:                  S_yellow
-*color136:              S_yellow
 *color4:                  S_blue
-*color33:               S_blue
 *color5:                  S_magenta
-*color125:              S_magenta
 *color6:                  S_cyan
-*color37:               S_cyan
 *color7:                  S_base2
-*color254:              S_base2
 *color8:                  S_base03
-*color234:              S_base03
 *color9:                  S_orange
-*color166:              S_orange
 *color10:                 S_base01
-*color240:              S_base01
 *color11:                 S_base00
-*color241:              S_base00
 *color12:                 S_base0
-*color244:              S_base0
 *color13:                 S_violet
-*color61:                S_violet
 *color14:                 S_base1
-*color245:              S_base1
 *color15:                 S_base3
-*color230:              S_base3
 
 

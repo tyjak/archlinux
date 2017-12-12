@@ -22,6 +22,7 @@ Session.vim
 !.config/newsbeuter/solarized-dark
 !.config/newsbeuter/urls
 !.config/rtv/rtv.cfg
+!.config/termite
 !.config/todo
 !.config/vifm/colors/solarized-dark.vifm
 !.config/vifm/vifmrc
@@ -30,6 +31,6 @@ Session.vim
 !.config/vimperator/vimperatorrc.local
 !.config/wallpaper
 !.config/vimb/scripts.js
-!.config/vimb/bookmark
 !.config/vimb/config
 !.config/vimb/style.css
+!.config/vimb/standalone

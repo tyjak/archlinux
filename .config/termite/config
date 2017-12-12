@@ -1,0 +1,110 @@
+[options]
+scroll_on_output = false
+scroll_on_keystroke = true
+audible_bell = false
+mouse_autohide = false
+allow_bold = true
+dynamic_title = true
+urgent_on_bell = true
+clickable_url = true
+font = Meslo LG S DZ for Powerline 9
+scrollback_lines = 10000
+search_wrap = true
+#icon_name = terminal
+#geometry = 640x480
+
+# "system", "on" or "off"
+cursor_blink = system
+
+# "block", "underline" or "ibeam"
+cursor_shape = block
+
+# $BROWSER is used by default if set, with xdg-open as a fallback
+#browser = xdg-open
+
+# set size hints for the window
+#size_hints = false
+
+# Hide links that are no longer valid in url select overlay mode
+filter_unmatched_urls = true
+
+# emit escape sequences for extra modified keys
+modify_other_keys = false
+
+# Solarized dark color scheme
+[colors]
+foreground = #839496
+foreground_bold = #eee8d5
+#foreground_dim = #888888
+background = #002b36
+cursor = #93a1a1
+
+# if unset, will reverse foreground and background
+#highlight = #839496
+
+#color0 = #666666
+#color1 = #CC6699
+#color2 = #99CC66
+#color3 = #CC9966
+#color4 = #6699CC
+#color5 = #9966CC
+#color6 = #66CC99
+#color7 = #CCCCCC
+#color8 = #999999
+#color9 = #FF99CC
+#color10 = #CCFF99
+#color11 = #FFCC99
+#color12 = #99CCFF
+#color13 = #CC99FF
+#color14 = #99FFCC
+#color15 = #FFFFFF
+
+# 16 colors
+color0 = #073642
+color1 = #dc322f
+color2 = #859900
+color3 = #b58900
+color4 = #268bd2
+color5 = #d33682
+color6 = #2aa198
+color7 = #eee8d5
+color8 = #002b36
+color9 = #cb4b16
+color10 = #586e75
+color11 = #657b83
+color12 = #839496
+color13 = #6c71c4
+color61 = #6c71c4
+color14 = #93a1a1
+color15 = #fdf6e3
+
+# 255 colors
+color234 = #1c1c1c
+color235 = #262626
+color239 = #4e4e4e
+color240 = #585858
+color244 = #808080
+color245 = #8a8a8a
+color187 = #d7d7af
+color230 = #ffffd7
+color136 = #af8700
+color166 = #d75f00
+color124 = #af0000
+color125 = #af005f
+color61 = #5f5faf
+color33 = #0087ff
+color37 = #00afaf
+color64 = #5f8700
+
+[hints]
+#font = Monospace 12
+foreground = #839496
+#background = #3f3f3f
+#active_foreground = #e68080
+#active_background = #3f3f3f
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+
+# vim: ft=dosini cms=#%s

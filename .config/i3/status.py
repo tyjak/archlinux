@@ -8,15 +8,26 @@ from i3pystatus.weather import weathercom
 
 status = Status(standalone=True)
 
+
+#show a dot
+status.register("anybar")
+
 # Displays clock like this:
 # Tue 30 Jul 11:59:46 PM KW31
 #                          ^-- calendar week
-status.register("clock")
+status.register("clock",
+            on_leftclick="[ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_cal' ) -eq 2 ] && termite --title scratchpad_cal -e 'pal -m' || i3-msg [title=scratchpad_cal] scratchpad show;")
 
 # Show sound
 status.register("pulseaudio",
         format="\U0001D160  {volume}",
         )
+
+#status.register("alsa",
+#        format="\U0001D160  {volume}",
+#        color_muted="#FF0000",
+#        on_leftclick="pavucontrol"
+#        )
 
 # Show battery
 if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
@@ -34,13 +45,14 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
 net_interfaces = "wlan0"
 status.register("network",
 	interface=net_interfaces,
-        format_up="\uf1eb {network_graph} {kbs}KB/s {essid} {quality}%",
+        format_up="\uf1eb {network_graph_recv} {bytes_recv}KB/s {essid} {quality}%",
         dynamic_color = True,
         graph_style = 'braille-fill',
         graph_width = 20
 	)
 
-# Show vpn
+status.register("syncthing")
+
 status.register("runwatch",
         path="/var/run/ppp0.pid",
         name="VPN adsnovo",
@@ -90,21 +102,24 @@ status.register("weather",
 	interval=900,
         colorize=True,
 	color_icons=color_icon_values,
-	refresh_icon='<span font="Weather Icons 10">\uf04c</span>',
         #format="{current_temp} {current_wind} {humidity}%",
-	format='{condition} {current_temp}{temp_unit}[ {icon}][ Max: {high_temp}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][ {pressure_trend}][ {update_error}]',
+	format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
 
 	hints={'markup': 'pango'},
 	backend=weathercom.Weathercom(
 	    location_code='FRXX0007:1:FR',
 	    units='metric',
-	    update_error='<span color="#ff0000">!</span>',
 	),
 )
 
 
 status.register("bitcoin",
         currency="EUR",
+        colorize=True,
         symbol="\uF15A")
+
+#status.register("pomodoro",
+#        sound="~/share/sounds/196106__aiwha__ding.wav",
+#        format="\uE001 {current_pomodoro}/{total_pomodoro} {time}")
 
 status.run()

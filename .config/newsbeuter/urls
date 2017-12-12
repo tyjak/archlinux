@@ -15,11 +15,11 @@ http://googleresearch.blogspot.com/atom.xml "informatique"
 http://philippelanglois.free.fr/dotclear/rss.php "informatique"
 http://onethingwell.org/rss "informatique"
 http://feeds.feedburner.com/blogspot/MKuf "informatique"
-http://feeds.feedburner.com/zorgloob/KXhZ "informatique"
+#http://feeds.feedburner.com/zorgloob/KXhZ "informatique"
 http://www.presse-citron.net/feed "informatique"
-http://engineering.twitter.com/feeds/posts/default "informatique"
+#http://engineering.twitter.com/feeds/posts/default "informatique"
 http://www.laquadrature.net/fr/rss.xml "informatique"
-http://startupmeme.com/feed/ "informatique"
+#http://startupmeme.com/feed/ "informatique"
 http://rss.slashdot.org/Slashdot/slashdotIt "informatique"
 http://feeds.feedburner.com/blogspot/amDG "informatique"
 http://gizmodo.com/tag/top/index.xml "informatique"
@@ -351,4 +351,6 @@ http://www.penelope-jolicoeur.com/atom.xml
 http://www.marginalrevolution.com/marginalrevolution/index.rdf
 http://savageminds.org/feed/
 http://www.serialmapper.com/atom.xml
-http://feeds.feedburner.com/well-formed_data
+http://feeds.feedburner.com/well-formed_data informatique
+https://florealanar.wordpress.com/feed/ anarchisme ultra-gauche
+http://mediaslibres.org/spip.php?page=sedna-rss ultra-gauche
