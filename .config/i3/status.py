@@ -19,15 +19,15 @@ status.register("clock",
             on_leftclick="[ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_cal' ) -eq 2 ] && termite --title scratchpad_cal -e 'pal -m' || i3-msg [title=scratchpad_cal] scratchpad show;")
 
 # Show sound
-status.register("pulseaudio",
-        format="\U0001D160  {volume}",
-        )
-
-#status.register("alsa",
+#status.register("pulseaudio",
 #        format="\U0001D160  {volume}",
-#        color_muted="#FF0000",
-#        on_leftclick="pavucontrol"
 #        )
+
+status.register("alsa",
+        format="{volume} \uf028",
+        color_muted="#FF0000",
+        on_leftclick="pavucontrol"
+        )
 
 # Show battery
 if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
@@ -35,17 +35,17 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
             format="{remaining} {status}",
             alert=True,
             alert_percentage= 10,
-            status={"DPL":"\uf212",
+            status={"DPL":"\uf215",
                     "CHR":"\uf211",
-                    "DIS":"\uf215",
+                    "DIS":"\uf214",
                     "FULL":"\uf213"}
             )
 
 # Show network
-net_interfaces = "wlan0"
+net_interfaces = "wlp4s0"
 status.register("network",
 	interface=net_interfaces,
-        format_up="\uf1eb {network_graph_recv} {bytes_recv}KB/s {essid} {quality}%",
+        format_up="\uf405 {network_graph_recv} {bytes_recv}KB/s {essid} {quality}%",
         dynamic_color = True,
         graph_style = 'braille-fill',
         graph_width = 20
@@ -53,19 +53,11 @@ status.register("network",
 
 status.register("syncthing")
 
-status.register("runwatch",
-        path="/var/run/ppp0.pid",
-        name="VPN adsnovo",
-        format_up="{name}",
-        format_down="",
+status.register("openvpn",
+        vpn_name = 'pe',
+        use_new_service_name = 'true'
         )
 
-status.register("runwatch",
-        path="/run/openvpn@adsnovo.pid",
-        name="VPN adsnovo",
-        format_up="{name}",
-        format_down="",
-        )
 #Show backlight
 if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
     status.register("backlight",

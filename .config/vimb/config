@@ -4,6 +4,7 @@ set caret=true
 set input-autohide=true
 set download-path=~/downloads/
 set webinspector=true
+set default-zoom=150
 nmap D :q<CR>
 nmap H <C-O>
 nmap L <C-I>
@@ -30,9 +31,19 @@ nmap ,;a ::e! getArchive()<CR>
 #set proxy=true
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
 
+# Map page zoom in normal mode to keys commonly used across applications
+# + (zoom in), - (zoom out), = (zoom reset)
+nmap + zI
+nmap - zO
+nmap = zz
+
 augroup bookmark
 	autocmd LoadFinished file:///*/bookmark e! bookmarkFileToHtml();
 	autocmd LoadFinished file:///*/bookmark.d/* e! bookmarkFileToHtml();
+augroup end
+
+augroup trello
+    autocmd LoadFinished https://trello.com/b/p4wu5ImE/la-bonne-formation-technique e! trelloNumber();
 augroup end
 
 # GUI color settings

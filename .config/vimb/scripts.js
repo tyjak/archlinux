@@ -1,9 +1,14 @@
+
 var instapaper=function (){var d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location;try{if(!b)throw(0);d.title='(Saving...) '+d.title;z.setAttribute('src',l.protocol+'//www.instapaper.com/j/Qn6obEE5qPiT?a=read-later&u='+encodeURIComponent(l.href)+'&t='+(new Date().getTime()));b.appendChild(z);}catch(e){alert('Please wait until the page has loaded.');}};
 
 var facebook=function(){location.href='http://www.facebook.com/sharer.php?src=bm&v=4&i=1301235609&u='+encodeURIComponent(window.location.href)+'&t='+encodeURIComponent(document.title)};
 
 var archive=function(){location.href='https://archive.is/?run=1&url='+encodeURIComponent(window.location.href)+'&t='+encodeURIComponent(document.title)};
 var getArchive=function(){location.href='https://archive.is/'+window.location.href};
+
+var read=function(){simplyread();}
+
+var trelloNumber=function(){var n=$(".card-label.mod-card-front"); n.css({"padding":"0 6px","height":"16px","line-height":"16px","text-align":"center"}); var o=$(".card-short-id");o.each(function(){$(this).text($(this).text().replace("#","").replace("#","").replace("N.%C2%BA ", ""))});o.hasClass("hide")?o.removeClass("hide").css({"font-weight":"bold","font-size":".8em","margin-right":"5px",padding:"2.3px 6px","background":"#d6daDC","border-radius":"10px","color":"#4D4D4D"}):o.addClass("hide")};
 
 var mkpwd = {
     pwdElement:[],
@@ -67,3 +72,87 @@ function bookmarkFileToHtml() {
     html = "<html>" + head + "<body>" + htmlHelp + "<table>" + html + "</table></body></html>";
     document.body.innerHTML = html;
 }
+
+// simplyread
+
+/* See COPYING file for copyright, license and warranty details. */
+
+if(window.content && window.content.document && window.content.document.simplyread_original === undefined) window.content.document.simplyread_original = false;
+
+function simplyread(nostyle, nolinks)
+{
+	/* count the number of <p> tags that are direct children of parenttag */
+	function count_p(parenttag)
+	{
+		var n = 0;
+		var c = parenttag.childNodes;
+		for (var i = 0; i < c.length; i++) {
+			if (c[i].tagName == "p" || c[i].tagName == "P")
+				n++;
+		}
+		return n;
+	}
+	
+	var doc;
+	doc = (document.body === undefined)
+	      ? window.content.document : document;
+	
+	/* if simplyread_original is set, then the simplyread version is currently active,
+	 * so switch to the simplyread_original html */
+	if (doc.simplyread_original) {
+		doc.body.innerHTML = doc.simplyread_original;
+		for (var i = 0; i < doc.styleSheets.length; i++)
+			doc.styleSheets[i].disabled = false;
+		doc.simplyread_original = false
+		return 0;
+	}
+	
+	doc.simplyread_original = doc.body.innerHTML;
+	doc.body.innerHTML = doc.body.innerHTML.replace(/<br[^>]*>\s*<br[^>]*>/g, "<p>");
+	
+	var biggest_num = 0;
+	var biggest_tag;
+	
+	/* search for tag with most direct children <p> tags */
+	var t = doc.getElementsByTagName("*");
+	for (var i = 0; i < t.length; i++) {
+		var p_num = count_p(t[i]);
+		if (p_num > biggest_num) {
+			biggest_num = p_num;
+			biggest_tag = t[i];
+		}
+	}
+	
+	if (biggest_num == 0) return 1;
+	
+	/* save and sanitise content of chosen tag */
+	var fresh = doc.createElement("div");
+	fresh.innerHTML = biggest_tag.innerHTML;
+	fresh.innerHTML = fresh.innerHTML.replace(/<\/?font[^>]*>/g, "");
+	fresh.innerHTML = fresh.innerHTML.replace(/style="[^"]*"/g, "");
+	if(nolinks)
+		fresh.innerHTML = fresh.innerHTML.replace(/<\/?a[^>]*>/g, "");
+	fresh.innerHTML = fresh.innerHTML.replace(/<\/?span[^>]*>/g, "");
+	fresh.innerHTML = fresh.innerHTML.replace(/<style[^>]*>/g, "<style media=\"aural\">"); /* ensures contents of style tag are ignored */
+	
+	for (var i = 0; i < doc.styleSheets.length; i++)
+		doc.styleSheets[i].disabled = true;
+	
+	srstyle =
+		"p{margin:0ex auto;} h1,h2,h3,h4{font-weight:normal}" +
+		"p+p{text-indent:2em;} body{background:#cccccc none}" +
+		"img{display:block; max-width: 32em; padding:1em; margin: auto}" +
+		"h1{text-align:center;text-transform:uppercase}" +
+		"div#sr{width:34em; padding:8em; padding-top:2em;" +
+		"  background-color:white; margin:auto; line-height:1.4;" +
+		"  text-align:justify; font-family:serif; hyphens:auto;}";
+		/* text-rendering:optimizeLegibility; - someday this will work,
+		 *   but at present it just ruins justify, so is disabled */
+	
+	doc.body.innerHTML =
+		"<style type=\"text/css\">" + (nostyle ? "" : srstyle) + "</style>" +
+		"<div id=\"sr\">" + "<h1>"+doc.title+"</h1>" + fresh.innerHTML + "</div>";
+	
+	return 0;
+}
+

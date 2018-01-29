@@ -1,3 +1,11 @@
+Xft.dpi: 144
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
 URxvt*perl-ext-common: default,clipboard,url-select,keyboard-select
 URxvt*url-launcher: vimb
 URxvt*scrollBar: false
@@ -25,7 +33,7 @@ URxvt.resize-font.bigger: C-Up
 !URxvt.keysym.C-S-Down: perl:font-size:decglobal
 URxvt*intensityStyles: false
 URxvt*urgentOnBell: true
-URxvt*font: xft: Meslo LG S DZ for Powerline:size=9
+URxvt*font: xft: MesloLGSDZ Nerd Font Mono:size=9
 URxvt*letterSpace: -2
 
 ! Solarized color scheme for the X Window System
