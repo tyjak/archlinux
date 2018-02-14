@@ -18,7 +18,6 @@ unclutter &
 stty -ixon
 setxkbmap -layout fr
 xbindkeys
-clipmenud &
 redshift &
 #mpd ̃~/.config/mpd/mpd.conf
 exec i3

@@ -116,7 +116,7 @@ set $menu7 7:tmux-weechat
 
 # switch to workspace
 bindsym $mod+1 workspace $menu1; exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite --title terminal
-bindsym $mod+2 workspace $menu2; exec [ $(ps h -C vimb | grep -v "autohide" | wc -l) = 0 ] && /usr/bin/vimb
+bindsym $mod+2 workspace $menu2; exec [ $(ps h -C vimb | grep -v "autohide\|standalone" | wc -l) = 0 ] && /usr/bin/vimb
 bindsym $mod+3 workspace $menu3; layout splith; exec [ $( ps -eo cmd | grep -c '[t]ermite --title uvim -e vim' ) -eq 2 ] && termite --title uvim -e vim
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+4 workspace $menu4; exec [ $( ps -eo cmd | grep -c '[t]ermite --title mail-gmail' ) -eq 2 ] && termite --title mail-gmail -e 'mutt -e "source ~/.mutt/gmail.com"'
