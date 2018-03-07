@@ -1,4 +1,4 @@
-My archlinux env
+#Archlinux env
 
 - some dot files
 - solarized theme
