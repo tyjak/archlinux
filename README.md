@@ -9,4 +9,4 @@ Archlinux env
 
 I use i3 with termite as my terminal with zsh and oh-my-zsh, fzf and rg. Vimb is my default web navigator and vim my favorite text editor. 
 
-screenshot :
+screenshot : ![](https://github.com/tyjak/archlinux/blob/master/screenshot.png)
