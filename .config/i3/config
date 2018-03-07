@@ -220,8 +220,8 @@ for_window [title="Franz"] sticky enable, border 1pixel, move scratchpad, resize
 for_window [title="scratchpad_ncmpcpp"] sticky enable, border 1pixel, move scratchpad, resize set 640  400, scratchpad show; 
 for_window [title="scratchpad_cal"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
 for_window [title="skype"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
-for_window [title=".*? Pole Emploi - Valoriser les données Slack$"] sticky enable, resize set 1000 600, border 1pixel, move scratchpad, scratchpad show; 
-for_window [title="iCloud"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
+for_window [title=".*? Pole Emploi - Valoriser les données Slack$"] sticky enable, border 1pixel, move scratchpad, resize set 1000 600, scratchpad show; 
+for_window [title="iCloud"] sticky enable, border 1pixel, move scratchpad, resize set 962 702, move absolute position center, scratchpad show; 
 
 client.focused #859900 #859900 #eee8d5 #859900
 client.focused_inactive #073642 #073642 #586e75 #6c71c4
@@ -273,8 +273,8 @@ bindsym $mod+Shift+s mode "$mode_screenshot"
 mode "$mode_screenshot" {
 
     #bindsym s exec maim --opengl --magnify -s ~/Desktop/screenshot-$(date +%F-%H%M%S).png, mode "default"
-    bindsym s exec maim -s ~/Desktop/screenshot-$(date +%F-%H%M%S).png, mode "default"
-    bindsym f exec maim ~/Desktop/screenshot-$(date +%F-%H%M%S).png, mode "default"
+    bindsym s exec maim -s ~/Pictures/screenshot-$(date +%F-%H%M%S).png, mode "default"
+    bindsym f exec maim ~/Pictures/screenshot-$(date +%F-%H%M%S).png, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
