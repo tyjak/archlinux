@@ -21,7 +21,7 @@ URxvt.resize-font.bigger: C-Up
 !URxvt.keysym.C-S-Down: perl:font-size:decglobal
 URxvt*intensityStyles: false
 URxvt*urgentOnBell: true
-URxvt*font: xft: Meslo LG S DZ for Powerline:size=9
+URxvt*font: xft: MesloLGSDZ Nerd Font Mono:size=9
 !URxvt*letterSpace: -2
 
 ! configURe alt-s as the keybinding to enter vim scrollback mode.
