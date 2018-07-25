@@ -43,7 +43,12 @@ augroup bookmark
 augroup end
 
 augroup trello
-    autocmd LoadFinished https://trello.com/b/p4wu5ImE/la-bonne-formation-technique e! trelloNumber();
+    autocmd LoadFinished https://trello.com/b/* e! trelloNumber();
+augroup end
+
+augroup work
+    autocmd LoadStarted https://labonneformation.pole-emploi.fr/* e! workUrlPeToLocal();
+    autocmd LoadStarted https://labonneformation.beta.pole-emploi.fr/* e! workUrlPeToLocal();
 augroup end
 
 # GUI color settings

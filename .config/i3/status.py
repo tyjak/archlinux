@@ -35,17 +35,17 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
             format="{remaining} {status}",
             alert=True,
             alert_percentage= 10,
-            status={"DPL":"\uf215",
-                    "CHR":"\uf211",
-                    "DIS":"\uf214",
-                    "FULL":"\uf213"}
+            status={"DPL":"\uf244",
+                    "CHR":"\uf242",
+                    "DIS":"\uf241",
+                    "FULL":"\uf240"}
             )
 
 # Show network
 net_interfaces = "wlp4s0"
 status.register("network",
 	interface=net_interfaces,
-        format_up="\uf405 {network_graph_recv} {bytes_recv}KB/s {essid} {quality}%",
+        format_up="\uf09e {network_graph_recv} {bytes_recv}KB/s {essid} {quality}%",
         dynamic_color = True,
         graph_style = 'braille-fill',
         graph_width = 20
@@ -66,7 +66,7 @@ status.register("openvpn",
 #Show backlight
 if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
     status.register("backlight",
-	format="\uf185 {percentage}%",
+	format="\uf09e {percentage}%",
         backlight="intel_backlight")
 
 # Shows the average load of the last minute and the last 5 minutes

@@ -34,7 +34,7 @@ bindsym $mod+d exec dmenu_run -i -nb '#859900' -nf '#eee8d5' -sb '#cb4b16' -fn '
 bindsym $mod+c exec clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36
 bindsym $mod+x exec passmenu -i -nb '#002b36' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 36
 bindsym $mod+Shift+x exec passmenu --type -i -nb '#002b36' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 36
-bindsym $mod+s exec quickswitch -w -d "dmenu -i -nb '#002b36' -nf '#eee8d5' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
+bindsym $mod+s exec quickswitch -w -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -108,10 +108,10 @@ set $vimIcon 
 
 #menu title
 set $menu1 1: terminal
-set $menu2 2: web
+set $menu2 2: web
 set $menu3 3:
-set $menu4 4: gmail
-set $menu5 5:
+set $menu4 4: gmail
+set $menu5 5:
 set $menu6 6: JIT
 set $menu7 7:tmux-weechat
 
@@ -164,7 +164,7 @@ bindsym XF86AudioPause exec mpc toggle
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  font pango:Meslo LG S DZ, Icons, FontAwesome, 10
+  font pango:MesloLGSDZ Nerd Font, 10
   status_command python ~/.config/i3/status.py
 	position top
   colors {
