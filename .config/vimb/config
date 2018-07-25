@@ -35,6 +35,12 @@ augroup bookmark
 	autocmd LoadFinished file:///*/bookmark.d/* e! bookmarkFileToHtml();
 augroup end
 
+# Map page zoom in normal mode to keys commonly used across applications
+# + (zoom in), - (zoom out), = (zoom reset)
+nmap + zI
+nmap - zO
+nmap = zz
+
 augroup gistprint
 	autocmd LoadFinished https://gist.github.com/* e! printGistPage();
 augroup end
