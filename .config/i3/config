@@ -104,14 +104,14 @@ bindsym $mod+Left move workspace to output left
 bindsym $mod+Right move workspace to output right
 
 #icon
-set $vimIcon 
+set $vimIcon 
 
 #menu title
 set $menu1 1: terminal
-set $menu2 2: web
-set $menu3 3:
+set $menu2 2: web
+set $menu3 3:
 set $menu4 4: gmail
-set $menu5 5:
+set $menu5 5:
 set $menu6 6: JIT
 set $menu7 7:tmux-weechat
 
