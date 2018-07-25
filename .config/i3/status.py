@@ -68,6 +68,11 @@ status.register("runwatch",
         format_down="",
         )
 
+status.register("openvpn",
+        vpn_name = 'creamy',
+        use_new_service_name = 'true'
+        )
+
 #Show backlight
 if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
     status.register("backlight",
