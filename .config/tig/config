@@ -1,2 +1,5 @@
 # amend commit
 bind generic + !git commit --amend
+
+# delete files
+bind generic D !rm -i %(file)
