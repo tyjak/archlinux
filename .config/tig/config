@@ -1,0 +1,2 @@
+# amend commit
+bind generic + !git commit --amend
