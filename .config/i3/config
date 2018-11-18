@@ -18,7 +18,8 @@ workspace_layout tabbed
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:MesloLGSDZ Nerd Font Mono, icons, FontAwesome, Devicons, 10
+font pango:MesloLGSDZ Nerd Font, icons, FontAwesome, Devicons, 10
+#font pango:FuraCode Nerd Font, icons, FontAwesome, Devicons, 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -31,10 +32,11 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -i -nb '#859900' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36
-bindsym $mod+c exec clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36
+bindsym $mod+c exec termite -e "clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
 bindsym $mod+x exec passmenu -i -nb '#002b36' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 36
 bindsym $mod+Shift+x exec passmenu --type -i -nb '#002b36' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 36
 bindsym $mod+s exec quickswitch -w -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
+bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -164,6 +166,7 @@ bindsym XF86AudioPause exec mpc toggle
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+  #font pango:FuraCode Nerd Font, 10
   font pango:MesloLGSDZ Nerd Font, 10
   status_command python ~/.config/i3/status.py
 	position top
@@ -194,6 +197,7 @@ workspace_auto_back_and_forth yes
 #for_window [title="Twitter"] move right; resize shrink left 30 px or 30 ppt;
 for_window [title="david_adsnovo - Skype*"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout split;
 for_window [title="Liste de contacts"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout split;
+for_window [title="logs"] focus, sticky enable, move bottom, resize shrink bottom 5 ppt, layout split vertical;
 
 #for_window [title="vim"] title_format "<span font='devicons'> </span>%title"
 for_window [title="uvim"] border 1pixel
@@ -267,7 +271,7 @@ mode "$mode_launcher" {
     bindsym t exec trello, mode "default"
     bindsym s exec slack, mode "default"
     bindsym r exec remmina, mode "default"
-    bindsym w exec trello && sleep 1 && chrome && vimb && slack && dockerstartlbf, mode "default"
+    bindsym w exec trello && sleep 1 && chrome && vimb && slack && dockerstartlbf && lbf && wikipe, mode "default"
     bindsym W exec writer, mode "default"
 
     bindsym Return mode "default"
@@ -281,8 +285,8 @@ bindsym $mod+Shift+s mode "$mode_screenshot"
 mode "$mode_screenshot" {
 
     #bindsym s exec maim --opengl --magnify -s ~/Desktop/screenshot-$(date +%F-%H%M%S).png, mode "default"
-    bindsym s exec maim -s ~/Desktop/screenshot-$(date +%F-%H%M%S).png, mode "default"
-    bindsym f exec maim ~/Desktop/screenshot-$(date +%F-%H%M%S).png, mode "default"
+    bindsym s exec maim -s ~/Images/screenshot-$(date +%F-%H%M%S).png, mode "default"
+    bindsym f exec maim ~/Images/screenshot-$(date +%F-%H%M%S).png, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"

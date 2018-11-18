@@ -1,2 +1,17 @@
 # amend commit
 bind generic + !git commit --amend
+
+# clean
+bind status D !git clean -i
+
+#fine grained staging
+bind status I !git add -p %(file)
+
+#rebase from current commit
+bind main R !git rebase -i %(commit)~
+
+#rebase on top of selected branch
+bind refs R !git rebase -i %(branch)
+
+#add/edit notes for the current commit used during a review
+bind generic T !git notes edit %(commit)

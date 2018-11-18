@@ -35,6 +35,11 @@ var mkpwd = {
     }
 }
 
+var workUrlLbfToLocal=function(){document.location.href=(document.location.host.split('.').pop()=='fr')?'http://labonneformation.pole-emploi.local'+document.location.pathname+'?'+document.location.href.split('?').pop():false;}
+var workUrlLbfToRecette=function(){document.location.href=(document.location.host.split('.').pop()=='fr' || document.location.host.split('.').pop()=='local')?'https://labonneboite:labonneformation@labonneformation.beta.pole-emploi.fr'+document.location.pathname+'?'+document.location.href.split('?').pop():false}
+var workUrlLbfToProd=function(){document.location.href=(document.location.host.split('.').pop()=='fr' || document.location.host.split('.').pop()=='local')?'https://labonneformation.pole-emploi.fr'+document.location.pathname+'?'+document.location.href.split('?').pop():false}
+var workUrlLbfToLocalProd=function(){document.location.href=(document.location.host.split('.').pop()=='fr')?'http://labonneformation-prod.pole-emploi.local'+document.location.pathname+'?'+document.location.href.split('?').pop():false}
+
 // Converts the bookmarkfile under $XDG_CONFIG_HOME/vimb/bookmark into nice html.
 // This script should be put into scripts.js file in vimb's config directory.
 // Open vimb's bookmark file in vimb file:///home/{user}/.config/vimb/bookmark and
@@ -156,3 +161,29 @@ function simplyread(nostyle, nolinks)
 	return 0;
 }
 
+//TO FIX
+function checkHtml()
+{
+    var _p='//squizlabs.github.io/HTML_CodeSniffer/build/';
+    var _i=function(s,cb) {
+        var sc=document.createElement('script');
+        sc.onload = function() {
+            sc.onload = null;
+            sc.onreadystatechange = null;
+            cb.call(this);
+        };
+        sc.onreadystatechange = function(){
+            if(/^(complete|loaded)$/.test(this.readyState) === true){
+                sc.onreadystatechange = null;sc.onload();
+            }
+        };
+        sc.src=s;
+        if (document.head) {
+            document.head.appendChild(sc);
+        } else {
+            document.getElementsByTagName('head')[0].appendChild(sc);
+        }
+    };
+    var options={path:_p};
+    _i(_p+'HTMLCS.js',function(){HTMLCSAuditor.run('WCAG2AA',null,options);});
+}

@@ -28,6 +28,13 @@ nmap ,,f ::e! facebook()<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
 nmap ,;a ::e! getArchive()<CR>
 
+nmap ,ll :tabopen http://labonneformation.pole-emploi.local<CR>
+nmap ;ll ::e! workUrlLbfToLocal()<CR>
+nmap ,lr :tabopen https://labonneformation.beta.pole-emploi.fr<CR>
+nmap ;lr ::e! workUrlLbfToRecette()<CR>
+nmap ,lp :tabopen https://labonneformation.pole-emploi.fr<CR>
+nmap ;lp ::e! workUrlLbfToProd()<CR>
+
 #set proxy=true
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
 
