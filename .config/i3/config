@@ -36,11 +36,18 @@ bindsym $mod+c exec termite -e "clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb
 bindsym $mod+x exec passmenu -i -nb '#002b36' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 36
 bindsym $mod+Shift+x exec passmenu --type -i -nb '#002b36' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 36
 bindsym $mod+s exec quickswitch -w -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
-bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
+bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
+bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# english dictionary
+bindsym $mod+Shift+d exec "export D_DICT_DB_OPT='-d english'; ~/share/bin/dict_lookup"
+
+# search for selection on the web
+bindsym $mod+g exec /usr/bin/vimb "$(xclip -o)"
 
 focus_follows_mouse no
 
@@ -169,7 +176,7 @@ bar {
   #font pango:FuraCode Nerd Font, 10
   font pango:MesloLGSDZ Nerd Font, 10
   status_command python ~/.config/i3/status.py
-	position top
+    position top
   colors {
     separator #93a1a1
     background #002b36
@@ -203,18 +210,19 @@ for_window [title="logs"] focus, sticky enable, move bottom, resize shrink botto
 for_window [title="uvim"] border 1pixel
 for_window [class="URxvt"] border 1pixel
 for_window [class="Termite"] border 1pixel
-for_window [class="Vimb"] border 1pixel
+for_window [class="Vimb"] border 1pixel, focus;
 #for_window [class="Vimb"] border 1pixel
 for_window [class="Gvim"] border 1pixel
 for_window [title="filemanager"] border 1pixel, layout tabbed;
 for_window [title="JACK.*"] floating enable;
 for_window [title="Molotov"] floating enable, resize set 1000 600, move absolute position center, sticky enable;
 for_window [title="pinentry"] floating enable;
+for_window [class="termite_dict"] floating enable, move absolute position center, border 1pixel;
 
 # assign graphic app to dedicated workspace
 assign [class="(pinta|Inkscape)"] graphic
 for_window [class="(pinta|Inkscape)"] focus
-#assign [class="Vimb"] web
+assign [class="Vimb"] $menu2
 #for_window [class="Vimb"] layout tabbed; focus
 #assign [class="Urxvt"] terminal
 #for_window [class="Urxvt"] layout splith; focus
@@ -294,7 +302,7 @@ mode "$mode_screenshot" {
 
 # file navigation with ranger
 set $mode_filemanager Goto [h]ome [d]ownloads [s]hare [D]esktop
-bindsym $mod+Shift+d mode "$mode_filemanager"
+bindsym $mod+Shift+f mode "$mode_filemanager"
 
 mode "$mode_filemanager" {
 
@@ -332,7 +340,7 @@ mode "$mode_system" {
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -341,8 +349,7 @@ mode "$mode_system" {
 
 bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg [title=scratchpad_vimwiki] scratchpad show;
 bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim -c VimwikiDiaryIndex' || i3-msg [title=scratchpad_vimdiary] scratchpad show;
-bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimb' ) -eq 2 ] && termite --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg [title=scratchpad_vimb] scratchpad show;
-bindsym $tabKey+c exec [ $( ps -eo cmd | grep -c '[/]usr/bin/franz-bin' ) -eq 2 ] && /usr/bin/franz-bin || i3-msg [title=Franz] scratchpad show;
+bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[t]ermite --class scratchpad --title scratchpad_vimb' ) -eq 2 ] && termite --class scratchpad --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg [title=scratchpad_vimb] scratchpad show; bindsym $tabKey+c exec [ $( ps -eo cmd | grep -c '[/]usr/bin/franz-bin' ) -eq 2 ] && /usr/bin/franz-bin || i3-msg [title=Franz] scratchpad show;
 bindsym $tabKey+m exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_ncmpcpp' ) -eq 2 ] && termite --title scratchpad_ncmpcpp -e 'ncmpcpp' || i3-msg [title=scratchpad_ncmpcpp] scratchpad show;
 bindsym $tabKey+e exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_cal' ) -eq 2 ] && termite --title scratchpad_cal -e 'pal -m' || i3-msg [title=scratchpad_cal] scratchpad show;
 #bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg kill;
