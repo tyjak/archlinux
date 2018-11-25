@@ -11,7 +11,7 @@ export PRINTER=Brother_HL_2030_series
 #export http_proxy=127.0.0.1:8118
 #export no_proxy=127.0.0.1,localhost,.jemepropose.com,.twitter.com,.jobintree.com,.adsnovo.com,.admintree.com,.reddit.com
 
-xss-lock /usr/bin/i3lock -c 002B36 &
+xss-lock -- /usr/bin/i3lock -c 002B36 &
 dunst &
 syndaemon -t -k -i 2 &
 unclutter &

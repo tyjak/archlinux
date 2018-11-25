@@ -1,6 +1,9 @@
 # amend commit
 bind generic + !git commit --amend
 
+# delete files
+bind status X !rm -i %(file)
+
 # clean
 bind status D !git clean -i
 
