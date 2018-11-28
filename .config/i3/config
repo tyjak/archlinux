@@ -16,6 +16,9 @@ set $wfM_width 1000
 set $wfL_height 1000
 set $wfL_width 1800
 
+set $screen1 eDP1
+set $screen2 DP1-2
+
 # layout mode for new container
 workspace_layout tabbed
 
@@ -139,7 +142,7 @@ bindsym $mod+2 workspace $menu2; exec [ $(ps h -C vimb -o args | grep "^/usr/bin
 bindsym $mod+3 workspace $menu3; layout splith; exec [ $( ps -eo cmd | grep -c '[t]ermite --title uvim -e vim' ) -eq 2 ] && termite --title uvim -e vim
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+4 workspace $menu4; exec [ $( ps -eo cmd | grep -c '[t]ermite --title mail-gmail' ) -eq 2 ] && termite --title mail-gmail -e '/usr/bin/mutt -e "source ~/.mutt/gmail.com"'
-bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '^/usr/bin/brave' ) -eq 0 ] && /usr/bin/brave
+bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '^/usr/lib/brave-bin/brave' ) -eq 0 ] && /usr/bin/brave
 #bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttperso' ) -eq 2 ] && termite --title muttperso -e '/usr/bin/mutt -e "source ~/.mutt/newmanity.com"'
 bindsym $mod+6 workspace $menu6; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttjit' ) -eq 2 ] && termite --title muttjit -e '/usr/bin/mutt -e "source ~/.mutt/jobintree.com"'
 bindsym $mod+7 workspace $menu7; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
@@ -223,11 +226,11 @@ for_window [class="Vimb"] border 1pixel, focus;
 for_window [class="Gvim"] border 1pixel
 for_window [title="filemanager"] border 1pixel, layout tabbed;
 for_window [title="JACK.*"] floating enable;
-for_window [title="Molotov"] floating enable, resize set $wfL_width $wfL_height, move absolute position center, sticky enable;
-for_window [class="Gpodder"] floating enable, resize set $wfL_width $wfL_height, move absolute position center, sticky enable;
+for_window [title="Molotov"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable, output $screen1;
+for_window [class="Gpodder"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable;
 for_window [title="pinentry"] floating enable;
-for_window [class="termite_dict"] floating enable, move absolute position center, border 1pixel;
-for_window [class="Pavucontrol|Blueberry.py"] floating enable, resize set $wfM_width $wfM_height, move absolute position center, border 1pixel, sticky enable;
+for_window [class="termite_dict"] floating enable, move position center, border 1pixel;
+for_window [class="Pavucontrol|Blueberry.py"] floating enable, resize set $wfM_width $wfM_height, move position center, border 1pixel, sticky enable;
 
 # assign graphic app to dedicated workspace
 assign [class="(pinta|Inkscape)"] graphic
