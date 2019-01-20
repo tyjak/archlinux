@@ -1,10 +1,12 @@
 set home-page=https://github.com/fanglingsu/vimb
-set hint-keys=sdfghjkl
+set hint-keys=hjkl
 set caret=true
 set input-autohide=true
 set download-path=~/downloads/
 set webinspector=true
 set default-zoom=150
+set history-max-items=5000
+set closed-max-items=20
 nmap D :q<CR>
 nmap H <C-O>
 nmap L <C-I>
@@ -15,6 +17,7 @@ set strict-ssl=false
 
 handler-add mailto=gmail %s
 #handler-add ftp=termite -e wget %s -P ~/downloads
+set home-page=./.config/vimb/closed
 
 nmap ,,v :source ~/.config/vimb/config
 nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
@@ -34,6 +37,7 @@ nmap ,lr :tabopen https://labonneformation.beta.pole-emploi.fr<CR>
 nmap ;lr ::e! workUrlLbfToRecette()<CR>
 nmap ,lp :tabopen https://labonneformation.pole-emploi.fr<CR>
 nmap ;lp ::e! workUrlLbfToProd()<CR>
+nmap ,lt :tabopen http://trefle.beta.pole-emploi.fr
 
 #set proxy=true
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
@@ -45,8 +49,13 @@ nmap - zO
 nmap = zz
 
 augroup bookmark
-	autocmd LoadFinished file:///*/bookmark e! bookmarkFileToHtml();
-	autocmd LoadFinished file:///*/bookmark.d/* e! bookmarkFileToHtml();
+    autocmd LoadFinished file:///*/bookmark e! bookmarkFileToHtml();
+    autocmd LoadFinished file:///*/bookmark.d/* e! bookmarkFileToHtml();
+augroup end
+
+augroup linkfile
+    autocmd LoadFinished file:///*/closed e! linkFileToHtml('Derniers onglets ouverts');
+    autocmd LoadFinished file:///*/history e! linkFileToHtml('Historiques');
 augroup end
 
 augroup trello
@@ -61,11 +70,11 @@ augroup end
 # GUI color settings
 # Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
 set completion-css=color:#839496;background-color:#002b36;font:10pt DejaVu Sans Mono;
-set completion-hover-css=color:#839496;background-color:#002b36;font:10pt DejaVu Sans Mono;
-set completion-selected-css=color:#839496;background-color:#515151;font:10pt DejaVu Sans Mono;
+set completion-hover-css=color:#839496;background-color:#586e75;font:10pt DejaVu Sans Mono;
+set completion-selected-css=color:#fdf6e3;background-color:#b58900;font:10pt DejaVu Sans Mono;
 set input-css=color:#839496;background-color:#002b36;font:10pt DejaVu Sans Mono;
 set input-error-css=color:#f2777a;background-color:#002b36;font:10pt DejaVu Sans Mono;
-set status-css=color:#586e75;background-color:#eee8d5;font:10pt DejaVu Sans Mono;
+set status-css=color:#839496;background-color:#002b36;font:10pt DejaVu Sans Mono;
 set status-ssl-css=color:#839496;background-color:#002b36;font:10pt DejaVu Sans Mono;
 set status-ssl-invalid-css=color:#f2777a;background-color:#002b36;font:10pt DejaVu Sans Mono;
 

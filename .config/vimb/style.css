@@ -1,26 +1,26 @@
-._hintLabel {
-    -webkit-transform:translate(-4px,-4px) !important;
-    position: absolute !important;
-    z-index: 100000 !important;
-    font:bold .8em monospace !important;
-    color: #000 !important;
-    background-color: #fff !important;
-    margin: 0 !important;
-    padding: 0px 1px !important;
-    border: 1px solid #444 !important;
-    border-radius: 3px !important;
-    opacity: 0.7 !important;
-    -webkit-box-shadow: 1px 1px 3px #444 !important;
-}
-._hintElem {
-    background-color: #eee8d5 !important;
-    color: #268bd2 !important
-}
-._hintElem._hintFocus{
+/* Hint mode color styling */
+span[vimbhint^='label'] {
     background-color: #859900 !important;
-    color: #eee8d5 !important;
+    border: 1px solid #fdf6e3 !important;
+    color: #fdf6e3 !important;
+    font: bold 9pt monospace !important;
+    opacity: .9 !important;
+    padding: .1em .4em !important;
+    text-transform: lowercase !important;
 }
-._hintLabel._hintFocus{
-    z-index: 100001 !important;
-    opacity: 1 !important;
+span[vimbhint='label focus'] {
+    font: bold 9pt monospace !important;
+}
+*[vimbhint^='hint'] {
+    background-color: #eee8d5 !important;
+    color: #2d2d2d !important;
+}
+*[vimbhint='hint focus'] {
+    background-color: #d33682 !important;
+    color: #fdf6e3 !important;
+}
+
+::selection {
+  background-color: #d33682;
+  color: #fdf6e3;
 }

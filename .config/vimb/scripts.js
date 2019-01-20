@@ -47,19 +47,26 @@ var workUrlLbfToLocalProd=function(){document.location.href=(document.location.h
 // Or start the pretty view by autocmd in cofig file like
 //
 // autocmd LoadFinished file:///*/bookmark e! bookmarkFileToHtml();
+var cssStyle = '<style type="text/css">'
+            + "body{background:#002b36; color:#859000}"
+            + "a:link{color:#fdf6e3; text-decoration:none}"
+            + "a:visited{color:#93a1a1}"
+            + "a:hover{color:#b58900}"
+            + "table{margin:.5em auto;max-width:60em;border-collapse:collapse;color:#fdf6e3;}"
+            + "th{text-align:left;background:#859900;color:#fdf6e3;border-bottom:.3em solid #073642;padding:14px 12px}"
+            + "label{text-align:left;background:#859900;color:#fdf6e3;}"
+            + "td{padding:8px 12px;border-bottom:1px solid #073642;color:#859900; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;}"
+            + "pre{display:inline;margin-right:20px;color:#859000:background-color:#fdf6e3}"
+            + "tr{background:#002b36}"
+            + "div{margin:.5em auto;max-width:60em;border-collapse:collapse;color:#002b36;background:#859000}"
+            + "</style>";
+
 function bookmarkFileToHtml() {
     var parts=[], i, line, uri, lines = document.body.innerText.split(/\n/),
         html  = "<tr><th>Bookmark</th><th>Tag(s)</th></tr>",
-        head  = '<head><style type="text/css">'
-            + "body{background:#e0ddda}"
-            + "table{margin:.5em auto;max-width:60em;border-collapse:collapse;color:#fff;}"
-            + "th{text-align:left;background:#555;color:white;border-bottom:.3em solid #e0ddda;padding:14px 12px}"
-            + "label{text-align:left;background:#555;color:white;}"
-            + "td{padding:8px 12px;border-bottom:1px solid #e0ddda;color:#555}"
-            + "pre{display:inline;margin-right:20px;color:#555:background-color:#fff}"
-            + "tr{background:#fff}"
-            + "div{margin:.5em auto;max-width:60em;border-collapse:collapse;color:#fff;background:#555}"
-            + "</style></head>";
+        head  = '<head>'
+            + cssStyle
+            + "</head>";
 
     for (i = 0; i < lines.length; i++) {
         line  = lines[i];
@@ -73,8 +80,31 @@ function bookmarkFileToHtml() {
         html  = html + "<tr><td><a href=\"" + uri + "\">" + title + "</a></td><td>" + tags + "</td></tr>";
     }
 
-	htmlHelp = "<div><pre>,,a</pre><label>To add page to archive.is + bookmark with tag archive</label><br><pre>,;a</pre><label>To get the current url from archive.is</label></div>"
+    htmlHelp = "<div><pre>,,a</pre><label>To add page to archive.is + bookmark with tag archive</label><br><pre>,;a</pre><label>To get the current url from archive.is</label></div>"
     html = "<html>" + head + "<body>" + htmlHelp + "<table>" + html + "</table></body></html>";
+    document.body.innerHTML = html;
+}
+
+function linkFileToHtml(title) {
+    var parts=[], i, line, uri, lines = Array.from(new Set(document.body.innerText.split(/\n/).reverse())),
+        html  = "<tr><th>" + title + "</th></tr>",
+        head  = '<head><title>' + title + '</title>'
+            + cssStyle
+            + "</head>";
+
+    for (i = 0; i < lines.length; i++) {
+        line  = lines[i];
+        if (!line) {
+            continue;
+        }
+        parts = line.split("\t");
+        uri   = parts[0];
+        title = parts[1]||uri;
+        html  = html + "<tr><td><a href=\"" + uri + "\">" + title + "</a></td></tr>";
+    }
+
+    htmlHead = "<span><a href=\"file:////home/david/.config/vimb/bookmark\">Bookmark</a> - <a href=\"file:////home/david/.config/vimb/history\">Historique</a> - <a href=\"file:////home/david/.config/vimb/closed\">Derniers onglets ouverts</a> - <a href=\"https://fanglingsu.github.io/vimb/man.html\">Aide</a></span>"
+    html = "<html>" + head + "<body>" + htmlHead + "<table>" + html + "</table></body></html>";
     document.body.innerHTML = html;
 }
 
