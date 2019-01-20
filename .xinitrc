@@ -20,4 +20,6 @@ setxkbmap -layout fr
 xbindkeys
 redshift &
 #mpd ̃~/.config/mpd/mpd.conf
+udiskie &
+mkfifo /tmp/mplayer
 exec i3
