@@ -1,0 +1,23 @@
+[user]
+    name = tyjak
+    email = dev@tyjak.net
+
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+
+[alias]
+    ignore = update-index --assume-unchanged
+    unignore = update-index --no-assume-unchanged
+    ignored = !git ls-files -v | grep "^[[:lower:]]"
+    #mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
+
+[github]
+    user = tyjak
+
+[includeIf "gitdir:~/WORK/"]
+    path = ~/WORK/.gitconfig
+[mergetool]
+	keepBackup = false
+[diff]
+	tool = vimdiff
