@@ -22,6 +22,8 @@ status.register("clock",
 # Show sound
 status.register("pulseaudio",
         format="\U0001D160  {volume}",
+        color_muted="#FF0000",
+        on_leftclick="apptoggle pavucontrol"
         )
 
 #status.register("alsa",

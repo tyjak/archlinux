@@ -8,7 +8,8 @@ nmap D :q<CR>
 nmap H <C-O>
 nmap L <C-I>
 shortcut-add G=https://duckduckgo.com/html/?q=!gifl%20$0
-shortcut-add g=http://search.uselilo.org/searchweb.php?q=$0
+shortcut-add g=http://search.lilo.org/searchweb.php?q=$0
+shortcut-add d=https://duckduckgo.com/html/?q=$0
 shortcut-add a=https://duckduckgo.com/html/?q=!gifl%20ansible+$0
 set strict-ssl=false
 
@@ -30,16 +31,17 @@ nmap ,;a ::e! getArchive()<CR>
 #set proxy=true
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
 
-augroup bookmark
-	autocmd LoadFinished file:///*/bookmark e! bookmarkFileToHtml();
-	autocmd LoadFinished file:///*/bookmark.d/* e! bookmarkFileToHtml();
-augroup end
-
 # Map page zoom in normal mode to keys commonly used across applications
 # + (zoom in), - (zoom out), = (zoom reset)
 nmap + zI
 nmap - zO
 nmap = zz
+
+augroup bookmark
+	autocmd LoadFinished file:///*/bookmark e! bookmarkFileToHtml();
+	autocmd LoadFinished file:///*/bookmark.d/* e! bookmarkFileToHtml();
+augroup end
+
 
 augroup gistprint
 	autocmd LoadFinished https://gist.github.com/* e! printGistPage();
