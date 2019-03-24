@@ -6,7 +6,7 @@ exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite
 
 # special keys
 set $mod Mod4
-set $tabKey Mode_switch
+set $tabKey Mod3
 
 # fix floating windows size
 # medium size
@@ -242,6 +242,7 @@ for_window [class="(pinta|Inkscape)"] focus
 #vimb with title starting by "scratchpad_" are moved to the scratch pad and show
 #for_window [title="scratchpad_*"] sticky enable, border 1pixel;
 for_window [title="scratchpad_vimwiki"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
+for_window [title="scratchpad_pevimwiki"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [title="scratchpad_vimdiary"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [title="scratchpad_vimb"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [title="Franz"] sticky enable, border 1pixel, move scratchpad, resize set 720 874, scratchpad show, move absolute position 720px 24px;
@@ -251,6 +252,7 @@ for_window [title="skype"] sticky enable, border 1pixel, move scratchpad, scratc
 for_window [title="pidgin"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [class="Slack"] sticky enable, border 1pixel, move scratchpad, resize set $wfL_width $wfL_height,  scratchpad show;
 for_window [title="iCloud"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
+for_window [class="VirtualBox Machine"] sticky enable, border 1pixel, move scratchpad, fullscreen, scratchpad show;
 
 client.focused #859900 #859900 #eee8d5 #859900
 client.focused_inactive #073642 #073642 #586e75 #6c71c4
@@ -261,19 +263,20 @@ client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 set $Locker i3lock -c 002b36 && sleep 1
 
 # resize mod window $mod+r (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
-mode "resize" {
+bindsym $mod+r mode "resize / move"
+mode "resize / move" {
 
     bindsym h resize grow width 10 px or 10 ppt
     bindsym j resize grow height 10 px or 10 ppt
     bindsym k resize shrink height 10 px or 10 ppt
     bindsym l resize shrink width 10 px or 10 ppt
+    bindsym m move position center
 
     # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Left move left 10 px
+    bindsym Down move down 10 px
+    bindsym Up move up 10 px
+    bindsym Right move right 10 px
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -291,7 +294,7 @@ mode "$mode_launcher" {
     bindsym t exec trello, mode "default"
     bindsym s exec slack, mode "default"
     bindsym r exec remmina, mode "default"
-    bindsym w exec trello && sleep 1 && chrome && vimb && slack && dockerstartlbf && lbf && wikipe, mode "default"
+    bindsym w exec trello && sleep 1 && chrome && vimb && lbf && trèfle && wikipe && slack, mode "default"
     bindsym W exec writer, mode "default"
 
     bindsym Return mode "default"
@@ -373,12 +376,15 @@ mode "$mode_mplayer" {
     bindsym Escape mode "default"
 }
 
+bindsym $tabKey+t exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_pevimwiki' ) -eq 2 ] && termite --title scratchpad_pevimwiki -e 'vim share/vimwiki_boulot/index.wiki' || i3-msg [title=scratchpad_pevimwiki] scratchpad show;
 bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg [title=scratchpad_vimwiki] scratchpad show;
 bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim -c VimwikiDiaryIndex' || i3-msg [title=scratchpad_vimdiary] scratchpad show;
 bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[t]ermite --class scratchpad --title scratchpad_vimb' ) -eq 2 ] && termite --class scratchpad --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg [title=scratchpad_vimb] scratchpad show;
-bindsym $tabKey+c exec [ $( ps -eo cmd | grep -c '[/]usr/bin/franz-bin' ) -eq 2 ] && /usr/bin/franz-bin || i3-msg [title=Franz] scratchpad show;
+#bindsym $tabKey+c exec [ $( ps -eo cmd | grep -c '[/]usr/bin/franz-bin' ) -eq 2 ] && /usr/bin/franz-bin || i3-msg [title=Franz] scratchpad show;
 bindsym $tabKey+m exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_ncmpcpp' ) -eq 2 ] && termite --title scratchpad_ncmpcpp -e 'ncmpcpp' || i3-msg [title=scratchpad_ncmpcpp] scratchpad show;
 bindsym $tabKey+e exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_cal' ) -eq 2 ] && termite --title scratchpad_cal -e 'pal -m' || i3-msg [title=scratchpad_cal] scratchpad show;
+bindsym $tabKey+n exec i3-msg '[class="VirtualBox Machine"] scratchpad show' && i3-msg '[class="VirtualBox Machine"] fullscreen enable';
+bindsym $tabKey+s exec i3-msg '[class="Slack"] scratchpad show';
 #bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg kill;
 #bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim -c VimwikiDiaryIndex' || i3-msg kill;
 #bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimb' ) -eq 2 ] && termite --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg kill;

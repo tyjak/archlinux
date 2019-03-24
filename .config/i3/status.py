@@ -83,30 +83,29 @@ status.register("disk",
 
 # Show weather => need ttf-weather-icons
 color_icon_values={
-	'Cloudy': ('<span font="Weather Icons 10">\uf013</span>', '#f8f8ff'),
-	'Fog': ('<span font="Weather Icons 10">\uf014</span>', '#949494'),
-	'Thunderstorm': ('<span font="Weather Icons 10">\uf016</span>', '#cbd2c0'),
-	'Fair': ('<span font="Weather Icons 10">\uf00c</span>', '#ffcc00'),
-	'Rainy': ('<span font="Weather Icons 10">\uf019</span>', '#cbd2c0'),
-	'Partly Cloudy': ('<span font="Weather Icons 10">\uf002</span>', '#f8f8ff'),
-	'Snow': ('<span font="Weather Icons 10">\uf01b</span>', '#ffffff'),
-	'default': ('', None),
-	'Sunny': ('<span font="Weather Icons 10">\uf00d</span>', '#ffff00')
+    'Cloudy': ('<span font="Weather Icons 10">\uf013</span>', '#f8f8ff'),
+    'Fog': ('<span font="Weather Icons 10">\uf014</span>', '#949494'),
+    'Thunderstorm': ('<span font="Weather Icons 10">\uf016</span>', '#cbd2c0'),
+    'Fair': ('<span font="Weather Icons 10">\uf00c</span>', '#ffcc00'),
+    'Rainy': ('<span font="Weather Icons 10">\uf019</span>', '#cbd2c0'),
+    'Partly Cloudy': ('<span font="Weather Icons 10">\uf002</span>', '#f8f8ff'),
+    'Snow': ('<span font="Weather Icons 10">\uf01b</span>', '#ffffff'),
+    'default': ('', None),
+    'Sunny': ('<span font="Weather Icons 10">\uf00d</span>', '#ffff00')
 }
 
 status.register("weather",
-        #location_code="FRXX5264",
-	interval=900,
-        colorize=True,
-	color_icons=color_icon_values,
-        #format="{current_temp} {current_wind} {humidity}%",
-	format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
-
-	hints={'markup': 'pango'},
-	backend=weathercom.Weathercom(
-	    location_code='FRXX0007:1:FR',
-	    units='metric',
-	),
+    #location_code="FRXX5264",
+    interval=900,
+    colorize=True,
+    color_icons=color_icon_values,
+    #format="{current_temp} {current_wind} {humidity}%",
+    format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
+    hints={'markup': 'pango'},
+    backend=weathercom.Weathercom(
+        location_code='FRXX0007:1:FR',
+        units='metric',
+    ),
 )
 
 
@@ -115,6 +114,12 @@ status.register("bitcoin",
         colorize=True,
         symbol="\uF15A")
 
+#status.register("shell",
+#        command="newsboat -u ~/share/documents/news-urls -x reload print-unread",
+#        on_rightclick="news",
+#        interval=3600,
+#        )
+#
 #status.register("pomodoro",
 #        sound="~/share/sounds/196106__aiwha__ding.wav",
 #        format="\uE001 {current_pomodoro}/{total_pomodoro} {time}")

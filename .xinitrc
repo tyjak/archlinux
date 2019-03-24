@@ -18,6 +18,7 @@ unclutter &
 stty -ixon
 setxkbmap -layout fr
 xbindkeys
+xmodmap ~/.Xmodmap
 redshift &
 #mpd ̃~/.config/mpd/mpd.conf
 udiskie &

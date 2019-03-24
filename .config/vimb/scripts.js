@@ -19,10 +19,10 @@ var mkpwd = {
         return this.pwdElement[0].value;
     },
     setCryptPwd: function(pwd) {
-        var k; 
+        var k;
         if(this.pwdElement){
             //console.log(pwd);
-            for(k=0; k<this.pwdElement.length; k++) 
+            for(k=0; k<this.pwdElement.length; k++)
                 this.pwdElement[k].value=pwd;
         }
     },
@@ -37,6 +37,7 @@ var mkpwd = {
 
 var workUrlLbfToLocal=function(){document.location.href=(document.location.host.split('.').pop()=='fr')?'http://labonneformation.pole-emploi.local'+document.location.pathname+'?'+document.location.href.split('?').pop():false;}
 var workUrlLbfToRecette=function(){document.location.href=(document.location.host.split('.').pop()=='fr' || document.location.host.split('.').pop()=='local')?'https://labonneboite:labonneformation@labonneformation.beta.pole-emploi.fr'+document.location.pathname+'?'+document.location.href.split('?').pop():false}
+var workUrlLbFixRecette=function(){document.location.href=(window.location.host.split('.').pop()=='fr' || window.location.host.split('.').pop()=='local')?'http://labonneformation.beta.pole-emploi.fr'+document.location.pathname+'?'+document.location.href.split('?').pop():false}
 var workUrlLbfToProd=function(){document.location.href=(document.location.host.split('.').pop()=='fr' || document.location.host.split('.').pop()=='local')?'https://labonneformation.pole-emploi.fr'+document.location.pathname+'?'+document.location.href.split('?').pop():false}
 var workUrlLbfToLocalProd=function(){document.location.href=(document.location.host.split('.').pop()=='fr')?'http://labonneformation-prod.pole-emploi.local'+document.location.pathname+'?'+document.location.href.split('?').pop():false}
 
@@ -77,7 +78,10 @@ function bookmarkFileToHtml() {
         uri   = parts[0];
         title = parts[1]||uri;
         tags  = (parts[2]||"").split(' ').sort().join(', ');
-        html  = html + "<tr><td><a href=\"" + uri + "\">" + title + "</a></td><td>" + tags + "</td></tr>";
+        if (title.startsWith('#'))
+            html  = html +  "<tr><td><em>" + title.substr(1) + "</em></td></tr>";
+        else
+            html  = html +  "<tr><td><a href=\"" + uri + "\">" + title + "</a></td><td>" + tags + "</td></tr>";
     }
 
     htmlHelp = "<div><pre>,,a</pre><label>To add page to archive.is + bookmark with tag archive</label><br><pre>,;a</pre><label>To get the current url from archive.is</label></div>"
@@ -116,79 +120,81 @@ if(window.content && window.content.document && window.content.document.simplyre
 
 function simplyread(nostyle, nolinks)
 {
-	/* count the number of <p> tags that are direct children of parenttag */
-	function count_p(parenttag)
-	{
-		var n = 0;
-		var c = parenttag.childNodes;
-		for (var i = 0; i < c.length; i++) {
-			if (c[i].tagName == "p" || c[i].tagName == "P")
-				n++;
-		}
-		return n;
-	}
-	
-	var doc;
-	doc = (document.body === undefined)
-	      ? window.content.document : document;
-	
-	/* if simplyread_original is set, then the simplyread version is currently active,
-	 * so switch to the simplyread_original html */
-	if (doc.simplyread_original) {
-		doc.body.innerHTML = doc.simplyread_original;
-		for (var i = 0; i < doc.styleSheets.length; i++)
-			doc.styleSheets[i].disabled = false;
-		doc.simplyread_original = false
-		return 0;
-	}
-	
-	doc.simplyread_original = doc.body.innerHTML;
-	doc.body.innerHTML = doc.body.innerHTML.replace(/<br[^>]*>\s*<br[^>]*>/g, "<p>");
-	
-	var biggest_num = 0;
-	var biggest_tag;
-	
-	/* search for tag with most direct children <p> tags */
-	var t = doc.getElementsByTagName("*");
-	for (var i = 0; i < t.length; i++) {
-		var p_num = count_p(t[i]);
-		if (p_num > biggest_num) {
-			biggest_num = p_num;
-			biggest_tag = t[i];
-		}
-	}
-	
-	if (biggest_num == 0) return 1;
-	
-	/* save and sanitise content of chosen tag */
-	var fresh = doc.createElement("div");
-	fresh.innerHTML = biggest_tag.innerHTML;
-	fresh.innerHTML = fresh.innerHTML.replace(/<\/?font[^>]*>/g, "");
-	fresh.innerHTML = fresh.innerHTML.replace(/style="[^"]*"/g, "");
-	if(nolinks)
-		fresh.innerHTML = fresh.innerHTML.replace(/<\/?a[^>]*>/g, "");
-	fresh.innerHTML = fresh.innerHTML.replace(/<\/?span[^>]*>/g, "");
-	fresh.innerHTML = fresh.innerHTML.replace(/<style[^>]*>/g, "<style media=\"aural\">"); /* ensures contents of style tag are ignored */
-	
-	for (var i = 0; i < doc.styleSheets.length; i++)
-		doc.styleSheets[i].disabled = true;
-	
-	srstyle =
-		"p{margin:0ex auto;} h1,h2,h3,h4{font-weight:normal}" +
-		"p+p{text-indent:2em;} body{background:#cccccc none}" +
-		"img{display:block; max-width: 32em; padding:1em; margin: auto}" +
-		"h1{text-align:center;text-transform:uppercase}" +
-		"div#sr{width:34em; padding:8em; padding-top:2em;" +
-		"  background-color:white; margin:auto; line-height:1.4;" +
-		"  text-align:justify; font-family:serif; hyphens:auto;}";
-		/* text-rendering:optimizeLegibility; - someday this will work,
-		 *   but at present it just ruins justify, so is disabled */
-	
-	doc.body.innerHTML =
-		"<style type=\"text/css\">" + (nostyle ? "" : srstyle) + "</style>" +
-		"<div id=\"sr\">" + "<h1>"+doc.title+"</h1>" + fresh.innerHTML + "</div>";
-	
-	return 0;
+    /* count the number of <p> tags that are direct children of parenttag */
+    function count_p(parenttag)
+    {
+        var n = 0;
+        var c = parenttag.childNodes;
+        for (var i = 0; i < c.length; i++) {
+            if (c[i].tagName == "p" || c[i].tagName == "P")
+                n++;
+        }
+        return n;
+    }
+
+    var doc;
+    doc = (document.body === undefined)
+          ? window.content.document : document;
+
+    /* if simplyread_original is set, then the simplyread version is currently active,
+     * so switch to the simplyread_original html */
+    if (doc.simplyread_original) {
+        doc.body.innerHTML = doc.simplyread_original;
+        for (var i = 0; i < doc.styleSheets.length; i++)
+            doc.styleSheets[i].disabled = false;
+        doc.simplyread_original = false
+        return 0;
+    }
+
+    doc.simplyread_original = doc.body.innerHTML;
+    doc.body.innerHTML = doc.body.innerHTML.replace(/<br[^>]*>\s*<br[^>]*>/g, "<p>");
+
+    var biggest_num = 0;
+    var biggest_tag;
+
+    /* search for tag with most direct children <p> tags */
+    var t = doc.getElementsByTagName("*");
+    for (var i = 0; i < t.length; i++) {
+        var p_num = count_p(t[i]);
+        if (p_num > biggest_num) {
+            biggest_num = p_num;
+            biggest_tag = t[i];
+        }
+    }
+
+    if (biggest_num == 0) return 1;
+
+    /* save and sanitise content of chosen tag */
+    var fresh = doc.createElement("div");
+    fresh.innerHTML = biggest_tag.innerHTML;
+    fresh.innerHTML = fresh.innerHTML.replace(/<\/?font[^>]*>/g, "");
+    fresh.innerHTML = fresh.innerHTML.replace(/style="[^"]*"/g, "");
+    if(nolinks)
+        fresh.innerHTML = fresh.innerHTML.replace(/<\/?a[^>]*>/g, "");
+    fresh.innerHTML = fresh.innerHTML.replace(/<\/?span[^>]*>/g, "");
+    fresh.innerHTML = fresh.innerHTML.replace(/<style[^>]*>/g, "<style media=\"aural\">"); /* ensures contents of style tag are ignored */
+
+    for (var i = 0; i < doc.styleSheets.length; i++)
+        doc.styleSheets[i].disabled = true;
+
+    srstyle =
+        "p{margin:0ex auto;} h1,h2,h3,h4{font-weight:bold; font-family:sans-serif}" +
+        "p+p{text-indent:2em; padding-top:1em} body{background:#002b36 none}" +
+        "img{image-rendering:auto; max-width: 42em; width:100%; height:auto; padding: 1em; margin:auto}" +
+        "h1{text-align:center}" +
+        "div#sr{width:54em; padding:10em; padding-top:2em;" +
+        "  box-shadow: inset 0px 0px 35px -8px rgba(0,0,0,0.75);" +
+        "  background-color:#eee8d5; margin:auto; line-height:1.4;" +
+        "  text-align:justify; font-family:serif; hyphens:auto;" +
+        "  color:#002b36;}";
+        /* text-rendering:optimizeLegibility; - someday this will work,
+         *   but at present it just ruins justify, so is disabled */
+
+    doc.body.innerHTML =
+        "<style type=\"text/css\">" + (nostyle ? "" : srstyle) + "</style>" +
+        "<div id=\"sr\">" + "<h1>"+doc.title+"</h1>" + fresh.innerHTML + "</div>";
+
+    return 0;
 }
 
 //TO FIX

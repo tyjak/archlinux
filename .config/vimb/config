@@ -1,4 +1,3 @@
-set home-page=https://github.com/fanglingsu/vimb
 set hint-keys=hjkl
 set caret=true
 set input-autohide=true
@@ -7,6 +6,7 @@ set webinspector=true
 set default-zoom=150
 set history-max-items=5000
 set closed-max-items=20
+set editor-command=termite -e "vim %s"
 nmap D :q<CR>
 nmap H <C-O>
 nmap L <C-I>
@@ -37,7 +37,9 @@ nmap ,lr :tabopen https://labonneformation.beta.pole-emploi.fr<CR>
 nmap ;lr ::e! workUrlLbfToRecette()<CR>
 nmap ,lp :tabopen https://labonneformation.pole-emploi.fr<CR>
 nmap ;lp ::e! workUrlLbfToProd()<CR>
-nmap ,lt :tabopen http://trefle.beta.pole-emploi.fr
+nmap ,tl :tabopen http://trefle.pole-emploi.local/explorer/index.html<CR>
+nmap ,tr :tabopen http://trefle.beta.pole-emploi.fr<CR>
+nmap ,tp :tabopen http://trefle.pole-emploi.fr<CR>
 
 #set proxy=true
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
@@ -59,12 +61,12 @@ augroup linkfile
 augroup end
 
 augroup trello
-    autocmd LoadFinished https://trello.com/b/* e! trelloNumber();
+    autocmd LoadFinished https://trello.com/b/zqbyN4zA/lbf-financement-trefle?menu=filter&filter=member:davidfoucher2 e! trelloNumber();
 augroup end
 
+# NOTE: la connexion étant en erreur l'événement ne fonctionne pas
 augroup work
-    autocmd LoadStarted https://labonneformation.pole-emploi.fr/* e! workUrlPeToLocal();
-    autocmd LoadStarted https://labonneformation.beta.pole-emploi.fr/* e! workUrlPeToLocal();
+    autocmd LoadStarted https://labonneformation.beta.pole-emploi.fr/* e! workUrlLbFixRecette();
 augroup end
 
 # GUI color settings
