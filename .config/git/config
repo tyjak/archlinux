@@ -1,0 +1,16 @@
+[user]
+	email = dev@tyjak.net
+	name = David Foucher
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[github]
+	user = tyjak
+[alias]
+	sg = log --oneline --abbrev-commit --all --graph --decorate --color
+[mergetool]
+	prompt = false
+[commit]
+	verbose = true
