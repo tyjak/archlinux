@@ -76,20 +76,23 @@ status.register("openvpn",
         )
 
 #Show backlight
-if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
-    status.register("backlight",
-	format="\uf09e {percentage}%",
-        backlight="intel_backlight")
+#if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
+#    status.register("backlight",
+#	format="\uf09e {percentage}%",
+#        backlight="intel_backlight")
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
-status.register("load")
+status.register("load",
+        on_leftclick="popup -S -s medium -e gotop"
+        )
 
 # Shows disk usage of /
 # Format:
 # 42/128G [86G]
 status.register("disk",
     path="/",
+    on_leftclick="popup -e ncdu",
     #format="{used}/{total}G [{avail}G]",)
     format="{avail}G",)
 

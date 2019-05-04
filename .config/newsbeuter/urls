@@ -3,6 +3,7 @@
 "query:Informatique:age < 3 and tags # \"informatique\""
 
 #Feeds
+http://www.jssj.org/feed/?post_type=jssj-article "sociologie" "science"
 http://www.archdaily.com/feed/ "architecture"
 http://pingmag.jp/feed/ "architecture"
 http://feeds.frogdesign.com/frog-design-mind "architecture"
