@@ -17,13 +17,14 @@ export http_proxy=127.0.0.1:8118
 export no_proxy=127.0.0.1,localhost,.jemepropose.com,.twitter.com,.jobintree.com,.adsnovo.com,.admintree.com,.reddit.com
 [[ -f /usr/bin/fd ]] && export FZF_DEFAULT_COMMAND='/usr/bin/fd --type f'
 
-dunst &
+systemctl --user import-environment DISPLAY
+#dunst &
 syndaemon -t -k -i 2 &
 eval $(ssh-agent)
 unclutter &
 stty -ixon
 #xbindkeys -> pb commande non trouvé (voir journalctl -xn)
 #clipmenud &
-redshift &
+#redshift &
 mpd ~/.config/mpd/mpd.conf
 exec i3

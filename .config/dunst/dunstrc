@@ -1,5 +1,5 @@
 [global]
-    font = pango:Meslo LG S DZ dor Powerline 10
+    font = pango:MesloLGSDZ Nerd Font 10
 
     # allow a small subset of html markup:
     # <b>bold</b>
@@ -19,7 +19,7 @@
     #   %I  iconname (without its path)
     #   %p  progress value if set ([  0%] to [100%]) or nothing
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "<b>%s</b> %b %p"
 
     # Sort messages by urgency
     sort = yes
@@ -29,7 +29,7 @@
 
     # alignment of message text.
     # Possible values are "left", "center" and "right"
-    alignment = left
+    alignment = center
 
     # The frequency with wich text that is longer than the notification
     # window allows bounces back and forth.
@@ -42,10 +42,10 @@
     show_age_threshold = 60
 
     # split notifications into multiple lines if they don't fit into geometry
-    word_wrap = yes
+    word_wrap = no
 
     # ignore newlines '\n' in notifications
-    ignore_newline = no
+    ignore_newline = yes
 
 
     # the geometry of the window
@@ -59,7 +59,7 @@
     # right side of the screen.  Y is measured from the top and down respectevly.
     # The width can be negative. In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "200x10-0+22"
+    geometry = "x1+0+0"
 
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
@@ -96,10 +96,10 @@
 
     # Draw a line of 'separatpr_height' pixel height between two notifications.
     # Set to 0 to disable
-    separator_height = 2
+    separator_height = 1
 
     # padding between text and separator
-    padding = 8
+    padding = 3
 
     # horizontal padding
     horizontal_padding = 8
@@ -110,7 +110,7 @@
     #  * foreground: use the same color as the foreground
     #  * frame: use the same color as the frame.
     #  * anything else will be interpreted as a X color
-    separator_color = frame
+    separator_color = foreground
 
     # print a notification on startup
     # This is mainly for error detection, since dbus (re-)starts dunst
@@ -121,7 +121,7 @@
     dmenu = /usr/bin/dmenu -p dunst:
 
     # browser for opening urls in context menu
-    browser = /usr/bin/firefox -new-tab
+    browser = /usr/bin/vimb
 
 [frame]
     width = 1
