@@ -377,7 +377,7 @@ mode "$mode_mplayer" {
 
 bindsym $tabKey+t exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_pevimwiki' ) -eq 2 ] && termite --title scratchpad_pevimwiki -e 'vim share/vimwiki_boulot/index.wiki' || i3-msg [title=scratchpad_pevimwiki] scratchpad show;
 bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg [title=scratchpad_vimwiki] scratchpad show;
-bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim -c VimwikiDiaryIndex' || i3-msg [title=scratchpad_vimdiary] scratchpad show;
+bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim share/vimwiki_perso/index.wiki' || i3-msg [title=scratchpad_vimdiary] scratchpad show;
 bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[t]ermite --class scratchpad --title scratchpad_vimb' ) -eq 2 ] && termite --class scratchpad --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg [title=scratchpad_vimb] scratchpad show;
 #bindsym $tabKey+c exec [ $( ps -eo cmd | grep -c '[/]usr/bin/franz-bin' ) -eq 2 ] && /usr/bin/franz-bin || i3-msg [title=Franz] scratchpad show;
 bindsym $tabKey+m exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_ncmpcpp' ) -eq 2 ] && termite --title scratchpad_ncmpcpp -e 'ncmpcpp' || i3-msg [title=scratchpad_ncmpcpp] scratchpad show;

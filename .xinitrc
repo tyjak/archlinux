@@ -13,11 +13,12 @@ export PRINTER=Brother_HL_2030_series_2
 export TERMINAL=/usr/bin/termite
 export OFFICE_IP=178.208.10.121
 #export http_proxy=192.168.0.20:8118
-export http_proxy=127.0.0.1:8118
-export no_proxy=127.0.0.1,localhost,.jemepropose.com,.twitter.com,.jobintree.com,.adsnovo.com,.admintree.com,.reddit.com
+#export http_proxy=127.0.0.1:8118
+#export no_proxy=127.0.0.1,localhost,.jemepropose.com,.twitter.com,.jobintree.com,.adsnovo.com,.admintree.com,.reddit.com
 [[ -f /usr/bin/fd ]] && export FZF_DEFAULT_COMMAND='/usr/bin/fd --type f'
 
-systemctl --user import-environment DISPLAY
+systemctl --user import-environment
+systemctl --user start graphical-session.target
 #dunst &
 syndaemon -t -k -i 2 &
 eval $(ssh-agent)

@@ -116,6 +116,7 @@ status.register("weather",
 	color_icons=color_icon_values,
         #format="{current_temp} {current_wind} {humidity}%",
 	format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
+        on_leftclick="popup -e wego",
 
 	hints={'markup': 'pango'},
 	backend=weathercom.Weathercom(
