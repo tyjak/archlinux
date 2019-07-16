@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 
+#import logging
 import subprocess
 import os.path
 
 from i3pystatus import Status
 from i3pystatus.weather import weathercom
 
+location = {"AUBERVILLIERS":"FRXX0007:1:FR", "MEUZAC":"FRXX1548:1:FR"}
+city = os.getenv('CITY','AUBERVILLIERS')
+
+#status = Status(standalone=True, logfile='i3pystatus.log')
 status = Status(standalone=True)
 
 
@@ -26,32 +31,44 @@ status.register("clock",
 status.register("alsa",
         format="{volume} \uf028",
         color_muted="#FF0000",
-        on_leftclick="pavucontrol"
+        on_leftclick="apptoggle pavucontrol"
         )
 
 # Show battery
 if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
     status.register("battery",
-            format="{remaining} {status}",
-            alert=True,
-            alert_percentage= 10,
-            status={"DPL":"\uf244",
-                    "CHR":"\uf242",
-                    "DIS":"\uf241",
-                    "FULL":"\uf240"}
+            format = "[{remaining} ]{status}{glyph}",
+            alert = True,
+            alert_percentage = 8,
+            full_color = "#00FF00",
+            charging_color = "#b58900",
+            critical_color = "#FF0000",
+            glyphs = ["\uf244","\uf243","\uf242","\uf241","\uf240"],
+            status = {"DPL":"\uf12a",
+                    "CHR":"\uf0e7",
+                    "DIS":"",
+                    "FULL":""}
             )
 
 # Show network
 net_interfaces = "wlp4s0"
 status.register("network",
 	interface=net_interfaces,
-        format_up="\uf09e {network_graph_recv} {bytes_recv}KB/s {essid} {quality}%",
+        format_up="\uf1eb {network_graph_recv} {bytes_recv}KB/s {essid} {quality}%",
         dynamic_color = True,
         graph_style = 'braille-fill',
         graph_width = 20
 	)
 
-status.register("syncthing")
+status.register("syncthing",
+                format_up="\uf311",
+                format_down="\uf311",
+                on_leftclick="vimb http://127.0.0.1:8384")
+
+status.register("openvpn",
+        vpn_name = 'peold',
+        use_new_service_name = 'true'
+        )
 
 status.register("openvpn",
         vpn_name = 'pe',
@@ -71,47 +88,58 @@ if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
-status.register("load")
+status.register("load",
+                on_leftclick="popup -S -s medium -e gotop"
+                )
 
 # Shows disk usage of /
 # Format:
 # 42/128G [86G]
 status.register("disk",
     path="/",
+    on_leftclick="popup -S -s medium -e ncdu",
     #format="{used}/{total}G [{avail}G]",)
     format="{avail}G",)
 
 # Show weather => need ttf-weather-icons
 color_icon_values={
-    'Cloudy': ('<span font="Weather Icons 10">\uf013</span>', '#f8f8ff'),
-    'Fog': ('<span font="Weather Icons 10">\uf014</span>', '#949494'),
-    'Thunderstorm': ('<span font="Weather Icons 10">\uf016</span>', '#cbd2c0'),
-    'Fair': ('<span font="Weather Icons 10">\uf00c</span>', '#ffcc00'),
-    'Rainy': ('<span font="Weather Icons 10">\uf019</span>', '#cbd2c0'),
-    'Partly Cloudy': ('<span font="Weather Icons 10">\uf002</span>', '#f8f8ff'),
-    'Snow': ('<span font="Weather Icons 10">\uf01b</span>', '#ffffff'),
-    'default': ('', None),
-    'Sunny': ('<span font="Weather Icons 10">\uf00d</span>', '#ffff00')
+	'Cloudy': ('<span font="Weather Icons 10">\uf013</span>', '#f8f8ff'),
+	'Fog': ('<span font="Weather Icons 10">\uf014</span>', '#949494'),
+	'Thunderstorm': ('<span font="Weather Icons 10">\uf016</span>', '#cbd2c0'),
+	'Fair': ('<span font="Weather Icons 10">\uf00c</span>', '#ffcc00'),
+	'Rainy': ('<span font="Weather Icons 10">\uf019</span>', '#cbd2c0'),
+	'Partly Cloudy': ('<span font="Weather Icons 10">\uf002</span>', '#f8f8ff'),
+	'Snow': ('<span font="Weather Icons 10">\uf01b</span>', '#ffffff'),
+	'default': ('', None),
+	'Sunny': ('<span font="Weather Icons 10">\uf00d</span>', '#ffff00')
 }
 
+status.register("pomodoro",
+        sound="~/share/sounds/196106__aiwha__ding.wav",
+        format="\uE001 {current_pomodoro}/{total_pomodoro} {time}")
+
 status.register("weather",
-    #location_code="FRXX5264",
-    interval=900,
-    colorize=True,
-    color_icons=color_icon_values,
-    #format="{current_temp} {current_wind} {humidity}%",
-    format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
-    hints={'markup': 'pango'},
-    backend=weathercom.Weathercom(
-        location_code='FRXX0007:1:FR',
-        units='metric',
-    ),
+	format='{current_temp}{temp_unit}[ {icon}]',
+        on_rightclick='popup -s medium -f -e "~/share/bin/wego {}"'.format(city),
+	interval=900,
+        colorize=True,
+	color_icons=color_icon_values,
+        #format="{current_temp} {current_wind} {humidity}%",
+	#format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
+        #log_level=logging.DEBUG,
+	hints={'markup': 'pango'},
+	backend=weathercom.Weathercom(
+	    location_code=location[city],
+	    units='metric',
+            #log_level=logging.DEBUG,
+	),
 )
 
 
 status.register("bitcoin",
         currency="EUR",
         colorize=True,
+        on_rightclick=['open_something', 'https://cryptowat.ch/markets/kraken/btc/eur/15m'],
         symbol="\uF15A")
 
 #status.register("shell",
@@ -120,8 +148,5 @@ status.register("bitcoin",
 #        interval=3600,
 #        )
 #
-#status.register("pomodoro",
-#        sound="~/share/sounds/196106__aiwha__ding.wav",
-#        format="\uE001 {current_pomodoro}/{total_pomodoro} {time}")
 
 status.run()

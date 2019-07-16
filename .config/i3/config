@@ -43,9 +43,9 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -i -nb '#859900' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36
-bindsym $mod+c exec termite -e "clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
-bindsym $mod+x exec passmenu -i -nb '#002b36' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 36
-bindsym $mod+Shift+x exec passmenu --type -i -nb '#002b36' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 36
+bindsym $mod+c exec clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36
+bindsym $mod+x exec PASSWORD_STORE_X_SELECTION=secondary passmenu -i -nb '#002b24' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 36 && xsel -o -s | xdotool type --file -
+bindsym $mod+Shift+x exec "DMENU_HEIGHT=36 passdmenu.py -u -x p,s -P --type -r -D ~/share/bin/mypassdmenu"
 bindsym $mod+s exec quickswitch -w -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
 bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
 bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
@@ -55,7 +55,7 @@ bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # english dictionary
-bindsym $mod+Shift+d exec "export D_DICT_DB_OPT='-d english'; ~/share/bin/dict_lookup"
+bindsym $mod+Shift+d exec "D_DICT_DB_OPT='-d english'; ~/share/bin/dict_lookup"
 
 # search for selection on the web
 bindsym $mod+g exec /usr/bin/vimb "$(xclip -o)"
@@ -185,7 +185,7 @@ bindsym XF86AudioPause exec mpc toggle
 # finds out, if available)
 bar {
   #font pango:FuraCode Nerd Font, 10
-  font pango:MesloLGSDZ Nerd Font, 10
+  font pango:MesloLGSDZ Nerd Font,forkawesome, 10
   status_command python ~/.config/i3/status.py
     position top
   colors {
@@ -199,6 +199,7 @@ bar {
   }
   #separator_symbol " "
   strip_workspace_numbers yes
+  tray_output primary
 }
 
 hide_edge_borders both
@@ -217,23 +218,29 @@ for_window [title="david_adsnovo - Skype*"] focus, sticky enable, move right, re
 for_window [title="Liste de contacts"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
 
 #for_window [title="vim"] title_format "<span font='devicons'> </span>%title"
+for_window [class="Vimb"] border 1pixel, focus
 for_window [title="uvim"] border 1pixel
 for_window [class="URxvt"] border 1pixel
 for_window [class="Termite"] border 1pixel
-for_window [class="Vimb"] border 1pixel, focus;
 #for_window [class="Vimb"] border 1pixel
 for_window [class="Gvim"] border 1pixel
-for_window [title="filemanager"] border 1pixel, layout tabbed;
-for_window [title="JACK.*"] floating enable;
-for_window [title="Molotov"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable, output $screen1;
-for_window [class="Gpodder"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable;
-for_window [title="pinentry"] floating enable;
-for_window [class="termite_dict"] floating enable, move position center, border 1pixel;
-for_window [class="Pavucontrol|Blueberry.py"] floating enable, resize set $wfM_width $wfM_height, move position center, border 1pixel, sticky enable;
+for_window [title="filemanager"] border 1pixel, layout tabbed
+for_window [title="JACK.*"] floating enable
+for_window [title="Molotov"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable, output $screen1
+for_window [class="Gpodder|Mpsyt"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
+for_window [title="pinentry"] floating enable
+for_window [class="termite_dict"] floating enable, move position center, border 1pixel
+for_window [class="Pavucontrol|Blueberry.py"] floating enable, resize set $wfM_width $wfM_height, move position center, border 1pixel, sticky enable
+for_window [class="w_float-notitle-medium-sticky"] border 1pixel, floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
+for_window [class="w_float-notitle-medium"] border 1pixel, floating enable, resize set $wfL_width $wfL_height, move position center
+for_window [class="w_float-notitle"] border 1pixel, floating enable
+for_window [class="w_float"] floating enable
 
 # assign graphic app to dedicated workspace
 assign [class="(pinta|Inkscape)"] graphic
 for_window [class="(pinta|Inkscape)"] focus
+assign [class="Pidgin"] pidgin
+for_window [class="Pidgin"] focus
 #assign [class="Vimb"] $menu2
 #for_window [class="Vimb"] layout tabbed; focus
 #assign [class="Urxvt"] terminal
@@ -250,7 +257,7 @@ for_window [title="scratchpad_ncmpcpp"] sticky enable, border 1pixel, move scrat
 for_window [title="scratchpad_cal"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [title="skype"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [title="pidgin"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
-for_window [class="Slack"] sticky enable, border 1pixel, move scratchpad, resize set $wfL_width $wfL_height,  scratchpad show;
+for_window [class="Slack"] sticky enable, border 1pixel, move scratchpad, resize set $wfL_width $wfL_height, scratchpad show, output $screen2;
 for_window [title="iCloud"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [class="VirtualBox Machine"] sticky enable, border 1pixel, move scratchpad, fullscreen, scratchpad show;
 
@@ -294,7 +301,7 @@ mode "$mode_launcher" {
     bindsym t exec trello, mode "default"
     bindsym s exec slack, mode "default"
     bindsym r exec remmina, mode "default"
-    bindsym w exec trello && sleep 1 && chrome && vimb && lbf && trèfle && wikipe && slack, mode "default"
+    bindsym w exec trello && sleep 1 && chrome && vimb && lbf && trèfle && slack && wikipe, mode "default"
     bindsym W exec writer, mode "default"
 
     bindsym Return mode "default"
@@ -363,14 +370,14 @@ mode "$mode_system" {
 }
 
 # mplayer control
-set $mode_mplayer mplayer: [p]ause [s]eek [q]quit
+set $mode_mplayer mplayer: [p]ause [s]eek [q]uit
 bindsym $mod+b mode "$mode_mplayer"
 
 mode "$mode_mplayer" {
 
-    bindsym p exec zsh -i -c 'echo "pause" > /tmp/mplayer', mode "default"
-    bindsym s exec zsh -i -c 'echo "seek 10" > /tmp/mplayer'
-    bindsym q exec zsh -i -c 'echo "quit" > /tmp/mplayer', mode "default"
+    bindsym p exec zsh -i -c 'ls /tmp/ | grep mplayer | sed "s/.*/echo \"pause\" > \/tmp\/&/" | sh', mode "default"
+    bindsym s exec zsh -i -c 'ls /tmp/ | grep mplayer | sed "s/.*/echo \"seek\ 10\" > \/tmp\/&/" | sh'
+    bindsym q exec zsh -i -c 'ls /tmp/ | grep mplayer | sed "s/.*/echo \"quit\" > \/tmp\/&/" | sh', mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -396,5 +403,5 @@ bindsym $tabKey+s exec i3-msg '[class="Slack"] scratchpad show';
 
 # Screensaver
 # exec xautolock -locker "termite --title screensaver -e 'asciiquarium'"
-
+exec aw-qt
 

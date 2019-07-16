@@ -1,3 +1,5 @@
+[commit]
+    verbose = true
 [user]
     name = tyjak
     email = dev@tyjak.net
@@ -18,6 +20,6 @@
 [includeIf "gitdir:~/WORK/"]
     path = ~/WORK/.gitconfig
 [mergetool]
-	keepBackup = false
+    keepBackup = false
 [diff]
-	tool = vimdiff
+    tool = vimdiff
