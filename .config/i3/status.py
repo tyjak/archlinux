@@ -54,7 +54,12 @@ status.register("network",
         graph_width = 20
 	)
 
-status.register("syncthing")
+
+status.register("syncthing",
+                format_up="\uf0ec",
+                format_down="\uf0ec",
+                on_leftclick="vimb http://127.0.0.1:8080")
+
 
 status.register("runwatch",
         path="/var/run/ppp0.pid",
@@ -129,6 +134,7 @@ status.register("weather",
 status.register("bitcoin",
         currency="EUR",
         colorize=True,
+        on_rightclick=['open_something', 'https://cryptowat.ch/markets/kraken/btc/eur/15m'],
         symbol="\uF15A")
 
 #status.register("pomodoro",
