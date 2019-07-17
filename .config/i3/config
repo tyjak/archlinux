@@ -183,6 +183,7 @@ bindsym XF86AudioPause exec mpc toggle
 bar {
   font pango:MesloLGMDZ Nerd Font, 10
   status_command python ~/.config/i3/status.py
+  # status_command ~/.virtualenvs/i3pystatus/bin/python ~/.config/i3/status-dev.py
     position top
   colors {
     separator #93a1a1

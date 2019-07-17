@@ -6,6 +6,7 @@ import os.path
 
 from i3pystatus import Status
 from i3pystatus.weather import weathercom
+from i3pystatus.updates import yay, pacman
 
 status = Status(standalone=True)
 
@@ -44,6 +45,16 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
                     "FULL":"\uf240"}
             )
 
+# Show count updates available
+status.register("updates",
+        backends = [yay.Yay(), pacman.Pacman()],
+        format = "\uf187 {count}",
+        format_working = "\uf94f",
+        on_rightclick = 'popup -d -s medium -f -e "yay -Syu"',
+        color = "#FF0000",
+        color_working = "#FF8800"
+        )
+
 # Show network
 net_interfaces = "wlp2s0b1"
 status.register("network",
@@ -59,7 +70,6 @@ status.register("syncthing",
                 format_up="\uf0ec",
                 format_down="\uf0ec",
                 on_leftclick="vimb http://127.0.0.1:8080")
-
 
 status.register("runwatch",
         path="/var/run/ppp0.pid",
