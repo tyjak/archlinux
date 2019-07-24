@@ -62,6 +62,7 @@ status.register("network",
         format_up="\uf09e {network_graph_recv} {bytes_recv}KB/s {essid} {quality}%",
         dynamic_color = True,
         graph_style = 'braille-fill',
+        on_rightclick = 'popup -e "sudo wifi-menu"',
         graph_width = 20
 	)
 
