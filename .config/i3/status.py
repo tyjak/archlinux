@@ -6,6 +6,7 @@ import os.path
 
 from i3pystatus import Status
 from i3pystatus.weather import weathercom
+from i3pystatus.updates import yay, pacman
 
 location = {"AUBERVILLIERS": "FRXX0007:1:FR", "MEUZAC": "FRXX1548:1:FR"}
 city = os.getenv("CITY", "AUBERVILLIERS")
@@ -50,6 +51,17 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
         glyphs=["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
         status={"DPL": "\uf12a", "CHR": "\uf0e7", "DIS": "", "FULL": ""},
     )
+
+# Show count updates available
+status.register("updates",
+        backends = [yay.Yay(), pacman.Pacman()],
+        format = "\uf187 {count}",
+        format_working = "\uf94f",
+        on_rightclick = 'popup -d -s medium -f -e "yay -Syu"',
+        color = "#FF0000",
+        color_working = "#FF8800"
+        )
+
 
 # Show network
 net_interfaces = "wlp4s0"
