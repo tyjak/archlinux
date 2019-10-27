@@ -18,6 +18,9 @@ Session.vim
 !.config/git
 !.config/htop
 !.config/i3
+!.config/mpd/mpd.conf
+!.config/ncmpcpp/bindings
+!.config/ncmpcpp/config
 !.config/newsbeuter/config
 !.config/newsbeuter/solarized-dark
 !.config/newsbeuter/urls
