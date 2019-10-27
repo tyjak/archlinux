@@ -8,6 +8,10 @@ from i3pystatus import Status
 from i3pystatus.weather import weathercom
 from i3pystatus.updates import yay, pacman
 
+location = {"AUBERVILLIERS":"FRXX0007:1:FR", "MEUZAC":"FRXX1548:1:FR"}
+city = os.getenv('CITY','AUBERVILLIERS')
+
+#status = Status(standalone=True, logfile='i3pystatus.log')
 status = Status(standalone=True)
 
 
@@ -36,13 +40,17 @@ status.register("pulseaudio",
 # Show battery
 if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
     status.register("battery",
-            format="{remaining} {status}",
-            alert=True,
-            alert_percentage= 10,
-            status={"DPL":"\uf244",
-                    "CHR":"\uf242",
-                    "DIS":"\uf241",
-                    "FULL":"\uf240"}
+            format = "[{remaining} ]{status}{glyph}",
+            alert = True,
+            alert_percentage = 8,
+            full_color = "#00FF00",
+            charging_color = "#b58900",
+            critical_color = "#FF0000",
+            glyphs = ["\uf244","\uf243","\uf242","\uf241","\uf240"],
+            status = {"DPL":"\uf12a",
+                    "CHR":"\uf0e7",
+                    "DIS":"",
+                    "FULL":""}
             )
 
 # Show count updates available
@@ -59,10 +67,11 @@ status.register("updates",
 net_interfaces = "wlp2s0b1"
 status.register("network",
 	interface=net_interfaces,
-        format_up="\uf09e {network_graph_recv} {bytes_recv}KB/s {essid} {quality}%",
+        format_up="\uf09e {network_graph_recv}",
         dynamic_color = True,
         graph_style = 'braille-fill',
         on_rightclick = 'popup -e "sudo wifi-menu"',
+        on_leftclick = 'popup -e "watch -n 0.2 iwconfig"',
         graph_width = 20
 	)
 
@@ -91,6 +100,12 @@ status.register("openvpn",
         use_new_service_name = 'true'
         )
 
+status.register("openvpn",
+        vpn_name = 'pe',
+        use_new_service_name = 'true'
+        )
+
+
 #Show backlight
 #if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
 #    status.register("backlight",
@@ -100,7 +115,7 @@ status.register("openvpn",
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
 status.register("load",
-        on_leftclick="popup -S -s medium -e gotop"
+        on_leftclick="popup -e gotop"
         )
 
 # Shows disk usage of /
@@ -108,7 +123,7 @@ status.register("load",
 # 42/128G [86G]
 status.register("disk",
     path="/",
-    on_leftclick="popup -e ncdu",
+    on_leftclick="popup -S -s medium -e ncdu",
     #format="{used}/{total}G [{avail}G]",)
     format="{avail}G",)
 
