@@ -23,3 +23,5 @@
     keepBackup = false
 [diff]
     tool = vimdiff
+[core]
+	excludesfile = ~/.gitignore
