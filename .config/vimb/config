@@ -19,7 +19,8 @@ handler-add mailto=gmail %s
 #handler-add ftp=termite -e wget %s -P ~/downloads
 set home-page=./.config/vimb/closed
 
-nmap ,,v :source ~/.config/vimb/config
+nmap ,,v ::sh! sh -c 'xsel -o -s | xdotool type --file -'
+nmap ,,w :source ~/.config/vimb/config<CR>
 nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,,D :sh /bin/sh -c "rm ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 #nmap ,;b ::e! bookmarkFileToHtml('file:///home/david/.config/vimb/bookmark')<CR>

@@ -89,6 +89,13 @@ function bookmarkFileToHtml() {
     document.body.innerHTML = html;
 }
 
+function printGistPage() {
+    var el=document.createElement('style');
+    var fontSize='18px';
+    el.media='print';
+    el.innerHTML='#Header,#user-content-toc,.file-header,.gist-banner, .gistheader,.pagehead.repohead,.gist-description.container,.file-box .meta,#comments,.js-comment-form,#footer{display:none;}.file-box,file{border:0!important;}.markdown-body{font-size:'+fontSize+'}';
+    document.getElementsByTagName('head')[0].appendChild(el);
+}
 function linkFileToHtml(title) {
     var parts=[], i, line, uri, lines = Array.from(new Set(document.body.innerText.split(/\n/).reverse())),
         html  = "<tr><th>" + title + "</th></tr>",

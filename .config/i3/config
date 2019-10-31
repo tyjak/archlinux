@@ -229,6 +229,7 @@ for_window [title="filemanager"] border 1pixel, layout tabbed
 for_window [title="JACK.*"] floating enable
 for_window [title="Molotov"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable, output $screen1
 for_window [class="Deezer"] floating enable, border 1pixel, resize set $wfL_width $wfL_height, move position center, sticky enable, output $screen1
+for_window [class="Caprine"] floating enable, resize set $wfM_width $wfM_height, move absolute position center, border 1pixel, sticky enable;
 for_window [class="Gpodder|Mpsyt"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
 for_window [title="pinentry"] floating enable
 for_window [class="termite_dict"] floating enable, move position center, border 1pixel
@@ -258,6 +259,7 @@ for_window [title="Franz"] sticky enable, border 1pixel, move scratchpad, resize
 for_window [title="scratchpad_ncmpcpp"] sticky enable, border 1pixel, move scratchpad, resize set $wfM_width  $wfM_height, scratchpad show;
 for_window [title="scratchpad_cal"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [title="skype"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
+for_window [title="N26"] sticky enable, border 1pixel, move scratchpad, resize set 500 820, scratchpad show, move position center;
 for_window [title="pidgin"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [class="Slack"] sticky enable, border 1pixel, move scratchpad, resize set $wfL_width $wfL_height, scratchpad show, output $screen2;
 for_window [title="iCloud"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
@@ -372,14 +374,15 @@ mode "$mode_system" {
 }
 
 # mplayer control
-set $mode_mplayer mplayer: [p]ause [s]eek [q]uit
+set $mode_player player: [p]ause/[p]lay [n]ext [s]eek [q]quit/stop
 bindsym $mod+b mode "$mode_mplayer"
 
 mode "$mode_mplayer" {
 
-    bindsym p exec zsh -i -c 'ls /tmp/ | grep mplayer | sed "s/.*/echo \"pause\" > \/tmp\/&/" | sh', mode "default"
-    bindsym s exec zsh -i -c 'ls /tmp/ | grep mplayer | sed "s/.*/echo \"seek\ 10\" > \/tmp\/&/" | sh'
-    bindsym q exec zsh -i -c 'ls /tmp/ | grep mplayer | sed "s/.*/echo \"quit\" > \/tmp\/&/" | sh', mode "default"
+    bindsym p exec zsh -i -c 'ls /tmp/ | grep mplayer | sed "s/.*/echo \"pause\" > \/tmp\/&/" | sh && mpc toggle', mode "default"
+    bindsym n exec zsh -i -c 'mpc next', mode "default"
+    bindsym s exec zsh -i -c 'ls /tmp/ | grep mplayer | sed "s/.*/echo \"seek\ 10\" > \/tmp\/&/" | sh && mpc seek +10'
+    bindsym q exec zsh -i -c 'ls /tmp/ | grep mplayer | sed "s/.*/echo \"quit\" > \/tmp\/&/" | sh && mpc stop', mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
