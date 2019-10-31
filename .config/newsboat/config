@@ -1,0 +1,40 @@
+# Dark solarized color scheme for newsbeuter, based on
+# Ethan Schoonover's Solarized.
+#
+# In order to use this color scheme, you must first configure
+# your terminal emulator to use the Solarized palette.
+# See <http://ethanschoonover.com/solarized/> for more information.
+
+color background          yellow    default
+color listnormal          yellow    default
+color listfocus           yellow    black     bold
+color listnormal_unread   blue      default
+color listfocus_unread    blue      black     bold
+color info                white     green     bold
+color article             default   default
+
+bind-key j down
+bind-key k up
+bind-key l open
+bind-key l open-in-browser-and-mark-read articlelist
+bind-key L open articlelist
+bind-key h quit articlelist
+bind-key h quit article
+bind-key SPACE toggle-show-read-feeds
+
+# highlights
+highlight article "^(Title|Titre)\\ ?:.*$" yellow default
+highlight article "https?://[^ ]+" color14 default
+highlight article "\\[image\\ [0-9]+\\]" color14 default
+# more on solarized: http://ethanschoonover.com/solarized
+
+refresh-on-startup yes
+
+browser "/usr/bin/vimb -c ~/.config/vimb/simplyread %u"
+
+bookmark-autopilot yes
+bookmark-cmd "sh ~/share/bin/instaper.sh"
+
+macro e set browser "echo %u >> ~/.config/vimb/queue" ; open-in-browser ; set browser "xdg-open %u"
+#macro u source "~/.config/newsboat/config" #TOFIX
+#macro y set browser "mpv %u"; open-in-browser ; set browser "xdg-open %u"
