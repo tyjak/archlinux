@@ -1,3 +1,5 @@
+player "mplayer"
+
 bookmark-cmd "sh ~/share/bin/instaper.sh"
 bookmark-autopilot yes
 

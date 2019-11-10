@@ -1,3 +1,8 @@
+* {
+    color: unset;
+    background-color: unset;
+}
+
 ._hintLabel {
     -webkit-transform:translate(-4px,-4px) !important;
     position: absolute !important;
@@ -57,6 +62,25 @@ span[vimbhint='label focus'] {
     color: #eee8d5 !important;
 }
 
+/*
+*,div,pre,textarea,body,input,td,tr,p {
+    background-color: #073642 !important;
+    color: #93a1a1 !important;
+    border-color: #93a1a1 !important;
+}
+h1,h2,h3,h4 {
+    background-color: #073642 !important;
+    color: #859900 !important;
+}
+a {
+    color: #b58900 !important;
+}
+a:hover,a:focus {
+    color: #268bd2 !important;
+}
+a:visited {
+    color: #d33682 !important;
+}
 /*
 *,div,pre,textarea,body,input,td,tr,p {
     background-color: #303030 !important;
