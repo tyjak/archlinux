@@ -51,13 +51,14 @@ var workUrlLbfToLocalProd=function(){document.location.href=(document.location.h
 var cssStyle = '<style type="text/css">'
             + "body{background:#002b36; color:#859000}"
             + "a:link{color:#fdf6e3; text-decoration:none}"
+            + "th a:link{color:#073642; text-decoration:underline}"
             + "a:visited{color:#93a1a1}"
             + "a:hover{color:#b58900}"
             + "table{margin:.5em auto;max-width:60em;border-collapse:collapse;color:#fdf6e3;}"
             + "th{text-align:left;background:#859900;color:#fdf6e3;border-bottom:.3em solid #073642;padding:14px 12px}"
             + "label{text-align:left;background:#859900;color:#fdf6e3;}"
             + "td{padding:8px 12px;border-bottom:1px solid #073642;color:#859900; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;}"
-            + "pre{display:inline;margin-right:20px;color:#859000:background-color:#fdf6e3}"
+            + "pre{display:inline;margin-right:20px;color:#859000;background-color:#fdf6e3}"
             + "tr{background:#002b36}"
             + "div{margin:.5em auto;max-width:60em;border-collapse:collapse;color:#002b36;background:#859000}"
             + "</style>";
@@ -97,7 +98,7 @@ function printGistPage() {
     document.getElementsByTagName('head')[0].appendChild(el);
 }
 function linkFileToHtml(title) {
-    var parts=[], i, line, uri, lines = Array.from(new Set(document.body.innerText.split(/\n/).reverse())),
+    var parts=[], i, line, uri, lines = Array.from(new Set(document.body.innerText.split(/\n/).slice(-100).reverse())),
         html  = "<tr><th>" + title + "</th></tr>",
         head  = '<head><title>' + title + '</title>'
             + cssStyle
@@ -114,7 +115,7 @@ function linkFileToHtml(title) {
         html  = html + "<tr><td><a href=\"" + uri + "\">" + title + "</a></td></tr>";
     }
 
-    htmlHead = "<span><a href=\"file:////home/david/.config/vimb/bookmark\">Bookmark</a> - <a href=\"file:////home/david/.config/vimb/history\">Historique</a> - <a href=\"file:////home/david/.config/vimb/closed\">Derniers onglets ouverts</a> - <a href=\"https://fanglingsu.github.io/vimb/man.html\">Aide</a></span>"
+    htmlHead = "<span><a href=\"file:////home/david/.config/vimb/bookmark\">Bookmark</a> - <a href=\"file:////home/david/.config/vimb/historylast\">Historique</a> - <a href=\"file:////home/david/.config/vimb/closed\">Derniers onglets ouverts</a> - <a href=\"https://fanglingsu.github.io/vimb/man.html\">Aide</a></span>"
     html = "<html>" + head + "<body>" + htmlHead + "<table>" + html + "</table></body></html>";
     document.body.innerHTML = html;
 }
