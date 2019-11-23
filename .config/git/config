@@ -1,7 +1,7 @@
 [commit]
     verbose = true
 [user]
-    name = tyjak
+    name = David Foucher
     email = dev@tyjak.net
 
 [merge]
@@ -9,6 +9,7 @@
     conflictstyle = diff3
 
 [alias]
+	sg = log --oneline --abbrev-commit --all --graph --decorate --color
     ignore = update-index --assume-unchanged
     unignore = update-index --no-assume-unchanged
     ignored = !git ls-files -v | grep "^[[:lower:]]"

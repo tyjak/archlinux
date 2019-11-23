@@ -1,7 +1,7 @@
 /* Hint mode color styling */
 * {
-    color: #002b36;
-    "background-color: #002b36;
+    color: unset;
+    background-color: unset;
 }
 @media (prefers-color-scheme: dark) {
     background-color: #002b36;

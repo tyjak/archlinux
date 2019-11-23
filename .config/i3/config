@@ -56,7 +56,7 @@ bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # english dictionary
-bindsym $mod+Shift+d exec "D_DICT_DB_OPT='-d english'; ~/share/bin/dict_lookup"
+bindsym $mod+Shift+d exec "export D_DICT_DB_OPT='-d english'; ~/share/bin/dict_lookup"
 
 # search for selection on the web
 bindsym $mod+g exec /usr/bin/vimb "$(xclip -o)"
@@ -213,17 +213,17 @@ bindsym $mod+o scratchpad show
 workspace_auto_back_and_forth yes
 
 
-#twitter
-#for_window [title="Twitter"] move right; resize shrink left 30 px or 30 ppt;
-for_window [title="david_adsnovo - Skype*"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
-for_window [title="Liste de contacts"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
+#generic
+for_window [class="w_float-notitle-medium-sticky"] border 1pixel, floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
+for_window [class="w_float-notitle-medium"] border 1pixel, floating enable, resize set $wfL_width $wfL_height, move position center
+for_window [class="w_float-notitle"] border 1pixel, floating enable
+for_window [class="w_float"] floating enable
 
-#for_window [title="vim"] title_format "<span font='devicons'> </span>%title"
+# applications
 for_window [class="Vimb"] border 1pixel, focus
 for_window [title="uvim"] border 1pixel
 for_window [class="URxvt"] border 1pixel
 for_window [class="Termite"] border 1pixel
-#for_window [class="Vimb"] border 1pixel
 for_window [class="Gvim"] border 1pixel
 for_window [title="filemanager"] border 1pixel, layout tabbed
 for_window [title="JACK.*"] floating enable
@@ -234,10 +234,11 @@ for_window [class="Gpodder|Mpsyt"] floating enable, resize set $wfL_width $wfL_h
 for_window [title="pinentry"] floating enable
 for_window [class="termite_dict"] floating enable, move position center, border 1pixel
 for_window [class="Pavucontrol|Blueberry.py"] floating enable, resize set $wfM_width $wfM_height, move position center, border 1pixel, sticky enable
-for_window [class="w_float-notitle-medium-sticky"] border 1pixel, floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
-for_window [class="w_float-notitle-medium"] border 1pixel, floating enable, resize set $wfL_width $wfL_height, move position center
-for_window [class="w_float-notitle"] border 1pixel, floating enable
-for_window [class="w_float"] floating enable
+for_window [title="david_adsnovo - Skype*"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
+for_window [title="Liste de contacts"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
+#for_window [title="Twitter"] move right; resize shrink left 30 px or 30 ppt;
+#for_window [class="Vimb"] border 1pixel
+#for_window [title="vim"] title_format "<span font='devicons'> </span>%title"
 
 # assign graphic app to dedicated workspace
 assign [class="(pinta|Inkscape)"] graphic
@@ -375,14 +376,14 @@ mode "$mode_system" {
 
 # mplayer control
 set $mode_player player: [p]ause/[p]lay [n]ext [s]eek [q]quit/stop
-bindsym $mod+b mode "$mode_mplayer"
+bindsym $mod+b mode "$mode_player"
 
-mode "$mode_mplayer" {
+mode "$mode_player" {
 
-    bindsym p exec zsh -i -c 'ls /tmp/ | grep mplayer | sed "s/.*/echo \"pause\" > \/tmp\/&/" | sh && mpc toggle', mode "default"
+    bindsym p exec zsh -i -c 'echo "pause" > /tmp/mplayer && mpc toggle', mode "default"
     bindsym n exec zsh -i -c 'mpc next', mode "default"
-    bindsym s exec zsh -i -c 'ls /tmp/ | grep mplayer | sed "s/.*/echo \"seek\ 10\" > \/tmp\/&/" | sh && mpc seek +10'
-    bindsym q exec zsh -i -c 'ls /tmp/ | grep mplayer | sed "s/.*/echo \"quit\" > \/tmp\/&/" | sh && mpc stop', mode "default"
+    bindsym s exec zsh -i -c 'echo "seek 10" > /tmp/mplayer && mpc seek +10'
+    bindsym q exec zsh -i -c 'echo "quit" > /tmp/mplayer && mpc stop', mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
