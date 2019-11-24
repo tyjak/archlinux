@@ -1,12 +1,12 @@
 /* Hint mode color styling */
-* {
+html {
     color: unset;
-    background-color: unset;
+    background-color: #fdf6e3;
 }
-@media (prefers-color-scheme: dark) {
+/*  @media (prefers-color-scheme: dark) {
     background-color: #002b36;
     color: #839495;
-}
+} */
 span[vimbhint^='label'] {
     background-color: #859900 !important;
     border: 1px solid #fdf6e3 !important;

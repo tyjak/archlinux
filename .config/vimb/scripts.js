@@ -49,7 +49,7 @@ var workUrlLbfToLocalProd=function(){document.location.href=(document.location.h
 //
 // autocmd LoadFinished file:///*/bookmark e! bookmarkFileToHtml();
 var cssStyle = '<style type="text/css">'
-            + "body{background:#002b36; color:#859000}"
+            + "html{background:#002b36; color:#859000}"
             + "a:link{color:#fdf6e3; text-decoration:none}"
             + "th a:link{color:#073642; text-decoration:underline}"
             + "a:visited{color:#93a1a1}"
