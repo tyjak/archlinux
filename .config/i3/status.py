@@ -77,8 +77,8 @@ status.register("network",
 
 
 status.register("syncthing",
-                format_up="\uf0ec",
-                format_down="\uf0ec",
+                format_up="\uf311",
+                format_down="\uf311",
                 on_leftclick="vimb http://127.0.0.1:8080")
 
 status.register("runwatch",

@@ -32,6 +32,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal;
+bindsym $mod+Shift+Return splith; exec i3-sensible-terminal;
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -119,16 +120,16 @@ bindsym $mod+Left move workspace to output left
 bindsym $mod+Right move workspace to output right
 
 #icon
-set $vimIcon 
+set $vimIcon 
 
 #menu title
 set $menu1 1: terminal
 set $menu2 2: web
-set $menu3 3:
+set $menu3 3:
 set $menu4 4: gmail
 set $menu5 5:
-set $menu6 6: JIT
-set $menu7 7:tmux-weechat
+set $menu6 6:
+set $menu7 7:
 
 #TODO: var does not seem to work in exec command
 #set $chrome /usr/bin/brave
@@ -139,10 +140,11 @@ bindsym $mod+2 workspace $menu2; exec [ $(ps h -C vimb -o args | grep "^/usr/bin
 bindsym $mod+3 workspace $menu3; exec [ $( ps -eo cmd | grep -c '[t]ermite --title uvim -e vim' ) -eq 2 ] && termite --title uvim -e vim
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+4 workspace $menu4; exec [ $( ps -eo cmd | grep -c '[t]ermite --title mail-gmail' ) -eq 2 ] && termite --title mail-gmail -e '/usr/bin/mutt -e "source ~/.mutt/gmail.com"'
-bindsym $mod+5 workspace $menu5; exec ps h -C brave -o comm || /usr/bin/brave
+bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '^/usr/lib/brave-bin/brave' ) -eq 0 ] && /usr/bin/brave; move workspace to output $screen2
+bindsym $mod+6 workspace $menu6;
 #bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttperso' ) -eq 2 ] && termite --title muttperso -e '/usr/bin/mutt -e "source ~/.mutt/newmanity.com"'
-bindsym $mod+6 workspace $menu6; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttjit' ) -eq 2 ] && termite --title muttjit -e '/usr/bin/mutt -e "source ~/.mutt/jobintree.com"'
-bindsym $mod+7 workspace $menu7; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
+#bindsym $mod+6 workspace $menu6; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttjit' ) -eq 2 ] && termite --title muttjit -e '/usr/bin/mutt -e "source ~/.mutt/jobintree.com"'
+#bindsym $mod+7 workspace $menu7; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
@@ -181,7 +183,8 @@ bindsym XF86AudioPause exec mpc toggle
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  font pango:MesloLGMDZ Nerd Font, 10
+  #font pango:FuraCode Nerd Font, 10
+  font pango:Meslo LG S DZ, forkawesome, icomoon,  10
   status_command python ~/.config/i3/status.py
   # status_command ~/.virtualenvs/i3pystatus/bin/python ~/.config/i3/status-dev.py
     position top
@@ -238,6 +241,10 @@ for_window [class="Pavucontrol|Blueberry.py"] floating enable, resize set $wfM_w
 # assign graphic app to dedicated workspace
 assign [class="(pinta|Inkscape)"] graphic
 for_window [class="(pinta|Inkscape)"] focus
+assign [class="Pidgin"] pidgin
+for_window [class="Pidgin"] focus
+assign [class="Brave-browser"] $menu5
+assign [class="Shotwell"] $menu6
 #assign [class="Vimb"] $menu2
 #for_window [class="Vimb"] layout tabbed; focus
 #assign [class="Urxvt"] terminal
@@ -295,7 +302,7 @@ mode "$mode_launcher" {
     bindsym t exec trello, mode "default"
     bindsym s exec slack, mode "default"
     bindsym r exec remmina, mode "default"
-    bindsym w exec trello && sleep 1 && chrome && vimb && lbf && trèfle && wikipe && slack, mode "default"
+    bindsym w exec trello && sleep 1 && chrome && vimb && lbf && trèfle && slack && wikipe, mode "default"
     bindsym W exec writer, mode "default"
 
     bindsym Return mode "default"
