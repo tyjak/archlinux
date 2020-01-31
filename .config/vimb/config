@@ -16,20 +16,21 @@ set strict-ssl=false
 
 handler-add mailto=/home/david/share/bin/i3/gmail-mail %s
 #handler-add ftp=termite -e wget %s -P ~/downloads
-set home-page=./.config/vimb/closed
+set home-page=./.config/vimb/historylast
 
 nmap ,,v ::sh! sh -c 'xsel -o -s | xdotool type --file -'
 nmap ,,w :source ~/.config/vimb/config<CR>
 nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,,D :sh /bin/sh -c "rm ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
-#nmap ,;b ::e! bookmarkFileToHtml('file:///home/david/.config/vimb/bookmark')<CR>
 nmap ,;b :o ./.config/vimb/bookmark<CR>
 nmap ,,; ::sh! ~/share/bin/vimbmkpwd<CR>
 
 nmap ,,i ::e! instapaper()<CR>
 nmap ,,f ::e! facebook()<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
+nmap ,,b ::bma web<CR>
 nmap ,;a ::e! getArchive()<CR>
+nmap ,,e :shell! termite -e "vim $VIMB_URI"<CR>
 
 nmap ,ll :tabopen http://labonneformation.pole-emploi.local<CR>
 nmap ;ll ::e! workUrlLbfToLocal()<CR>
@@ -56,8 +57,10 @@ augroup bookmark
 augroup end
 
 augroup linkfile
+    autocmd LoadStarted * shell sh -c "tail -100 ~/.config/vimb/history | uniq > ~/.config/vimb/historylast"
     autocmd LoadFinished file:///*/closed e! linkFileToHtml('Derniers onglets ouverts');
-    autocmd LoadFinished file:///*/history e! linkFileToHtml('Historiques');
+    autocmd LoadFinished file:///*/historylast e! linkFileToHtml('Historique <a href="file:///home/david/.config/vimb/history">(voir tout l\'historique)</a>');
+    autocmd LoadFinished file:///*/history e! linkFileToHtml('Historique');
 augroup end
 
 augroup trello

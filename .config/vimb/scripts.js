@@ -48,6 +48,7 @@ var cssStyle = '<style type="text/css">'
             + "a:hover{color:#b58900}"
             + "table{margin:.5em auto;max-width:60em;border-collapse:collapse;color:#fdf6e3;}"
             + "th{text-align:left;background:#859900;color:#fdf6e3;border-bottom:.3em solid #073642;padding:14px 12px}"
+            + ".title th{text-align:left;background:#073642;color:#fdf6e3;border-bottom:.3em solid #073642;padding:12px 10px}"
             + "label{text-align:left;background:#859900;color:#fdf6e3;}"
             + "td{padding:8px 12px;border-bottom:1px solid #073642;color:#859900; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;}"
             + "pre{display:inline;margin-right:20px;color:#859000:background-color:#fdf6e3}"
@@ -67,11 +68,15 @@ function bookmarkFileToHtml() {
         if (!line) {
             continue;
         }
-        parts = line.split("\t");
-        uri   = parts[0];
-        title = parts[1]||uri;
-        tags  = (parts[2]||"").split(' ').sort().join(', ');
-        html  = html + "<tr><td><a href=\"" + uri + "\">" + title + "</a></td><td>" + tags + "</td></tr>";
+        if (line.match(/^#/)){
+            html = html + "<tr class=\"title\"><th colspan=2>"+line.slice(1)+"</th></tr>";
+        } else {
+            parts = line.split("\t");
+            uri   = parts[0];
+            title = parts[1]||uri;
+            tags  = (parts[2]||"").split(' ').sort().join(', ');
+            html  = html + "<tr><td><a href=\"" + uri + "\">" + title + "</a></td><td>" + tags + "</td></tr>";
+        }
     }
 
     htmlHelp = "<div><pre>,,a</pre><label>To add page to archive.is + bookmark with tag archive</label><br><pre>,;a</pre><label>To get the current url from archive.is</label></div>"
@@ -94,8 +99,8 @@ function linkFileToHtml(title) {
             + "</head>";
 
     for (i = 0; i < lines.length; i++) {
-        line  = lines[i];
-        if (!line) {
+        line  = lines[i].replace(/[<>]/g,'');
+        if (!line || line.match(/^file:\/\//)) {
             continue;
         }
         parts = line.split("\t");
