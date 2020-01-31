@@ -26,6 +26,7 @@ unclutter &
 stty -ixon
 #xbindkeys -> pb commande non trouvé (voir journalctl -xn)
 #clipmenud &
-#redshift &
+redshift &
+udiskie &
 mpd ~/.config/mpd/mpd.conf
 exec i3

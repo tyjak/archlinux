@@ -11,6 +11,6 @@
 [alias]
 	sg = log --oneline --abbrev-commit --all --graph --decorate --color
 [mergetool]
-	prompt = false
+    keepBackup = false
 [commit]
 	verbose = true
