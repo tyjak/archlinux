@@ -138,7 +138,7 @@ set $menu7 7:
 
 
 # switch to workspace
-bindsym $mod+1 workspace $menu1; exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite --title terminal
+bindsym $mod+1 workspace $menu1; exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite --title terminal; move workspace to output $screen1
 bindsym $mod+2 workspace $menu2; exec [ $(ps h -C vimb -o args | grep "^/usr/bin/vimb$" | wc -l) = 0 ] && /usr/bin/vimb; move workspace to output $screen2
 bindsym $mod+3 workspace $menu3; exec [ $( ps -eo cmd | grep -c '[t]ermite --title uvim -e vim' ) -eq 2 ] && termite --title uvim -e vim
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
@@ -230,13 +230,14 @@ for_window [title="filemanager"] border 1pixel, layout tabbed
 for_window [title="JACK.*"] floating enable
 for_window [title="Molotov"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable, output $screen1
 for_window [class="Deezer"] floating enable, border 1pixel, resize set $wfL_width $wfL_height, move position center, sticky enable, output $screen1
-for_window [class="Caprine"] floating enable, resize set $wfL_width $wfL_height, move absolute position center, border 1pixel, sticky enable;
+for_window [class="Caprine"] floating enable, resize set $wfL_width $wfL_height, border 1pixel, sticky enable, output $screen2;
 for_window [class="Gpodder|Mpsyt"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
 for_window [title="pinentry"] floating enable
 for_window [class="termite_dict"] floating enable, move position center, border 1pixel
 for_window [class="Pavucontrol|Blueberry.py"] floating enable, resize set $wfM_width $wfM_height, move position center, border 1pixel, sticky enable
 for_window [title="david_adsnovo - Skype*"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
 for_window [title="Liste de contacts"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
+for_window [class="Cawbird"] resize set width 640 px;
 #for_window [title="Twitter"] move right; resize shrink left 30 px or 30 ppt;
 #for_window [class="Vimb"] border 1pixel
 #for_window [title="vim"] title_format "<span font='devicons'> </span>%title"
@@ -248,6 +249,9 @@ assign [class="Pidgin"] pidgin
 for_window [class="Pidgin"] focus
 assign [class="Brave-browser"] $menu5
 assign [class="Shotwell"] $menu6
+assign [class="Evolution"]  PE
+assign [class="trefle"] trèfle
+for_window [class="trefle"] output $screen1
 #assign [class="Vimb"] $menu2
 #for_window [class="Vimb"] layout tabbed; focus
 #assign [class="Urxvt"] terminal
@@ -309,7 +313,7 @@ mode "$mode_launcher" {
     bindsym t exec trello, mode "default"
     bindsym s exec slack, mode "default"
     bindsym r exec remmina, mode "default"
-    bindsym w exec trello && sleep 1 && chrome && vimb && lbf && trèfle && slack && wikipe, mode "default"
+    bindsym w exec trello && sleep 1 && vimb && slack && brave && wikipe, mode "default"
     bindsym W exec writer, mode "default"
 
     bindsym Return mode "default"

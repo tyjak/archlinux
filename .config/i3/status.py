@@ -54,7 +54,7 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
 
 # Show count updates available
 status.register("updates",
-        backends = [yay.Yay(False), pacman.Pacman()],
+        backends = [yay.Yay(False)],
         format = "\uf323 {count}",
         format_working = "\uf323",
         on_rightclick = 'popup -d -s medium -f -e "yay -Syu"',

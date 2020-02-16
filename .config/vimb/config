@@ -24,6 +24,7 @@ nmap ,,w :source ~/.config/vimb/config<CR>
 nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,,D :sh /bin/sh -c "rm ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 #nmap ,;b ::e! bookmarkFileToHtml('file:///home/david/.config/vimb/bookmark')<CR>
+nmap ,,b :bma archive<CR>
 nmap ,;b :o ./.config/vimb/bookmark<CR>
 nmap ,,; ::sh! ~/share/bin/vimbmkpwd<CR>
 
