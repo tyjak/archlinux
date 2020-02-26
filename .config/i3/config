@@ -251,17 +251,17 @@ assign [class="Shotwell"] $menu6
 #for_window [class="Urxvt"] layout splith; focus
 
 #vimb with title starting by "scratchpad_" are moved to the scratch pad and show
-#for_window [title="scratchpad_*"] sticky enable, border 1pixel; 
-for_window [title="scratchpad_vimwiki|scratchpad_pevimwiki|scratchpad_vimdiary"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
-for_window [title="Franz"] sticky enable, border 1pixel, move scratchpad, resize set 720 874, scratchpad show, move absolute position 720px 24px; 
-for_window [title="scratchpad_ncmpcpp"] sticky enable, border 1pixel, move scratchpad, resize set $wfM_width  $wfM_height, scratchpad show; 
-for_window [title="scratchpad_cal"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
-for_window [title="skype"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
+#for_window [title="scratchpad_*"] sticky enable, border 1pixel;
+for_window [title="scratchpad_vimwiki|scratchpad_pevimwiki|scratchpad_vimdiary"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
+for_window [title="Franz"] sticky enable, border 1pixel, move scratchpad, resize set 720 874, scratchpad show, move absolute position 720px 24px;
+for_window [title="scratchpad_ncmpcpp"] sticky enable, border 1pixel, move scratchpad, resize set $wfM_width  $wfM_height, scratchpad show;
+for_window [title="scratchpad_cal"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
+for_window [title="skype"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [title="N26"] sticky enable, border 1pixel, move scratchpad, resize set 500 820, scratchpad show, move position center;
 
-for_window [title="pidgin"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
-for_window [class="Slack|Keybase|Whalebird"] sticky enable, border 1pixel, move scratchpad, resize set $wfM_width $wfM_height,  scratchpad show; 
-for_window [title="iCloud"] sticky enable, border 1pixel, move scratchpad, scratchpad show; 
+for_window [title="pidgin"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
+for_window [class="Slack|Keybase|Whalebird"] sticky enable, border 1pixel, move scratchpad, resize set $wfM_width $wfM_height,  scratchpad show;
+for_window [title="iCloud"] sticky enable, border 1pixel, move scratchpad, resize set $wfM_width  $wfM_height, scratchpad show, move position center;
 
 client.focused #859900 #859900 #eee8d5 #859900
 client.focused_inactive #073642 #073642 #586e75 #6c71c4

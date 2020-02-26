@@ -18,12 +18,13 @@ handler-add mailto=/home/david/share/bin/i3/gmail-mail %s
 #handler-add ftp=termite -e wget %s -P ~/downloads
 set home-page=./.config/vimb/historylast
 
-nmap ,,v ::sh! sh -c 'xsel -o -s | xdotool type --file -'
+nmap ,,v ::sh! sh -c 'xsel -o -s | xargs xdotool type'<CR>
 nmap ,,w :source ~/.config/vimb/config<CR>
 nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,,D :sh /bin/sh -c "rm ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,;b :o ./.config/vimb/bookmark<CR>
-nmap ,,; ::sh! ~/share/bin/vimbmkpwd<CR>
+#nmap ,,; ::sh! ~/share/bin/vimbmkpwd<CR>
+nmap ,,; ::sh! ~/share/bin/passgenvimb<CR>
 
 nmap ,,i ::e! instapaper()<CR>
 nmap ,,f ::e! facebook()<CR>

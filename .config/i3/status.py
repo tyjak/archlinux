@@ -123,6 +123,12 @@ status.register("load",
 # 42/128G [86G]
 status.register("disk",
     path="/",
+    on_leftclick="popup -S -s medium -e ncdu /var",
+    #format="{used}/{total}G [{avail}G]",)
+    format="{avail}G",)
+
+status.register("disk",
+    path="/home",
     on_leftclick="popup -S -s medium -e ncdu",
     #format="{used}/{total}G [{avail}G]",)
     format="{avail}G",)
