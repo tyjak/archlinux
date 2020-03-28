@@ -44,10 +44,12 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -i -nb '#859900' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36
+bindsym $mod+n exec networkmanager_dmenu -i -nb '#b58900' -nf '#eee8d5' -sb '#002b24' -fn 'MesloLGSDZ Nerd Font-10' -h 36
 bindsym $mod+c exec clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36
 bindsym $mod+x exec PASSWORD_STORE_X_SELECTION=secondary passmenu -i -nb '#002b24' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 36 && xsel -o -s | xdotool type --file -
 bindsym $mod+Shift+x exec "DMENU_HEIGHT=36 passdmenu.py -u -x p,s -P --type -r -D ~/share/bin/mypassdmenu"
 bindsym $mod+s exec quickswitch -w -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
+bindsym $mod+Shift+s exec quickswitch -w -j -f -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
 bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
 bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -164,12 +166,6 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # TODO: verify precedence with /etc/acpi/handler.sh
 #set $sink `pactl list short sinks | grep RUNNING | head -1 | cut -f1`
@@ -270,6 +266,7 @@ for_window [title="skype"] sticky enable, border 1pixel, move scratchpad, scratc
 for_window [title="N26"] sticky enable, border 1pixel, move scratchpad, resize set 500 820, scratchpad show, move position center;
 for_window [title="pidgin"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [class="Slack"] sticky enable, border 1pixel, move scratchpad, resize set $wfL_width $wfL_height, scratchpad show, output $screen2;
+for_window [class="Teams"] sticky enable, border 1pixel, move scratchpad, resize set $wfL_width $wfL_height, scratchpad show, output $screen2;
 for_window [title="iCloud"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [class="VirtualBox Machine"] sticky enable, border 1pixel, move scratchpad, fullscreen, scratchpad show;
 
@@ -280,6 +277,17 @@ client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
 #set $Locker i3lock -i ~/.config/wallpaper/solarized-dark.png -c 002b36 && sleep 1
 set $Locker i3lock -c 002b36 && sleep 1
+
+set $i3ctl i3 [r]eload re[s]tart [e]xit
+bindsym $mod+Shift+r mode "$i3ctl"
+mode "$i3ctl" {
+    # reload the configuration file
+    bindsym r reload
+    # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+    bindsym s restart
+    # exit i3 (logs you out of your X session)
+    bindsym e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+}
 
 # resize mod window $mod+r (you can also use the mouse for that)
 bindsym $mod+r mode "resize / move"
@@ -313,16 +321,16 @@ mode "$mode_launcher" {
     bindsym t exec trello, mode "default"
     bindsym s exec slack, mode "default"
     bindsym r exec remmina, mode "default"
-    bindsym w exec trello && sleep 1 && vimb && slack && brave && wikipe, mode "default"
+    bindsym w exec trello && sleep 1 && vimb && slack && && teams && brave && wikipe, mode "default"
     bindsym W exec writer, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-# Press $mod+Shift+s s or f to take a screen shot
+# Press $mod+Shift+c s or f to take a screen shot
 set $mode_screenshot Screenshot [s]election [f]ullscreen
-bindsym $mod+Shift+s mode "$mode_screenshot"
+bindsym $mod+Shift+c mode "$mode_screenshot"
 
 mode "$mode_screenshot" {
 
@@ -405,6 +413,7 @@ bindsym $tabKey+m exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_n
 bindsym $tabKey+e exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_cal' ) -eq 2 ] && termite --title scratchpad_cal -e 'pal -m' || i3-msg [title=scratchpad_cal] scratchpad show;
 bindsym $tabKey+n exec i3-msg '[class="VirtualBox Machine"] scratchpad show' && i3-msg '[class="VirtualBox Machine"] fullscreen enable';
 bindsym $tabKey+s exec i3-msg '[class="Slack"] scratchpad show';
+bindsym $tabKey+Shift+s exec i3-msg '[class="Teams"] scratchpad show';
 #bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg kill;
 #bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim -c VimwikiDiaryIndex' || i3-msg kill;
 #bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimb' ) -eq 2 ] && termite --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg kill;
