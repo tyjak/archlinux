@@ -40,7 +40,7 @@ background = #002b36
 cursor = #93a1a1
 
 # if unset, will reverse foreground and background
-#highlight = #839496
+highlight = #839496
 
 #color0 = #666666
 #color1 = #CC6699
@@ -74,7 +74,6 @@ color10 = #586e75
 color11 = #657b83
 color12 = #839496
 color13 = #6c71c4
-color61 = #6c71c4
 color14 = #93a1a1
 color15 = #fdf6e3
 
@@ -83,11 +82,14 @@ color234 = #1c1c1c
 color235 = #262626
 color239 = #4e4e4e
 color240 = #585858
+color241 = #626262
 color244 = #808080
 color245 = #8a8a8a
+color254 = #e4e4e4
 color187 = #d7d7af
 color230 = #ffffd7
 color136 = #af8700
+color160 = #d70000
 color166 = #d75f00
 color124 = #af0000
 color125 = #af005f

@@ -64,17 +64,17 @@ status.register("updates",
 
 
 # Show network
-net_interfaces = "wlp4s0"
-status.register(
-    "network",
-    interface=net_interfaces,
-    format_up="\uf1eb {network_graph_recv} {bytes_recv}KB/s {essid} {quality}%",
-    dynamic_color=True,
-    graph_style="braille-fill",
-    on_rightclick = 'popup -e "sudo wifi-menu"',
-    on_leftclick = 'popup -e "watch -n 0.2 iwconfig"',
-    graph_width=20,
-)
+#net_interfaces = "wlp4s0"
+#status.register(
+#    "network",
+#    interface=net_interfaces,
+#    format_up="\uf1eb {network_graph_recv} {bytes_recv}KB/s {essid} {quality}%",
+#    dynamic_color=True,
+#    graph_style="braille-fill",
+#    on_rightclick = 'popup -e "sudo wifi-menu"',
+#    on_leftclick = 'popup -e "watch -n 0.2 iwconfig"',
+#    graph_width=20,
+#)
 
 status.register(
     "syncthing",
