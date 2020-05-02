@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # import logging
+import re
 import subprocess
 import os.path
 
@@ -36,6 +37,20 @@ status.register(
     format="{volume} \uf028",
     color_muted="#FF0000",
     on_leftclick="apptoggle pavucontrol",
+)
+
+def gpodder_perc(text):
+    line = text.split("\n")[-1].strip()
+    if(re.match('^ANS_PERCENT_POSITION', line)):
+        return re.sub(r'ANS_PERCENT_POSITION=([0-9]+)',r'podcast: \1%',line)
+    else:
+        return ''
+
+status.register(
+    "file",
+    components={"podcast":(gpodder_perc,'gpodder.out')},
+    base_path="/tmp",
+    format="{podcast}"
 )
 
 # Show battery
