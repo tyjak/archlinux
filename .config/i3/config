@@ -4,6 +4,8 @@ exec_always compton -f
 # start a concole if not starting
 exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite --title terminal
 
+set $home /home/david
+
 # special keys
 set $mod Mod4
 set $capsLock Mod3
@@ -138,8 +140,9 @@ set $menu2 2: web
 set $menu3 3:
 set $menu4 4: gmail
 set $menu5 5:
-set $menu6 6:
-set $menu7 7:
+set $menu6 6:<span font=\"icomoon 13\"></span>
+set $menu7 7:
+set $menu8 8:
 
 
 # switch to workspace
@@ -149,7 +152,7 @@ bindsym $mod+3 workspace $menu3; exec [ $( ps -eo cmd | grep -c '[t]ermite --tit
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+4 workspace $menu4; exec [ $( ps -eo cmd | grep -c '[t]ermite --title mail-gmail' ) -eq 2 ] && termite --title mail-gmail -e '/usr/bin/mutt -e "source ~/.mutt/gmail.com"'
 bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '^/usr/lib/brave-bin/brave' ) -eq 0 ] && /usr/bin/brave; move workspace to output $screen2
-bindsym $mod+6 workspace $menu6;
+bindsym $mod+6 workspace $menu6; exec ~/share/bin/i3/firefox
 #bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttperso' ) -eq 2 ] && termite --title muttperso -e '/usr/bin/mutt -e "source ~/.mutt/newmanity.com"'
 #bindsym $mod+6 workspace $menu6; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttjit' ) -eq 2 ] && termite --title muttjit -e '/usr/bin/mutt -e "source ~/.mutt/jobintree.com"'
 #bindsym $mod+7 workspace $menu7; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
@@ -243,6 +246,7 @@ for_window [title="david_adsnovo - Skype*"] focus, sticky enable, move right, re
 for_window [title="Liste de contacts"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
 for_window [class="Cawbird"] resize set width 640 px;
 for_window [title="^ [^ ]+$"] move --no-auto-back-and-forth container to workspace $menu1, focus
+#for_window [title="La Quadrature du Net - Mastodon - Media Fédéré"] focus parent, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
 #for_window [title="Twitter"] move right; resize shrink left 30 px or 30 ppt;
 #for_window [class="Vimb"] border 1pixel
 #for_window [title="vim"] title_format "<span font='devicons'> </span>%title"
@@ -264,19 +268,14 @@ for_window [class="trefle"] output $screen1
 
 #vimb with title starting by "scratchpad_" are moved to the scratch pad and show
 #for_window [title="scratchpad_*"] sticky enable, border 1pixel;
-for_window [title="scratchpad_vimwiki"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
-for_window [title="scratchpad_pevimwiki"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
-for_window [title="scratchpad_vimdiary"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
-for_window [title="scratchpad_vimb"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
+set $scratchpads scratchpad_vimwiki|scratchpad_pevimwiki|scratchpad_vimdiary|scratchpad_vimb|skype|pidgin|iCloud|gPodder
+for_window [title="$scratchpads"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [title="Franz"] sticky enable, border 1pixel, move scratchpad, resize set 720 874, scratchpad show, move absolute position 720px 24px;
 for_window [title="scratchpad_ncmpcpp"] sticky enable, border 1pixel, move scratchpad, resize set $wfM_width  $wfM_height, scratchpad show;
 for_window [title="scratchpad_cal"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
-for_window [title="skype"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [title="N26"] sticky enable, border 1pixel, move scratchpad, resize set 500 820, scratchpad show, move position center;
-for_window [title="pidgin"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [class="Slack"] sticky enable, border 1pixel, move scratchpad, resize set $wfL_width $wfL_height, scratchpad show, output $screen2;
 for_window [class="Teams"] sticky enable, border 1pixel, move scratchpad, resize set $wfL_width $wfL_height, scratchpad show, output $screen2;
-for_window [title="iCloud"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [class="VirtualBox Machine"] sticky enable, border 1pixel, move scratchpad, fullscreen, scratchpad show;
 
 client.focused #859900 #859900 #eee8d5 #859900
@@ -287,7 +286,7 @@ client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 #set $Locker i3lock -i ~/.config/wallpaper/solarized-dark.png -c 002b36 && sleep 1
 set $Locker i3lock -c 002b36 && sleep 1
 
-set $i3ctl i3 [r]eload re[s]tart [e]xit
+set $i3ctl i3 [r]eload re[s]tart restart [b]ar [e]xit
 bindsym $mod+Shift+r mode "$i3ctl"
 mode "$i3ctl" {
     # reload the configuration file
@@ -296,6 +295,13 @@ mode "$i3ctl" {
     bindsym s restart
     # exit i3 (logs you out of your X session)
     bindsym e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+    # restart bar
+    bindsym b exec pkill -SIGUSR1 -f "python $home/.config/i3/status.py", mode "default"
+
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 # resize mod window $mod+r (you can also use the mouse for that)
@@ -398,16 +404,19 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-# mplayer control
-set $mode_player player: [p]ause/[p]lay [n]ext [s]eek [q]quit/stop
+# mplayer control and mpd control
+set $mode_player player: [Pp]ause/[Pp]lay [n]ext [Ss]eek [Qq]quit/stop
 bindsym $mod+b mode "$mode_player"
 
 mode "$mode_player" {
 
-    bindsym p exec zsh -i -c 'echo "pause" > /tmp/mplayer && mpc toggle', mode "default"
+    bindsym p exec zsh -i -c 'echo "pause" > /tmp/mplayer', mode "default"
+    bindsym Shift+p exec mpc toggle, mode "default"
     bindsym n exec zsh -i -c 'mpc next', mode "default"
-    bindsym s exec zsh -i -c 'echo "seek 10" > /tmp/mplayer && mpc seek +10'
+    bindsym s exec zsh -i -c 'echo "seek 10" > /tmp/mplayer"'
+    bindsym Shift+s exec mpc seek +10
     bindsym q exec zsh -i -c 'echo "quit" > /tmp/mplayer && mpc stop', mode "default"
+    bindsym Shift+q exec mpc stop, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -419,6 +428,9 @@ bindsym $capsLock+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad
 bindsym $capsLock+v exec [ $( ps -eo cmd | grep -c '[t]ermite --class scratchpad --title scratchpad_vimb' ) -eq 2 ] && termite --class scratchpad --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg [title=scratchpad_vimb] scratchpad show;
 #bindsym $capsLock+c exec [ $( ps -eo cmd | grep -c '[/]usr/bin/franz-bin' ) -eq 2 ] && /usr/bin/franz-bin || i3-msg [title=Franz] scratchpad show;
 bindsym $capsLock+m exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_ncmpcpp' ) -eq 2 ] && termite --title scratchpad_ncmpcpp -e 'ncmpcpp' || i3-msg [title=scratchpad_ncmpcpp] scratchpad show;
+bindsym $capsLock+Shift+m exec popup -h -t mpsyt -e mpsyt
+bindsym $capsLock+p exec [ -z $( ps h -C gpodder -o comm=Command ) ] && gpodder || i3-msg [title=gPodder floating] scratchpad show;
+bindsym $capsLock+r exec popup -h -t radio pyradio
 bindsym $capsLock+e exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_cal' ) -eq 2 ] && termite --title scratchpad_cal -e 'pal -m' || i3-msg [title=scratchpad_cal] scratchpad show;
 bindsym $capsLock+n exec i3-msg '[class="VirtualBox Machine"] scratchpad show' && i3-msg '[class="VirtualBox Machine"] fullscreen enable';
 bindsym $capsLock+s exec i3-msg '[class="Slack"] scratchpad show';
