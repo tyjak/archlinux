@@ -100,13 +100,13 @@ color64 = #5f8700
 
 [hints]
 #font = Monospace 12
-foreground = #839496
-#background = #3f3f3f
-#active_foreground = #e68080
-#active_background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
-#border_width = 0.5
-#roundness = 2.0
+foreground = #fdf6e3
+background = #af005f
+active_foreground = #fdf6e3
+active_background = #5F5FAF
+padding = 2
+border = #fdf6e3
+border_width = 0.5
+roundness = 2.0
 
 # vim: ft=dosini cms=#%s
