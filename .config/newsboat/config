@@ -30,7 +30,7 @@ highlight article "\\[image\\ [0-9]+\\]" color14 default
 
 refresh-on-startup yes
 
-browser "/usr/bin/vimb -c ~/.config/vimb/simplyread %u"
+browser "i3 focus parent splith exec '/usr/bin/vimb -p simplyread %u'"
 
 bookmark-autopilot yes
 bookmark-cmd "sh ~/share/bin/instaper.sh"
