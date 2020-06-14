@@ -25,7 +25,7 @@ workspace_layout tabbed
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:MesloLGSDZ Nerd Font, icons, FontAwesome, Devicons, 10
+font pango:Meslo LG S DZ, icons, FontAwesome, Devicons, 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

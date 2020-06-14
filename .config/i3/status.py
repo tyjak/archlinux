@@ -163,11 +163,11 @@ status.register("weather",
 )
 
 
-status.register("bitcoin",
-        currency="EUR",
-        colorize=True,
-        on_rightclick=['open_something', 'https://cryptowat.ch/markets/kraken/btc/eur/15m'],
-        symbol="\uF15A")
+#status.register("bitcoin",
+#        currency="EUR",
+#        colorize=True,
+#        on_rightclick=['open_something', 'https://cryptowat.ch/markets/kraken/btc/eur/15m'],
+#        symbol="\uF15A")
 
 #status.register("pomodoro",
 #        sound="~/share/sounds/196106__aiwha__ding.wav",
