@@ -3,6 +3,27 @@ var instapaper=function (){var d=document,z=d.createElement('scr'+'ipt'),b=d.bod
 
 var facebook=function(){location.href='http://www.facebook.com/sharer.php?src=bm&v=4&i=1301235609&u='+encodeURIComponent(window.location.href)+'&t='+encodeURIComponent(document.title)};
 
+var shaarli=function(){
+    var url = location.href;
+    var title = document.title || url;
+    var desc = document.getSelection().toString();
+    var metaDesc = document.querySelectorAll("meta[property*='description'], meta[name*='description']")
+    var desc = desc + (metaDesc.length ? (desc.length ? "\n---\n" : '') + metaDesc[0].getAttribute('content') : '')
+    if(desc.length>4000){
+      desc=desc.substr(0,4000)+'...';
+    }
+      location.href='http://192.168.0.8:8000/?post=' + encodeURIComponent(url)+
+      '&title=' + encodeURIComponent(title)+
+      '&description=' + encodeURIComponent(desc)+
+      '&tags=vimb' +
+      '&source=vimb','_blank','menubar=no,toolbar=no,scrollbars=yes,status=no,dialog=1'
+};
+
+var tinytinyrss=function(){
+    var url = location.href;
+    window.open('http://rss.creamy.local:8280/tt-rss/public.php?op=subscribe&feed_url=' + encodeURIComponent(url),'_blank');
+};
+
 var archive=function(){location.href='https://archive.is/?run=1&url='+encodeURIComponent(window.location.href)+'&t='+encodeURIComponent(document.title)};
 var getArchive=function(){location.href='https://archive.is/'+window.location.href};
 

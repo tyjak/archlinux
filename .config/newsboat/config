@@ -13,6 +13,17 @@ color listfocus_unread    blue      black     bold
 color info                white     green     bold
 color article             default   default
 
+ssl-verifypeer no
+urls-source "ttrss"
+ttrss-url "http://rss.creamy.local:8280/tt-rss"
+ttrss-mode "single"
+ttrss-login "NaN"
+ttrss-password "NaN"
+ttrss-flag-star "s"
+ttrss-flag-publish "p"
+#ttrss-login "newsboat"
+#ttrss-password "W3CyAdk9^5z847Ht"
+
 bind-key j down
 bind-key k up
 bind-key l open

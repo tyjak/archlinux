@@ -19,6 +19,14 @@ status = Status(standalone=True)
 # show a dot
 status.register("anybar")
 
+status.register(
+    "ping",
+    format="\uf0ec",
+    interval=1,
+    color="#00FF00",
+    color_disabled="#949494",
+    format_down="\uf0ec"
+)
 # Displays clock like this:
 # Tue 30 Jul 11:59:46 PM KW31
 #                          ^-- calendar week
@@ -46,6 +54,7 @@ def gpodder_perc(text):
     else:
         return ''
 
+#gpodder data are get from mplayer fifo via ~/share/bin/playpodcast
 status.register(
     "file",
     components={"podcast":(gpodder_perc,'gpodder.out')},
@@ -98,7 +107,7 @@ status.register(
     on_leftclick="vimb http://127.0.0.1:8384",
 )
 
-status.register("openvpn", vpn_name="peold", use_new_service_name="true")
+#status.register("openvpn", vpn_name="peold", use_new_service_name="true")
 
 status.register("openvpn", vpn_name="pe", use_new_service_name="true")
 
@@ -112,7 +121,7 @@ if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
-status.register("load", on_leftclick="popup -S -s medium -e gotop")
+status.register("load", on_leftclick="popup -S -s medium -e sudo gotop")
 
 # Shows disk usage of /
 # Format:
@@ -139,12 +148,6 @@ color_icon_values = {
 }
 
 status.register(
-    "pomodoro",
-    sound="~/share/sounds/196106__aiwha__ding.wav",
-    format="\uE001 {current_pomodoro}/{total_pomodoro} {time}",
-)
-
-status.register(
     "weather",
     format="{current_temp}{temp_unit}[ {icon}]",
     on_rightclick='popup -s medium -f -e "~/share/bin/wego {}"'.format(city),
@@ -162,14 +165,20 @@ status.register(
     ),
 )
 
+#status.register(
+#    "pomodoro",
+#    sound="~/share/sounds/196106__aiwha__ding.wav",
+#    format="\uE001 {current_pomodoro}/{total_pomodoro} {time}",
+#)
 
-status.register(
-    "bitcoin",
-    currency="EUR",
-    colorize=True,
-    on_rightclick=["open_something", "https://cryptowat.ch/markets/kraken/btc/eur/15m"],
-    symbol="\uF15A",
-)
+
+#status.register(
+#    "bitcoin",
+#    currency="EUR",
+#    colorize=True,
+#    on_rightclick=["open_something", "https://cryptowat.ch/markets/kraken/btc/eur/15m"],
+#    symbol="\uF15A",
+#)
 
 # status.register("shell",
 #        command="newsboat -u ~/share/documents/news-urls -x reload print-unread",

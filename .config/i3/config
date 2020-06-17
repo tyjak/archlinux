@@ -153,6 +153,7 @@ bindsym $mod+3 workspace $menu3; exec [ $( ps -eo cmd | grep -c '[t]ermite --tit
 bindsym $mod+4 workspace $menu4; exec [ $( ps -eo cmd | grep -c '[t]ermite --title mail-gmail' ) -eq 2 ] && termite --title mail-gmail -e '/usr/bin/mutt -e "source ~/.mutt/gmail.com"'
 bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '^/usr/lib/brave-bin/brave' ) -eq 0 ] && /usr/bin/brave; move workspace to output $screen2
 bindsym $mod+6 workspace $menu6; exec ~/share/bin/i3/firefox
+bindsym $mod+7 workspace $menu7; exec ~/share/bin/i3/photos
 #bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttperso' ) -eq 2 ] && termite --title muttperso -e '/usr/bin/mutt -e "source ~/.mutt/newmanity.com"'
 #bindsym $mod+6 workspace $menu6; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttjit' ) -eq 2 ] && termite --title muttjit -e '/usr/bin/mutt -e "source ~/.mutt/jobintree.com"'
 #bindsym $mod+7 workspace $menu7; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
@@ -223,7 +224,7 @@ for_window [class="w_float-notitle"] border 1pixel, floating enable
 for_window [class="w_float"] floating enable
 
 #large et small window popup
-set $float_largeW_app Gpodder|Mpsyt|Modem-manager-gui|Nm-connection-editor
+set $float_largeW_app Gpodder|Mpsyt|Modem-manager-gui|Nm-connection-editor|Mattermost
 set $float_smallW_app Pavucontrol|Blueberry.py
 for_window [class="$float_largeW_app"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
 #small window with no title bar (keep it small)
@@ -257,7 +258,7 @@ for_window [class="(pinta|Inkscape)"] focus
 assign [class="Pidgin"] pidgin
 for_window [class="Pidgin"] focus
 assign [class="Brave-browser"] $menu5
-assign [class="Shotwell"] $menu6
+assign [class="Shotwell"] $menu7
 assign [class="Evolution"]  PE
 assign [class="trefle"] trèfle
 for_window [class="trefle"] output $screen1
@@ -413,7 +414,7 @@ mode "$mode_player" {
     bindsym p exec zsh -i -c 'echo "pause" > /tmp/mplayer', mode "default"
     bindsym Shift+p exec mpc toggle, mode "default"
     bindsym n exec zsh -i -c 'mpc next', mode "default"
-    bindsym s exec zsh -i -c 'echo "seek 10" > /tmp/mplayer"'
+    bindsym s exec zsh -i -c 'echo "seek 10" > /tmp/mplayer'
     bindsym Shift+s exec mpc seek +10
     bindsym q exec zsh -i -c 'echo "quit" > /tmp/mplayer && mpc stop', mode "default"
     bindsym Shift+q exec mpc stop, mode "default"

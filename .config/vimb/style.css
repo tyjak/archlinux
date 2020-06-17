@@ -1,8 +1,8 @@
 /* Hint mode color styling */
-html {
+/*html {
     color: unset;
     background-color: #fdf6e3;
-}
+}*/
 @media (prefers-color-scheme: dark) {
     html {
         background-color: #002b36 !important;
@@ -35,8 +35,9 @@ span[vimbhint='label focus'] {
   color: #fdf6e3;
 }
 
-textarea, input {
-  color: #fdf6e3;
+textarea:focus, input:focus {
+  color: #fdf6e3 !important;
+  background-color: #002b36 !important;
 }
 body::-webkit-highlight {
     background-color: #859900;
