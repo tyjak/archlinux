@@ -41,3 +41,4 @@ Session.vim
 !.config/vimb/style.css
 !.config/vimb/standalone
 !.config/zsh/.zshrc
+!.config/zathura/zathurarc
