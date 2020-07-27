@@ -1,110 +1,45 @@
-* {
+/* {
     color: unset;
-    background-color: unset;
+    background-color: #fdf6e3;
+}*/
+@media (prefers-color-scheme: dark) {
+    html {
+        background-color: #002b36 !important;
+        color: #839495 !important;
+    }
 }
-
-._hintLabel {
-    -webkit-transform:translate(-4px,-4px) !important;
-    position: absolute !important;
-    z-index: 100000 !important;
-    font:bold .8em monospace !important;
-    color: #000 !important;
-    background-color: #fff !important;
-    margin: 0 !important;
-    padding: 0px 1px !important;
-    border: 1px solid #444 !important;
-    border-radius: 3px !important;
-    opacity: 0.7 !important;
-    -webkit-box-shadow: 1px 1px 3px #444 !important;
-}
-._hintElem {
-    background-color: #eee8d5 !important;
-    color: #268bd2 !important
-}
-._hintElem._hintFocus{
-    background-color: #859900 !important;
-    color: #eee8d5 !important;
-}
-._hintLabel._hintFocus{
-    z-index: 100001 !important;
-    opacity: 1 !important;
-}
-/* Hint mode color styling
- * Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
- *
- * The precedence of the user style is lower than that of the website so you
- * have to mark your style definition to have higher priority.
- */
 span[vimbhint^='label'] {
-    -webkit-transform:translate(-4px,-4px) !important;
-    position: absolute !important;
-    z-index: 100000 !important;
-    font:bold .8em monospace !important;
-    color: #000 !important;
-    background-color: #fff !important;
-    margin: 0 !important;
-    padding: 0px 1px !important;
-    border: 1px solid #444 !important;
-    border-radius: 3px !important;
-    opacity: 0.7 !important;
-    -webkit-box-shadow: 1px 1px 3px #444 !important;
+    background-color: #859900 !important;
+    border: 1px solid #fdf6e3 !important;
+    color: #fdf6e3 !important;
+    font: bold 9pt monospace !important;
+    opacity: .9 !important;
+    padding: .1em .4em !important;
+    text-transform: lowercase !important;
 }
 span[vimbhint='label focus'] {
-    z-index: 100001 !important;
-    opacity: 1 !important;
+    font: bold 9pt monospace !important;
 }
 *[vimbhint^='hint'] {
     background-color: #eee8d5 !important;
-    color: #268bd2 !important
+    color: #2d2d2d !important;
 }
 *[vimbhint='hint focus'] {
-    background-color: #859900 !important;
-    color: #eee8d5 !important;
+    background-color: #d33682 !important;
+    color: #fdf6e3 !important;
 }
 
-/*
-*,div,pre,textarea,body,input,td,tr,p {
-    background-color: #073642 !important;
-    color: #93a1a1 !important;
-    border-color: #93a1a1 !important;
+::selection {
+  background-color: #d33682;
+  color: #fdf6e3;
 }
-h1,h2,h3,h4 {
-    background-color: #073642 !important;
-    color: #859900 !important;
-}
-a {
-    color: #b58900 !important;
-}
-a:hover,a:focus {
-    color: #268bd2 !important;
-}
-a:visited {
-    color: #d33682 !important;
-}
-/*
-*,div,pre,textarea,body,input,td,tr,p {
-    background-color: #303030 !important;
-    background-image: none !important;
-    color: #bbbbbb !important;
-}
-h1,h2,h3,h4 {
-    background-color: #303030 !important;
-    color: #b8ddea !important;
-}
-a {
-    color: #70e070 !important;
-}
-a:hover,a:focus {
-    color: #7070e0 !important;
-}
-a:visited {
-    color: #e07070 !important;
-}
-img {
-    opacity: .5;
-}
-img:hover {
-    opacity: 1;
-}
-*/
 
+textarea:focus, input:focus {
+  color: #fdf6e3 !important;
+  background-color: #002b36 !important;
+}
+body::-webkit-highlight {
+    background-color: #859900;
+    border: 1px solid #fdf6e3;
+    color: #fdf6e3;
+}

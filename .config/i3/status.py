@@ -64,7 +64,7 @@ status.register("updates",
         )
 
 # Show network
-net_interfaces = "wlp2s0b1"
+net_interfaces = "wlan0"
 status.register("network",
 	interface=net_interfaces,
         format_up="\uf09e {network_graph_recv}",
@@ -115,23 +115,24 @@ status.register("openvpn",
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
 status.register("load",
-        on_leftclick="popup -e gotop"
+        on_leftclick="popup -s medium -e sudo gotop"
         )
 
 # Shows disk usage of /
 # Format:
 # 42/128G [86G]
 status.register("disk",
-    path="/",
-    on_leftclick="popup -S -s medium -e ncdu /var",
+    path="/home",
+    on_leftclick="popup -S -s medium -e 'ncdu /home --exclude=media'",
     #format="{used}/{total}G [{avail}G]",)
     format="{avail}G",)
 
 status.register("disk",
-    path="/home",
-    on_leftclick="popup -S -s medium -e ncdu",
+    path="/",
+    on_leftclick="popup -S -s medium -e 'ncdu / --exclude=/creamy --exclude=/home'",
     #format="{used}/{total}G [{avail}G]",)
     format="{avail}G",)
+
 
 # Show weather => need ttf-weather-icons
 color_icon_values={

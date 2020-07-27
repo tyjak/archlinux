@@ -6,15 +6,20 @@ set webinspector=true
 set history-max-items=5000
 set closed-max-items=20
 set editor-command=termite -e "vim %s"
+set x-hint-command=:sh! stig -T add <C-R>;
 nmap D :q<CR>
 nmap H <C-O>
 nmap L <C-I>
-shortcut-add G=https://duckduckgo.com/html/?q=!gifl%20$0
-shortcut-add g=http://search.uselilo.org/searchweb.php?q=$0
-shortcut-add a=https://duckduckgo.com/html/?q=!gifl%20ansible+$0
+shortcut-default l
+shortcut-add g=https://google.com/?q=$0
+shortcut-add G=https://duckduckgo.com/?q=!gifl%20$0
+shortcut-add !=https://duckduckgo.com/?q=!$0
+shortcut-add l=http://search.uselilo.org/searchweb.php?q=$0
+shortcut-add a=https://duckduckgo.com/?q=!gifl%20ansible+$0
 set strict-ssl=false
 
 handler-add mailto=/home/david/share/bin/i3/gmail-mail %s
+handler-add magnet=/bin/sh -c "stig -T add %s"
 #handler-add ftp=termite -e wget %s -P ~/downloads
 set home-page=./.config/vimb/historylast
 
@@ -29,7 +34,7 @@ nmap ,,; ::sh! ~/share/bin/passgenvimb<CR>
 nmap ,,i ::e! instapaper()<CR>
 nmap ,,f ::e! facebook()<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
-nmap ,,b ::bma web<CR>
+nmap ,,b ::e! shaarli()<CR>::bma shaarli<CR>
 nmap ,;a ::e! getArchive()<CR>
 nmap ,,e :shell! termite -e "vim $VIMB_URI"<CR>
 
@@ -42,6 +47,8 @@ nmap ;lp ::e! workUrlLbfToProd()<CR>
 nmap ,tl :tabopen http://trefle.pole-emploi.local/explorer/index.html<CR>
 nmap ,tr :tabopen http://trefle.beta.pole-emploi.fr<CR>
 nmap ,tp :tabopen http://trefle.pole-emploi.fr<CR>
+
+nmap <Shift><Space> :shell quickswitch -c Vimb -d "dmenu -l 20 -b -i -nb '#002b36' -nf '#839496' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 12"<CR>
 
 #set proxy=true
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
@@ -63,6 +70,10 @@ augroup linkfile
     autocmd LoadFinished file:///*/historylast e! linkFileToHtml('Historique <a href="file:///home/david/.config/vimb/history">(voir tout l\'historique)</a>');
     autocmd LoadFinished file:///*/history e! linkFileToHtml('Historique');
 augroup end
+
+# augroup download
+#     autocmd DownloadFinished https://karagarga.in/down.php/* shell sh -c "echo $VIMB_URI > ~/test.vimb"
+# augroup end
 
 augroup trello
     autocmd LoadFinished https://trello.com/b/zqbyN4zA/lbf-financement-trefle?menu=filter&filter=member:davidfoucher2 e! trelloNumber();

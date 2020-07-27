@@ -12,6 +12,7 @@ export BROWSER=/usr/bin/vimb
 export PRINTER=Brother_HL_2030_series_2
 export TERMINAL=/usr/bin/termite
 export OFFICE_IP=178.208.10.121
+export DMENUHEIGHT=24
 #export http_proxy=192.168.0.20:8118
 #export http_proxy=127.0.0.1:8118
 #export no_proxy=127.0.0.1,localhost,.jemepropose.com,.twitter.com,.jobintree.com,.adsnovo.com,.admintree.com,.reddit.com

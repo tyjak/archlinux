@@ -6,15 +6,15 @@ exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite
 
 # special keys
 set $mod Mod4
-set $tabKey Mode_switch
+set $capsLock Mode_switch
 
 # fix floating windows size
 # medium size
-set $wfM_height 600
-set $wfM_width 1000
+set $wfM_height 500
+set $wfM_width 800
 # big size
-set $wfL_height 1000
-set $wfL_width 1800
+set $wfL_height 600
+set $wfL_width 1000
 # layout mode for new container
 workspace_layout tabbed
 
@@ -43,8 +43,12 @@ bindsym $mod+c exec clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb4b16' -fn 'M
 bindsym $mod+x exec PASSWORD_STORE_X_SELECTION=secondary passmenu -i -nb '#002b24' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 24 && xsel -o -s | xdotool type --file -
 bindsym $mod+Shift+x exec "passdmenu.py -u -x p,s -P --type -r -D ~/share/bin/mypassdmenu"
 bindsym $mod+s exec quickswitch -w -d "dmenu -i -nb '#eee8d5' -nf '#002b24' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
+bindsym $mod+Shift+s exec quickswitch -w -j -f -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
+bindsym $capsLock+Tab exec quickswitch -s -d "dmenu -l 10 -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
+bindsym $mod+y exec searchduckduckgo
+bindsym $mod+i exec DMENUHIGHT=24 dmenu-ssh
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -112,7 +116,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # sticky window
-bindsym $mod+Escape sticky toggle
+#bindsym $mod+Shift+s sticky toggle
 # focus the child container
 #bindsym $mod+d focus child
 
@@ -141,7 +145,8 @@ bindsym $mod+3 workspace $menu3; exec [ $( ps -eo cmd | grep -c '[t]ermite --tit
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+4 workspace $menu4; exec [ $( ps -eo cmd | grep -c '[t]ermite --title mail-gmail' ) -eq 2 ] && termite --title mail-gmail -e '/usr/bin/mutt -e "source ~/.mutt/gmail.com"'
 bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '^/usr/lib/brave-bin/brave' ) -eq 0 ] && /usr/bin/brave; move workspace to output $screen2
-bindsym $mod+6 workspace $menu6;
+bindsym $mod+6 workspace $menu6; exec ~/share/bin/i3/firefox
+bindsym $mod+7 workspace $menu7; exec ~/share/bin/i3/photos
 #bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttperso' ) -eq 2 ] && termite --title muttperso -e '/usr/bin/mutt -e "source ~/.mutt/newmanity.com"'
 #bindsym $mod+6 workspace $menu6; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttjit' ) -eq 2 ] && termite --title muttjit -e '/usr/bin/mutt -e "source ~/.mutt/jobintree.com"'
 #bindsym $mod+7 workspace $menu7; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
@@ -161,15 +166,9 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # TODO: verify precedence with /etc/acpi/handler.sh
-set $sink `pactl list short sinks | grep RUNNING | head -1 | cut -f1`
+#set $sink `pactl list short sinks | grep RUNNING | head -1 | cut -f1`
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +5%
 #bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -5%
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
@@ -211,34 +210,42 @@ bindsym $mod+o scratchpad show
 workspace_auto_back_and_forth yes
 
 
-#size
-#for_window [title="Twitter"] move right; resize shrink left 30 px or 30 ppt;
-for_window [title="david_adsnovo - Skype*"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout split;
-for_window [title="Liste de contacts"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout split;
-for_window [title="logs"] focus, sticky enable, move bottom, resize shrink bottom 5 ppt, layout split vertical;
+#generic
 for_window [class="w_float-notitle-medium-sticky"] border 1pixel, floating enable, resize set $wfM_width $wfM_height, move position center, sticky enable
 for_window [class="w_float-notitle-medium"] border 1pixel, floating enable, resize set $wfM_width $wfM_height, move position center
-for_window [class="w_float-notitle-sticky"] border 1pixel, floating enable, move position center, sticky enable
-for_window [class="w_float-notitle"] border 1pixel, floating enable, move position center
+for_window [class="w_float-notitle"] border 1pixel, floating enable
+for_window [class="w_float"] floating enable
 
-#for_window [title="vim"] title_format "<span font='devicons'> </span>%title"
+#large et small window popup
+set $float_largeW_app Gpodder|Mpsyt|Modem-manager-gui|Nm-connection-editor|Mattermost
+set $float_smallW_app Pavucontrol|Blueberry.py
+for_window [class="$float_largeW_app"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
+#small window with no title bar (keep it small)
+for_window [class="$float_smallW_app"] floating enable, resize set $wfM_width $wfM_height, move position center, border 1pixel, sticky enable
+
+# applications
+for_window [class="Vimb"] border 1pixel, focus
 for_window [title="uvim"] border 1pixel
 for_window [class="URxvt"] border 1pixel
 for_window [class="Termite"] border 1pixel
-for_window [class="Vimb"] border 1pixel, focus;
-#for_window [class="Vimb"] border 1pixel
 for_window [class="Gvim"] border 1pixel
-for_window [title="filemanager"] border 1pixel, layout tabbed;
-for_window [title="JACK.*"] floating enable;
-for_window [title="Molotov"] floating enable, resize set $wfM_width $wfM_height, move absolute position center, sticky enable;
-for_window [class="Deezer"] floating enable, resize set $wfM_width $wfM_height, border 1pixel;  move absolute position center, sticky enable;
-for_window [class="Caprine"] floating enable, resize set $wfM_width $wfM_height, move absolute position center, border 1pixel, sticky enable;
-for_window [class="Gpodder"] floating enable, resize set $wfM_width $wfM_height, move absolute position center, sticky enable;
-for_window [title="pinentry"] floating enable;
-for_window [class="termite_dict"] floating enable, move absolute position center, border 1pixel;
-for_window [class="Pavucontrol|Blueberry.py"] floating enable, resize set $wfM_width $wfM_height, move absolute position center, border 1pixel, sticky enable;
+for_window [title="filemanager"] border 1pixel, layout tabbed
+for_window [title="JACK.*"] floating enable
+for_window [title="Molotov"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable, output $screen1
+for_window [class="Deezer"] floating enable, border 1pixel, resize set $wfL_width $wfL_height, move position center, sticky enable, output $screen1
+for_window [class="Caprine"] floating enable, resize set $wfL_width $wfL_height, border 1pixel, sticky enable, output $screen2;
+for_window [title="pinentry"] floating enable
+for_window [class="termite_dict"] floating enable, move position center, border 1pixel
+for_window [title="david_adsnovo - Skype*"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
+for_window [title="Liste de contacts"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
+for_window [class="Cawbird"] resize set width 640 px;
+for_window [title="^ [^ ]+$"] move --no-auto-back-and-forth container to workspace $menu1, focus
+#for_window [title="La Quadrature du Net - Mastodon - Media Fédéré"] focus parent, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
+#for_window [title="Twitter"] move right; resize shrink left 30 px or 30 ppt;
+#for_window [class="Vimb"] border 1pixel
+#for_window [title="vim"] title_format "<span font='devicons'> </span>%title"
 
-# assign graphic app to dedicated workspace
+# assign app to dedicated workspace
 assign [class="(pinta|Inkscape)"] graphic
 for_window [class="(pinta|Inkscape)"] focus
 assign [class="Pidgin"] pidgin
@@ -252,7 +259,8 @@ assign [class="Shotwell"] $menu6
 
 #vimb with title starting by "scratchpad_" are moved to the scratch pad and show
 #for_window [title="scratchpad_*"] sticky enable, border 1pixel;
-for_window [title="scratchpad_vimwiki|scratchpad_pevimwiki|scratchpad_vimdiary"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
+set $scratchpads scratchpad_vimwiki|scratchpad_pevimwiki|scratchpad_vimdiary|scratchpad_vimb|skype|pidgin|iCloud|gPodder
+for_window [title="$scratchpads"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
 for_window [title="Franz"] sticky enable, border 1pixel, move scratchpad, resize set 720 874, scratchpad show, move absolute position 720px 24px;
 for_window [title="scratchpad_ncmpcpp"] sticky enable, border 1pixel, move scratchpad, resize set $wfM_width  $wfM_height, scratchpad show;
 for_window [title="scratchpad_cal"] sticky enable, border 1pixel, move scratchpad, scratchpad show;
@@ -269,6 +277,24 @@ client.unfocused #073642 #073642 #93a1a1 #586e75
 client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
 set $Locker i3lock -i ~/.config/wallpaper/solarized-dark.png -c 002b36 && sleep 1
+
+set $i3ctl i3 [r]eload re[s]tart restart [b]ar [e]xit
+bindsym $mod+Shift+r mode "$i3ctl"
+mode "$i3ctl" {
+    # reload the configuration file
+    bindsym r reload
+    # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+    bindsym s restart
+    # exit i3 (logs you out of your X session)
+    bindsym e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+    # restart bar
+    bindsym b exec pkill -SIGUSR1 -f "python $home/.config/i3/status.py", mode "default"
+
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 # resize mod window $mod+r (you can also use the mouse for that)
 bindsym $mod+r mode "resize / move"
@@ -309,9 +335,9 @@ mode "$mode_launcher" {
     bindsym Escape mode "default"
 }
 
-# Press $mod+Shift+s s or f to take a screen shot
+# Press $mod+Shift+c s or f to take a screen shot
 set $mode_screenshot Screenshot [s]election [f]ullscreen
-bindsym $mod+Shift+s mode "$mode_screenshot"
+bindsym $mod+Shift+c mode "$mode_screenshot"
 
 mode "$mode_screenshot" {
 
@@ -371,33 +397,41 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-# mplayer control
-set $mode_player player: [p]ause/[p]lay [n]ext [s]eek [q]quit/stop
+# mplayer control and mpd control
+set $mode_player player: [Pp]ause/[Pp]lay [n]ext [Ss]eek [Qq]quit/stop
 bindsym $mod+b mode "$mode_player"
 
 mode "$mode_player" {
 
-    bindsym p exec zsh -i -c 'echo "pause" > /tmp/mplayer && mpc toggle', mode "default"
+    bindsym p exec zsh -i -c 'echo "pause" > /tmp/mplayer', mode "default"
+    bindsym Shift+p exec mpc toggle, mode "default"
     bindsym n exec zsh -i -c 'mpc next', mode "default"
-    bindsym s exec zsh -i -c 'echo "seek 10" > /tmp/mplayer && mpc seek +10'
+    bindsym s exec zsh -i -c 'echo "seek 10" > /tmp/mplayer'
+    bindsym Shift+s exec mpc seek +10
     bindsym q exec zsh -i -c 'echo "quit" > /tmp/mplayer && mpc stop', mode "default"
+    bindsym Shift+q exec mpc stop, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-bindsym $tabKey+t exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_pevimwiki' ) -eq 2 ] && termite --title scratchpad_pevimwiki -e 'vim share/vimwiki_boulot/index.wiki' || i3-msg [title=scratchpad_pevimwiki] scratchpad show;
-bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg [title=scratchpad_vimwiki] scratchpad show;
-bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim share/vimwiki_perso/index.wiki' || i3-msg [title=scratchpad_vimdiary] scratchpad show;
-bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[t]ermite --class scratchpad --title scratchpad_vimb' ) -eq 2 ] && termite --class scratchpad --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg [title=scratchpad_vimb] scratchpad show;
-#bindsym $tabKey+c exec [ $( ps -eo cmd | grep -c '[/]usr/bin/franz-bin' ) -eq 2 ] && /usr/bin/franz-bin || i3-msg [title=Franz] scratchpad show;
-bindsym $tabKey+m exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_ncmpcpp' ) -eq 2 ] && termite --title scratchpad_ncmpcpp -e 'ncmpcpp' || i3-msg [title=scratchpad_ncmpcpp] scratchpad show;
-bindsym $tabKey+e exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_cal' ) -eq 2 ] && termite --title scratchpad_cal -e 'pal -m' || i3-msg [title=scratchpad_cal] scratchpad show;
-bindsym $tabKey+n exec i3-msg '[class="VirtualBox Machine"] scratchpad show' && i3-msg '[class="VirtualBox Machine"] fullscreen enable';
-bindsym $tabKey+s exec i3-msg '[class="Slack"] scratchpad show';
-#bindsym $tabKey+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg kill;
-#bindsym $tabKey+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim -c VimwikiDiaryIndex' || i3-msg kill;
-#bindsym $tabKey+v exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimb' ) -eq 2 ] && termite --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg kill;
+bindsym $capsLock+t exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_pevimwiki' ) -eq 2 ] && termite --title scratchpad_pevimwiki -e 'vim share/vimwiki_boulot/index.wiki' || i3-msg [title=scratchpad_pevimwiki] scratchpad show;
+bindsym $capsLock+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg [title=scratchpad_vimwiki] scratchpad show;
+bindsym $capsLock+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim share/vimwiki_perso/index.wiki' || i3-msg [title=scratchpad_vimdiary] scratchpad show;
+bindsym $capsLock+v exec [ $( ps -eo cmd | grep -c '[t]ermite --class scratchpad --title scratchpad_vimb' ) -eq 2 ] && termite --class scratchpad --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg [title=scratchpad_vimb] scratchpad show;
+#bindsym $capsLock+c exec [ $( ps -eo cmd | grep -c '[/]usr/bin/franz-bin' ) -eq 2 ] && /usr/bin/franz-bin || i3-msg [title=Franz] scratchpad show;
+bindsym $capsLock+m exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_ncmpcpp' ) -eq 2 ] && termite --title scratchpad_ncmpcpp -e 'ncmpcpp' || i3-msg [title=scratchpad_ncmpcpp] scratchpad show;
+bindsym $capsLock+Shift+m exec popup -h -t mpsyt -e mpsyt
+bindsym $capsLock+k exec stig-i3
+bindsym $capsLock+p exec [ -z $( ps h -C gpodder -o comm=Command ) ] && gpodder || i3-msg [title=gPodder floating] scratchpad show;
+bindsym $capsLock+r exec popup -h -t radio pyradio
+bindsym $capsLock+e exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_cal' ) -eq 2 ] && termite --title scratchpad_cal -e 'pal -m' || i3-msg [title=scratchpad_cal] scratchpad show;
+bindsym $capsLock+n exec i3-msg '[class="VirtualBox Machine"] scratchpad show' && i3-msg '[class="VirtualBox Machine"] fullscreen enable';
+bindsym $capsLock+s exec i3-msg '[class="Slack"] scratchpad show';
+bindsym $capsLock+Shift+s exec i3-msg '[class="Teams"] scratchpad show';
+#bindsym $capsLock+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg kill;
+#bindsym $capsLock+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim -c VimwikiDiaryIndex' || i3-msg kill;
+#bindsym $capsLock+v exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimb' ) -eq 2 ] && termite --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg kill;
 #focus; move scratchpad; scratchpad show
 
 
