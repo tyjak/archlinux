@@ -34,3 +34,4 @@ Session.vim
 !.config/vimb/config
 !.config/vimb/style.css
 !.config/vimb/standalone
+!.config/zsh/.zshrc
