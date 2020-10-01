@@ -14,7 +14,7 @@ shortcut-default l
 shortcut-add g=https://google.com/?q=$0
 shortcut-add G=https://duckduckgo.com/?q=!gifl%20$0
 shortcut-add !=https://duckduckgo.com/?q=!$0
-shortcut-add l=http://search.uselilo.org/searchweb.php?q=$0
+shortcut-add l=https://search.lilo.org/?q=$0
 shortcut-add a=https://duckduckgo.com/?q=!gifl%20ansible+$0
 set strict-ssl=false
 

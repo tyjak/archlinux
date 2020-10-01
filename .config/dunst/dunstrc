@@ -21,6 +21,8 @@
     # Markup is allowed
     format = "<b>%s</b>\n%b"
 
+    icon_position = left
+
     # Sort messages by urgency
     sort = yes
 
@@ -61,6 +63,9 @@
     # screen width minus the width defined in within the geometry option.
     geometry = "200x10-0+22"
 
+    #shrink = true
+    #vertical_alignment = top
+
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
     transparency = 0
@@ -83,7 +88,7 @@
     #
     # If this option is set to mouse or keyboard, the monitor option will be
     # ignored.
-    follow = mouse
+    follow = keyboard
 
     # should a notification popped up from history be sticky or
     # timeout as if it would normally do.
@@ -125,7 +130,7 @@
 
 [frame]
     width = 1
-    color = "#FDF6E3"
+    color = "#eee8d5"
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key
@@ -213,3 +218,10 @@
 #    summary = *twitter.com*
 #    urgency = normal
 #
+[kunst]
+    appname = kunst
+    background = "#586e75"
+    foreground = "#fdf6e3"
+    set_transient = false
+    set_stack_tag = private-synchronous
+    timeout = 10
