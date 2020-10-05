@@ -37,6 +37,11 @@ bindsym $mod+Shift+Return splith; exec i3-sensible-terminal;
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# mark current win
+bindsym $mod+Shift+n mark working
+# switch tp mark
+bindsym $mod+n [con_mark="working"] focus
+
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -i -nb '#859900' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 24
 bindsym $mod+c exec clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 24
@@ -48,7 +53,7 @@ bindsym $capsLock+Tab exec quickswitch -s -d "dmenu -l 10 -i -nb '#eee8d5' -nf '
 bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $mod+y exec searchduckduckgo
-bindsym $mod+i exec DMENUHIGHT=24 dmenu-ssh
+bindsym $mod+i exec dmenu-ssh
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -167,14 +172,18 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 
-# TODO: verify precedence with /etc/acpi/handler.sh
-#set $sink `pactl list short sinks | grep RUNNING | head -1 | cut -f1`
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +5%
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -5%
-bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
-bindsym XF86AudioNext exec mpc next
-bindsym XF86AudioPrev exec mpc prev
-bindsym XF86AudioPause exec mpc toggle
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 2 && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 2  && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pamixer -t && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# mpd control by media keys
+bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+
+
 #pb authorisation
 #bindsym XF86MonBrightnessDown   exec xbacklight -dec 5 && pkill -RTMIN+20 i3blocks
 #bindsym XF86MonBrightnessUp     exec xbacklight -inc 5 && pkill -RTMIN+20 i3blocks
@@ -216,12 +225,14 @@ for_window [class="w_float-notitle-medium"] border 1pixel, floating enable, resi
 for_window [class="w_float-notitle"] border 1pixel, floating enable
 for_window [class="w_float"] floating enable
 
-#large et small window popup
+#large, small and large borderless window popup
 set $float_largeW_app Gpodder|Mpsyt|Modem-manager-gui|Nm-connection-editor|Mattermost
 set $float_smallW_app Pavucontrol|Blueberry.py
+set $float_borderless_app Sxiv
 for_window [class="$float_largeW_app"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
 #small window with no title bar (keep it small)
 for_window [class="$float_smallW_app"] floating enable, resize set $wfM_width $wfM_height, move position center, border 1pixel, sticky enable
+for_window [class="$float_borderless_app"]  floating enable, move position center, border 1pixel, sticky enable
 
 # applications
 for_window [class="Vimb"] border 1pixel, focus
@@ -288,7 +299,7 @@ mode "$i3ctl" {
     # exit i3 (logs you out of your X session)
     bindsym e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
     # restart bar
-    bindsym b exec pkill -SIGUSR1 -f "python $home/.config/i3/status.py", mode "default"
+    bindsym b exec pkill -SIGUSR1 -f "python $HOME/.config/i3/status.py", mode "default"
 
 
     # back to normal: Enter or Escape
@@ -376,7 +387,7 @@ mode "$mode_usbmount" {
 }
 
 
-# system mode, hit power button to halt, suspend, reboot or shutdown 
+# system mode, hit power button to halt, suspend, reboot or shutdown
 set $mode_system System [l] lock, [e] logout, [s] suspend, [h] hibernate, [r] reboot, [Shift]+[s] shutdown
 bindsym Pause mode "$mode_system"
 bindsym XF86Sleep mode "$mode_system"
@@ -440,5 +451,9 @@ bindsym $capsLock+Shift+s exec i3-msg '[class="Teams"] scratchpad show';
 
 # Screensaver
 # exec xautolock -locker "termite --title screensaver -e 'asciiquarium'"
+
+# Background image
+# see in xprofile
+# exec --no-startup-id feh
 
 
