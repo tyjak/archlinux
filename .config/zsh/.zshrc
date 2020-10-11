@@ -1,6 +1,6 @@
 # generic zsh to use if no zshrc exists
-
-
+# requirement: oh-my-zsh
+[ ! -d "$HOME/.oh-my-zsh" ] && /usr/share/oh-my-zsh/tools/install.sh --keep-zshrc
 
 # oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
