@@ -19,3 +19,12 @@ source $ZSH/oh-my-zsh.sh
 eval "$(dircolors ~/.config/color/dircolors.256dark)"
 
 alias v='vim "$(fzf)"'
+
+function prompt_ssh {
+    if [[ -n $SSH_CONNECTION ]]
+    then
+        prompt_segment 'green' 'white' "  "
+    fi
+}
+AGNOSTER_PROMPT_SEGMENTS=("prompt_ssh" "${AGNOSTER_PROMPT_SEGMENTS[@]}")
+
