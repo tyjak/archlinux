@@ -12,7 +12,7 @@ export HISTCONTROL=ignorespace
 
 
 source /etc/profile.d/vte.sh
-source $ZSH/oh-my-zsh.sh
+source $HOME/.oh-my-zsh.sh
 
 eval "$(dircolors ~/.config/color/dircolors.256dark)"
 
