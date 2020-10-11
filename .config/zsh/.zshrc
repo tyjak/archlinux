@@ -1,7 +1,14 @@
 # generic zsh to use if no zshrc exists
+# requirement: oh-my-zsh
+[ ! -d "$HOME/.oh-my-zsh" ] && /usr/share/oh-my-zsh/tools/install.sh --keep-zshrc
 
 # oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="agnoster"
+
+# custom prompt
+[ ! -f "$ZSH/custom/themes/agnoster.zsh-theme" ] && http  --follow --output "$ZSH/custom/themes/agnoster.zsh-theme" https://gist.github.com/tyjak/9f9569d9fc118c88ad3a758fc2b26502/raw/agnoster.zsh-theme
+
 plugins=(git taskwarrior sudo httpie fzf z python virtualenv virtualenvwrapper pip pep8)
 
 #env
@@ -12,7 +19,7 @@ export HISTCONTROL=ignorespace
 
 
 source /etc/profile.d/vte.sh
-source $HOME/.oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 eval "$(dircolors ~/.config/color/dircolors.256dark)"
 
