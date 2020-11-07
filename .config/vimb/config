@@ -3,18 +3,19 @@ set caret=true
 set input-autohide=true
 set download-path=~/downloads/
 set webinspector=true
-set history-max-items=5000
+set history-max-items=100000
 set closed-max-items=20
 set editor-command=termite -e "vim %s"
 set x-hint-command=:sh! stig -T add <C-R>;
 nmap D :q<CR>
 nmap H <C-O>
 nmap L <C-I>
-shortcut-default l
+shortcut-default s
 shortcut-add g=https://google.com/?q=$0
 shortcut-add G=https://duckduckgo.com/?q=!gifl%20$0
 shortcut-add !=https://duckduckgo.com/?q=!$0
 shortcut-add l=https://search.lilo.org/?q=$0
+shortcut-add s=https://www.startpage.com/do/dsearch?query=$0
 shortcut-add a=https://duckduckgo.com/?q=!gifl%20ansible+$0
 set strict-ssl=false
 
@@ -28,8 +29,8 @@ nmap ,,w :source ~/.config/vimb/config<CR>
 nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,,D :sh /bin/sh -c "rm ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,;b :o ./.config/vimb/bookmark<CR>
-#nmap ,,; ::sh! ~/share/bin/vimbmkpwd<CR>
-nmap ,,; ::sh! ~/share/bin/passgenvimb<CR>
+nmap ,,; <ESC>::sh! ~/share/bin/passgenvimb<CR>
+#imap ,,; <ESC>::sh! ~/share/bin/passgenvimb<CR>
 
 nmap ,,i ::e! instapaper()<CR>
 nmap ,,f ::e! facebook()<CR>
@@ -48,7 +49,8 @@ nmap ,tl :tabopen http://trefle.pole-emploi.local/explorer/index.html<CR>
 nmap ,tr :tabopen http://trefle.beta.pole-emploi.fr<CR>
 nmap ,tp :tabopen http://trefle.pole-emploi.fr<CR>
 
-nmap <Shift><Space> :shell quickswitch -c Vimb -d "dmenu -l 20 -b -i -nb '#002b36' -nf '#839496' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 12"<CR>
+nmap ,: :shell quickswitch -c Vimb -d "dmenu -l 20 -b -i -nb '#002b36' -nf '#839496' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 12"<CR>
+nmap ;: :shell ~/share/bin/i3/dmenu-webnav<CR>
 
 #set proxy=true
 nmap ,,p :o http://config.privoxy.org/toggle<CR>

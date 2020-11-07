@@ -55,7 +55,7 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
 
 # Show count updates available
 status.register("updates",
-        backends = [yay.Yay(), pacman.Pacman()],
+        backends = [yay.Yay(False), pacman.Pacman()],
         format = "\uf187 {count}",
         format_working = "\uf94f",
         on_rightclick = 'popup -d -s medium -f -e "yay -Syu && echo \"Done.\""',
@@ -79,38 +79,24 @@ status.register("network",
 status.register("syncthing",
                 format_up="\uf311",
                 format_down="\uf311",
-                on_leftclick="vimb http://127.0.0.1:8080")
-
-status.register("runwatch",
-        path="/var/run/ppp0.pid",
-        name="VPN adsnovo",
-        format_up="{name}",
-        format_down="",
-        )
-
-status.register("runwatch",
-        path="/run/openvpn@adsnovo.pid",
-        name="VPN adsnovo",
-        format_up="{name}",
-        format_down="",
-        )
+                on_leftclick="vimb http://127.0.0.1:8384")
 
 status.register("openvpn",
         vpn_name = 'creamy',
         use_new_service_name = 'true'
         )
 
-status.register("openvpn",
-        vpn_name = 'pe',
-        use_new_service_name = 'true'
-        )
-
+#status.register("openvpn",
+#        vpn_name = 'pe',
+#        use_new_service_name = 'true'
+#        )
+#
 
 #Show backlight
-#if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
-#    status.register("backlight",
-#	format="\uf09e {percentage}%",
-#        backlight="intel_backlight")
+if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
+    status.register("backlight",
+    format="\u263c {percentage}%",
+        backlight="intel_backlight")
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
@@ -119,13 +105,14 @@ status.register("load",
         )
 
 # Shows disk usage of /
+
 # Format:
 # 42/128G [86G]
-status.register("disk",
-    path="/home",
-    on_leftclick="popup -S -s medium -e 'ncdu /home --exclude=media'",
-    #format="{used}/{total}G [{avail}G]",)
-    format="{avail}G",)
+#status.register("disk",
+#    path="/home",
+#    on_leftclick="popup -S -s medium -e 'ncdu /home --exclude=media'",
+#    #format="{used}/{total}G [{avail}G]",)
+#    format="{avail}G",)
 
 status.register("disk",
     path="/",

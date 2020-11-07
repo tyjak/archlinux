@@ -52,7 +52,7 @@ bindsym $mod+Shift+s exec quickswitch -w -j -f -d "dmenu -i -nb '#eee8d5' -nf '#
 bindsym $capsLock+Tab exec quickswitch -s -d "dmenu -l 10 -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
-bindsym $mod+y exec searchduckduckgo
+bindsym $mod+y exec dmenu-webnav
 bindsym $mod+i exec dmenu-ssh
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -145,7 +145,7 @@ set $menu7 7:
 
 # switch to workspace
 bindsym $mod+1 workspace $menu1; exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite --title terminal
-bindsym $mod+2 workspace $menu2; exec [ $(ps h -C vimb -o args | grep "^/usr/bin/vimb$" | wc -l) = 0 ] && /usr/bin/vimb
+bindsym $mod+2 workspace $menu2; mark web; exec [ $(ps h -C vimb -o args | grep "^/usr/bin/vimb$" | wc -l) = 0 ] && /usr/bin/vimb
 bindsym $mod+3 workspace $menu3; exec [ $( ps -eo cmd | grep -c '[t]ermite --title uvim -e vim' ) -eq 2 ] && termite --title uvim -e vim
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+4 workspace $menu4; exec [ $( ps -eo cmd | grep -c '[t]ermite --title mail-gmail' ) -eq 2 ] && termite --title mail-gmail -e '/usr/bin/mutt -e "source ~/.mutt/gmail.com"'
