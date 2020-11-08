@@ -24,6 +24,7 @@ Session.vim
 !.config/newsbeuter/config
 !.config/newsbeuter/solarized-dark
 !.config/newsbeuter/urls
+!.config/picom
 !.config/rtv/rtv.cfg
 !.config/systemd
 .config/systemd/**/*.wants
