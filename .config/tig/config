@@ -22,3 +22,7 @@ bind refs R !git rebase -i %(branch)
 
 #add/edit notes for the current commit used during a review
 bind generic T !git notes edit %(commit)
+
+#rebase on top of selected branch
+bind refs P !git pull
+
