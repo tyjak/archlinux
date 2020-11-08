@@ -26,6 +26,8 @@ Session.vim
 !.config/newsbeuter/solarized-dark
 !.config/newsbeuter/urls
 !.config/rtv/rtv.cfg
+!.config/systemd
+.config/systemd/**/*.wants
 !.config/termite
 !.config/tig
 !.config/todo

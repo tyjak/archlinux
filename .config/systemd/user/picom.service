@@ -1,0 +1,11 @@
+[Unit]
+Description=Add shadow and transparency to window
+
+[Service]
+Type=simple
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/picom
+
+[Install]
+WantedBy=graphical.target
+
