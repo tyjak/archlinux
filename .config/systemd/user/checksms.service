@@ -1,0 +1,10 @@
+[Unit]
+Description=Check SMS
+
+[Service]
+Environment="DISPLAY=:0"
+ExecStart=/bin/sh /home/%u/share/bin/smscheck
+Type=oneshot
+
+[Install]
+WantedBy=default.target
