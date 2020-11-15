@@ -10,12 +10,17 @@ set editor-command=termite -e "vim %s"
 nmap D :q<CR>
 nmap H <C-O>
 nmap L <C-I>
-shortcut-add G=https://duckduckgo.com/html/?q=!gifl%20$0
-shortcut-add g=http://search.lilo.org/?q=$0
-shortcut-add a=https://duckduckgo.com/html/?q=!gifl%20ansible+$0
+shortcut-default s
+shortcut-add g=https://google.com/?q=$0
+shortcut-add G=https://duckduckgo.com/?q=!gifl%20$0
+shortcut-add !=https://duckduckgo.com/?q=!$0
+shortcut-add l=https://search.lilo.org/?q=$0
+shortcut-add s=https://www.startpage.com/do/dsearch?query=$0
+shortcut-add a=https://duckduckgo.com/?q=!gifl%20ansible+$0
 set strict-ssl=false
 
-handler-add mailto=gmail %s
+handler-add mailto=/home/david/share/bin/i3/gmail-mail %s
+handler-add magnet=/bin/sh -c "stig -T add %s"
 #handler-add ftp=termite -e wget %s -P ~/downloads
 set home-page=./.config/vimb/historylast
 
@@ -47,9 +52,10 @@ nmap ,tr :tabopen http://trefle.beta.pole-emploi.fr<CR>
 nmap ,tp :tabopen http://trefle.pole-emploi.fr<CR>
 nmap ,gw :tabopen https://wiki.beta.pole-emploi.fr<CR>
 
-nmap <C-U> :sh! vimb_adblock<CR>
 
-nmap <Space> :shell quickswitch -c Vimb -d "dmenu -l 20 -b -i -nb '#002b36' -nf '#839496' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 12"<CR>
+nmap ,: :shell quickswitch -c Vimb -d "dmenu -l 20 -b -i -nb '#002b36' -nf '#839496' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 12"<CR>
+nmap ;: :shell ~/share/bin/i3/dmenu-webnav<CR>
+nmap <C-U> :sh! vimb_adblock<CR>
 
 #set proxy=true
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
@@ -66,7 +72,7 @@ augroup bookmark
 augroup end
 
 augroup linkfile
-    autocmd LoadStarted * shell sh -c "tail -100 ~/.config/vimb/history > ~/.config/vimb/historylast"
+    autocmd LoadStarted * shell sh -c "tail -100 ~/.config/vimb/history | uniq > ~/.config/vimb/historylast"
     autocmd LoadFinished file:///*/closed e! linkFileToHtml('Derniers onglets ouverts');
     autocmd LoadFinished file:///*/historylast e! linkFileToHtml('Historique <a href="file:///home/david/.config/vimb/history">(voir tout l\'historique)</a>');
     autocmd LoadFinished file:///*/history e! linkFileToHtml('Historique');

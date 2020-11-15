@@ -81,7 +81,7 @@ status.register("updates",
         backends = [yay.Yay(False), pacman.Pacman()],
         format = "\uf323 {count}",
         format_working = "\uf323",
-        on_rightclick = 'popup -d -s medium -f -e "yay -Syu"',
+        on_rightclick = 'popup -d -s medium -f -e "yay -Syu && echo \"Done.\""',
         color = "#FF0000",
         color_working = "#FF8800"
 )

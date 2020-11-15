@@ -77,11 +77,12 @@ var cssStyle = '<style type="text/css">'
             + "a:hover{color:#b58900}"
             + "table{margin:.5em auto;max-width:60em;border-collapse:collapse;color:#fdf6e3;}"
             + "th{text-align:left;background:#859900;color:#fdf6e3;border-bottom:.3em solid #073642;padding:14px 12px}"
-            + "label{text-align:left;background:#859900;color:#fdf6e3;}"
+            + "label{text-align:left;color:#93a1a1;}"
             + "td{padding:8px 12px;border-bottom:1px solid #073642;color:#859900; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;}"
-            + "pre{display:inline;margin-right:20px;color:#859000;background-color:#fdf6e3}"
+            + "pre{display:inline;margin-right:20px;color:#002b36;background-color:#fdf6e3}"
             + "tr{background:#002b36}"
-            + "div{margin:.5em auto;max-width:60em;border-collapse:collapse;color:#002b36;background:#859000}"
+            + "tr.title{background:#073642}"
+            + "div{margin:.5em auto;max-width:50%;border-collapse:collapse;background:#073642}"
             + "</style>";
 
 function bookmarkFileToHtml() {
@@ -101,13 +102,19 @@ function bookmarkFileToHtml() {
         title = parts[1]||uri;
         tags  = (parts[2]||"").split(' ').sort().join(', ');
         if (title.startsWith('#'))
-            html  = html +  "<tr><td><em>" + title.substr(1) + "</em></td></tr>";
+            html  = html +  "<tr class=\"title\"><td colspan=2><em>" + title.substr(1) + "</em></td></tr>";
         else
             html  = html +  "<tr><td><a href=\"" + uri + "\">" + title + "</a></td><td>" + tags + "</td></tr>";
     }
 
-    htmlHelp = "<div><pre>,,a</pre><label>To add page to archive.is + bookmark with tag archive</label><br><pre>,;a</pre><label>To get the current url from archive.is</label></div>"
-    html = "<html>" + head + "<body>" + htmlHelp + "<table>" + html + "</table></body></html>";
+    htmlHelp = "<div>"
+             + "<label><em>Help<em></label><br>"
+             + "<pre>,,a</pre><label>To add page to archive.is + bookmark with tag archive</label><br>"
+             + "<pre>,;a</pre><label>To get the current url from archive.is</label><br>"
+             + "<pre>,,b</pre><label>To add page to shaarli + bookmark with tag shaarli</label><br>"
+             + "<pre>,;b</pre><label>display bookmark page</label>"
+             + "</div>"
+    html = "<html>" + head + "<body><table>" + html + "</table>" + htmlHelp + "</body></html>";
     document.body.innerHTML = html;
 }
 
@@ -126,8 +133,8 @@ function linkFileToHtml(title) {
             + "</head>";
 
     for (i = 0; i < lines.length; i++) {
-        line  = lines[i];
-        if (!line) {
+        line  = lines[i].replace(/[<>]/g,'');
+        if (!line || line.match(/^file:\/\//)) {
             continue;
         }
         parts = line.split("\t");
