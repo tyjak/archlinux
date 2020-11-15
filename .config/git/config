@@ -26,3 +26,5 @@
     tool = vimdiff
 [core]
 	excludesfile = ~/.gitignore
+[pull]
+	rebase = true

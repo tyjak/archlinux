@@ -13,6 +13,7 @@ export SMSFILE=~/share/documents/sms
 #export no_proxy=127.0.0.1,localhost,.jemepropose.com,.twitter.com,.jobintree.com,.adsnovo.com,.admintree.com,.reddit.com
 #source ~/share/etc/proxy.pe
 export FBFONT=/usr/share/kbd/consolefonts/ter-216n.psf.gz
+export DMENUHEIGHT=36
 
 xset -b & #disable beep
 xss-lock -- /usr/bin/i3lock -c 002B36 &
