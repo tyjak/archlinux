@@ -45,8 +45,9 @@ bindsym $mod+n [con_mark="working"] focus
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -i -nb '#859900' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 24
 bindsym $mod+c exec clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 24
-bindsym $mod+x exec PASSWORD_STORE_X_SELECTION=secondary passmenu -i -nb '#002b24' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 24 && xsel -o -s | xdotool type --file -
-bindsym $mod+Shift+x exec "passdmenu.py -u -x p,s -P --type -r -D ~/share/bin/mypassdmenu"
+#bindsym $mod+x exec PASSWORD_STORE_X_SELECTION=secondary passmenu -i -nb '#002b24' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 24 && xsel -o -s | xdotool type --file -
+bindsym $mod+x exec "PASSWORD_STORE_GENERATED_LENGTH=20 passdmenu -G -x s -P --type -r -D ~/share/bin/mypassdmenu"
+bindsym $mod+Shift+x exec "PASSWORD_STORE_GENERATED_LENGTH=20 passdmenu -G -u -x p,s -P --type -r -D ~/share/bin/mypassdmenu"
 bindsym $mod+s exec quickswitch -w -d "dmenu -i -nb '#eee8d5' -nf '#002b24' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $mod+Shift+s exec quickswitch -w -j -f -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $capsLock+Tab exec quickswitch -s -d "dmenu -l 10 -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
