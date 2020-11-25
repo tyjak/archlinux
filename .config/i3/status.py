@@ -37,6 +37,21 @@ status.register("pulseaudio",
 #        on_leftclick="pavucontrol"
 #        )
 
+def gpodder_perc(text):
+    line = text.split("\n")[-1].strip()
+    if(re.match('^ANS_PERCENT_POSITION', line)):
+        return re.sub(r'ANS_PERCENT_POSITION=([0-9]+)',r'podcast: \1%',line)
+    else:
+        return ''
+
+#gpodder data are get from mplayer fifo via ~/share/bin/playpodcast
+status.register(
+    "file",
+    components={"podcast":(gpodder_perc,'gpodder.out')},
+    base_path="/tmp",
+    format="{podcast}"
+)
+
 # Show battery
 if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
     status.register("battery",
@@ -56,8 +71,8 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
 # Show count updates available
 status.register("updates",
         backends = [yay.Yay(False), pacman.Pacman()],
-        format = "\uf187 {count}",
-        format_working = "\uf94f",
+        format = "\uf323 {count}",
+        format_working = "\uf323",
         on_rightclick = 'popup -d -s medium -f -e "yay -Syu && echo \"Done.\""',
         color = "#FF0000",
         color_working = "#FF8800"

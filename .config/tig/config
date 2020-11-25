@@ -1,3 +1,7 @@
+# date relative
+set main-view-date = relative
+set refs-view-date = relative
+
 # amend commit
 bind generic + !git commit --amend
 

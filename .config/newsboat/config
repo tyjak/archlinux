@@ -1,31 +1,51 @@
-player "mplayer"
+# Dark solarized color scheme for newsbeuter, based on
+# Ethan Schoonover's Solarized.
+#
+# In order to use this color scheme, you must first configure
+# your terminal emulator to use the Solarized palette.
+# See <http://ethanschoonover.com/solarized/> for more information.
 
-bookmark-cmd "sh ~/share/bin/instaper.sh"
-bookmark-autopilot yes
+color background          yellow    default
+color listnormal          yellow    default
+color listfocus           yellow    black     bold
+color listnormal_unread   blue      default
+color listfocus_unread    blue      black     bold
+color info                white     green     bold
+color article             default   default
 
-bind-key i bookmark
-bind-key j next
-bind-key k prev
+ssl-verifypeer no
+urls-source "ttrss"
+ttrss-url "http://rss.creamy.local:8280/tt-rss"
+ttrss-mode "single"
+ttrss-login "NaN"
+ttrss-password "NaN"
+ttrss-flag-star "s"
+ttrss-flag-publish "p"
+#ttrss-login "newsboat"
+#ttrss-password "W3CyAdk9^5z847Ht"
+
+bind-key j down
+bind-key k up
 bind-key l open
-bind-key h quit
+bind-key l open-in-browser-and-mark-read articlelist
+bind-key L open articlelist
+bind-key h quit articlelist
+bind-key h quit article
 bind-key SPACE toggle-show-read-feeds
 
-browser "xdg-open %u"
-
-#macro y set browser "mpv %u"; open-in-browser ; set browser "xdg-open %u"
-
-# color
-
-color background          cyan    default
-color listnormal          cyan    default
-color listfocus           cyan    black     bold
-color listnormal_unread   yellow      default
-color listfocus_unread    yellow      black     reverse
-color info                white     green     bold
-color article             color14   default
-
 # highlights
-highlight article "^(Titre) :.*$" white black standout bold
-highlight article "https?://[^ ]+" blue default
-highlight article "\\[image\\ [0-9]+\\]" default default invis
+highlight article "^(Title|Titre)\\ ?:.*$" yellow default
+highlight article "https?://[^ ]+" color14 default
+highlight article "\\[image\\ [0-9]+\\]" color14 default
 # more on solarized: http://ethanschoonover.com/solarized
+
+refresh-on-startup yes
+
+browser "i3 focus parent splith exec '/usr/bin/vimb -p simplyread %u'"
+
+bookmark-autopilot yes
+bookmark-cmd "sh ~/share/bin/instaper.sh"
+
+macro e set browser "echo %u >> ~/.config/vimb/queue" ; open-in-browser ; set browser "xdg-open %u"
+#macro u source "~/.config/newsboat/config" #TOFIX
+#macro y set browser "mpv %u"; open-in-browser ; set browser "xdg-open %u"

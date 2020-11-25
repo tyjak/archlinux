@@ -40,7 +40,7 @@ background = #002b36
 cursor = #93a1a1
 
 # if unset, will reverse foreground and background
-#highlight = #839496
+highlight = #839496
 
 #color0 = #666666
 #color1 = #CC6699
@@ -83,11 +83,14 @@ color234 = #1c1c1c
 color235 = #262626
 color239 = #4e4e4e
 color240 = #585858
+color241 = #626262
 color244 = #808080
 color245 = #8a8a8a
+color254 = #e4e4e4
 color187 = #d7d7af
 color230 = #ffffd7
 color136 = #af8700
+color160 = #d70000
 color166 = #d75f00
 color124 = #af0000
 color125 = #af005f
@@ -98,13 +101,13 @@ color64 = #5f8700
 
 [hints]
 #font = Monospace 12
-foreground = #839496
-#background = #3f3f3f
-#active_foreground = #e68080
-#active_background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
-#border_width = 0.5
-#roundness = 2.0
+foreground = #fdf6e3
+background = #af005f
+active_foreground = #fdf6e3
+active_background = #5F5FAF
+padding = 2
+border = #fdf6e3
+border_width = 0.5
+roundness = 2.0
 
 # vim: ft=dosini cms=#%s

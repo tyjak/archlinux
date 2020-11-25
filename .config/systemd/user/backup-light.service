@@ -1,0 +1,10 @@
+[Unit]
+Description=mybackup-light
+
+[Service]
+Environment="DISPLAY=:0"
+ExecStart=/bin/sh /home/%u/share/archbckp/backup.sh
+Type=oneshot
+
+[Install]
+WantedBy=default.target

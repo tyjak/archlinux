@@ -28,12 +28,14 @@ nmap ,,v ::sh! sh -c 'xsel -o -s | xargs xdotool type i'<CR>
 nmap ,,w :source ~/.config/vimb/config<CR>
 nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,,D :sh /bin/sh -c "rm ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
+nmap ,,r ::e! tinytinyrss()<CR>
 nmap ,;b :o ./.config/vimb/bookmark<CR>
 nmap ,,; <ESC>::sh! ~/share/bin/passgenvimb<CR>
 #imap ,,; <ESC>::sh! ~/share/bin/passgenvimb<CR>
 
 nmap ,,i ::e! instapaper()<CR>
 nmap ,,f ::e! facebook()<CR>
+nmap ,,t ::sh sh -c '/usr/bin/madonctl --config /home/david/.config/madonctl/madonctl.yaml toot \$VIMB_TITLE \$VIMB_URI'<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
 nmap ,,b ::e! shaarli()<CR>::bma shaarli<CR>
 nmap ,;a ::e! getArchive()<CR>
@@ -51,6 +53,7 @@ nmap ,tp :tabopen http://trefle.pole-emploi.fr<CR>
 
 nmap ,: :shell quickswitch -c Vimb -d "dmenu -l 20 -b -i -nb '#002b36' -nf '#839496' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 12"<CR>
 nmap ;: :shell ~/share/bin/i3/dmenu-webnav<CR>
+nmap <C-U> :sh! vimb_adblock<CR>
 
 #set proxy=true
 nmap ,,p :o http://config.privoxy.org/toggle<CR>
