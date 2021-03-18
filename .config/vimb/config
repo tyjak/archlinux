@@ -24,9 +24,10 @@ handler-add magnet=/bin/sh -c "stig -T add %s"
 #handler-add ftp=termite -e wget %s -P ~/downloads
 set home-page=./.config/vimb/historylast
 
+nmap ,,m :sh sh -c 'youtube-dl -x -o "~/Music/_creamy/youtube/%(title)s.%(ext)s" $VIMB_URI'<CR>
 nmap ,,v ::sh! sh -c 'xsel -o -s | xargs xdotool type i'<CR>
 nmap ,,w :source ~/.config/vimb/config<CR>
-nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
+nmap ,,o :sh /bin/sh -c "zathura ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,,D :sh /bin/sh -c "rm ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,,r ::e! tinytinyrss()<CR>
 nmap ,;b :o ./.config/vimb/bookmark<CR>
@@ -35,7 +36,7 @@ nmap ,,; <ESC>::sh! ~/share/bin/passgenvimb<CR>
 
 nmap ,,i ::e! instapaper()<CR>
 nmap ,,f ::e! facebook()<CR>
-nmap ,,t ::sh sh -c '/usr/bin/madonctl --config /home/david/.config/madonctl/madonctl.yaml toot \$VIMB_TITLE \$VIMB_URI'<CR>
+nmap ,,t ::sh sh -c 'toot post "\$VIMB_TITLE \$VIMB_URI"'<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
 nmap ,,b ::e! shaarli()<CR>::bma shaarli<CR>
 nmap ,;a ::e! getArchive()<CR>

@@ -15,7 +15,7 @@ color article             default   default
 
 ssl-verifypeer no
 urls-source "ttrss"
-ttrss-url "http://rss.creamy.local:8280/tt-rss"
+ttrss-url "http://rss.creamy.local/tt-rss"
 ttrss-mode "single"
 ttrss-login "NaN"
 ttrss-password "NaN"
@@ -27,11 +27,12 @@ ttrss-flag-publish "p"
 bind-key j down
 bind-key k up
 bind-key l open
-bind-key l open-in-browser-and-mark-read articlelist
+#bind-key l open-in-browser-and-mark-read articlelist
 bind-key L open articlelist
 bind-key h quit articlelist
 bind-key h quit article
 bind-key SPACE toggle-show-read-feeds
+bind-key ENTER open-in-browser-and-mark-read articlelist
 
 # highlights
 highlight article "^(Title|Titre)\\ ?:.*$" yellow default

@@ -2,8 +2,9 @@ var instapaper=function (){var d=document,z=d.createElement('scr'+'ipt'),b=d.bod
 
 var facebook=function(){location.href='http://www.facebook.com/sharer.php?src=bm&v=4&i=1301235609&u='+encodeURIComponent(window.location.href)+'&t='+encodeURIComponent(document.title)};
 
-// TODO: créer un bookmarklet comme instapaper pout ne pas quitter la page
-//var bagit=function(){fetch('http://wallabag.creamy.local/bookmarklet?url='+encodeURIComponent(window.location.href)).then(if(response.ok) document.title="saved in wallabag");};
+// FIXME: try to run wallabag in with https
+//var wallabag=function (){var d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location; try{ if(!b)throw(0);d.title='(Saving...) '+d.title;z.setAttribute('src',l.protocol+'//wallabag.creamy.local?url='+encodeURIComponent(l.href)); b.appendChild(z);}catch(e){alert('Please wait until the page has loaded.');}};
+
 
 var shaarli=function(){
     var url = location.href;
