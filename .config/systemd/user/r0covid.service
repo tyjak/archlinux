@@ -1,0 +1,12 @@
+[Unit]
+Description=r0
+
+[Service]
+Environment="DISPLAY=:0"
+ExecStart=/bin/sh /home/%u/share/bin/R0status.sh
+Type=oneshot
+Requires=network-online.target
+After=network-online.target
+
+[Install]
+WantedBy=default.target

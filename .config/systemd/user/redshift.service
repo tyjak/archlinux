@@ -1,0 +1,11 @@
+[Unit]
+Description=Some red light to cancel blue light in the evening
+
+[Service]
+Type=simple
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/redshift
+
+[Install]
+WantedBy=graphical.target
+

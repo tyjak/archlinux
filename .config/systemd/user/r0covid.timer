@@ -1,0 +1,9 @@
+[Unit]
+Description=R0covid
+
+[Timer]
+OnCalendar=*-*-* 20:01:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

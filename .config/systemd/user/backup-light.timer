@@ -2,8 +2,9 @@
 Description=Run my backup
 
 [Timer]
-OnBootSec=15min
 OnUnitActiveSec=1w
+#Persistent to remembar last activation and lauchn if missed one trigger
+Persistent=true
 
 [Install]
 WantedBy=timers.target

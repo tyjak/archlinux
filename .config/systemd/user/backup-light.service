@@ -5,6 +5,8 @@ Description=mybackup-light
 Environment="DISPLAY=:0"
 ExecStart=/bin/sh /home/%u/share/archbckp/backup.sh
 Type=oneshot
+#see doc for RemainAfterExit https://www.freedesktop.org/software/systemd/man/systemd.service.html
+RemainAfterExit=yes
 
 [Install]
 WantedBy=default.target
