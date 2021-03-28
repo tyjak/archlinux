@@ -27,7 +27,7 @@ set home-page=./.config/vimb/historylast
 nmap ,,m :sh sh -c 'youtube-dl -x -o "~/Music/_creamy/youtube/%(title)s.%(ext)s" $VIMB_URI'<CR>
 nmap ,,v ::sh! sh -c 'xsel -o -s | xargs xdotool type i'<CR>
 nmap ,,w :source ~/.config/vimb/config<CR>
-nmap ,,o :sh /bin/sh -c "zathura ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
+nmap ,,o :sh /bin/sh -c "zathura \"~/downloads/\$(ls -1 -t ~/downloads/ | head -1)\""<CR>
 nmap ,,D :sh /bin/sh -c "rm ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 nmap ,,r ::e! tinytinyrss()<CR>
 nmap ,;b :o ./.config/vimb/bookmark<CR>

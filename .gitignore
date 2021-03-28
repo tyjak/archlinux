@@ -40,5 +40,9 @@ Session.vim
 !.config/vimb/config
 !.config/vimb/style.css
 !.config/vimb/standalone
+!.config/vimb/mamot
+!.config/vimb/messari
+!.config/vimb/mopidy
+!.config/vimb/webapp
 !.config/zsh/.zshrc
 !.config/zathura/zathurarc
