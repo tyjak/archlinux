@@ -233,7 +233,7 @@ for_window [class="w_float-notitle"] border 1pixel, floating enable
 for_window [class="w_float"] floating enable
 
 #large, small and large borderless window popup
-set $float_largeW_app Gpodder|Mpsyt|Modem-manager-gui|Nm-connection-editor|Mattermost
+set $float_largeW_app Gpodder|Mpsyt|Modem-manager-gui|Nm-connection-editor|Mattermost|Signal
 set $float_smallW_app Pavucontrol|Blueberry.py
 set $float_borderless_app Sxiv
 for_window [class="$float_largeW_app"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
@@ -316,14 +316,19 @@ mode "$i3ctl" {
 }
 
 # resize mod window $mod+r (you can also use the mouse for that)
-bindsym $mod+r mode "resize / move"
-mode "resize / move" {
+bindsym $mod+r mode "resize / move / [s]ticky / [bB]order / [c]enter / [f]loat right corner"
+mode "resize / move / [s]ticky / [bB]order / [c]enter / [f]loat right corner" {
 
     bindsym h resize grow width 10 px or 10 ppt
     bindsym j resize grow height 10 px or 10 ppt
     bindsym k resize shrink height 10 px or 10 ppt
     bindsym l resize shrink width 10 px or 10 ppt
-    bindsym m move position center
+    bindsym s sticky toggle, mode "default"
+    bindsym B border 1pixel, mode "default"
+    bindsym b border normal, mode "default"
+    bindsym f exec python3 -m i3grid snap --target 9 --rows 3 --cols 3, mode "default"
+    #bindsym f floating enable, resize set $wfM_width $wfM_height, border 1pixel, sticky enable, mode "default"
+    bindsym c move position center, mode "default"
 
     # same bindings, but for the arrow keys
     bindsym Left move left 10 px
