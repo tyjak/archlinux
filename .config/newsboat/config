@@ -45,7 +45,8 @@ refresh-on-startup yes
 browser "i3 focus parent splith exec '/usr/bin/vimb -p simplyread %u'"
 
 bookmark-autopilot yes
-bookmark-cmd "sh ~/share/bin/instaper.sh"
+#bookmark-cmd "sh ~/share/bin/instaper.sh"
+bookmark-cmd "sh ~/share/bin/wallabag.sh"
 
 macro e set browser "echo %u >> ~/.config/vimb/queue" ; open-in-browser ; set browser "xdg-open %u"
 #macro u source "~/.config/newsboat/config" #TOFIX
