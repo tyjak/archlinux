@@ -126,7 +126,7 @@ status.register("shell",
                 color=green,
                 error_color=grey,
                 interval=5,
-                on_leftclick="share/bin/toggle-ipfs",
+                on_leftclick="~/share/bin/toggle-ipfs",
                 on_rightclick="webapp http://127.0.0.1:5001/ipfs/bafybeianwe4vy7sprht5sm3hshvxjeqhwcmvbzq73u55sdhqngmohkjgs4/#/files ipfs")
 
 status.register("openvpn",

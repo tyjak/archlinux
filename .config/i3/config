@@ -183,9 +183,14 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 2  && $refresh_i3st
 bindsym XF86AudioMute exec --no-startup-id pamixer -t && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 # mpd control by media keys
-bindsym XF86AudioNext exec --no-startup-id mpc next
-bindsym XF86AudioPrev exec --no-startup-id mpc prev
-bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+bindsym XF86AudioPlay exec "~/share/xf86audio toggle"
+bindsym XF86AudioPrev exec "~/share/xf86audio prev"
+bindsym XF86AudioNext exec "~/share/xf86audio next"
+bindsym XF86AudioForward exec "~/share/xf86audio forw"
+bindsym XF86AudioRewind exec "~/share/xf86audio back"
+#bindsym XF86AudioNext exec --no-startup-id mpc next
+#bindsym XF86AudioPrev exec --no-startup-id mpc prev
+#bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 
 
 #pb authorisation
@@ -199,7 +204,7 @@ bar {
   font pango:Meslo LG S DZ, forkawesome, icomoon,  10
   #status_command python ~/.config/i3/status.py
   status_command ~/.virtualenvs/i3pystatus/bin/python ~/.config/i3/status.py
-  # status_command ~/.virtualenvs/i3pystatus/bin/python ~/.config/i3/status-dev.py
+  #status_command ~/.virtualenvs/i3pystatus/bin/python ~/.config/i3/status-pulseaudio-dev.py
   position top
   #separator_symbol "┃"
   separator_symbol "│"

@@ -34,7 +34,7 @@ nmap ,;b :o ./.config/vimb/bookmark<CR>
 nmap ,,; <ESC>::sh! ~/share/bin/passgenvimb<CR>
 #imap ,,; <ESC>::sh! ~/share/bin/passgenvimb<CR>
 
-nmap ,,i ::e! instapaper()<CR>
+nmap ,,i ::e! readlater()<CR>
 nmap ,,f ::e! facebook()<CR>
 nmap ,,t ::sh sh -c 'toot post "\$VIMB_TITLE \$VIMB_URI"'<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
