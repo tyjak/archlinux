@@ -55,6 +55,7 @@ bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | tail +4 | dmenu -i -nb '#e
 bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $mod+y exec dmenu-webnav
 bindsym $mod+i exec dmenu-ssh
+bindsym $mod+p exec dmenu-gist $(tty)
 bindsym $capsLock+q exec qrcode
 bindsym $capsLock+c exec cryptoinfoweb
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -349,7 +350,7 @@ mode "resize / move / [s]ticky / [bB]order / [c]enter / [f]loat right corner" {
 # Press $mod+o followed by either f, t, Esc or Return to launch firefox,
 #  etc ... or return to the default mode, respectively.
 set $mode_launcher Launch: [f]irefox [t]rello [s]lack [r]emmina [w]ork-env [W]riter
-bindsym $mod+p mode "$mode_launcher"
+bindsym $mod+Shift+p mode "$mode_launcher"
 
 mode "$mode_launcher" {
 
@@ -472,6 +473,8 @@ bindsym $capsLock+Shift+s exec i3-msg '[class="Teams"] scratchpad show';
 
 # Background image
 # see in xprofile
- exec --no-startup-id blueberry-tray
+exec --no-startup-id blueberry-tray
+exec --no-startup-id pcloud
+exec --no-startup-id megasync
 
 
