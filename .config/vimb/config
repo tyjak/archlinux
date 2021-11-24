@@ -1,4 +1,5 @@
 set hint-keys=hjkl
+set hint-keys-same-length=on
 set caret=true
 set input-autohide=true
 set download-path=~/downloads/
