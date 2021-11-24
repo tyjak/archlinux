@@ -16,6 +16,7 @@ export FBFONT=/usr/share/kbd/consolefonts/ter-216n.psf.gz
 export DMENUHEIGHT=36
 export SSH_WORK_CONFIG_FILE=~/WORK/pe/CTO/startup-ansible/startup.ssh
 export HIDPI_SCALE=1.5
+export NEWS= ~/share/documents/news-urls
 
 xset -b & #disable beep
 xss-lock -- /usr/bin/i3lock -c 002B36 &

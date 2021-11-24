@@ -1,5 +1,6 @@
 [global]
     font = pango:Meslo LG S DZ dor Powerline 10
+    #icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/legacy/
 
     # allow a small subset of html markup:
     # <b>bold</b>
@@ -9,7 +10,7 @@
     #
     # for a complete reference see http://developer.gnome.org/pango/stable/PangoMarkupFormat.html
     # If markup is not allowed, those tags will be stripped out of the message.
-    allow_markup = yes
+    markup = full
 
     # The format of the message. Possible variables are:
     #   %a  appname
@@ -21,6 +22,9 @@
     # Markup is allowed
     format = "<b>%s</b>\n%b"
 
+    icon_position = left
+    max_icon_size = 70
+
     # Sort messages by urgency
     sort = yes
 
@@ -30,12 +34,6 @@
     # alignment of message text.
     # Possible values are "left", "center" and "right"
     alignment = left
-
-    # The frequency with wich text that is longer than the notification
-    # window allows bounces back and forth.
-    # This option conflicts with 'word_wrap'.
-    # Set to 0 to disable
-    bounce_freq = 0
 
     # show age of message if message is older than show_age_threshold seconds.
     # set to -1 to disable
@@ -59,7 +57,14 @@
     # right side of the screen.  Y is measured from the top and down respectevly.
     # The width can be negative. In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "200x10-0+36"
+    # geometry = "300x10-0+22"
+    width = 250
+    height = 300
+    offset = 0x22
+    notification_limit=6
+
+    #shrink = true
+    vertical_alignment = top
 
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
@@ -83,7 +88,7 @@
     #
     # If this option is set to mouse or keyboard, the monitor option will be
     # ignored.
-    follow = mouse
+    follow = keyboard
 
     # should a notification popped up from history be sticky or
     # timeout as if it would normally do.
@@ -125,7 +130,7 @@
 
 [frame]
     width = 1
-    color = "#FDF6E3"
+    color = "#eee8d5"
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key
@@ -213,3 +218,18 @@
 #    summary = *twitter.com*
 #    urgency = normal
 #
+[funst]
+    appname = funst
+    background = "#586e75CC"
+    foreground = "#fdf6e3"
+    frame_color = "#93a1a1CC"
+    set_transient = false
+    #set_stack_tag = private-synchronous
+    timeout = 10
+[grabc]
+    appname = grabc
+    background = "#586e75"
+    foreground = "#fdf6e3"
+    set_transient = false
+    set_stack_tag = private-synchronous
+    timeout = 10

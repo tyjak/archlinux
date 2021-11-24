@@ -56,6 +56,13 @@ status.register(
     on_leftclick="apptoggle pavucontrol",
 )
 
+status.register("shell",
+    command="headset_battery_level barba",
+    on_leftclick="headset_quality_switch barba", #mic or not mic
+    ignore_empty_stdout=True,
+    format="{output}"
+       )
+
 def gpodder_perc(text):
     line = text.split("\n")[-1].strip()
     if(re.match('^ANS_PERCENT_POSITION', line)):
