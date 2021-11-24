@@ -8,6 +8,7 @@ Session.vim
 .vimperator/info/default
 
 .config/*
+!.config/alacritty
 !.config/applications
 !.config/color
 !.config/dunst
