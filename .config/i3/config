@@ -153,7 +153,7 @@ set $menu10 10: PE
 
 # switch to workspace
 bindsym $mod+1 workspace $menu1; exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite --title terminal; move workspace to output $screen1
-bindsym $mod+2 workspace $menu2; mark web; exec [ $(ps h -C vimb -o args | grep "^/usr/bin/vimb$" | wc -l) = 0 ] && /usr/bin/vimb; move workspace to output $screen2
+bindsym $mod+2 workspace $menu2; mark web; exec [ $(ps h -C vimb -o args | grep "^/usr/bin/vimb$" | wc -l) = 0 ] && vimb; move workspace to output $screen2
 bindsym $mod+3 workspace $menu3; exec [ $( ps -eo cmd | grep -c '[t]ermite --title uvim -e vim' ) -eq 2 ] && termite --title uvim -e vim
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+4 workspace $menu4; exec [ $( ps -eo cmd | grep -c '[t]ermite --title mail-gmail' ) -eq 2 ] && termite --title mail-gmail -e '/usr/bin/mutt -e "source ~/.mutt/gmail.com"'
@@ -328,7 +328,7 @@ mode "resize / move / [s]ticky / [bB]order / [c]enter / [f]loat right corner" {
     bindsym s sticky toggle, mode "default"
     bindsym B border 1pixel, mode "default"
     bindsym b border normal, mode "default"
-    bindsym f exec python3 -m i3grid snap --target 9 --rows 3 --cols 3, mode "default"
+    bindsym f border 1pixel, sticky enable, exec python3 -m i3grid snap --target 9 --rows 3 --cols 3, mode "default"
     #bindsym f floating enable, resize set $wfM_width $wfM_height, border 1pixel, sticky enable, mode "default"
     bindsym c move position center, mode "default"
 
