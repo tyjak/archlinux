@@ -1,1 +1,1 @@
-/home/david/share/vimb/bookmark.d
+/home/david/share/.config/vimb/bookmark.d

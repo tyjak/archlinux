@@ -3,7 +3,7 @@ set caret=true
 set input-autohide=true
 set download-path=~/downloads/
 set webinspector=true
-set default-zoom=150
+#set default-zoom=150
 set history-max-items=5000
 set closed-max-items=20
 set editor-command=termite -e "vim %s"
@@ -30,6 +30,7 @@ nmap ,,o :sh /bin/sh -c "xdg-open ~/downloads/\$(ls -1 -t ~/downloads/ | head -1
 nmap ,,D :sh /bin/sh -c "rm ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
 #nmap ,;b ::e! bookmarkFileToHtml('file:///home/david/.config/vimb/bookmark')<CR>
 nmap ,,b ::e! shaarli()<CR>::bma archive<CR>
+nmap ,,B ::e! ::bma<CR>
 nmap ,,r ::e! tinytinyrss()<CR>
 nmap ,;b :o ./.config/vimb/bookmark<CR>
 nmap ,,; ::sh! ~/share/bin/vimbmkpwd<CR>
