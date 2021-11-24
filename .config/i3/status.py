@@ -138,14 +138,14 @@ status.register("openvpn",
         use_new_service_name = 'true'
         )
 
-status.register("openvpn",
-        vpn_name = 'kamatera',
-        color_up=green,
-        color_down=grey,
-        status_up= "\uF00C",
-        status_down= "",
-        use_new_service_name = 'true'
-        )
+#status.register("openvpn",
+#        vpn_name = 'kamatera',
+#        color_up=green,
+#        color_down=grey,
+#        status_up= "\uF00C",
+#        status_down= "",
+#        use_new_service_name = 'true'
+#        )
 
 #status.register("openvpn",
 #        vpn_name = 'pe',
@@ -185,7 +185,7 @@ status.register("mem",
 
 status.register("disk",
     path="/",
-    on_leftclick="popup -S -s medium -e 'ncdu / --exclude=/creamy --exclude=/home --exclude=/run/media'",
+    on_leftclick="popup -S -s medium -e 'ncdu / --exclude=/tmp --exclude=/creamy --exclude=/home/david/photos --exclude=/home/david/pCloudDrive --exclude=/run/media'",
     #format="{used}/{total}G [{avail}G]",)
     format="{avail}G",)
 
