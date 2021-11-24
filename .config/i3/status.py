@@ -12,21 +12,30 @@ from i3pystatus.updates import yay, pacman
 location = {"AUBERVILLIERS": "FRXX0007:1:FR", "MEUZAC": "FRXX1548:1:FR"}
 city = os.getenv("CITY", "AUBERVILLIERS")
 
-# status = Status(standalone=True, logfile='i3pystatus.log')
-status = Status(standalone=True)
+status = Status(standalone=True, logfile='i3pystatus.log')
+# status = Status(standalone=True)
 
 
 # show a dot
-status.register("anybar")
-
-status.register(
-    "ping",
-    format="\uf0ec",
-    interval=1,
-    color="#00FF00",
-    color_disabled="#949494",
-    format_down="\uf0ec"
+status.register("anybar",
+                hints={'separator':False, 'separator_block_width':10},
 )
+
+# show covid R0
+status.register(
+    "anybar",
+    port=1837,
+    hints={'separator':False, 'separator_block_width':10},
+)
+
+#status.register(
+#    "ping",
+#    format="\uf0ec",
+#    interval=1,
+#    color="#00FF00",
+#    color_disabled="#949494",
+#    format_down="\uf0ec"
+#)
 # Displays clock like this:
 # Tue 30 Jul 11:59:46 PM KW31
 #                          ^-- calendar week
@@ -174,10 +183,12 @@ status.register(
 
 #status.register(
 #    "bitcoin",
-#    currency="EUR",
+#    currency="USD",
 #    colorize=True,
-#    on_rightclick=["open_something", "https://cryptowat.ch/markets/kraken/btc/eur/15m"],
-#    symbol="\uF15A",
+#    on_leftclick="",
+#    on_doubleleftclick="coin",
+#    on_rightclick="binance",
+#    interval=30,
 #)
 
 # status.register("shell",
