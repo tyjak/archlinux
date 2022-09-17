@@ -7,6 +7,7 @@ exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite
 set $home /home/david
 
 # special keys
+set $alt Mod1
 set $mod Mod4
 set $capsLock Mod3
 
@@ -231,7 +232,7 @@ for_window [class="_popup-notitle"] border pixel 1, floating enable
 for_window [class="_popup"] floating enable
 
 #large, small and large borderless window popup
-set $float_largeW_app Gpodder|Mpsyt|Modem-manager-gui|Nm-connection-editor|Mattermost|YouTube Music|Teams
+set $float_largeW_app Gpodder|Mpsyt|Modem-manager-gui|Nm-connection-editor|Mattermost|YouTube Music|Teams|webapp-*
 set $float_smallW_app Pavucontrol|Blueberry.py|Pick-colour-picker
 set $float_borderless_app Sxiv|Mattermost|YouTube Music
 for_window [class="$float_largeW_app"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
@@ -270,6 +271,7 @@ for_window [class="Evolution-alarm-notify"] sticky enable, floating enable, bord
 for_window [class="Caprine|Evolution|Brave-browser"] output $screen2
 
 # assign app to dedicated workspace
+assign [title="uvim"] $menu3
 assign [class="(pinta|Inkscape)"] graphic
 for_window [class="(pinta|Inkscape)"] focus
 assign [class="Pidgin"] pidgin
@@ -286,7 +288,7 @@ for_window [class="trefle"] output $screen1
 
 #vimb with title starting by "scratchpad_" are moved to the scratch pad and show
 #for_window [title="scratchpad_*"] sticky enable, border pixel 1;
-set $scratchpads scratchpad_vimwiki|scratchpad_pevimwiki|scratchpad_vimdiary|scratchpad_vimb|skype|pidgin|iCloud|gPodder
+set $scratchpads scratchpad_vimwikiperso|cratchpad_vimwiki|scratchpad_pevimwiki|scratchpad_vimdiary|scratchpad_vimb|skype|pidgin|iCloud|gPodder
 for_window [title="$scratchpads"] sticky enable, border pixel 1, move scratchpad, scratchpad show;
 for_window [title="scratchpad_ncmpcpp"] sticky enable, border pixel 1, move scratchpad, resize set $wfM_width  $wfM_height, scratchpad show;
 for_window [title="scratchpad_cal"] sticky enable, border pixel 1, move scratchpad, scratchpad show;
@@ -377,7 +379,7 @@ mode "$mode_screenshot" {
 }
 
 # file navigation with ranger
-set $mode_filemanager Goto [h]ome [d]ownloads [s]hare [D]esktop
+set $mode_filemanager Goto [h]ome [d]ownloads [s]hare [D]esktop [w]ork
 bindsym $mod+Shift+f mode "$mode_filemanager"
 
 mode "$mode_filemanager" {
@@ -386,6 +388,7 @@ mode "$mode_filemanager" {
     bindsym d exec filemanager ~/downloads, mode "default"
     bindsym s exec filemanager ~/share, mode "default"
     bindsym Shift+d exec filemanager ~/Desktop, mode "default"
+    bindsym w exec filemanager ~/WORK/pe, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -442,6 +445,7 @@ mode "$mode_player" {
 }
 
 bindsym $capsLock+t exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_pevimwiki' ) -eq 2 ] && (termite --title scratchpad_pevimwiki -e vim ~/share/vimwiki_boulot/index.wiki) || i3-msg [title=scratchpad_pevimwiki] scratchpad show;
+bindsym $capsLock+Shift+t exec task-i3
 bindsym $capsLock+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && (termite --title scratchpad_vimwiki -e vim -c VimwikiIndex) || i3-msg [title=scratchpad_vimwiki] scratchpad show;
 bindsym $capsLock+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && (termite --title scratchpad_vimdiary -e vim -c VimwikiDiaryIndex) || i3-msg [title=scratchpad_vimdiary] scratchpad show;
 bindsym $capsLock+v exec [ $( ps -eo cmd | grep -c '[t]ermite --class scratchpad --title scratchpad_vimb' ) -eq 2 ] && (termite --class scratchpad --title scratchpad_vimb -e vim .config/vimb/config) || i3-msg [title=scratchpad_vimb] scratchpad show;
@@ -449,7 +453,8 @@ bindsym $capsLock+v exec [ $( ps -eo cmd | grep -c '[t]ermite --class scratchpad
 bindsym $capsLock+m exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_ncmpcpp' ) -eq 2 ] && (termite --title scratchpad_ncmpcpp -e ncmpcpp) || i3-msg [title=scratchpad_ncmpcpp] scratchpad show;
 bindsym $capsLock+Shift+m exec popup -h -t mpsyt -e mpsyt
 bindsym $capsLock+k exec stig-i3
-bindsym $capsLock+p exec [ -z $( ps h -C gpodder -o comm=Command ) ] && gpodder || i3-msg [title=gPodder floating] scratchpad show;
+bindsym $capsLock+p exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwikiperso' ) -eq 2 ] && (termite --title scratchpad_vimwikiperso -e vim ~/share/vimwiki_perso/index.wiki) || i3-msg [title=scratchpad_vimwikiperso] scratchpad show;
+bindsym $capsLock+Shift+p exec [ -z $( ps h -C gpodder -o comm=Command ) ] && gpodder || i3-msg [title=gPodder floating] scratchpad show;
 bindsym $capsLock+r exec popup -h -t radio pyradio
 bindsym $capsLock+e exec popup -t cal pal -m
 bindsym $capsLock+n exec i3-msg '[class="VirtualBox Machine"] scratchpad show' && i3-msg '[class="VirtualBox Machine"] fullscreen enable';
@@ -466,7 +471,11 @@ bindsym $capsLock+q exec qrcode
 #bindsym $mod+x shmlog toggle
 
 # Screensaver
-# exec xautolock -locker "termite --title screensaver -e 'asciiquarium'"
+exec xautolock -detectsleep \
+          #-notify  600 -notifier "xset dpms force off" \
+          #-time     10 -locker   "alacritty --title screensaver -e asciiquarium" \
+          -time     10 -locker   "xset dpms force off" \
+          -killtime 70 -killer   "systemctl suspend"
 
 # time reporting
 exec aw-qt
