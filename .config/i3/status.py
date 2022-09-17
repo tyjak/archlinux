@@ -11,6 +11,7 @@ from i3pystatus.updates import yay, pacman
 
 location = {"AUBERVILLIERS": "FRXX0007:1:FR", "MEUZAC": "FRXX1548:1:FR"}
 city = os.getenv("CITY", "AUBERVILLIERS")
+hidpi_scale = os.getenv("HIDPI_SCALE", 1)
 
 status = Status(standalone=True, logfile='i3pystatus.log')
 # status = Status(standalone=True)
@@ -28,20 +29,24 @@ status.register(
     hints={'separator':False, 'separator_block_width':10},
 )
 
-#status.register(
-#    "ping",
-#    format="\uf0ec",
-#    interval=1,
-#    color="#00FF00",
-#    color_disabled="#949494",
-#    format_down="\uf0ec"
-#)
+# FIXME: error "IndexError: list index out of range" when ping ok...
+status.register(
+    "ping",
+    format="\uf0ec",
+    interval=1,
+    color="#00FF00",
+    color_disabled="#949494",
+    format_down="\uf0ec",
+    host="1.1.1.1",
+    hints={'separator':False, 'separator_block_width':10}
+)
+
 # Displays clock like this:
 # Tue 30 Jul 11:59:46 PM KW31
 #                          ^-- calendar week
 status.register(
     "clock",
-    on_leftclick="[ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_cal' ) -eq 2 ] && termite --title scratchpad_cal -e 'pal -m' || i3-msg [title=scratchpad_cal] scratchpad show;",
+    on_leftclick="pal-i3",
 )
 
 # Show sound
@@ -166,7 +171,7 @@ color_icon_values = {
 status.register(
     "weather",
     format="{current_temp}{temp_unit}[ {icon}]",
-    on_rightclick='popup -s medium -f -e "~/share/bin/wego {}"'.format(city),
+    on_rightclick='HIDPI_SCALE=1.5 popup -s medium -f -e "~/share/bin/wego {}"'.format(city),
     interval=900,
     colorize=True,
     color_icons=color_icon_values,
