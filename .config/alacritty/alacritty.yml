@@ -1,5 +1,6 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
+
 # Import additional configuration files
 #
 # Imports are loaded in order, skipping all missing files, with the importing
@@ -14,14 +15,14 @@ import:
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
+  TERM: xterm-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -719,6 +720,9 @@ font:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
+key_bindings:
+  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+
 #key_bindings:
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
