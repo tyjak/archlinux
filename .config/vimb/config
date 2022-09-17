@@ -40,7 +40,7 @@ nmap ,,f ::e! facebook()<CR>
 nmap ,,t ::sh sh -c '/usr/bin/madonctl --config /home/david/.config/madonctl/madonctl.yaml toot \$VIMB_TITLE \$VIMB_URI'<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
 nmap ,;a ::e! getArchive()<CR>
-nmap ,,e :shell! termite -e "vim $VIMB_URI"<CR>
+nmap ,,e :shell! alacritty -e vim $VIMB_URI<CR>
 
 nmap ,ll :tabopen http://labonneformation.pole-emploi.local<CR>
 nmap ;ll ::e! workUrlLbfToLocal()<CR>
