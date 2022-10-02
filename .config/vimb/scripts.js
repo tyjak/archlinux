@@ -5,7 +5,7 @@ var facebook=function(){location.href='http://www.facebook.com/sharer.php?src=bm
 // FIXME: try to run wallabag in with https
 var wallabag=function (){var d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location; try{ if(!b)throw(0);d.title='(Saving...) '+d.title;z.setAttribute('src','http//wallabag.creamy.local?url='+encodeURIComponent(l.href)); b.appendChild(z);}catch(e){alert('Please wait until the page has loaded.');}};
 
-var readlater=function (){instapaper(); wallabag();}
+var readlater=function (){wallabag();}
 
 var shaarli=function(){
     var url = location.href;
