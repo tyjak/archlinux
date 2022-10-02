@@ -1,7 +1,9 @@
 [Unit]
 Description=Music Player Daemon
 Documentation=man:mpd(1) man:mpd.conf(5)
-After=network.target sound.target openvpn-client@creamy.service
+After=network.target sound.target creamy-music.mount
+#RequiresMountsFor=/creamy/music/ -> not working
+# TOFIX -> mpd never start now
 
 [Service]
 Type=notify

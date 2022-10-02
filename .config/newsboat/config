@@ -8,8 +8,8 @@
 color background          yellow    default
 color listnormal          yellow    default
 color listfocus           yellow    black     bold
-color listnormal_unread   blue      default
-color listfocus_unread    blue      black     bold
+color listnormal_unread   color14      default
+color listfocus_unread    color7      black     bold
 color info                white     green     bold
 color article             default   default
 
@@ -26,7 +26,7 @@ bind-key SPACE toggle-show-read-feeds
 bind-key ENTER open-in-browser-and-mark-read articlelist
 
 # highlights
-highlight article "^(Title|Titre)\\ ?:.*$" yellow default
+highlight article "^(Title|Titre)\\ ?:.*$" yellow default bold
 highlight article "https?://[^ ]+" color14 default
 highlight article "\\[image\\ [0-9]+\\]" color14 default
 # more on solarized: http://ethanschoonover.com/solarized
@@ -43,5 +43,7 @@ macro e set browser "echo %u >> ~/.config/vimb/queue" ; open-in-browser ; set br
 #macro u source "~/.config/newsboat/config" #TOFIX
 #macro y set browser "mpv %u"; open-in-browser ; set browser "xdg-open %u"
 
+refresh-on-startup  yes
 auto-reload yes
 reload-time 60
+notify-xterm yes
