@@ -233,3 +233,13 @@
     set_transient = false
     set_stack_tag = private-synchronous
     timeout = 10
+[sound]
+    category = sound
+    alignment = center
+    format = "<span size='400%'>%s</span>"
+    background = "#00000011"
+    frame_color = "#00000011"
+    foreground = "#fdf6e3CC"
+    set_transient = no
+    set_stack_tag = private-synchronous
+    timeout = 2
