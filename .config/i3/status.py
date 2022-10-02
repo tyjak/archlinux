@@ -4,6 +4,7 @@ import logging
 import subprocess
 import os.path
 import re
+import time
 #import netifaces
 
 from i3pystatus import Status
@@ -36,28 +37,32 @@ status.register("anybar",
 # Tue 30 Jul 11:59:46 PM KW31
 #                          ^-- calendar week
 status.register("clock",
-            on_leftclick="[ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_cal' ) -eq 2 ] && termite --title scratchpad_cal -e 'pal -m' || i3-msg [title=scratchpad_cal] scratchpad show;",
+            on_leftclick="pal-i3",
             hints = {"separator": False, "separator_block_width": 4}
             )
 
 
 # Show sound
-status.register("pulseaudio",
+#status.register("pulseaudio",
+#        format="\U0001D160  {volume}",
+#        color_muted=red,
+#        on_leftclick="apptoggle pavucontrol"
+#        )
+
+status.register("alsa",
         format="\U0001D160  {volume}",
         color_muted=red,
         on_leftclick="apptoggle pavucontrol"
         )
 
-#status.register("alsa",
-#        format="\U0001D160  {volume}",
-#        color_muted=red,
-#        on_leftclick="pavucontrol"
-#        )
-
 def gpodder_perc(text):
-    line = text.split("\n")[-1].strip()
-    if(re.match('^ANS_PERCENT_POSITION', line)):
-        return re.sub(r'ANS_PERCENT_POSITION=([0-9]+)',r'podcast: \1%',line)
+    lines = text.split("\n")[-2:]
+    if(re.match('^ANS_', lines[0])):
+        length = float(re.sub(r'^ANS_LENGTH=([0-9]+)',r'\1',list(filter(lambda v: re.match(r'^ANS_LENGTH=',v), lines))[0]))
+        pos = float(re.sub(r'^ANS_TIME_POSITION=([0-9]+)',r'\1',list(filter(lambda v: re.match(r'^ANS_TIME_POSITION=',v), lines))[0]))
+        time_format = ["%M:%S","%H:%M:%S"]
+        last_time = length - pos 
+        return 'podcast: -'+time.strftime(time_format[last_time>3600], time.gmtime(last_time))
     else:
         return ''
 
@@ -87,10 +92,10 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
 
 # Show count updates available
 status.register("updates",
-        backends = [yay.Yay(False)],
+        backends = [yay.Yay(False), pacman.Pacman()],
         format = "\uf323 {count}",
         format_working = "\uf323",
-        on_rightclick = 'popup -d -s medium -f -e "yay -Syu && echo \"Done.\""',
+        on_rightclick = 'yay-i3',
         color = red,
         color_working = "#FF8800"
         )
@@ -185,7 +190,7 @@ status.register("mem",
 
 status.register("disk",
     path="/",
-    on_leftclick="popup -S -s medium -e 'ncdu / --exclude=/tmp --exclude=/creamy --exclude=/home/david/photos --exclude=/home/david/pCloudDrive --exclude=/run/media'",
+    on_leftclick="ncdu-i3",
     #format="{used}/{total}G [{avail}G]",)
     format="{avail}G",)
 
@@ -214,7 +219,7 @@ status.register("weather",
     color_icons=color_icon_values,
     format="{icon} {current_temp}°C {wind_speed}kph",
     #format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
-    on_leftclick="popup -e wego",
+    on_leftclick="popup -s 878x618 -f wego",
     hints={'markup': 'pango'},
     log_level=logging.DEBUG,
     backend=weathercom.Weathercom(
