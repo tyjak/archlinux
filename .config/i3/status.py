@@ -24,14 +24,30 @@ grey="#93a1a1"
 
 #show a dot
 status.register("anybar",
-            hints = {"min_width": 12}
+            hints = {"min_width": 12},
+            on_leftclick="infonotif creamy up state"
         )
 
 # covid19 R0
 status.register("anybar",
             port=1837,
-            hints = {"separator": False, "separator_block_width": 4}
+            hints = {"separator": False, "separator_block_width": 4},
+            on_leftclick="infonotif R0 covid19"
         )
+
+
+# FIXME: error "IndexError: list index out of range" when ping ok...
+status.register(
+    "ping",
+    format="\uf0ec",
+    interval=1,
+    color="#00FF00",
+    color_disabled="#949494",
+    format_down="\uf0ec",
+    host="1.1.1.1",
+    hints={'separator':False, 'separator_block_width':10}
+)
+
 
 # Displays clock like this:
 # Tue 30 Jul 11:59:46 PM KW31
