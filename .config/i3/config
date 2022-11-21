@@ -216,6 +216,7 @@ bar {
   position top
   #separator_symbol "┃"
   separator_symbol "│"
+  strip_workspace_numbers yes
   colors {
     separator #586e75
     background #002b36
@@ -226,8 +227,6 @@ bar {
     urgent_workspace #d33682 #d33682 #fdf6e3
     binding_mode #d33682 #d33682 #fdf6e3 
     }
-  #separator_symbol " "
-  strip_workspace_numbers yes
 }
 
 hide_edge_borders both
@@ -486,6 +485,7 @@ set $ws_wiki -H 740 -W 670
 #TODO test if only class is sufficient (delete title option)
 bindsym $capsLock+w exec popup -h -t vimwiki $ws_wiki vim -c VimwikiIndex;
 bindsym $capsLock+t exec popup -h -c work -t pevimwiki $ws_wiki vim share/vimwiki_boulot/index.wiki;
+bindsym $capsLock+Shift+t exec task-i3
 bindsym $capsLock+i exec popup -h -c perso -t persovimwiki $ws_wiki vim share/vimwiki_perso/index.wiki;
 bindsym $capsLock+v exec popup -h -c vimconf -t vimconf $ws_wiki vim .vim/config;
 #bindsym $capsLock+c exec [ $(pgrep -f '[/]usr/bin/franz-bin') ] && /usr/bin/franz-bin || i2-msg [title=Franz] scratchpad show;
