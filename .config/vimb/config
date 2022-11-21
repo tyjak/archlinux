@@ -11,12 +11,13 @@ set x-hint-command=:sh! stig -T add <C-R>;
 nmap D :q<CR>
 nmap H <C-O>
 nmap L <C-I>
-shortcut-default s
+shortcut-default t
 shortcut-add g=https://google.com/?q=$0
 shortcut-add G=https://duckduckgo.com/?q=!gifl%20$0
 shortcut-add !=https://duckduckgo.com/?q=!$0
 shortcut-add l=https://search.lilo.org/?q=$0
-shortcut-add s=https://www.startpage.com/do/dsearch?prfe=580d26faf842612dc32fa68dc8e0f85676104ed4455d50c1c041b7e38ffb8121c7b5d36a16c7508cfb7304850664746a6b40b9bbcb364d3360f2741485433575583ac26c4da09b8c32b2a84fbcf3fb&query=$0
+shortcut-add s=https://www.startpage.com/do/mypage.pl?prfe=580d26faf842612dc32fa68dc8e0f85676104ed4455d50c1c041b7e38ffb8121c7b5d36a16c7508cfb7304850664746a6b40b9bbcb364d3360f2741485433575583ac26c4da09b8c32b2a84fbcf3fb&query=$0
+shortcut-add t=https://search.tyjak.net/search?q=$0
 shortcut-add a=https://duckduckgo.com/?q=!gifl%20ansible+$0
 set strict-ssl=false
 
