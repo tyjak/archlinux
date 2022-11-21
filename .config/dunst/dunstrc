@@ -123,7 +123,7 @@
     startup_notification = false
 
     # dmenu path
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/dmenu -p dunst
 
     # browser for opening urls in context menu
     browser = /usr/bin/vimb
@@ -232,6 +232,12 @@
     foreground = "#fdf6e3"
     set_transient = false
     set_stack_tag = private-synchronous
+    timeout = 10
+[notifinfo]
+    appname = notifinfo 
+    background = "#586e75"
+    foreground = "#fdf6e3"
+    set_transient = false
     timeout = 10
 [sound]
     category = sound
