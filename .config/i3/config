@@ -1,8 +1,8 @@
 # app to start on launch i3
-exec_always compton -f
+exec_always picom -f
 
 # start a concole if not starting
-exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite --title terminal
+exec [ $(pgrep -f '[a]lacritty --title terminal) ] && alacritty --title terminal
 
 set $home /home/david
 
@@ -54,9 +54,10 @@ bindsym $mod+n [con_mark="working"] focus
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -i -nb '#859900' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36
 bindsym $mod+c exec clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36
-bindsym $mod+x exec "DMENU_HEIGHT=36 passdmenu -G -x s -P --type -r -D ~/share/bin/mypassdmenu"
+bindsym $mod+x exec "DMENU_HEIGHT=36 passdmenu -G -x s -P --type -D ~/share/bin/mypassdmenu"
 #bindsym $mod+x exec PASSWORD_STORE_X_SELECTION=secondary passmenu -i -nb '#002b24' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 36 && xsel -o -s | xdotool type --file -
 bindsym $mod+Shift+x exec "DMENU_HEIGHT=36 passdmenu -G -u -x p,s -P --type -r -D ~/share/bin/mypassdmenu"
+bindsym $mod+$capsLock+x exec dmenu-pass-notify cb
 bindsym $mod+s exec quickswitch -w -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
 bindsym $mod+Shift+s exec quickswitch -w -j -f -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
 bindsym $capsLock+Tab exec quickswitch -s -d "dmenu -l 10 -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
@@ -151,23 +152,24 @@ set $menu5 5:
 set $menu6 6:<span font=\"icomoon 13\"></span>
 set $menu7 7:
 set $menu8 8:
+set $menu9 9: ssh
 set $menu10 10: PE
 
 
 # switch to workspace
-bindsym $mod+1 workspace $menu1; exec [ $( ps -eo cmd | grep -c '[t]ermite --title terminal' ) -eq 2 ] && termite --title terminal; move workspace to output $screen1
-bindsym $mod+2 workspace $menu2; mark web; exec [ $(ps h -C vimb -o args | grep "^/usr/bin/vimb$" | wc -l) = 0 ] && vimb; move workspace to output $screen2
-bindsym $mod+3 workspace $menu3; exec [ $( ps -eo cmd | grep -c '[t]ermite --title uvim -e vim' ) -eq 2 ] && termite --title uvim -e vim
+bindsym $mod+1 workspace $menu1; exec pgrep -f "^alacritty --title terminal" >/dev/null || alacritty --title terminal
+bindsym $mod+2 workspace $menu2; mark web; exec pgrep -f "vimb" >/dev/null || /usr/bin/vimb; move workspace to output $screen2
+bindsym $mod+3 workspace $menu3; exec pgrep -f "^alacritty --title uvim -e vim" >/dev/null || alacritty --title uvim -e vim
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
-bindsym $mod+4 workspace $menu4; exec [ $( ps -eo cmd | grep -c '[t]ermite --title mail-gmail' ) -eq 2 ] && termite --title mail-gmail -e /usr/bin/mutt -e "source ~/.mutt/gmail.com"
-bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '^/usr/lib/brave-bin/brave' ) -eq 0 ] && /usr/bin/brave; move workspace to output $screen2
+bindsym $mod+4 workspace $menu4; exec pgrep -f '^alacritty --title mail-gmail' >/dev/null || alacritty --title mail-gmail -e /usr/bin/mutt -e "source ~/.mutt/gmail.com"
+bindsym $mod+5 workspace $menu5; exec pgrep -f '^/opt/brave-bin/brave' >/dev/null || /usr/bin/brave; move workspace to output $screen2
 bindsym $mod+6 workspace $menu6; exec ~/share/bin/i3/firefox
 bindsym $mod+7 workspace $menu7; exec ~/share/bin/i3/photos
 #bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttperso' ) -eq 2 ] && termite --title muttperso -e '/usr/bin/mutt -e "source ~/.mutt/newmanity.com"'
 #bindsym $mod+6 workspace $menu6; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttjit' ) -eq 2 ] && termite --title muttjit -e '/usr/bin/mutt -e "source ~/.mutt/jobintree.com"'
 #bindsym $mod+7 workspace $menu7; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+9 workspace $menu9
 bindsym $mod+0 workspace $menu10; exec [ $( ps -eo cmd | grep -c '^/usr/bin/evolution' ) -eq 0 ] && /usr/bin/evolution; move workspace to output $screen2
 
 # move focused container to workspace
@@ -179,8 +181,8 @@ bindsym $mod+Shift+5 move container to workspace $menu5
 bindsym $mod+Shift+6 move container to workspace $menu6
 bindsym $mod+Shift+7 move container to workspace $menu7
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+9 move container to workspace $menu9
+bindsym $mod+Shift+0 move container to workspace $menu10
 
 
 # TODO: verify precedence with /etc/acpi/handler.sh
@@ -232,9 +234,9 @@ for_window [class="_popup-notitle"] border pixel 1, floating enable
 for_window [class="_popup"] floating enable
 
 #large, small and large borderless window popup
-set $float_largeW_app Gpodder|Mpsyt|Modem-manager-gui|Nm-connection-editor|Mattermost|YouTube Music|Teams|webapp-*
+set $float_largeW_app Gpodder|Mpsyt|Modem-manager-gui|Nm-connection-editor|Mattermost|YouTube Music|teams-for-linux|webapp-*
 set $float_smallW_app Pavucontrol|Blueberry.py|Pick-colour-picker
-set $float_borderless_app Sxiv|Mattermost|YouTube Music
+set $float_borderless_app Sxiv|Mattermost|YouTube Music|teams-for-linux
 for_window [class="$float_largeW_app"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
 
 #small window with no title bar (keep it small)
@@ -244,6 +246,13 @@ for_window [class="$float_borderless_app"]  floating enable, move position cente
 # no title
 set $no_border no_border|uvim|Urxvt|Termite|Gvim
 for_window [class="$no_border"] border pixel 1
+
+# scratchpad application
+set $scratchpad_app teams-for-linux|Mattermost
+for_window [class="$scratchpad_app"] move scratchpad, scratchpad show, move position center
+
+# marked window
+for_window [con_mark="ssh"] move container to workspace $menu9
 
 # applications
 for_window [title="filemanager"] border pixel 1, layout tabbed
@@ -256,7 +265,7 @@ for_window [class="termite_dict"] floating enable, move position center, border 
 for_window [title="david_adsnovo - Skype*"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
 for_window [title="Liste de contacts"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
 for_window [class="Cawbird"] resize set width 640 px;
-for_window [title="^ [^ ]+$"] move --no-auto-back-and-forth container to workspace $menu1, focus
+for_window [title="^ [^ ]+$"] move --no-auto-back-and-forth container to workspace $menu9, focus
 for_window [title="N26"] sticky enable, border pixel 1, move scratchpad, resize set 500 820, scratchpad show, move position center;
 #for_window [class="Slack"] sticky enable, border pixel 1, move scratchpad, resize set $wfL_width $wfL_height, scratchpad show;
 #for_window [class="Teams"] sticky enable, border pixel 1, move scratchpad, resize set $wfL_width $wfL_height, scratchpad show;
@@ -281,8 +290,8 @@ assign [class="Shotwell"] $menu7
 assign [class="Evolution"] $menu10
 assign [class="trefle"] trèfle
 for_window [class="trefle"] output $screen1
-#assign [class="Vimb"] $menu2
-#for_window [class="Vimb"] layout tabbed; focus
+assign [class="Vimb" con_mark="(?!(mamot|simplyread))"] $menu2
+for_window [class="Vimb" con_mark="(?!(mamot|simplyread))"] layout tabbed; focus
 #assign [class="Urxvt"] terminal
 #for_window [class="Urxvt"] layout splith; focus
 
@@ -320,25 +329,30 @@ mode "$i3ctl" {
 }
 
 # resize mod window $mod+r (you can also use the mouse for that)
-bindsym $mod+r mode "resize / move / [s]ticky / [bB]order / [c]enter / [f]loat right corner"
-mode "resize / move / [s]ticky / [bB]order / [c]enter / [f]loat right corner" {
+set $ResizeWin move / resize /  [s]ticky / [bB]order / [c]enter / [f]loat right corner
+bindsym $mod+r mode "$ResizeWin"
+mode "$ResizeWin" {
 
-    bindsym h resize grow width 10 px or 10 ppt
-    bindsym j resize grow height 10 px or 10 ppt
-    bindsym k resize shrink height 10 px or 10 ppt
-    bindsym l resize shrink width 10 px or 10 ppt
+    bindsym Shift + h resize grow width 10 px or 10 ppt
+    bindsym Shift + j resize grow height 10 px or 10 ppt
+    bindsym Shift + k resize shrink height 10 px or 10 ppt
+    bindsym Shift + l resize shrink width 10 px or 10 ppt
     bindsym s sticky toggle, mode "default"
-    bindsym B border pixel 1, mode "default"
+    bindsym Shift + b border pixel 1, mode "default"
     bindsym b border normal, mode "default"
     bindsym f border pixel 1, sticky enable, exec python3 -m i3grid snap --target 9 --rows 3 --cols 3, mode "default"
     #bindsym f floating enable, resize set $wfM_width $wfM_height, border pixel 1, sticky enable, mode "default"
     bindsym c move position center, mode "default"
 
     # same bindings, but for the arrow keys
-    bindsym Left move left 10 px
-    bindsym Down move down 10 px
-    bindsym Up move up 10 px
-    bindsym Right move right 10 px
+    bindsym h move left 20 px
+    bindsym j move down 20 px
+    bindsym k move up 20 px
+    bindsym l move right 20 px
+    #bindsym Right move right 10 px
+    #bindsym Up move up 10 px
+    #bindsym Down move down 10 px
+    #bindsym Left move left 10 px
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -347,18 +361,18 @@ mode "resize / move / [s]ticky / [bB]order / [c]enter / [f]loat right corner" {
 
 # Press $mod+o followed by either f, t, Esc or Return to launch firefox,
 #  etc ... or return to the default mode, respectively.
-set $mode_launcher Launch: [f]irefox [t]rello [s]lack [m]attermost [r]emmina [w]ork-env [W]riter
+set $mode_launcher Launch: [b]rave [f]irefox [t]eams [m]attermost [r]emmina [w]ork-env [W]riter
 bindsym $mod+p mode "$mode_launcher"
 
 mode "$mode_launcher" {
 
+    bindsym b exec brave, mode "default"
     bindsym f exec firefox, mode "default"
-    bindsym t exec trello, mode "default"
-    bindsym s exec slack, mode "default"
+    bindsym t exec teams-for-linux, mode "default"
     bindsym m exec mattermost-desktop, mode "default"
     bindsym r exec remmina, mode "default"
     bindsym w exec work-env, mode "default"
-    bindsym W exec writer, mode "default"
+    bindsym Shift + w exec writer, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -444,6 +458,25 @@ mode "$mode_player" {
     bindsym Escape mode "default"
 }
 
+# on/off hardware (wifi, ethernet, 3G,)
+set $mode_killswitch switch: [M]odem OFF [m]odem ON [W]ifi OFF [w]iffi ON [B]luetooth OFF [b]luetooth ON
+bindsym XF86WLAN mode "$mode_killswitch"
+
+mode "$mode_killswitch" {
+
+    bindsym Shift+m exec zsh -i -c 'rfkill block wwan', mode "default"
+    bindsym m exec zsh -i -c 'rfkill unblock wwan', mode "default"
+    bindsym Shift+w exec zsh -i -c 'rfkill block wwan', mode "default"
+    bindsym w exec zsh -i -c 'rfkill unblock wan', mode "default"
+    bindsym Shift+w exec zsh -i -c 'rfkill block wlan', mode "default"
+    bindsym w exec zsh -i -c 'rfkill unblock wlan', mode "default"
+    bindsym Shift+b exec zsh -i -c 'rfkill block bluetooth', mode "default"
+    bindsym b exec zsh -i -c 'rfkill unblock bluetooth', mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
 bindsym $capsLock+t exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_pevimwiki' ) -eq 2 ] && (termite --title scratchpad_pevimwiki -e vim ~/share/vimwiki_boulot/index.wiki) || i3-msg [title=scratchpad_pevimwiki] scratchpad show;
 bindsym $capsLock+Shift+t exec task-i3
 bindsym $capsLock+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && (termite --title scratchpad_vimwiki -e vim -c VimwikiIndex) || i3-msg [title=scratchpad_vimwiki] scratchpad show;
@@ -458,8 +491,8 @@ bindsym $capsLock+Shift+p exec [ -z $( ps h -C gpodder -o comm=Command ) ] && gp
 bindsym $capsLock+r exec popup -h -t radio pyradio
 bindsym $capsLock+e exec popup -t cal pal -m
 bindsym $capsLock+n exec i3-msg '[class="VirtualBox Machine"] scratchpad show' && i3-msg '[class="VirtualBox Machine"] fullscreen enable';
-bindsym $capsLock+s exec i3-msg '[class="Mattermost"] scratchpad show' && i3-msg '[class="Mattermost"] move position center';
-bindsym $capsLock+Shift+s exec i3-msg '[class="Teams"] scratchpad show' && i3-msg '[class="Teams"] move position center';
+bindsym $capsLock+s exec [ $(pgrep -f "mattermost-desktop") ] && mattermost-desktop || (i3-msg '[class="Mattermost"] scratchpad show' && i3-msg '[class="Mattermost"] move position center');
+bindsym $capsLock+Shift+s exec [ $(pgrep -f "teams-for-linux") ] && (teams-for-linux  --enableDesktopNotificationsHack) || (i3-msg '[class="teams-for-linux"] scratchpad show' && i3-msg '[class="teams-for-linux"] move position center');
 bindsym $capsLock+q exec qrcode
 #bindsym $capsLock+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg kill;
 #bindsym $capsLock+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim -c VimwikiDiaryIndex' || i3-msg kill;
@@ -469,6 +502,8 @@ bindsym $capsLock+q exec qrcode
 
 # Enable/disable logging
 #bindsym $mod+x shmlog toggle
+
+bindsym XF86Favorites exec dunstctl history-pop
 
 # Screensaver
 exec xautolock -detectsleep \

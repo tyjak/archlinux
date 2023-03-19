@@ -14,6 +14,9 @@ bind status D !git clean -i
 #fine grained staging
 bind status I !git add -p %(file)
 
+#fine grained staging
+bind status P !git push
+
 #rebase from current commit
 bind main R !git rebase -i %(commit)~
 

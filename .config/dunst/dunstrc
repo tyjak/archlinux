@@ -60,7 +60,7 @@
     # geometry = "300x10-0+22"
     width = 250
     height = 300
-    offset = 0x22
+    offset = 0x24
     notification_limit=6
 
     #shrink = true
@@ -128,11 +128,6 @@
     # browser for opening urls in context menu
     browser = /usr/bin/vimb
 
-[frame]
-    width = 1
-    color = "#eee8d5"
-
-[shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key
     # available modifiers are 'ctrl', 'mod1' (the alt-key), 'mod2', 'mod3'
     # and 'mod4' (windows-key)
@@ -150,6 +145,10 @@
 
     # context menu
     context = ctrl+shift+period
+
+    frame_color = "#fdf6e3"
+    frame_width = 2
+
 
 [urgency_low]
     background = "#6c71c4"
@@ -218,6 +217,13 @@
 #    summary = *twitter.com*
 #    urgency = normal
 #
+[teams]
+    appname = teams-for-linux
+    timeout = 20
+[cb]
+    appname = cb
+    urgency = low
+    history_ignore = true
 [funst]
     appname = funst
     background = "#586e75CC"

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 # import logging
-import re
 import subprocess
 import os.path
+import re
+import time
 
 from i3pystatus import Status
 from i3pystatus.weather import weathercom
@@ -69,9 +70,13 @@ status.register("shell",
        )
 
 def gpodder_perc(text):
-    line = text.split("\n")[-1].strip()
-    if(re.match('^ANS_PERCENT_POSITION', line)):
-        return re.sub(r'ANS_PERCENT_POSITION=([0-9]+)',r'podcast: \1%',line)
+    lines = text.split("\n")[-2:]
+    if(re.match('^ANS_', lines[0])):
+        length = float(re.sub(r'^ANS_LENGTH=([0-9]+)',r'\1',list(filter(lambda v: re.match(r'^ANS_LENGTH=',v), lines))[0]))
+        pos = float(re.sub(r'^ANS_TIME_POSITION=([0-9]+)',r'\1',list(filter(lambda v: re.match(r'^ANS_TIME_POSITION=',v), lines))[0]))
+        time_format = ["%M:%S","%H:%M:%S"]
+        last_time = length - pos 
+        return 'podcast: -'+time.strftime(time_format[last_time>3600], time.gmtime(last_time))
     else:
         return ''
 
@@ -185,6 +190,34 @@ status.register(
         # log_level=logging.DEBUG,
     ),
 )
+
+# modem_icon = [
+#     '',
+#     '\uf8a3',
+#     '\uf8a6',
+#     '\uf8a9',
+#     '\uf8ac'
+# ]
+status.register("shell",
+    command="modem-signal-huewai",
+    on_leftclick="vimb http//192.168.8.1",
+    ignore_empty_stdout=True,
+    format="{output}"
+)
+
+status.register("taskwarrior",
+    urgent_filter="context:work +DUE",
+    format="{urgent}"
+
+)
+
+# status.register("shell",
+#     command="watchprice https://certideal.com/iphone-12-mini/iphone-12-mini-128-go-bleu-6219 '//*[@id=\"product-state-switch\"]/div[2]/div/a/div/div/p[1]'",
+#     on_leftclick="vimb https://certideal.com/iphone-12-mini/iphone-12-mini-128-go-bleu-6219",
+#     ignore_empty_stdout=True,
+#     format="{output}",
+#     interval=3600
+#        )
 
 #status.register(
 #    "pomodoro",

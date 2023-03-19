@@ -1,4 +1,5 @@
 set hint-keys=hjkl
+set hint-match-element=false
 set caret=true
 set input-autohide=true
 set download-path=~/downloads/
@@ -10,12 +11,14 @@ set editor-command=termite -e "vim %s"
 nmap D :q<CR>
 nmap H <C-O>
 nmap L <C-I>
+nmap <C-T> ::tabopen<CR>
 shortcut-default s
 shortcut-add g=https://google.com/?q=$0
 shortcut-add G=https://duckduckgo.com/?q=!gifl%20$0
 shortcut-add !=https://duckduckgo.com/?q=!$0
 shortcut-add l=https://search.lilo.org/?q=$0
-shortcut-add s=https://www.startpage.com/do/dsearch?query=$0
+#shortcut-add s=https://www.startpage.com/do/debsearch?prfe=b445f5ab04484d1626ac2a9d8e4d34909e7239f90246f7dd3086a02d1a4c8115b35d8910c8804f420e05d8e6c5e4ab9c3465be3f0d8cae966165ee8f6eda9adc534da378da285c17abf9da3c88&query=$0
+shortcut-add s=https://search.tyjak.net/search?q=$0
 shortcut-add a=https://duckduckgo.com/?q=!gifl%20ansible+$0
 set strict-ssl=false
 
@@ -38,6 +41,7 @@ nmap ,,; ::sh! ~/share/bin/vimbmkpwd<CR>
 nmap ,,i ::e! instapaper()<CR>
 nmap ,,f ::e! facebook()<CR>
 nmap ,,t ::sh sh -c '/usr/bin/madonctl --config /home/david/.config/madonctl/madonctl.yaml toot \$VIMB_TITLE \$VIMB_URI'<CR>
+nmap ,,s ::sh sh -c '/home/david/share/bin/wallabag.sh \$VIMB_URI'<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
 nmap ,;a ::e! getArchive()<CR>
 nmap ,,e :shell! alacritty -e vim $VIMB_URI<CR>
