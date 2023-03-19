@@ -31,7 +31,7 @@ var tinytinyrss=function(){
 var archive=function(){location.href='https://archive.is/?run=1&url='+encodeURIComponent(window.location.href)+'&t='+encodeURIComponent(document.title)};
 var getArchive=function(){location.href='https://archive.is/'+window.location.href};
 
-var read=function(){simplyread();}
+//var read=function(){simplyread();}
 
 var trelloNumber=function(){var n=$(".card-label.mod-card-front"); n.css({"padding":"0 6px","height":"16px","line-height":"16px","text-align":"center"}); var o=$(".card-short-id");o.each(function(){$(this).text($(this).text().replace("#","").replace("#","").replace("N.%C2%BA ", ""))});o.hasClass("hide")?o.removeClass("hide").css({"font-weight":"bold","font-size":".8em","margin-right":"5px",padding:"2.3px 6px","background":"#d6daDC","border-radius":"10px","color":"#4D4D4D"}):o.addClass("hide")};
 

@@ -1,5 +1,5 @@
-set hint-keys=hjkl
-set hint-keys-same-length=on
+#set hint-keys=hjkl
+#set hint-keys-same-length=on
 set caret=true
 set input-autohide=true
 set download-path=~/downloads/
@@ -32,18 +32,19 @@ nmap ,,v ::sh! sh -c 'xsel -o -s | xargs xdotool type i'<CR>
 nmap ,,w :source ~/.config/vimb/config<CR>
 nmap ,,o :sh /bin/sh -c "zathura \"~/downloads/\$(ls -1 -t ~/downloads/ | head -1)\""<CR>
 nmap ,,D :sh /bin/sh -c "rm ~/downloads/\$(ls -1 -t ~/downloads/ | head -1)"<CR>
-nmap ,,r ::e! tinytinyrss()<CR>
 nmap ,;b :o ./.config/vimb/bookmark<CR>
 nmap ,,; <ESC>::sh! ~/share/bin/passgenvimb<CR>
 #imap ,,; <ESC>::sh! ~/share/bin/passgenvimb<CR>
+nmap ,,i <ESC>::sh! ~/share/bin/wallabag.sh $VIMB_URI<CR>
+nmap ,,e :shell! alacritty -e "vim $VIMB_URI"<CR>
 
-nmap ,,i ::e! readlater()<CR>
+#nmap ,,i ::e! readlater()<CR>
+nmap ,,r ::e! tinytinyrss()<CR>
 nmap ,,f ::e! facebook()<CR>
 nmap ,,t ::sh sh -c 'toot post "\$VIMB_TITLE \$VIMB_URI"'<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
 nmap ,,b ::e! shaarli()<CR>::bma shaarli<CR>
 nmap ,;a ::e! getArchive()<CR>
-nmap ,,e :shell! termite -e "vim $VIMB_URI"<CR>
 
 nmap ,ll :tabopen http://labonneformation.pole-emploi.local<CR>
 nmap ;ll ::e! workUrlLbfToLocal()<CR>

@@ -1,12 +1,14 @@
 [Unit]
 Description=anybar
+DefaultDependencies=no
+After=systemd-networkd-wait-online.service
 
 [Service]
 Environment="DISPLAY=:0"
-ExecStart=/bin/sh /home/%u/share/bin/uppingstatus.sh 63.250.56.118
+ExecStart=/bin/sh /home/%u/share/bin/upportstatus.sh vps.tyjak.net 22940
 Type=oneshot
-Requires=network-online.target
-After=network-online.target
 
 [Install]
-WantedBy=default.target
+WantedBy=network-online.target
+
+# see https://systemd.io/NETWORK_ONLINE/
