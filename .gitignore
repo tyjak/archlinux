@@ -43,3 +43,4 @@ Session.vim
 !.config/vimb/style.css
 !.config/vimb/standalone
 !.config/zathura/zathurarc
+!.config/kitty
