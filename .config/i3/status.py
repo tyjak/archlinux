@@ -63,8 +63,8 @@ status.register(
 )
 
 status.register("shell",
-    command="headset_battery_level barba",
-    on_leftclick="headset_quality_switch barba", #mic or not mic
+    command="headset_battery_level LE-barba",
+    on_leftclick="headset_quality_switch LE-barba", #mic or not mic
     ignore_empty_stdout=True,
     format="{output}"
        )
@@ -200,7 +200,7 @@ status.register(
 # ]
 status.register("shell",
     command="modem-signal-huewai",
-    on_leftclick="vimb http//192.168.8.1",
+    on_leftclick="vimb http://192.168.8.1",
     ignore_empty_stdout=True,
     format="{output}"
 )

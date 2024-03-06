@@ -4,8 +4,9 @@ set caret=true
 set input-autohide=true
 set download-path=~/downloads/
 set webinspector=true
-#set default-zoom=150
-set history-max-items=5000
+# set default-zoom=140
+# set font-size=16
+set history-max-items=10000
 set closed-max-items=20
 set editor-command=termite -e "vim %s"
 nmap D :q<CR>
@@ -40,7 +41,8 @@ nmap ,,; ::sh! ~/share/bin/vimbmkpwd<CR>
 
 nmap ,,i ::e! instapaper()<CR>
 nmap ,,f ::e! facebook()<CR>
-nmap ,,t ::sh sh -c '/usr/bin/madonctl --config /home/david/.config/madonctl/madonctl.yaml toot \$VIMB_TITLE \$VIMB_URI'<CR>
+nmap ,,t ::sh sh -c '/usr/bin/madonctl --config /home/david/.config/madonctl/madonctl.yaml toot \$VIMB_TITLE \$VIMB_SELECTION \$VIMB_URI'<CR>
+nmap ,,p ::sh sh -c '/home/david/share/bin/gmi-add-note "\$VIMB_TITLE" "\$VIMB_SELECTION" "\$VIMB_URI"'<CR>
 nmap ,,s ::sh sh -c '/home/david/share/bin/wallabag.sh \$VIMB_URI'<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
 nmap ,;a ::e! getArchive()<CR>
@@ -57,13 +59,15 @@ nmap ,tr :tabopen http://trefle.beta.pole-emploi.fr<CR>
 nmap ,tp :tabopen http://trefle.pole-emploi.fr<CR>
 nmap ,gw :tabopen https://wiki.beta.pole-emploi.fr<CR>
 
+nmap ,uu :set user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Safari/605.1.15 vimb/3.6.0<CR>
+nmap ,ub :set user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36<CR>
 
 nmap ,: :shell quickswitch -c Vimb -d "dmenu -l 20 -b -i -nb '#002b36' -nf '#839496' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 12"<CR>
 nmap ;: :shell ~/share/bin/i3/dmenu-webnav<CR>
 nmap <C-U> :sh! vimb_adblock<CR>
 
 #set proxy=true
-nmap ,,p :o http://config.privoxy.org/toggle<CR>
+# nmap ,,p :o http://config.privoxy.org/toggle<CR>
 
 # Map page zoom in normal mode to keys commonly used across applications
 # + (zoom in), - (zoom out), = (zoom reset)
@@ -71,13 +75,23 @@ nmap + zI
 nmap - zO
 nmap = zz
 
+augroup download
+    autocmd LoadStarting https://www.sncf-connect.com/* set download-path=~/share/documents/administratif/work/ce-remboursement/
+    autocmd LoadStarting https://*.epub set download-path=~/share/Books/
+    autocmd DownloadFinished set download-path= ~/Downloads 
+    autocmd DownloadFailed set download-path= ~/Downloads 
+augroup end
+augroup fixzoom
+    # autocmd LoadFinished * :normal zozzzIzIzI
+    nmap z= zozzzIzIzI
+augroup end
 augroup bookmark
     autocmd LoadFinished file:///*/bookmark e! bookmarkFileToHtml();
     autocmd LoadFinished file:///*/bookmark.d/* e! bookmarkFileToHtml();
 augroup end
 
 augroup linkfile
-    autocmd LoadStarted * shell sh -c "tail -100 ~/.config/vimb/history | uniq > ~/.config/vimb/historylast"
+    autocmd LoadStarted * shell sh -c "awk '!uniq[substr(\$0, 12, 8)]++' ~/.config/vimb/history | tail -100 > ~/.config/vimb/historylast"
     autocmd LoadFinished file:///*/closed e! linkFileToHtml('Derniers onglets ouverts');
     autocmd LoadFinished file:///*/historylast e! linkFileToHtml('Historique <a href="file:///home/david/.config/vimb/history">(voir tout l\'historique)</a>');
     autocmd LoadFinished file:///*/history e! linkFileToHtml('Historique');

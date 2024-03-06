@@ -2,7 +2,10 @@
 exec_always picom -f
 
 # start a concole if not starting
-exec [ $(pgrep -f '[a]lacritty --title terminal) ] && alacritty --title terminal
+exec pgrep -f "^alacritty --title terminal" >/dev/null || alacritty --title terminal
+
+# Start the daemon which listens to focus changes and sets _back mark
+exec --no-startup-id /usr/bin/i3-back
 
 set $home /home/david
 
@@ -39,6 +42,9 @@ font pango:MesloLGSDZ Nerd Font, icons, FontAwesome, Devicons, 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Bind a switch key, which focuses the previously focused window
+bindsym $capsLock+& [con_mark=_back] focus
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal;
 bindsym $mod+Shift+Return splith; exec i3-sensible-terminal;
@@ -46,10 +52,11 @@ bindsym $mod+Shift+Return splith; exec i3-sensible-terminal;
 # kill focused window
 bindsym $mod+Shift+q kill
 
+
 # mark current win
 bindsym $mod+Shift+n mark working
 # switch tp mark
-bindsym $mod+n [con_mark="working"] focus
+bindsym $mod+n [con_mark="working"] focus 
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -i -nb '#859900' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36
@@ -66,6 +73,7 @@ bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -
 bindsym $mod+y exec dmenu-webnav
 bindsym $mod+i exec dmenu-ssh
 bindsym $mod+Shift+i exec work-file
+bindsym $mod+Shift+f exec filemanager
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -148,29 +156,29 @@ set $menu1 1: terminal
 set $menu2 2: web
 set $menu3 3:
 set $menu4 4: gmail
-set $menu5 5:
-set $menu6 6:<span font=\"icomoon 13\"></span>
+set $menu5 5:<span font=\"icomoon 13\"></span>
+set $menu6 6:
 set $menu7 7:
-set $menu8 8:
+set $menu8 8:vmware
 set $menu9 9: ssh
 set $menu10 10: PE
 
 
 # switch to workspace
 bindsym $mod+1 workspace $menu1; exec pgrep -f "^alacritty --title terminal" >/dev/null || alacritty --title terminal
-bindsym $mod+2 workspace $menu2; mark web; exec pgrep -f "vimb" >/dev/null || /usr/bin/vimb; move workspace to output $screen2
+bindsym $mod+2 workspace $menu2; exec pgrep -f "^/usr/bin/vimb" >/dev/null || /usr/bin/vimb;  move workspace to output $screen2
 bindsym $mod+3 workspace $menu3; exec pgrep -f "^alacritty --title uvim -e vim" >/dev/null || alacritty --title uvim -e vim
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+4 workspace $menu4; exec pgrep -f '^alacritty --title mail-gmail' >/dev/null || alacritty --title mail-gmail -e /usr/bin/mutt -e "source ~/.mutt/gmail.com"
-bindsym $mod+5 workspace $menu5; exec pgrep -f '^/opt/brave-bin/brave' >/dev/null || /usr/bin/brave; move workspace to output $screen2
-bindsym $mod+6 workspace $menu6; exec ~/share/bin/i3/firefox
+bindsym $mod+5 workspace $menu5; exec ~/share/bin/i3/firefox; move workspace to output $screen2
+bindsym $mod+6 workspace $menu6; exec pgrep -f '^/opt/brave-bin/brave' >/dev/null || /usr/bin/brave; move workspace to output $screen2
 bindsym $mod+7 workspace $menu7; exec ~/share/bin/i3/photos
 #bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttperso' ) -eq 2 ] && termite --title muttperso -e '/usr/bin/mutt -e "source ~/.mutt/newmanity.com"'
 #bindsym $mod+6 workspace $menu6; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttjit' ) -eq 2 ] && termite --title muttjit -e '/usr/bin/mutt -e "source ~/.mutt/jobintree.com"'
 #bindsym $mod+7 workspace $menu7; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
-bindsym $mod+8 workspace 8
+bindsym $mod+8 workspace $menu8; exec pgrep -f '/usr/bin/vmware-view' >/dev/null || alacritty --title -e USER=david /usr/bin/vmware-view
 bindsym $mod+9 workspace $menu9
-bindsym $mod+0 workspace $menu10; exec [ $( ps -eo cmd | grep -c '^/usr/bin/evolution' ) -eq 0 ] && /usr/bin/evolution; move workspace to output $screen2
+bindsym $mod+0 workspace $menu10; exec pgrep -f "^peoutlook" >/dev/null || ~/share/bin/i3/peoutlook; move workspace to output $screen2
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $menu1
@@ -180,7 +188,7 @@ bindsym $mod+Shift+4 move container to workspace $menu4
 bindsym $mod+Shift+5 move container to workspace $menu5
 bindsym $mod+Shift+6 move container to workspace $menu6
 bindsym $mod+Shift+7 move container to workspace $menu7
-bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+8 move container to workspace $menu8
 bindsym $mod+Shift+9 move container to workspace $menu9
 bindsym $mod+Shift+0 move container to workspace $menu10
 
@@ -200,7 +208,7 @@ bindsym XF86AudioPause exec xf86audio toggle
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  #font pango:FuraCode Nerd Font, 10
+  # font pango:FuraCode Nerd Font, 10
   font pango:Meslo LG S DZ, forkawesome, icomoon,  10
   status_command python ~/.config/i3/status.py
     position top
@@ -213,9 +221,9 @@ bar {
     inactive_workspace #073642 #eee8d5 #002b36
     urgent_workspace #d33682 #d33682 #fdf6e3
   }
-  #separator_symbol " "
   strip_workspace_numbers yes
   tray_output primary
+  # separator_symbol " "
 }
 
 hide_edge_borders both
@@ -244,7 +252,7 @@ for_window [class="$float_smallW_app"] floating enable, resize set $wfM_width $w
 for_window [class="$float_borderless_app"]  floating enable, move position center, border pixel 1, sticky enable
 
 # no title
-set $no_border no_border|uvim|Urxvt|Termite|Gvim
+set $no_border no_border|uvim|Urxvt|Termite|Gvim|Alacritty
 for_window [class="$no_border"] border pixel 1
 
 # scratchpad application
@@ -276,24 +284,28 @@ for_window [class="Evolution-alarm-notify"] sticky enable, floating enable, bord
 #for_window [class="Vimb"] border pixel 1
 #for_window [title="vim"] title_format "<span font='devicons'> </span>%title"
 
-#second screen
-for_window [class="Caprine|Evolution|Brave-browser"] output $screen2
-
 # assign app to dedicated workspace
 assign [title="uvim"] $menu3
 assign [class="(pinta|Inkscape)"] graphic
 for_window [class="(pinta|Inkscape)"] focus
 assign [class="Pidgin"] pidgin
 for_window [class="Pidgin"] focus
-assign [class="Brave-browser"] $menu5
+assign [class="Navigator"] $menu5
+assign [class="Brave-browser"] $menu6
+for_window [class="(Brave-browser|firefox)"] border pixel 1
 assign [class="Shotwell"] $menu7
 assign [class="Evolution"] $menu10
 assign [class="trefle"] trèfle
+assign [class="Vmware-view"] $menu8
 for_window [class="trefle"] output $screen1
 assign [class="Vimb" con_mark="(?!(mamot|simplyread))"] $menu2
 for_window [class="Vimb" con_mark="(?!(mamot|simplyread))"] layout tabbed; focus
 #assign [class="Urxvt"] terminal
 #for_window [class="Urxvt"] layout splith; focus
+
+#second screen
+for_window [class="Caprine|Evolution|Brave-browser|Navigator"] output $screen2
+
 
 #vimb with title starting by "scratchpad_" are moved to the scratch pad and show
 #for_window [title="scratchpad_*"] sticky enable, border pixel 1;
@@ -329,7 +341,7 @@ mode "$i3ctl" {
 }
 
 # resize mod window $mod+r (you can also use the mouse for that)
-set $ResizeWin move / resize /  [s]ticky / [bB]order / [c]enter / [f]loat right corner
+set $ResizeWin move / resize /  [s]ticky / [bB]order / [c]enter / [f]loat right corner / [a]left corner / [z]right corner
 bindsym $mod+r mode "$ResizeWin"
 mode "$ResizeWin" {
 
@@ -341,6 +353,8 @@ mode "$ResizeWin" {
     bindsym Shift + b border pixel 1, mode "default"
     bindsym b border normal, mode "default"
     bindsym f border pixel 1, sticky enable, exec python3 -m i3grid snap --target 9 --rows 3 --cols 3, mode "default"
+    bindsym a border pixel 1, sticky enable, exec python3 -m i3grid snap --target 4 --rows 2 --cols 1, mode "default"
+    bindsym z border pixel 1, sticky enable, exec python3 -m i3grid snap --target 4 --rows 2 --cols 2, mode "default"
     #bindsym f floating enable, resize set $wfM_width $wfM_height, border pixel 1, sticky enable, mode "default"
     bindsym c move position center, mode "default"
 
@@ -380,7 +394,11 @@ mode "$mode_launcher" {
 
 # Press $mod+Shift+c s or f to take a screen shot
 set $mode_screenshot Screenshot [s]election [f]ullscreen
+set $screenshotCmdSel maim -s ~/Images/screenshot-$(date +%F-%H%M%S).png
+set $screenshotCmdFull maim ~/Images/screenshot-$(date +%F-%H%M%S).png
 bindsym $mod+Shift+c mode "$mode_screenshot"
+bindsym Print exec maim -s ~/Images/screenshot-$(date +%F-%H%M%S).png, mode "default"
+bindsym $mod+Print exec $screenshotCmdFull, mode "default"
 
 mode "$mode_screenshot" {
 
@@ -393,21 +411,21 @@ mode "$mode_screenshot" {
 }
 
 # file navigation with ranger
-set $mode_filemanager Goto [h]ome [d]ownloads [s]hare [D]esktop [w]ork
-bindsym $mod+Shift+f mode "$mode_filemanager"
+# set $mode_filemanager Goto [h]ome [d]ownloads [s]hare [D]esktop [w]ork
+# bindsym $mod+Shift+f mode "$mode_filemanager"
 
-mode "$mode_filemanager" {
-
-    bindsym h exec filemanager ~/., mode "default"
-    bindsym d exec filemanager ~/downloads, mode "default"
-    bindsym s exec filemanager ~/share, mode "default"
-    bindsym Shift+d exec filemanager ~/Desktop, mode "default"
-    bindsym w exec filemanager ~/WORK/pe, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+#mode "$mode_filemanager" {
+#
+#    bindsym h exec filemanager ~/., mode "default"
+#    bindsym d exec filemanager ~/downloads, mode "default"
+#    bindsym s exec filemanager ~/share, mode "default"
+#    bindsym Shift+d exec filemanager ~/Desktop, mode "default"
+#    bindsym w exec filemanager ~/WORK/pe, mode "default"
+#
+#    # back to normal: Enter or Escape
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
 
 #USB mount file
 set $mode_usbmount USB [m]ount or [u]mount
@@ -477,16 +495,16 @@ mode "$mode_killswitch" {
     bindsym Escape mode "default"
 }
 
-bindsym $capsLock+t exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_pevimwiki' ) -eq 2 ] && (termite --title scratchpad_pevimwiki -e vim ~/share/vimwiki_boulot/index.wiki) || i3-msg [title=scratchpad_pevimwiki] scratchpad show;
+bindsym $capsLock+t exec [ $( ps -eo cmd | grep -c '[a]lacritty -T scratchpad_pevimwiki' ) -eq 2 ] && (alacritty -T scratchpad_pevimwiki -e vim ~/share/vimwiki_boulot/index.wiki) || i3-msg [title=scratchpad_pevimwiki] scratchpad show;
 bindsym $capsLock+Shift+t exec task-i3
-bindsym $capsLock+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && (termite --title scratchpad_vimwiki -e vim -c VimwikiIndex) || i3-msg [title=scratchpad_vimwiki] scratchpad show;
-bindsym $capsLock+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && (termite --title scratchpad_vimdiary -e vim -c VimwikiDiaryIndex) || i3-msg [title=scratchpad_vimdiary] scratchpad show;
-bindsym $capsLock+v exec [ $( ps -eo cmd | grep -c '[t]ermite --class scratchpad --title scratchpad_vimb' ) -eq 2 ] && (termite --class scratchpad --title scratchpad_vimb -e vim .config/vimb/config) || i3-msg [title=scratchpad_vimb] scratchpad show;
+bindsym $capsLock+w exec [ $( ps -eo cmd | grep -c '[a]lacritty -T scratchpad_vimwiki ' ) -eq 2 ] && (alacritty -T scratchpad_vimwiki -e vim -c VimwikiIndex) || i3-msg [title=scratchpad_vimwiki] scratchpad show;
+bindsym $capsLock+i exec [ $( ps -eo cmd | grep -c '[a]lacritty -T scratchpad_vimdiary' ) -eq 2 ] && (alacritty -T scratchpad_vimdiary -e vim -c VimwikiDiaryIndex) || i3-msg [title=scratchpad_vimdiary] scratchpad show;
+bindsym $capsLock+v exec [ $( ps -eo cmd | grep -c '[a]lacritty --class scratchpad -T scratchpad_vimb' ) -eq 2 ] && (alacritty --class scratchpad -T scratchpad_vimb -e vim .config/vimb/config) || i3-msg [title=scratchpad_vimb] scratchpad show;
 #bindsym $capsLock+c exec [ $( ps -eo cmd | grep -c '[/]usr/bin/franz-bin' ) -eq 2 ] && /usr/bin/franz-bin || i3-msg [title=Franz] scratchpad show;
-bindsym $capsLock+m exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_ncmpcpp' ) -eq 2 ] && (termite --title scratchpad_ncmpcpp -e ncmpcpp) || i3-msg [title=scratchpad_ncmpcpp] scratchpad show;
+bindsym $capsLock+m exec [ $( ps -eo cmd | grep -c '[a]lacritty --title scratchpad_ncmpcpp' ) -eq 2 ] && (alacritty --title scratchpad_ncmpcpp -e ncmpcpp) || i3-msg [title=scratchpad_ncmpcpp] scratchpad show;
 bindsym $capsLock+Shift+m exec popup -h -t mpsyt -e mpsyt
 bindsym $capsLock+k exec stig-i3
-bindsym $capsLock+p exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwikiperso' ) -eq 2 ] && (termite --title scratchpad_vimwikiperso -e vim ~/share/vimwiki_perso/index.wiki) || i3-msg [title=scratchpad_vimwikiperso] scratchpad show;
+bindsym $capsLock+p exec [ $( ps -eo cmd | grep -c '[a]lacritty --title scratchpad_vimwikiperso' ) -eq 2 ] && (alacritty --title scratchpad_vimwikiperso -e vim ~/share/vimwiki_perso/index.wiki) || i3-msg [title=scratchpad_vimwikiperso] scratchpad show;
 bindsym $capsLock+Shift+p exec [ -z $( ps h -C gpodder -o comm=Command ) ] && gpodder || i3-msg [title=gPodder floating] scratchpad show;
 bindsym $capsLock+r exec popup -h -t radio pyradio
 bindsym $capsLock+e exec popup -t cal pal -m

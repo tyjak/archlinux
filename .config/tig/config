@@ -20,6 +20,9 @@ bind status P !git push
 #rebase from current commit
 bind main R !git rebase -i %(commit)~
 
+#open vim with diff commit and HEAD
+bind diff E !vim %(file) -c "Gvdiffsplit %(commit)~"
+
 #rebase on top of selected branch
 bind refs R !git rebase -i %(branch)
 

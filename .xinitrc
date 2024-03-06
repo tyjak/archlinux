@@ -1,7 +1,7 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 [[ -f /usr/bin/feh ]] && sh ~/.fehbg &
 
-export TERMINAL=termite
+export TERMINAL=alacritty
 export EDITOR=/usr/bin/vim
 export PATH=~/share/bin/i3:~/share/bin:/usr/bin:/usr/local/bin:$PATH
 export BROWSER=/usr/bin/vimb
@@ -9,14 +9,19 @@ export PRINTER=Brother_HL_2030_series
 export CITY=AUBERVILLIERS
 export QT_AUTO_SCREEN_SCALE_FACTOR=1.5
 export SMSFILE=~/share/documents/sms
-#export http_proxy=127.0.0.1:8118
-#export no_proxy=127.0.0.1,localhost,.jemepropose.com,.twitter.com,.jobintree.com,.adsnovo.com,.admintree.com,.reddit.com
-#source ~/share/etc/proxy.pe
 export FBFONT=/usr/share/kbd/consolefonts/ter-216n.psf.gz
 export DMENUHEIGHT=36
 export SSH_WORK_CONFIG_FILE=~/WORK/pe/CTO/startup-ansible/startup.ssh
 export HIDPI_SCALE=1.5
-export NEWS= ~/share/documents/news-urls
+export NEWS=~/share/documents/feeds
+export GMI_FILE_NOTE=~/sdf/gopher/notes-de-lectures.gmi
+#export npm_config_prefix="~/.local" #incompatible avec nvm
+
+#export http_proxy=127.0.0.1:8118
+#export no_proxy=127.0.0.1,localhost,.jemepropose.com,.twitter.com,.jobintree.com,.adsnovo.com,.admintree.com,.reddit.com
+#source ~/share/etc/proxy.pe
+
+source /usr/share/nvm/init-nvm.sh
 
 xset -b & #disable beep
 xss-lock -- /usr/bin/i3lock -c 002B36 &
