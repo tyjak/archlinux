@@ -42,6 +42,7 @@ nmap ,,e :shell! alacritty -e "vim $VIMB_URI"<CR>
 nmap ,,r ::e! tinytinyrss()<CR>
 nmap ,,f ::e! facebook()<CR>
 nmap ,,t ::sh sh -c 'toot post "\$VIMB_TITLE \$VIMB_URI"'<CR>
+nmap ,,p ::sh sh -c '~/share/bin/gmi-add-note "\$VIMB_TITLE" "\$VIMB_SELECTION" "\$VIMB_URI"'<CR>
 nmap ,,a ::e! archive()<CR>::bma archive<CR>
 nmap ,,b ::e! shaarli()<CR>::bma shaarli<CR>
 nmap ,;a ::e! getArchive()<CR>
@@ -61,7 +62,7 @@ nmap ;: :shell ~/share/bin/i3/dmenu-webnav<CR>
 nmap <C-U> :sh! vimb_adblock<CR>
 
 #set proxy=true
-nmap ,,p :o http://config.privoxy.org/toggle<CR>
+#nmap ,,p :o http://config.privoxy.org/toggle<CR>
 
 # Map page zoom in normal mode to keys commonly used across applications
 # + (zoom in), - (zoom out), = (zoom reset)
@@ -75,7 +76,7 @@ augroup bookmark
 augroup end
 
 augroup linkfile
-    autocmd LoadStarted * shell sh -c "tail -100 ~/.config/vimb/history | uniq > ~/.config/vimb/historylast"
+    autocmd LoadStarted file:///*/historylast shell sh -c "tail -100 ~/.local/share/vimb/history | uniq > ~/.config/vimb/historylast"
     autocmd LoadFinished file:///*/closed e! linkFileToHtml('Derniers onglets ouverts');
     autocmd LoadFinished file:///*/historylast e! linkFileToHtml('Historique <a href="file:///home/david/.config/vimb/history">(voir tout l\'historique)</a>');
     autocmd LoadFinished file:///*/history e! linkFileToHtml('Historique');

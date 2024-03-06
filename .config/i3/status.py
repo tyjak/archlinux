@@ -99,6 +99,7 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
             full_color = green,
             charging_color = orange,
             critical_color = red,
+            on_rightclick = 'popup -f "watch upower -i /org/freedesktop/UPower/devices/battery_BAT0"',
             glyphs = ["\uf244","\uf243","\uf242","\uf241","\uf240"],
             status = {"DPL":"\uf12a",
                     "CHR":"\uf0e7",
@@ -177,8 +178,8 @@ status.register("openvpn",
 #Show backlight
 if os.path.isfile("/sys/class/backlight/acpi_video0/brightness"):
     status.register("backlight",
-    format="\u263c {percentage}%",
-        backlight="intel_backlight")
+    format="\u263c {percentage}%"
+    )
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
@@ -235,7 +236,7 @@ status.register("weather",
     color_icons=color_icon_values,
     format="{icon} {current_temp}°C {wind_speed}kph",
     #format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
-    on_leftclick="popup -s 878x618 -f wego",
+    on_leftclick='wego-i3',
     hints={'markup': 'pango'},
     log_level=logging.DEBUG,
     backend=weathercom.Weathercom(

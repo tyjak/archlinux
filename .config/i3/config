@@ -145,7 +145,8 @@ set $menu1 1: terminal
 set $menu2 2: web
 set $menu3 3:
 set $menu4 4: gmail
-set $menu5 5:
+#set $menu5 5:
+set $menu5 5:
 set $menu6 6:
 set $menu7 7:
 set $menu8 8:<span background="#0000FF">AOAO</span>
@@ -156,19 +157,20 @@ set $menu8 8:<span background="#0000FF">AOAO</span>
 # switch to workspace
 bindsym $mod+1 workspace $menu1; exec [ $(pgrep -f "alacritty --title terminal") ] && alacritty --title terminal
 #bindsym $mod+1 workspace $menu1; exec [ $( ps -eo cmd | grep -c '[a]lacritty --title terminal' ) -eq 0 ] && alacritty --title terminal
-bindsym $mod+2 workspace $menu2; mark web; exec [ $(pgrep -f "vimb") ] && /usr/bin/vimb
+bindsym $mod+2 workspace $menu2; exec [ $(pgrep -f "vimb") ] && /usr/bin/vimb
 bindsym $mod+3 workspace $menu3; exec [ $(pgrep -f "alacritty --title uvim") ] && alacritty --title uvim -e vim
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+4 workspace $menu4; exec [ $(pgrep -f "alacritty --title mail-gmail") ] && alacritty --title mail-gmail -e /usr/bin/mutt -e "source ~/.mutt/gmail.com"
-bindsym $mod+5 workspace $menu5; exec [ $(pgrep -f "brave") ] && /usr/bin/brave; move workspace to output $screen2
+#bindsym $mod+5 workspace $menu5; exec [ $(pgrep -f "brave") ] && /usr/bin/brave; move workspace to output $screen2
+bindsym $mod+5 workspace $menu5; exec ~/share/bin/i3/firefox
 bindsym $mod+6 workspace $menu6; exec ~/share/bin/i3/photos
-bindsym $mod+7 workspace $menu7; exec ~/share/bin/i3/firefox
+bindsym $mod+7 workspace $menu7
 #bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttperso' ) -eq 2 ] && alacritty --title muttperso -e '/usr/bin/mutt -e "source ~/.mutt/newmanity.com"'
 #bindsym $mod+6 workspace $menu6; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttjit' ) -eq 2 ] && alacritty --title muttjit -e '/usr/bin/mutt -e "source ~/.mutt/jobintree.com"'
 #bindsym $mod+7 workspace $menu7; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
 bindsym $mod+8 workspace $menu8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+0 workspace 10; 
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $menu1
@@ -202,8 +204,8 @@ bindsym XF86AudioRewind exec "~/share/bin/xf86audio back"
 
 
 #pb authorisation
-#bindsym XF86MonBrightnessDown   exec xbacklight -dec 5 && pkill -RTMIN+20 i3blocks
-#bindsym XF86MonBrightnessUp     exec xbacklight -inc 5 && pkill -RTMIN+20 i3blocks
+bindsym XF86MonBrightnessDown   exec xbacklight -dec 5
+bindsym XF86MonBrightnessUp     exec xbacklight -inc 5
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -226,7 +228,7 @@ bar {
     inactive_workspace #073642 #eee8d5 #002b36
     urgent_workspace #d33682 #d33682 #fdf6e3
     binding_mode #d33682 #d33682 #fdf6e3 
-    }
+  }
 }
 
 hide_edge_borders both
@@ -260,7 +262,7 @@ for_window [class="$float_borderless_app"]  floating enable, move position cente
 for_window [instance="float_borderless_app"]  floating enable, move position center, border 1pixel, sticky enable
 
 #no border
-set $no_border Gpodder|Vimb|Alacritty|Gvim
+set $no_border Gpodder|Vimb|Alacritty|Gvim|firefox|news
 for_window [class="$no_border"] border 1pixel, focus
 
 # applications
@@ -290,10 +292,11 @@ assign [class="(pinta|Inkscape)"] graphic
 for_window [class="(pinta|Inkscape)"] focus
 assign [class="Pidgin"] pidgin
 for_window [class="Pidgin"] focus
-assign [class="Brave-browser"] $menu5
+assign [class="Navigator"] $menu5
 assign [class="Shotwell"] $menu6
-#assign [class="Vimb"] $menu2 TODO see how to get exception for i.e. news app
-#for_window [class="Vimb"] layout tabbed; focus
+#assign [con_mark="web"] $menu2
+assign [class="Vieb"] $menu2
+for_window [con_mark="web"] layout tabbed; focus
 #assign [class="Urxvt"] terminal
 #for_window [class="Urxvt"] layout splith; focus
 
@@ -427,7 +430,6 @@ bindsym Pause mode "$mode_system"
 bindsym XF86Sleep mode "$mode_system"
 bindsym XF86Eject mode "$mode_system"
 bindsym XF86PowerOff mode "$mode_system"
-
 mode "$mode_system" {
 
     bindsym l exec --no-startup-id $Locker, mode "default"
@@ -440,12 +442,11 @@ mode "$mode_system" {
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
-}
+    }
 
 # mplayer control and mpd control
 set $mode_player player: [Pp]ause/[Pp]lay [n]ext [Ss]eek [Qq]quit/stop
 bindsym $mod+b mode "$mode_player"
-
 mode "$mode_player" {
 
     bindsym p exec zsh -i -c 'echo "pause" > /tmp/mplayer', mode "default"
@@ -458,7 +459,7 @@ mode "$mode_player" {
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
-}
+    }
 
 #Toolbar shortcut
 set $mode_toolbar [C]ointop | [w]eather | [n]cdu | [g]otop | [i]pfs | [S]yncthing | [u]pdate | [s]ound | [c]alendar
@@ -467,7 +468,7 @@ mode "$mode_toolbar" {
     #bindsym c exec zsh -i -c 'mount-all-devices', mode "default"
     #bindsym u exec zsh -i -c 'udiskie-umount /run/media/*/* && notify-send umount all', mode "default"
     bindsym Shift+c exec coin, mode "default"
-    bindsym w exec popup wego, mode "default"
+    bindsym w exec i3-wego, mode "default"
     bindsym n exec ncdu-i3, mode "default"
     bindsym g exec popup -s medium -e sudo gotop, mode "default"
     bindsym i exec toggle-ipfs, mode "default"
@@ -477,7 +478,7 @@ mode "$mode_toolbar" {
     bindsym c exec pal-i3, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
-}
+    }
 
 #bindsym $capsLock+t exec [ $(pgrep -f '[a]lacritty --title scratchpad_pevimwiki') ] && alacritty --title scratchpad_pevimwiki -e vim share/vimwiki_boulot/index.wiki || i3-msg [title=scratchpad_pevimwiki] scratchpad show;
 #bindsym $capsLock+w exec [ $(pgrep -cf '^alacritty --title scratchpad_vimwiki') -eq 0 ] && (alacritty --title scratchpad_vimwiki -e vim -c VimwikiIndex) || (i3-msg [title=scratchpad_vimwiki] scratchpad show)
@@ -513,7 +514,7 @@ bindsym $capsLock+Shift+s exec i3-msg '[class="Teams"] scratchpad show';
 # Background image
 # see in xprofile
 exec --no-startup-id blueberry-tray
-exec --no-startup-id pcloud
-exec --no-startup-id megasync
+# exec --no-startup-id pcloud
+# exec --no-startup-id megasync
 
 

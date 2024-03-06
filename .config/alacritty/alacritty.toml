@@ -1,0 +1,15 @@
+import = ["/home/david/.config/alacritty/solarized_dark.toml"]
+
+[font]
+size = 7.0
+
+[font.normal]
+family = "MesloLGSDZ Nerd Font Mono"
+
+[font.offset]
+x = 0
+y = -1
+
+[window.padding]
+x = 0
+y = 1
