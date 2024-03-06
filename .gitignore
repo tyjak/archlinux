@@ -47,3 +47,4 @@ Session.vim
 !.config/vimb/webapp
 !.config/zsh/.zshrc
 !.config/zathura/zathurarc
+!.config/kitty
