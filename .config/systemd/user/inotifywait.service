@@ -1,0 +1,11 @@
+[Unit]
+Description=Auto mv Downloaded file
+
+[Service]
+Type=simple
+WorkingDirectory=%h
+ExecStart=%h/share/bin/automvfile.sh
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
