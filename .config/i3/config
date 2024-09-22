@@ -5,6 +5,7 @@ exec_always compton -f
 exec [ $(pgrep -f '[a]lacritty --title terminal) ] && alacritty --title terminal
 
 # special keys
+set $alt Mod1
 set $mod Mod4
 set $capsLock Mode_switch
 
@@ -340,18 +341,21 @@ mode "$i3ctl" {
 }
 
 # resize mod window $mod+r (you can also use the mouse for that)
-bindsym $mod+r mode "resize / move / [s]ticky / [bB]order / [c]enter / [f]loat right corner"
-mode "resize / move / [s]ticky / [bB]order / [c]enter / [f]loat right corner" {
+set $ResizeWin move / resize /  [s]ticky / [bB]order / [c]enter / [f]loat right corner / [a]left corner / [z]right corner
+bindsym $mod+r mode "$ResizeWin"
+mode "$ResizeWin" {
 
-    bindsym h resize grow width 10 px or 10 ppt
-    bindsym j resize grow height 10 px or 10 ppt
-    bindsym k resize shrink height 10 px or 10 ppt
-    bindsym l resize shrink width 10 px or 10 ppt
+    bindsym Shift + h resize grow width 10 px or 10 ppt
+    bindsym Shift + j resize grow height 10 px or 10 ppt
+    bindsym Shift + k resize shrink height 10 px or 10 ppt
+    bindsym Shift + l resize shrink width 10 px or 10 ppt
     bindsym s sticky toggle, mode "default"
-    bindsym B border 1pixel, mode "default"
+    bindsym Shift + b border pixel 1, mode "default"
     bindsym b border normal, mode "default"
-    bindsym f exec python3 -m i3grid snap --target 9 --rows 3 --cols 3, mode "default"
-    #bindsym f floating enable, resize set $wfM_width $wfM_height, border 1pixel, sticky enable, mode "default"
+    bindsym f border pixel 1, sticky enable, exec python3 -m i3grid snap --target 9 --rows 3 --cols 3, mode "default"
+    bindsym a border pixel 1, sticky enable, exec python3 -m i3grid snap --target 4 --rows 2 --cols 1, mode "default"
+    bindsym z border pixel 1, sticky enable, exec python3 -m i3grid snap --target 4 --rows 2 --cols 2, mode "default"
+    #bindsym f floating enable, resize set $wfM_width $wfM_height, border pixel 1, sticky enable, mode "default"
     bindsym c move position center, mode "default"
 
     # same bindings, but for the arrow keys
@@ -362,6 +366,21 @@ mode "resize / move / [s]ticky / [bB]order / [c]enter / [f]loat right corner" {
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Press $mod+t followed by either b, e, Esc or Return to add a task,
+#  etc ... or return to the default mode, respectively.
+set $mode_taskwarrior Add task: [b]ook to read [e]vent [n]ote
+bindsym $mod+t mode "$mode_taskwarrior"
+
+mode "$mode_taskwarrior" {
+
+    bindsym b exec tw_toread, mode "default"
+    bindsym e exec tw_cal, mode "default"
+    bindsym n exec tw_note, mode "default"
+
+    bindsym Return exec tw_add, mode "default"
     bindsym Escape mode "default"
 }
 
