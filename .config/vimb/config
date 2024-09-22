@@ -66,7 +66,7 @@ nmap ,: :shell quickswitch -c Vimb -d "dmenu -l 20 -b -i -nb '#002b36' -nf '#839
 nmap ;: :shell ~/share/bin/i3/dmenu-webnav<CR>
 nmap <C-U> :sh! vimb_adblock<CR>
 
-#set proxy=true
+# set proxy=true
 # nmap ,,p :o http://config.privoxy.org/toggle<CR>
 
 # Map page zoom in normal mode to keys commonly used across applications
@@ -82,7 +82,7 @@ augroup download
     autocmd DownloadFailed set download-path= ~/Downloads 
 augroup end
 augroup fixzoom
-    # autocmd LoadFinished * :normal zozzzIzIzI
+# autocmd LoadFinished * :normal zozzzIzIzI
     nmap z= zozzzIzIzI
 augroup end
 augroup bookmark
@@ -118,3 +118,4 @@ set status-ssl-css=color:#839496;background-color:#002b36;font:10pt DejaVu Sans 
 set status-ssl-invalid-css=color:#f2777a;background-color:#002b36;font:10pt DejaVu Sans Mono;
 
 # TODO: a command to subscribe to a rss feed with : https://example.com/tt-rss/public.php?op=subscribe&feed_url=%s%EF%BB%BF
+# vim:ft=vim

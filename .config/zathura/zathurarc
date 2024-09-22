@@ -39,3 +39,9 @@ set default-fg                  "#93a1a1" # base1
 set recolor-lightcolor          "#073642" # base02
 set recolor-darkcolor           "#93a1a1" # base1
 "set recolor-keephue             true      # keep original color
+
+# copy selection to system clipboard
+set selection-clipboard clipboard # use ctrl + V to access the copied text
+
+# enable incremental search
+set incremental-search true
