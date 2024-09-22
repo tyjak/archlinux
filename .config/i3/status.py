@@ -20,14 +20,14 @@ status = Status(standalone=True, logfile='i3pystatus.log')
 
 # show a dot
 status.register("anybar",
-                hints={'separator':False, 'separator_block_width':10},
-)
+                hints={'separator': False, 'separator_block_width': 10},
+                )
 
 # show covid R0
 status.register(
     "anybar",
     port=1837,
-    hints={'separator':False, 'separator_block_width':10},
+    hints={'separator': False, 'separator_block_width': 10},
 )
 
 # FIXME: error "IndexError: list index out of range" when ping ok...
@@ -39,7 +39,7 @@ status.register(
     color_disabled="#949494",
     format_down="\uf0ec",
     host="1.1.1.1",
-    hints={'separator':False, 'separator_block_width':10}
+    hints={'separator': False, 'separator_block_width': 10}
 )
 
 # Displays clock like this:
@@ -62,28 +62,31 @@ status.register(
     on_leftclick="apptoggle pavucontrol",
 )
 
-status.register("shell",
-    command="headset_battery_level LE-barba",
-    on_leftclick="headset_quality_switch LE-barba", #mic or not mic
+status.register(
+    "shell",
+    command="headset_battery_level barba",
+    on_leftclick="headset_quality_switch barba",  # mic or not mic
     ignore_empty_stdout=True,
     format="{output}"
-       )
+   )
+
 
 def gpodder_perc(text):
     lines = text.split("\n")[-2:]
-    if(re.match('^ANS_', lines[0])):
-        length = float(re.sub(r'^ANS_LENGTH=([0-9]+)',r'\1',list(filter(lambda v: re.match(r'^ANS_LENGTH=',v), lines))[0]))
-        pos = float(re.sub(r'^ANS_TIME_POSITION=([0-9]+)',r'\1',list(filter(lambda v: re.match(r'^ANS_TIME_POSITION=',v), lines))[0]))
-        time_format = ["%M:%S","%H:%M:%S"]
+    if (re.match('^ANS_', lines[0])):
+        length = float(re.sub(r'^ANS_LENGTH=([0-9]+)', r'\1', list(filter(lambda v: re.match(r'^ANS_LENGTH=', v), lines))[0]))
+        pos = float(re.sub(r'^ANS_TIME_POSITION=([0-9]+)', r'\1', list(filter(lambda v: re.match(r'^ANS_TIME_POSITION=', v), lines))[0]))
+        time_format = ["%M:%S", "%H:%M:%S"]
         last_time = length - pos 
-        return 'podcast: -'+time.strftime(time_format[last_time>3600], time.gmtime(last_time))
+        return 'podcast: -'+time.strftime(time_format[last_time > 3600], time.gmtime(last_time))
     else:
         return ''
 
-#gpodder data are get from mplayer fifo via ~/share/bin/playpodcast
+
+# gpodder data are get from mplayer fifo via ~/share/bin/playpodcast
 status.register(
     "file",
-    components={"podcast":(gpodder_perc,'gpodder.out')},
+    components={"podcast": (gpodder_perc, 'gpodder.out')},
     base_path="/tmp",
     format="{podcast}"
 )
@@ -103,13 +106,14 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
     )
 
 # Show count updates available
-status.register("updates",
-        backends = [yay.Yay(False), pacman.Pacman()],
-        format = "\uf323 {count}",
-        format_working = "\uf323",
-        on_rightclick = 'popup -d -s medium -f -e "yay -Syu && echo \"Done.\""',
-        color = "#FF0000",
-        color_working = "#FF8800"
+status.register(
+    "updates",
+    backends = [yay.Yay(False), pacman.Pacman()],
+    format = "\uf323 {count}",
+    format_working = "\uf323",
+        on_rightclick = 'popup -d -s medium -f -e "yay -Syu && paccache -r -k 2 && ~/share/bin/yaycache-keep2 && echo \"Done.\""',
+    color = "#FF0000",
+    color_working = "#FF8800"
 )
 
 
@@ -198,17 +202,18 @@ status.register(
 #     '\uf8a9',
 #     '\uf8ac'
 # ]
-status.register("shell",
+status.register(
+    "shell",
     command="modem-signal-huewai",
     on_leftclick="vimb http://192.168.8.1",
     ignore_empty_stdout=True,
     format="{output}"
 )
 
-status.register("taskwarrior",
+status.register(
+    "taskwarrior",
     urgent_filter="context:work +DUE",
     format="{urgent}"
-
 )
 
 # status.register("shell",
