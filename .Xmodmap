@@ -248,8 +248,6 @@ keycode 253 =
 keycode 254 =
 keycode 255 =
 
-remove mod3 = Mode_switch
-remove mod5 = Mode_switch
 keycode  66 = Mode_switch NoSymbol Mode_switch
 add lock = Mode_switch
 !xmodmap:  up to 4 keys per modifier, (keycodes in parentheses):
