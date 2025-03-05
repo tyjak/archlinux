@@ -45,7 +45,7 @@ map x $$f
 map X !$f
 
 # dedicated keys for file opener actions
-map o &mimeopen $f q
+map o &mimeopen $f
 map O $mimeopen --ask $f
 
 # define a custom 'open' command

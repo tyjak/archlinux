@@ -1,4 +1,3 @@
-import = ["/home/david/.config/alacritty/solarized_dark.toml"]
 
 [font]
 size = 7.0
@@ -13,3 +12,6 @@ y = -1
 [window.padding]
 x = 0
 y = 1
+
+[general]
+import = ["/home/david/.config/alacritty/solarized_dark.toml"]

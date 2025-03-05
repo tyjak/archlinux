@@ -248,7 +248,7 @@ status.register("weather",
 
 
 status.register("bitcoin",
-        currency="USD",
+        currency="EUR",
         colorize=True,
         color_up=green,
         color_down=red,
