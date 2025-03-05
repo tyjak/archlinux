@@ -55,7 +55,7 @@ bindsym $mod+Shift+x exec "PASSWORD_STORE_GENERATED_LENGTH=20 passdmenu -G -u -x
 bindsym $mod+s exec quickswitch -w -d "dmenu -i -nb '#eee8d5' -nf '#002b24' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $mod+Shift+s exec quickswitch -w -j -f -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $capsLock+Tab exec quickswitch -s -d "dmenu -l 10 -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
-bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
+# bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 24"
 bindsym $mod+y exec dmenu-webnav
 bindsym $mod+i exec dmenu-ssh
@@ -254,7 +254,7 @@ for_window [class="_popup"] floating enable
 
 #large, small and large borderless window popup
 set $float_largeW_app Gpodder|Mpsyt|Modem-manager-gui|Nm-connection-editor|Mattermost|Signal|YouTube Music
-set $float_smallW_app Pavucontrol|Blueberry.py
+set $float_smallW_app pavucontrol|Blueberry.py
 set $float_borderless_app Sxiv|YouTube Music
 for_window [class="$float_largeW_app"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
 #small window with no title bar (keep it small)
@@ -506,13 +506,13 @@ set $ws_wiki -H 740 -W 670
 bindsym $capsLock+w exec popup -h -t vimwiki $ws_wiki vim -c VimwikiIndex;
 bindsym $capsLock+t exec popup -h -c work -t pevimwiki $ws_wiki vim share/vimwiki_boulot/index.wiki;
 bindsym $capsLock+Shift+t exec task-i3
-bindsym $capsLock+i exec popup -h -c perso -t persovimwiki $ws_wiki vim share/vimwiki_perso/index.wiki;
+bindsym $capsLock+p exec popup -h -c perso -t persovimwiki $ws_wiki vim share/vimwiki_perso/index.wiki;
 bindsym $capsLock+v exec popup -h -c vimconf -t vimconf $ws_wiki vim .vim/config;
 #bindsym $capsLock+c exec [ $(pgrep -f '[/]usr/bin/franz-bin') ] && /usr/bin/franz-bin || i2-msg [title=Franz] scratchpad show;
 bindsym $capsLock+m exec "popup -s 600x300 -p right,bottom -h -c music -t ncmpcpp -o font.size=5 -e ncmpcpp"
 bindsym $capsLock+Shift+m exec popup -h -t mpsyt -e mpsyt
 bindsym $capsLock+k exec stig-i3
-bindsym $capsLock+p exec [ -z $( ps h -C gpodder -o comm=Command ) ] && gpodder || i3-msg [title=gPodder floating] scratchpad show;
+bindsym $capsLock+Shift+p exec [ -z $( ps h -C gpodder -o comm=Command ) ] && gpodder || i3-msg [title=gPodder floating] scratchpad show;
 bindsym $capsLock+r exec popup -h -t radio pyradio
 bindsym $capsLock+e exec [ $(pgrep -f '[a]lacritty --title scratchpad_cal') ] && alacritty --title scratchpad_cal -e pal -m || i3-msg [title=scratchpad_cal] scratchpad show;
 bindsym $capsLock+n exec i3-msg '[class="VirtualBox Machine"] scratchpad show' && i3-msg '[class="VirtualBox Machine"] fullscreen enable';
