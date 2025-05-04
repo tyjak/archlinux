@@ -8,10 +8,8 @@ import time
 #import netifaces
 
 from i3pystatus import Status
-from i3pystatus.weather import weathercom
 from i3pystatus.updates import yay, pacman
 
-location = {"AUBERVILLIERS":"FRXX0007:1:FR", "MEUZAC":"FRXX1548:1:FR"}
 city = os.getenv('CITY','AUBERVILLIERS')
 
 #status = Status(standalone=True, logfile='i3pystatus.log')
@@ -141,15 +139,16 @@ status.register("syncthing",
             color_down=red,
                 on_leftclick="vimb http://127.0.0.1:8384")
 
-status.register("shell",
-                command="systemctl --user is-active ipfs.service",
-                ignore_empty_stdout=False,
-                format="\uf1b2",
-                color=green,
-                error_color=grey,
-                interval=5,
-                on_leftclick="~/share/bin/toggle-ipfs",
-                on_rightclick="webapp http://127.0.0.1:5001/ipfs/bafybeianwe4vy7sprht5sm3hshvxjeqhwcmvbzq73u55sdhqngmohkjgs4/#/files ipfs")
+# FIXME: 2025-05-04 18:13:26,354 [ERROR   ][i3pystatus.shell.Shell 33] Unknown error
+# status.register("shell",
+#                 command="systemctl --user is-active ipfs.service",
+#                 ignore_empty_stdout=False,
+#                 format="\uf1b2",
+#                 color=green,
+#                 error_color=grey,
+#                 interval=5,
+#                 on_leftclick="~/share/bin/toggle-ipfs",
+#                 on_rightclick="webapp http://127.0.0.1:5001/ipfs/bafybeianwe4vy7sprht5sm3hshvxjeqhwcmvbzq73u55sdhqngmohkjgs4/#/files ipfs")
 
 status.register("openvpn",
         vpn_name = 'creamy',
@@ -211,40 +210,48 @@ status.register("disk",
     #format="{used}/{total}G [{avail}G]",)
     format="{avail}G",)
 
+status.register("shell",
+                command="curl -s 'wttr.in/"+city+"?format=%c+%t+%w+%h'",
+                ignore_empty_stdout=False,
+                #format="\uf1b2",
+                #color=green,
+                #error_color=grey,
+                interval=7200,
+                on_leftclick='wego-i3')
 
 # Show weather => need ttf-weather-icons
 # See https://openweathermap.org/weather-conditions for text
 # See https://erikflowers.github.io/weather-icons/ for icon
-color_icon_values={
-    'Cloudy': ('<span font="Weather Icons 10">\uf013</span>', '#f8f8ff'),
-    'Fog': ('<span font="Weather Icons 10">\uf014</span>', '#949494'),
-    'Thunderstorm': ('<span font="Weather Icons 10">\uf016</span>', '#cbd2c0'),
-    'Fair': ('<span font="Weather Icons 10">\uf00c</span>', '#ffcc00'),
-    'Rain': ('<span font="Weather Icons 10">\uf019</span>', '#cbd2c0'),
-    'Rain Shower': ('<span font="Weather Icons 10">\uf01a</span>', '#cbd2c0'),
-    'Rainy': ('<span font="Weather Icons 10">\uf0b5</span>', '#cbd2c0'),
-    'Partly Cloudy': ('<span font="Weather Icons 10">\uf002</span>', '#f8f8ff'),
-    'Snow': ('<span font="Weather Icons 10">\uf01b</span>', '#ffffff'),
-    'default': ('', None),
-    'Sunny': ('<span font="Weather Icons 10">\uf00d</span>', '#ffff00')
-}
-
-status.register("weather",
-    #location_code="FRXX5264",
-    interval=900,
-    colorize=True,
-    color_icons=color_icon_values,
-    format="{icon} {current_temp}°C {wind_speed}kph",
-    #format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
-    on_leftclick='wego-i3',
-    hints={'markup': 'pango'},
-    log_level=logging.DEBUG,
-    backend=weathercom.Weathercom(
-        location_code='FRXX0076:1:FR',
-        units='metric',
-        log_level=logging.DEBUG
-    ),
-)
+#  color_icon_values={
+#      'Cloudy': ('<span font="Weather Icons 10">\uf013</span>', '#f8f8ff'),
+#      'Fog': ('<span font="Weather Icons 10">\uf014</span>', '#949494'),
+#      'Thunderstorm': ('<span font="Weather Icons 10">\uf016</span>', '#cbd2c0'),
+#      'Fair': ('<span font="Weather Icons 10">\uf00c</span>', '#ffcc00'),
+#      'Rain': ('<span font="Weather Icons 10">\uf019</span>', '#cbd2c0'),
+#      'Rain Shower': ('<span font="Weather Icons 10">\uf01a</span>', '#cbd2c0'),
+#      'Rainy': ('<span font="Weather Icons 10">\uf0b5</span>', '#cbd2c0'),
+#      'Partly Cloudy': ('<span font="Weather Icons 10">\uf002</span>', '#f8f8ff'),
+#      'Snow': ('<span font="Weather Icons 10">\uf01b</span>', '#ffffff'),
+#      'default': ('', None),
+#      'Sunny': ('<span font="Weather Icons 10">\uf00d</span>', '#ffff00')
+#  }
+#  
+#  status.register("weather",
+#      #location_code="FRXX5264",
+#      interval=900,
+#      colorize=True,
+#      color_icons=color_icon_values,
+#      format="{icon} {current_temp}°C {wind_speed}kph",
+#      #format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
+#      on_leftclick='wego-i3',
+#      hints={'markup': 'pango'},
+#      log_level=logging.DEBUG,
+#      backend=weathercom.Weathercom(
+#          location_code='FRXX0076:1:FR',
+#          units='metric',
+#          log_level=logging.DEBUG
+#      ),
+#  )
 
 
 status.register("bitcoin",
