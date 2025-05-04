@@ -417,7 +417,7 @@ mode "$mode_screenshot" {
 }
 
 # file navigation with ranger
-set $mode_filemanager Goto [h]ome [d]ownloads [s]hare [D]esktop
+set $mode_filemanager Goto [h]ome [d]ownloads [s]hare [D]esktop [b]ook
 bindsym $mod+Shift+f mode "$mode_filemanager"
 
 mode "$mode_filemanager" {
@@ -426,6 +426,7 @@ mode "$mode_filemanager" {
     bindsym d exec filemanager ~/downloads, mode "default"
     bindsym s exec filemanager ~/share, mode "default"
     bindsym Shift+d exec filemanager ~/Desktop, mode "default"
+    bindsym b exec filemanager ~/share/Books, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -533,6 +534,7 @@ bindsym $capsLock+Shift+s exec i3-msg '[class="Teams"] scratchpad show';
 # Background image
 # see in xprofile
 exec --no-startup-id blueberry-tray
+exec --no-startup-id ~/share/bin/xrandr-ma.sh
 # exec --no-startup-id pcloud
 # exec --no-startup-id megasync
 
