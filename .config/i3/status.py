@@ -7,7 +7,6 @@ import re
 import time
 
 from i3pystatus import Status
-from i3pystatus.weather import weathercom
 from i3pystatus.updates import yay, pacman
 
 location = {"AUBERVILLIERS": "FRXX0007:1:FR", "MEUZAC": "FRXX1548:1:FR"}
@@ -17,6 +16,10 @@ hidpi_scale = os.getenv("HIDPI_SCALE", 1)
 status = Status(standalone=True, logfile='i3pystatus.log')
 # status = Status(standalone=True)
 
+green="#2aa198"
+orange="#b58900"
+red="#dc321F"
+grey="#93a1a1"
 
 # show a dot
 status.register(
@@ -38,8 +41,8 @@ status.register(
     "ping",
     format="\uf0ec",
     interval=1,
-    color="#00FF00",
-    color_disabled="#949494",
+    color=green,
+    color_disabled=grey,
     format_down="\uf0ec",
     host="1.1.1.1",
     hints={'separator': False, 'separator_block_width': 10}
@@ -61,7 +64,7 @@ status.register(
 status.register(
     "alsa",
     format="{volume} \uf028",
-    color_muted="#FF0000",
+    color_muted=red,
     on_leftclick="apptoggle pavucontrol",
 )
 
@@ -101,9 +104,9 @@ if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
         format="[{remaining} ]{status}{glyph}",
         alert=True,
         alert_percentage=8,
-        full_color="#00FF00",
-        charging_color="#b58900",
-        critical_color="#FF0000",
+        full_color=green,
+        charging_color=orange,
+        critical_color=red,
         glyphs=["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
         status={"DPL": "\uf12a", "CHR": "\uf0e7", "DIS": "", "FULL": ""},
     )
@@ -115,8 +118,8 @@ status.register(
     format = "\uf323 {count}",
     format_working = "\uf323",
         on_rightclick = 'popup -d -s medium -f -e "yay -Syu && paccache -r -k 2 && ~/share/bin/yaycache-keep2 && echo \"Done.\""',
-    color = "#FF0000",
-    color_working = "#FF8800"
+    color = red,
+    color_working = orange
 )
 
 
@@ -135,6 +138,8 @@ status.register(
 
 status.register(
     "syncthing",
+    color_up=green,
+    color_down=red,
     format_up="\uf311",
     format_down="\uf311",
     on_leftclick="vimb http://127.0.0.1:8384",
@@ -167,36 +172,45 @@ status.register(
     format="{avail}G",
 )
 
-# Show weather => need ttf-weather-icons
-color_icon_values = {
-    "Cloudy": ('<span font="Weather Icons 10">\uf013</span>', "#f8f8ff"),
-    "Fog": ('<span font="Weather Icons 10">\uf014</span>', "#949494"),
-    "Thunderstorm": ('<span font="Weather Icons 10">\uf016</span>', "#cbd2c0"),
-    "Fair": ('<span font="Weather Icons 10">\uf00c</span>', "#ffcc00"),
-    "Rainy": ('<span font="Weather Icons 10">\uf019</span>', "#cbd2c0"),
-    "Partly Cloudy": ('<span font="Weather Icons 10">\uf002</span>', "#f8f8ff"),
-    "Snow": ('<span font="Weather Icons 10">\uf01b</span>', "#ffffff"),
-    "default": ("", None),
-    "Sunny": ('<span font="Weather Icons 10">\uf00d</span>', "#ffff00"),
-}
+status.register("shell",
+                command="curl -s 'wttr.in/"+city+"?format=%c+%t+%w+%h'",
+                ignore_empty_stdout=False,
+                #format="\uf1b2",
+                #color=green,
+                #error_color=grey,
+                interval=7200,
+                on_leftclick='wego-i3')
 
-status.register(
-    "weather",
-    format="{current_temp}{temp_unit}[ {icon}]",
-    on_rightclick='HIDPI_SCALE=1.5 popup -s medium -f -e "~/share/bin/wego {}"'.format(city),
-    interval=900,
-    colorize=True,
-    color_icons=color_icon_values,
-    # format="{current_temp} {current_wind} {humidity}%",
-    # format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
-    # log_level=logging.DEBUG,
-    hints={"markup": "pango"},
-    backend=weathercom.Weathercom(
-        location_code=location[city],
-        units="metric",
-        # log_level=logging.DEBUG,
-    ),
-)
+## Show weather => need ttf-weather-icons
+#color_icon_values = {
+#    "Cloudy": ('<span font="Weather Icons 10">\uf013</span>', "#f8f8ff"),
+#    "Fog": ('<span font="Weather Icons 10">\uf014</span>', "#949494"),
+#    "Thunderstorm": ('<span font="Weather Icons 10">\uf016</span>', "#cbd2c0"),
+#    "Fair": ('<span font="Weather Icons 10">\uf00c</span>', "#ffcc00"),
+#    "Rainy": ('<span font="Weather Icons 10">\uf019</span>', "#cbd2c0"),
+#    "Partly Cloudy": ('<span font="Weather Icons 10">\uf002</span>', "#f8f8ff"),
+#    "Snow": ('<span font="Weather Icons 10">\uf01b</span>', "#ffffff"),
+#    "default": ("", None),
+#    "Sunny": ('<span font="Weather Icons 10">\uf00d</span>', "#ffff00"),
+#}
+#
+#status.register(
+#    "weather",
+#    format="{current_temp}{temp_unit}[ {icon}]",
+#    on_rightclick='HIDPI_SCALE=1.5 popup -s medium -f -e "~/share/bin/wego {}"'.format(city),
+#    interval=900,
+#    colorize=True,
+#    color_icons=color_icon_values,
+#    # format="{current_temp} {current_wind} {humidity}%",
+#    # format='{current_temp}{temp_unit}[ {icon}][ Max: {high_temp}{temp_unit}][ Min: {low_temp}{temp_unit}][ {wind_speed}{wind_unit} {wind_direction}][{pressure_trend}]',
+#    # log_level=logging.DEBUG,
+#    hints={"markup": "pango"},
+#    backend=weathercom.Weathercom(
+#        location_code=location[city],
+#        units="metric",
+#        # log_level=logging.DEBUG,
+#    ),
+#)
 
 # modem_icon = [
 #     '',
