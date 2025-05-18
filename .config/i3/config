@@ -24,7 +24,7 @@ set $wfL_width 1800
 
 set $screen1 eDP1
 #set $screen2 DP1-2
-set $screen2 HDMI1
+set $screen2 DP1-1
 
 # layout mode for new container
 workspace_layout tabbed
@@ -72,6 +72,7 @@ bindsym $capsLock+Tab exec quickswitch -s -d "dmenu -l 10 -i -nb '#eee8d5' -nf '
 #bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
 bindsym $mod+y exec dmenu-webnav
 bindsym $mod+i exec dmenu-ssh
+bindsym $capsLock+a exec dmenu-emoticon
 bindsym $mod+Shift+i exec work-file
 bindsym $mod+Shift+f exec filemanager
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -243,9 +244,9 @@ for_window [class="_popup"] floating enable
 
 #large, small and large borderless window popup
 set $float_largeW_app Gpodder|Mpsyt|Modem-manager-gui|Nm-connection-editor|Mattermost|YouTube Music|teams-for-linux|webapp-*
-set $float_smallW_app Pavucontrol|Blueberry.py|Pick-colour-picker
+set $float_smallW_app pavucontrol|Blueberry.py|Pick-colour-picker
 set $float_borderless_app Sxiv|Mattermost|YouTube Music|teams-for-linux
-for_window [class="$float_largeW_app"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
+for_window [class="$float_largeW_app"] floating enable, resize set $wfL_width $wfL_height, sticky enable
 
 #small window with no title bar (keep it small)
 for_window [class="$float_smallW_app"] floating enable, resize set $wfM_width $wfM_height, move position center, border pixel 1, sticky enable
@@ -257,7 +258,7 @@ for_window [class="$no_border"] border pixel 1
 
 # scratchpad application
 set $scratchpad_app teams-for-linux|Mattermost
-for_window [class="$scratchpad_app"] move scratchpad, scratchpad show, move position center
+for_window [class="$scratchpad_app"] move scratchpad, scratchpad show, output $screen2
 
 # marked window
 for_window [con_mark="ssh"] move container to workspace $menu9
@@ -310,10 +311,10 @@ for_window [class="Caprine|Evolution|Brave-browser|Navigator"] output $screen2
 
 #vimb with title starting by "scratchpad_" are moved to the scratch pad and show
 #for_window [title="scratchpad_*"] sticky enable, border pixel 1;
-set $scratchpads_title scratchpad_vimwikiperso|scratchpad__vimwiki|scratchpad_pevimwiki|scratchpad_vimdiary|scratchpad_vimb|skype|pidgin|iCloud|gPodder
+set $scratchpads_title scratchpad_vimwikiperso|scratchpad__vimwiki|scratchpad_pevimwiki|scratchpad_vimdiary|scratchpad_vimb|skype|pidgin|gPodder
 set $scratchpads_class Keybase
-for_window [title="$scratchpads_title"] sticky enable, border pixel 1, move scratchpad, scratchpad show, move position center;
-for_window [class="$scratchpads_class"] sticky enable, border pixel 1, move scratchpad, scratchpad show, move position center;
+for_window [title="$scratchpads_title"] sticky enable, border pixel 1, move scratchpad, scratchpad show;
+for_window [class="$scratchpads_class"] sticky enable, border pixel 1, move scratchpad, scratchpad show;
 for_window [title="scratchpad_ncmpcpp"] sticky enable, border pixel 1, move scratchpad, resize set $wfM_width  $wfM_height, scratchpad show;
 for_window [title="scratchpad_cal"] sticky enable, border pixel 1, move scratchpad, scratchpad show;
 
@@ -344,7 +345,7 @@ mode "$i3ctl" {
 }
 
 # resize mod window $mod+r (you can also use the mouse for that)
-set $ResizeWin move / resize /  [s]ticky / [bB]order / [c]enter / [f]loat right corner / [a]left corner / [z]right corner
+set $ResizeWin move / resize /  [s]ticky / [bB]order / [c]enter / [r]ight pane / [l]eft pane / [f]loat right corner / [a]left corner / [z]right corner
 bindsym $mod+r mode "$ResizeWin"
 mode "$ResizeWin" {
 
@@ -358,6 +359,8 @@ mode "$ResizeWin" {
     bindsym f border pixel 1, sticky enable, exec python3 -m i3grid snap --target 9 --rows 3 --cols 3, mode "default"
     bindsym a border pixel 1, sticky enable, exec python3 -m i3grid snap --target 4 --rows 2 --cols 1, mode "default"
     bindsym z border pixel 1, sticky enable, exec python3 -m i3grid snap --target 4 --rows 2 --cols 2, mode "default"
+    bindsym r border pixel 1, sticky enable, exec python3 -m i3grid snap --target 1 --rows 1 --cols 2, mode "default"
+    bindsym l border pixel 1, sticky enable, exec python3 -m i3grid snap --target 2 --rows 1 --cols 2, mode "default"
     #bindsym f floating enable, resize set $wfM_width $wfM_height, border pixel 1, sticky enable, mode "default"
     bindsym c move position center, mode "default"
 
@@ -516,14 +519,15 @@ mode "$mode_killswitch" {
 bindsym $capsLock+t exec [ $( ps -eo cmd | grep -c '[a]lacritty -T scratchpad_pevimwiki' ) -eq 2 ] && (alacritty -T scratchpad_pevimwiki -e vim ~/share/vimwiki_boulot/index.wiki) || (i3-msg '[title="scratchpad_pevimwiki"] scratchpad show' && i3-msg '[title="scratchpad_pevimwiki"] move position center');
 bindsym $capsLock+Shift+t exec task-i3
 bindsym $capsLock+w exec [ $( ps -eo cmd | grep -c '[a]lacritty -T scratchpad__vimwiki ' ) -eq 2 ] && (alacritty -T scratchpad__vimwiki -e vim -c VimwikiIndex) || (i3-msg '[title="scratchpad__vimwiki"] scratchpad show' && i3-msg '[title="scratchpad__vimwiki"] move position center');
-bindsym $capsLock+i exec [ $( ps -eo cmd | grep -c '[a]lacritty -T scratchpad_vimdiary' ) -eq 2 ] && (alacritty -T scratchpad_vimdiary -e vim -c VimwikiDiaryIndex) || i3-msg [title=scratchpad_vimdiary] scratchpad show;
-bindsym $capsLock+v exec [ $( ps -eo cmd | grep -c '[a]lacritty --class scratchpad -T scratchpad_vimb' ) -eq 2 ] && (alacritty --class scratchpad -T scratchpad_vimb -e vim .config/vimb/config) || i3-msg [title=scratchpad_vimb] scratchpad show;
+bindsym $capsLock+i exec [ $( ps -eo cmd | grep -c '[a]lacritty -T scratchpad_vimdiary' ) -eq 2 ] && (alacritty -T scratchpad_vimdiary -e vim -c VimwikiDiaryIndex) || i3-msg '[title=scratchpad_vimdiary] scratchpad show';
+bindsym $capsLock+v exec [ $( ps -eo cmd | grep -c '[a]lacritty --class scratchpad -T scratchpad_vimb' ) -eq 2 ] && (alacritty --class scratchpad -T scratchpad_vimb -e vim .config/vimb/config) || i3-msg '[title=scratchpad_vimb] scratchpad show';
 #bindsym $capsLock+c exec [ $( ps -eo cmd | grep -c '[/]usr/bin/franz-bin' ) -eq 2 ] && /usr/bin/franz-bin || i3-msg [title=Franz] scratchpad show;
-bindsym $capsLock+m exec [ $( ps -eo cmd | grep -c '[a]lacritty --title scratchpad_ncmpcpp' ) -eq 2 ] && (alacritty --title scratchpad_ncmpcpp -e ncmpcpp) || i3-msg [title=scratchpad_ncmpcpp] scratchpad show;
+bindsym $capsLock+m exec [ $( ps -eo cmd | grep -c '[a]lacritty --title scratchpad_ncmpcpp' ) -eq 2 ] && (alacritty --title scratchpad_ncmpcpp -e ncmpcpp) || i3-msg '[title=scratchpad_ncmpcpp] scratchpad show';
 bindsym $capsLock+Shift+m exec popup -h -t mpsyt -e mpsyt
-bindsym $capsLock+k exec stig-i3
-bindsym $capsLock+p exec [ $( ps -eo cmd | grep -c '[a]lacritty --title scratchpad_vimwikiperso' ) -eq 2 ] && (alacritty --title scratchpad_vimwikiperso -e vim ~/share/vimwiki_perso/index.wiki) || i3-msg [title=scratchpad_vimwikiperso] scratchpad show;
-bindsym $capsLock+Shift+p exec [ -z $( ps h -C gpodder -o comm=Command ) ] && gpodder || i3-msg [title=gPodder floating] scratchpad show;
+bindsym $capsLock+k exec keycheat
+bindsym $capsLock+Shift+k exec stig-i3
+bindsym $capsLock+p exec [ $( ps -eo cmd | grep -c '[a]lacritty --title scratchpad_vimwikiperso' ) -eq 2 ] && (alacritty --title scratchpad_vimwikiperso -e vim ~/share/vimwiki_perso/index.wiki) || (i3-msg '[title=scratchpad_vimwikiperso] scratchpad show');
+bindsym $capsLock+Shift+p exec [ -z $( ps h -C gpodder -o comm=Command ) ] && gpodder || i3-msg '[title=gPodder floating] scratchpad show';
 bindsym $capsLock+r exec popup -h -t radio pyradio
 bindsym $capsLock+e exec popup -t cal pal -m
 bindsym $capsLock+n exec i3-msg '[class="VirtualBox Machine"] scratchpad show' && i3-msg '[class="VirtualBox Machine"] fullscreen enable';
@@ -540,6 +544,8 @@ bindsym $capsLock+q exec qrcode
 #bindsym $mod+x shmlog toggle
 
 bindsym XF86Favorites exec dunstctl history-pop
+bindsym $capsLock+XF86Favorites exec ~/share/bin/music-add-favorite
+bindsym $mod+XF86Favorites exec ~/share/bin/gmi-add-note
 
 # Screensaver
 #exec xautolock -detectsleep \

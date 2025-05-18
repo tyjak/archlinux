@@ -19,15 +19,18 @@ status = Status(standalone=True, logfile='i3pystatus.log')
 
 
 # show a dot
-status.register("anybar",
-                hints={'separator': False, 'separator_block_width': 10},
-                )
+status.register(
+    "anybar",
+    hints={'separator': False, 'separator_block_width': 10},
+    on_leftclick="infonotif creamy up state"
+)
 
-# show covid R0
+# show meuzac status
 status.register(
     "anybar",
     port=1837,
     hints={'separator': False, 'separator_block_width': 10},
+    on_leftclick="infonotif Meuzac"
 )
 
 # FIXME: error "IndexError: list index out of range" when ping ok...
