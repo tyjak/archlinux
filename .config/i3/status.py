@@ -189,8 +189,8 @@ status.register("load",
 status.register("mem",
         format = "{percent_used_mem}%",
         color = "#93a1a1",
-        warn_percentage = 90,
-        alert_percentage = 94,
+        warn_percentage = 81,
+        alert_percentage = 92,
         on_leftclick="popup -s medium -e sudo gotop"
         )
 

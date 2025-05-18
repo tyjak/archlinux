@@ -1,8 +1,8 @@
 # app to start on launch i3
 exec_always compton -f
 
-# start a concole if not starting
-exec [ $(pgrep -f '[a]lacritty --title terminal) ] && alacritty --title terminal
+# start a console if not starting
+exec [ $(pgrep -f '[a]lacritty --title terminal') ] && alacritty --title terminal
 
 # special keys
 set $alt Mod1
@@ -142,15 +142,24 @@ bindsym $mod+Right move workspace to output right
 set $vimIcon 
 
 #menu title
-set $menu1 1: terminal
-set $menu2 2: web
-set $menu3 3:
-set $menu4 4: gmail
-#set $menu5 5:
-set $menu5 5:
-set $menu6 6:
-set $menu7 7:
-set $menu8 8:<span background="#0000FF">AOAO</span>
+set $menu1 "1: terminal"
+set $menu2 "2: web"
+set $menu3 "3:"
+set $menu4 "4: gmail"
+#set $menu5" 5:"
+set $menu5 "5:"
+set $menu6 "6:"
+set $menu7 "7:"
+set $menu8 "8:<span background="#0000FF">AOAO</span>"
+
+# workspaces screen
+workspace $menu1 output primary
+workspace $menu2 output nonprimary
+workspace $menu3 output primary
+workspace $menu4 output primary
+workspace $menu5 output nonprimary
+workspace $menu6 output nonprimary
+workspace $menu7 output primary
 
 #TODO: var does not seem to work in exec command
 #set $chrome /usr/bin/brave
@@ -274,9 +283,9 @@ for_window [class="Alacritty"] border 1pixel
 for_window [class="Gvim"] border 1pixel
 for_window [title="filemanager"] border 1pixel, layout tabbed
 for_window [title="JACK.*"] floating enable
-for_window [title="Molotov"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable, output $screen1
-for_window [class="Deezer"] floating enable, border 1pixel, resize set $wfL_width $wfL_height, move position center, sticky enable, output $screen1
-for_window [class="Caprine"] floating enable, resize set $wfL_width $wfL_height, border 1pixel, sticky enable, output $screen2;
+for_window [title="Molotov"] floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
+for_window [class="Deezer"] floating enable, border 1pixel, resize set $wfL_width $wfL_height, move position center, sticky enable
+for_window [class="Caprine"] floating enable, resize set $wfL_width $wfL_height, border 1pixel, sticky enable
 for_window [title="pinentry"] floating enable
 for_window [class="termite_dict"] floating enable, move position center, border 1pixel
 for_window [title="david_adsnovo - Skype*"] focus, sticky enable, move right, resize shrink left 20 px or 20 ppt, layout splith;
@@ -297,7 +306,7 @@ assign [class="Navigator"] $menu5
 assign [class="Shotwell"] $menu6
 #assign [con_mark="web"] $menu2
 assign [class="Vieb"] $menu2
-for_window [con_mark="web"] layout tabbed; focus
+for_window [con_mark="web"] layout tabbed, focus
 #assign [class="Urxvt"] terminal
 #for_window [class="Urxvt"] layout splith; focus
 
@@ -535,6 +544,7 @@ bindsym $capsLock+Shift+s exec i3-msg '[class="Teams"] scratchpad show';
 # see in xprofile
 exec --no-startup-id blueberry-tray
 exec --no-startup-id ~/share/bin/xrandr-ma.sh
+exec --no-startup-id ~/share/bin/i3/firefox
 # exec --no-startup-id pcloud
 # exec --no-startup-id megasync
 
