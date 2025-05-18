@@ -15,6 +15,7 @@ export SSH_WORK_CONFIG_FILE=~/WORK/pe/CTO/startup-ansible/startup.ssh
 export HIDPI_SCALE=1.5
 export NEWS=~/share/documents/feeds
 export GMI_FILE_NOTE=~/sdf/gopher/notes-de-lectures.gmi
+export GPT3_API_KEY=$(pass show api/chatgpt.com)
 #export npm_config_prefix="~/.local" #incompatible avec nvm
 
 #export http_proxy=127.0.0.1:8118
@@ -24,7 +25,7 @@ export GMI_FILE_NOTE=~/sdf/gopher/notes-de-lectures.gmi
 source /usr/share/nvm/init-nvm.sh
 
 xset -b & #disable beep
-xss-lock -- /usr/bin/i3lock -c 002B36 &
+#xss-lock -- /usr/bin/i3lock -c 002B36 &
 dunst &
 syndaemon -t -k -i 2 &
 unclutter -idle 1 -jitter 2 -root &
@@ -35,6 +36,7 @@ xmodmap ~/.Xmodmap
 #redshift &
 #mpd ~/.config/mpd/mpd.conf
 udiskie &
+kdeconnectd & #FIXME not working in /etc/xdg/autostart
 mkfifo /tmp/mplayer
 touch /tmp/gpodder.out
 exec i3

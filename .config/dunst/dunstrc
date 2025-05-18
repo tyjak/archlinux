@@ -59,8 +59,8 @@
     # screen width minus the width defined in within the geometry option.
     # geometry = "300x10-0+22"
     width = 250
-    height = 300
-    offset = 0x24
+    height = (50, 200)
+    offset = (0,24)
     notification_limit=6
 
     #shrink = true
@@ -123,7 +123,7 @@
     startup_notification = false
 
     # dmenu path
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/dmenu -p dunst
 
     # browser for opening urls in context menu
     browser = /usr/bin/vimb
@@ -239,3 +239,19 @@
     set_transient = false
     set_stack_tag = private-synchronous
     timeout = 10
+[notifinfo]
+    appname = notifinfo 
+    background = "#586e75"
+    foreground = "#fdf6e3"
+    set_transient = false
+    timeout = 10
+[sound]
+    category = sound
+    alignment = center
+    format = "<span size='400%'>%s</span>"
+    background = "#00000011"
+    frame_color = "#00000011"
+    foreground = "#fdf6e3CC"
+    set_transient = no
+    set_stack_tag = private-synchronous
+    timeout = 2
