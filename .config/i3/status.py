@@ -17,7 +17,7 @@ status = Status(standalone=True, logfile='i3pystatus.log')
 # status = Status(standalone=True)
 
 green="#2aa198"
-orange="#b58900"
+orange="#d33682"
 red="#dc321F"
 grey="#93a1a1"
 
@@ -25,7 +25,7 @@ grey="#93a1a1"
 status.register(
     "anybar",
     hints={'separator': False, 'separator_block_width': 10},
-    on_leftclick="infonotif creamy up state"
+    on_leftclick="infonotif 'creamy up state'"
 )
 
 # show meuzac status
@@ -173,8 +173,8 @@ status.register(
 )
 
 status.register("shell",
-                command="curl -s 'wttr.in/"+city+"?format=%c+%t+%w+%h'",
-                ignore_empty_stdout=False,
+                command="curl -Ls 'wttr.in/"+city+"?format=%c+%t+%w+%h'",
+                ignore_empty_stdout=True,
                 #format="\uf1b2",
                 #color=green,
                 #error_color=grey,
@@ -232,6 +232,15 @@ status.register(
     urgent_filter="context:work +DUE",
     format="{urgent}"
 )
+
+status.register("shell",
+                command="curl -Ls 'ifconfig.me' 2>/dev/null",
+                ignore_empty_stdout=True,
+                # format="\uf1b2",
+                # color=green,
+                # error_color=grey,
+                interval=300)
+
 
 # status.register("shell",
 #     command="watchprice https://certideal.com/iphone-12-mini/iphone-12-mini-128-go-bleu-6219 '//*[@id=\"product-state-switch\"]/div[2]/div/a/div/div/p[1]'",
