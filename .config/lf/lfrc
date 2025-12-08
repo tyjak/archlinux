@@ -31,8 +31,8 @@ set sortby atime
 set reverse
 
 #
-map 2 set ratio 1:2
-map 3 set ratio 1:3
+map 2 set ratios 1:2
+map 3 set ratios 1:3
 
 # use enter for shell commands
 map <enter> shell

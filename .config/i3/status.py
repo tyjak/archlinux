@@ -167,7 +167,7 @@ status.register("load", on_leftclick="popup -S -s medium -e sudo gotop")
 status.register(
     "disk",
     path="/",
-    on_leftclick="popup -S -s medium -e ncdu",
+    on_leftclick="popup -S -s medium ncdu --exclude ~/pCloudDrive/",
     # format="{used}/{total}G [{avail}G]",)
     format="{avail}G",
 )

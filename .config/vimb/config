@@ -25,7 +25,7 @@ set strict-ssl=false
 
 handler-add mailto=/home/david/share/bin/i3/gmail-mail %s
 handler-add magnet=/bin/sh -c "stig -T add %s"
-#handler-add ftp=termite -e wget %s -P ~/downloads
+#handler-add ftp=alacritty -e wget %s -P ~/downloads
 set home-page=./.config/vimb/historylast
 
 nmap ,,v ::sh! sh -c 'xsel -o -s | xdotool type --file -'
