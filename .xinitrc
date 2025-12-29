@@ -7,27 +7,31 @@ export PATH=~/share/bin/i3:~/share/bin:/usr/bin:/usr/local/bin:$PATH
 export BROWSER=/usr/bin/vimb
 export PRINTER=Brother_HL_2030_series
 export CITY=AUBERVILLIERS
-export QT_AUTO_SCREEN_SCALE_FACTOR=1.5
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export SMSFILE=~/share/documents/sms
 export FBFONT=/usr/share/kbd/consolefonts/ter-216n.psf.gz
-export DMENUHEIGHT=36
-export SSH_WORK_CONFIG_FILE=~/WORK/pe/CTO/startup-ansible/startup.ssh
+export DMENUHEIGHT=24
+export DMENUFONTSIZE=10
+export POPUP_TOP_POSITION=16
+export SSH_WORK_CONFIG_FILE=~/WORK/startup-ansible/startup.ssh
 export HIDPI_SCALE=1.5
 export NEWS=~/share/documents/feeds
 export GMI_FILE_NOTE=~/sdf/gopher/notes-de-lectures.gmi
-export GPT3_API_KEY=$(pass show api/chatgpt.com)
-export OPENAI_API_KEY=$(pass show api/openai.com)
+export OLLAMA_BASE_URL="http://localhost:11434/v1"
+export OLLAMA_MODEL="codellama:34b"
+#export GPT3_API_KEY=$(pass show api/chatgpt.com)
+#export OPENAI_API_KEY=$(pass show api/openai.com)
 #export npm_config_prefix="~/.local" #incompatible avec nvm
 
 #export http_proxy=127.0.0.1:8118
 #export no_proxy=127.0.0.1,localhost,.jemepropose.com,.twitter.com,.jobintree.com,.adsnovo.com,.admintree.com,.reddit.com
 #source ~/share/etc/proxy.pe
 
-source /usr/share/nvm/init-nvm.sh
+#source /usr/share/nvm/init-nvm.sh
 
 xset -b & #disable beep
 #xss-lock -- /usr/bin/i3lock -c 002B36 &
-dunst &
+#dunst &
 syndaemon -t -k -i 2 &
 unclutter -idle 1 -jitter 2 -root &
 stty -ixon
@@ -40,4 +44,4 @@ udiskie &
 kdeconnectd & #FIXME not working in /etc/xdg/autostart
 mkfifo /tmp/mplayer
 touch /tmp/gpodder.out
-exec i3
+#exec i3

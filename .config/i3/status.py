@@ -53,7 +53,7 @@ status.register(
 #                          ^-- calendar week
 status.register(
     "clock",
-    on_leftclick="pal-i3",
+    on_leftclick="twcal-i3",
 )
 
 # Show sound
@@ -77,25 +77,25 @@ status.register(
    )
 
 
-def gpodder_perc(text):
-    lines = text.split("\n")[-2:]
-    if (re.match('^ANS_', lines[0])):
-        length = float(re.sub(r'^ANS_LENGTH=([0-9]+)', r'\1', list(filter(lambda v: re.match(r'^ANS_LENGTH=', v), lines))[0]))
-        pos = float(re.sub(r'^ANS_TIME_POSITION=([0-9]+)', r'\1', list(filter(lambda v: re.match(r'^ANS_TIME_POSITION=', v), lines))[0]))
-        time_format = ["%M:%S", "%H:%M:%S"]
-        last_time = length - pos 
-        return 'podcast: -'+time.strftime(time_format[last_time > 3600], time.gmtime(last_time))
-    else:
-        return ''
+#def gpodder_perc(text):
+#    lines = text.split("\n")[-2:]
+#    if (re.match('^ANS_', lines[0])):
+#        length = float(re.sub(r'^ANS_LENGTH=([0-9]+)', r'\1', list(filter(lambda v: re.match(r'^ANS_LENGTH=', v), lines))[0]))
+#        pos = float(re.sub(r'^ANS_TIME_POSITION=([0-9]+)', r'\1', list(filter(lambda v: re.match(r'^ANS_TIME_POSITION=', v), lines))[0]))
+#        time_format = ["%M:%S", "%H:%M:%S"]
+#        last_time = length - pos 
+#        return 'podcast: -'+time.strftime(time_format[last_time > 3600], time.gmtime(last_time))
+#    else:
+#        return ''
 
 
 # gpodder data are get from mplayer fifo via ~/share/bin/playpodcast
-status.register(
-    "file",
-    components={"podcast": (gpodder_perc, 'gpodder.out')},
-    base_path="/tmp",
-    format="{podcast}"
-)
+#status.register(
+#    "file",
+#    components={"podcast": (gpodder_perc, 'gpodder.out')},
+#    base_path="/tmp",
+#    format="{podcast}"
+#)
 
 # Show battery
 if os.path.isfile("/sys/class/power_supply/BAT0/uevent"):
@@ -136,18 +136,18 @@ status.register(
 #    graph_width=20,
 #)
 
-status.register(
-    "syncthing",
-    color_up=green,
-    color_down=red,
-    format_up="\uf311",
-    format_down="\uf311",
-    on_leftclick="vimb http://127.0.0.1:8384",
-)
+#status.register(
+#    "syncthing",
+#    color_up=green,
+#    color_down=red,
+#    format_up="\uf311",
+#    format_down="\uf311",
+#    on_leftclick="vimb http://127.0.0.1:8384",
+#)
 
 #status.register("openvpn", vpn_name="peold", use_new_service_name="true")
 
-status.register("openvpn", vpn_name="pe", use_new_service_name="true")
+status.register("openvpn", vpn_name="ft", use_new_service_name="true")
 
 status.register("openvpn", vpn_name="creamy", use_new_service_name="true")
 
@@ -172,6 +172,7 @@ status.register(
     format="{avail}G",
 )
 
+# NOTE : noto-fonts and noto-fonts-emoji to work
 status.register("shell",
                 command="curl -Ls 'wttr.in/"+city+"?format=%c+%t+%w+%h'",
                 ignore_empty_stdout=True,
@@ -219,13 +220,13 @@ status.register("shell",
 #     '\uf8a9',
 #     '\uf8ac'
 # ]
-status.register(
-    "shell",
-    command="modem-signal-huewai",
-    on_leftclick="vimb http://192.168.8.1",
-    ignore_empty_stdout=True,
-    format="{output}"
-)
+#status.register(
+#    "shell",
+#    command="modem-signal-huewai",
+#    on_leftclick="vimb http://192.168.8.1",
+#    ignore_empty_stdout=True,
+#    format="{output}"
+#)
 
 status.register(
     "taskwarrior",

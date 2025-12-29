@@ -17,10 +17,13 @@ set $capsLock Mod3
 # fix floating windows size
 # medium size
 set $wfM_height 600
-set $wfM_width 1000
+set $wfM_width 800
 # big size
-set $wfL_height 1000
-set $wfL_width 1800
+set $wfL_height 800
+set $wfL_width 1400
+
+set $dmenuFont MesloLGSDZ Nerd Font-10
+set $dmenuHeight 24
 
 set $screen1 eDP1
 #set $screen2 DP1-2
@@ -36,8 +39,7 @@ workspace_layout tabbed
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:MesloLGSDZ Nerd Font, icons, FontAwesome, Devicons, 10
-#font pango:FuraCode Nerd Font, icons, FontAwesome, Devicons, 10
+font pango:Meslo LG S DZ, Weather Icons, fontawesome, devicons, 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -59,18 +61,18 @@ bindsym $mod+Shift+n mark working
 bindsym $mod+n [con_mark="working"] focus 
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -i -nb '#859900' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36
-bindsym $mod+c exec clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb4b16' -fn 'MesloLGSDZ Nerd Font-10' -h 36
-bindsym $mod+x exec "DMENU_HEIGHT=36 passdmenu -G -x s -P --type -D ~/share/bin/mypassdmenu"
-#bindsym $mod+x exec PASSWORD_STORE_X_SELECTION=secondary passmenu -i -nb '#002b24' -nf '#eee8d5' -sb '#b58900' -fn 'MesloLGSDZ Nerd Font-10' -h 36 && xsel -o -s | xdotool type --file -
+bindsym $mod+d exec dmenu_run -i -nb '#859900' -nf '#eee8d5' -sb '#cb4b16' -fn '$dmenuFont' -h $dmenuHeight
+bindsym $mod+c exec clipmenu -i -nb '#2aa198' -nf '#eee8d5' -sb '#cb4b16' -fn '$dmenuFont' -h $dmenuHeight
+bindsym $mod+x exec "passdmenu -G -x s -P --type -D ~/share/bin/mypassdmenu"
+#bindsym $mod+x exec PASSWORD_STORE_X_SELECTION=secondary passmenu -i -nb '#002b24' -nf '#eee8d5' -sb '#b58900' -fn '$dmenuFont' -h $dmenuHeight && xsel -o -s | xdotool type --file -
 bindsym $mod+Shift+x exec "DMENU_HEIGHT=36 passdmenu -G -u -x p,s -P --type -r -D ~/share/bin/mypassdmenu"
 bindsym $mod+$capsLock+x exec dmenu-pass-notify cb
-bindsym $mod+s exec quickswitch -w -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
-bindsym $mod+Shift+s exec quickswitch -w -j -f -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
-bindsym $capsLock+Tab exec quickswitch -s -d "dmenu -l 10 -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
-#bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
-#bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn 'MesloLGSDZ Nerd Font-10' -h 36"
-bindsym $mod+y exec dmenu-webnav
+bindsym $mod+s exec quickswitch -w -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn '$dmenuFont' -h $dmenuHeight"
+bindsym $mod+Shift+s exec quickswitch -w -j -f -d "dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn '$dmenuFont' -h $dmenuHeight"
+bindsym $capsLock+Tab exec quickswitch -s -d "dmenu -l 10 -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn '$dmenuFont' -h $dmenuHeight"
+#bindsym $mod+t exec "dict -d fd-eng-fra $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn '$dmenuFont' -h $dmenuHeight"
+#bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn '$dmenuFont' -h $dmenuHeight"
+bindsym $mod+y exec dmenu-firefox-bookmark
 bindsym $mod+i exec dmenu-ssh
 bindsym $capsLock+a exec dmenu-emoticon
 bindsym $mod+Shift+i exec work-file
@@ -150,15 +152,15 @@ bindsym $mod+Up move workspace to output up
 bindsym $mod+Down move workspace to output down
 
 #icon
-set $vimIcon 
+set $vimIcon 
 
 #menu title
 set $menu1 1: terminal
-set $menu2 2: web
-set $menu3 3:
-set $menu4 4: gmail
+set $menu2 2:🤖 toad
+set $menu3 3:
+set $menu4 4:󰊫 gmail
 set $menu5 5:<span font=\"icomoon 13\"></span>
-set $menu6 6:
+#set $menu6 6:
 set $menu7 7:
 set $menu8 8:vmware
 set $menu9 9: ssh
@@ -167,7 +169,9 @@ set $menu10 10: PE
 
 # switch to workspace
 bindsym $mod+1 workspace $menu1; exec pgrep -f "^alacritty --title terminal" >/dev/null || alacritty --title terminal
-bindsym $mod+2 workspace $menu2; exec pgrep -f "^/usr/bin/vimb" >/dev/null || /usr/bin/vimb;  move workspace to output $screen2
+#bindsym $mod+2 workspace $menu2; exec pgrep -f "^/usr/bin/vimb" >/dev/null || /usr/bin/vimb;  move workspace to output $screen2
+bindsym $mod+2 workspace $menu2; exec toad-work;  move workspace to output $screen2
+bindsym $mod+$capsLock+2 workspace $menu2; exec toad;  move workspace to output $screen2
 bindsym $mod+3 workspace $menu3; exec pgrep -f "^alacritty --title uvim -e vim" >/dev/null || alacritty --title uvim -e vim
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
 bindsym $mod+4 workspace $menu4; exec pgrep -f '^alacritty --title mail-gmail' >/dev/null || alacritty --title mail-gmail -e /usr/bin/mutt -e "source ~/.mutt/gmail.com"
@@ -202,7 +206,7 @@ bindsym $mod+Shift+0 move container to workspace $menu10
 bindsym XF86AudioNext exec xf86audio next
 bindsym XF86AudioPrev exec xf86audio prev
 bindsym XF86AudioPause exec xf86audio toggle
-bindsym XF86AudioMute exec pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo toggle
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
@@ -211,14 +215,13 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
   
 
 #pb authorisation
-#bindsym XF86MonBrightnessDown   exec xbacklight -dec 5 && pkill -RTMIN+20 i3blocks
-#bindsym XF86MonBrightnessUp     exec xbacklight -inc 5 && pkill -RTMIN+20 i3blocks
-
+bindsym XF86MonBrightnessDown   exec brightnessctl set 1%-
+bindsym XF86MonBrightnessUp     exec brightnessctl set +1%
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
   # font pango:FuraCode Nerd Font, 10
-  font pango:Meslo LG S DZ, forkawesome, icomoon,  10
+  font pango:Meslo LG S DZ, forkawesome, Weather Icons, 10
   status_command python ~/.config/i3/status.py
     position top
   colors {
@@ -509,7 +512,7 @@ mode "$mode_player" {
 # on/off hardware (wifi, ethernet, 3G,)
 set $mode_killswitch switch: [M]odem OFF [m]odem ON [W]ifi OFF [w]iffi ON [B]luetooth OFF [b]luetooth ON
 bindsym XF86WLAN mode "$mode_killswitch"
-# NOTE: can't cobine mete with special keys... -> bindsym $mod+XF86WLAN exec networkmanager_dmenu -l 10 -i -nb '#b58900' -nf '#eee8d5' -sb '#002b24' -fn 'MesloLGSDZ Nerd Font-10' -h ${DMENUHEIGHT:-36}
+# NOTE: can't cobine mete with special keys... -> bindsym $mod+XF86WLAN exec networkmanager_dmenu -l 10 -i -nb '#b58900' -nf '#eee8d5' -sb '#002b24' -fn '$dmenuFont' -h ${DMENUHEIGHT:-36}
 
 mode "$mode_killswitch" {
 
@@ -567,4 +570,3 @@ bindsym $mod+XF86Favorites exec ~/share/bin/gmi-add-note
 # time reporting
 exec aw-qt
 exec nm-applet
-

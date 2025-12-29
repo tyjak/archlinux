@@ -3,7 +3,7 @@
 TERM = "xterm-256color"
 
 [font]
-size = 9.0
+size = 10.0
 
 [font.normal]
 family = "MesloLGSDZ Nerd Font Mono"
