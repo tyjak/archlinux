@@ -429,8 +429,8 @@ set $mode_screenshot Screenshot [s]election [f]ullscreen
 set $screenshotCmdSel maim -s ~/Images/screenshot-$(date +%F-%H%M%S).png
 set $screenshotCmdFull maim ~/Images/screenshot-$(date +%F-%H%M%S).png
 bindsym $mod+Shift+c mode "$mode_screenshot"
-bindsym Print exec maim -s ~/Images/screenshot-$(date +%F-%H%M%S).png, mode "default"
-bindsym $mod+Print exec $screenshotCmdFull, mode "default"
+bindsym Print exec maim -s | xclip -selection clipboard -t image/png, mode "default"
+bindsym $mod+Print exec maim | xclip -selection clipboard -t image/png, mode "default"
 
 mode "$mode_screenshot" {
 
