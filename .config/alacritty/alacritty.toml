@@ -15,3 +15,8 @@ y = 1
 
 [general]
 import = ["/home/david/.config/alacritty/solarized_dark.toml"]
+
+#[[hints.enabled]]
+#command = "w3m"
+#hyperlinks = true
+#mouse.enabled = true

@@ -60,8 +60,10 @@ bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -
 bindsym $mod+y exec dmenu-webnav
 bindsym $mod+i exec dmenu-ssh
 bindsym $mod+p exec dmenu-gist $(tty)
+bindsym $mod+= exec ~/share/bin/i3/=
 bindsym $capsLock+q exec qrcode
 bindsym $capsLock+c exec cryptoinfoweb
+bindsym $capsLock+a exec gpt-i3
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -173,6 +175,7 @@ bindsym $mod+3 workspace $menu3; exec [ $(pgrep -f "alacritty --title uvim") ] &
 bindsym $mod+4 workspace $menu4; exec [ $(pgrep -f "alacritty --title mail-gmail") ] && alacritty --title mail-gmail -e /usr/bin/mutt -e "source ~/.mutt/gmail.com"
 #bindsym $mod+5 workspace $menu5; exec [ $(pgrep -f "brave") ] && /usr/bin/brave; move workspace to output $screen2
 bindsym $mod+5 workspace $menu5; exec ~/share/bin/i3/firefox
+for_window [class="firefox"] move container to workspace $menu5
 bindsym $mod+6 workspace $menu6; exec ~/share/bin/i3/photos
 bindsym $mod+7 workspace $menu7
 #bindsym $mod+5 workspace $menu5; exec [ $( ps -eo cmd | grep -c '[t]ermite --title muttperso' ) -eq 2 ] && alacritty --title muttperso -e '/usr/bin/mutt -e "source ~/.mutt/newmanity.com"'
@@ -544,8 +547,6 @@ bindsym $capsLock+Shift+s exec i3-msg '[class="Teams"] scratchpad show';
 # see in xprofile
 exec --no-startup-id blueberry-tray
 exec --no-startup-id ~/share/bin/xrandr-ma.sh
-exec --no-startup-id ~/share/bin/i3/firefox
+# exec --no-startup-id ~/share/bin/i3/firefox
 # exec --no-startup-id pcloud
 # exec --no-startup-id megasync
-
-

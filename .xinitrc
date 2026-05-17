@@ -11,6 +11,7 @@ export BROWSER=/usr/bin/vimb
 export TERMINAL=/usr/bin/termite
 export OFFICE_IP=178.208.10.121
 export DMENUHEIGHT=24
+export DMENUFONTSIZE=8
 export WINIT_X11_SCALE_FACTOR=1.0
 export TTRSS_SERVER=alarmpi
 export NEWS=~/share/documents/feeds

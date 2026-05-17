@@ -1,6 +1,6 @@
 #!/bin/sh
 CACHE="$HOME/.cache/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
-	-- "$(readlink -f "$1")" | sha256sum | awk '{print $1}'))"
+	-- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
 
 image() {
 	if [ -n "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]; then
@@ -24,9 +24,9 @@ batorcat() {
 
 glowormdcat() {
 	file="$1"
-	shift
+	width="$2"
 	if command -v glow > /dev/null 2>&1; then
-		glow "$file"
+		glow -s auto -w "$width" "$file"
 	else
 		mdcat "$file"
 	fi
@@ -40,7 +40,7 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.zip|*.jar|*.war|*.ear|*.oxt) unzip -l "$1" ;;
 	*.gz) gzip -l "$1" ;;
 	*.rar) unrar l "$1" ;;
-	*.md) glowormdcat "$1";;
+	*.md) glowormdcat "$1" "$2";;
 	*.7z) 7z l "$1" ;;
 	*.[1-8]) man "$1" | col -b ;;
 	*.o) nm "$1";;
