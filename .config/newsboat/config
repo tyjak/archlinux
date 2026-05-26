@@ -8,8 +8,8 @@
 color background          yellow    default
 color listnormal          yellow    default
 color listfocus           yellow    black     bold
-color listnormal_unread   blue      default
-color listfocus_unread    blue      black     bold
+color listnormal_unread   color14      default
+color listfocus_unread    color7      black     bold
 color info                white     green     bold
 color article             default   default
 

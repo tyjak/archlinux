@@ -241,10 +241,19 @@
     timeout = 10
 [notifinfo]
     appname = notifinfo 
-    background = "#586e75"
-    foreground = "#fdf6e3"
+    background = "#b58900"
+    foreground = "#002B36"
     set_transient = false
     timeout = 10
+[notifphone]
+    appname = notifphone 
+    background = "#b58900"
+    foreground = "#002B36"
+    frame_color = "#002B36"
+    set_transient = false
+    timeout = 20
+    # TODO : send notif to phone
+    # script = 'send_phone_notif"
 [sound]
     category = sound
     alignment = center

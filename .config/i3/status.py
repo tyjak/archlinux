@@ -33,7 +33,7 @@ status.register(
     "anybar",
     port=1837,
     hints={'separator': False, 'separator_block_width': 10},
-    on_leftclick="infonotif Meuzac"
+    on_leftclick="infonotif Meuzac \"$(cat /tmp/_meuzac_status.txt)\""
 )
 
 # FIXME: error "IndexError: list index out of range" when ping ok...
@@ -225,6 +225,16 @@ status.register(
     on_leftclick="vimb http://192.168.8.1",
     ignore_empty_stdout=True,
     format="{output}"
+)
+
+
+status.register(
+    "shell_ansi",
+    command="price_check.sh prix-essence 'du carburant à Magnac '",
+    format="{output}€",
+    # ignore_empty_stdout=True,
+    # use_ansi=True,
+    interval=3600
 )
 
 status.register(

@@ -17,6 +17,8 @@ export NEWS=~/share/documents/feeds
 export GMI_FILE_NOTE=~/sdf/gopher/notes-de-lectures.gmi
 export GPT3_API_KEY=$(pass show api/chatgpt.com)
 export OPENAI_API_KEY=$(pass show api/openai.com)
+export BW_SESSION=$(pass show work/pe/vault.beta.pole-emploi.fr | grep -A1 "BW_SESSION" | tail -1)
+export OLLAMA_DEFAULT_MODEL=gemma3:1b-it-qat
 #export npm_config_prefix="~/.local" #incompatible avec nvm
 
 #export http_proxy=127.0.0.1:8118
@@ -40,4 +42,5 @@ udiskie &
 kdeconnectd & #FIXME not working in /etc/xdg/autostart
 mkfifo /tmp/mplayer
 touch /tmp/gpodder.out
+blueberry &
 exec i3
