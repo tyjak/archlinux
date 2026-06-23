@@ -16,6 +16,9 @@ set $capsLock Mod3
 
 # fix floating windows size
 # medium size
+set $wfS_height 400
+set $wfS_width 500
+# medium size
 set $wfM_height 600
 set $wfM_width 800
 # big size
@@ -74,7 +77,6 @@ bindsym $capsLock+Tab exec quickswitch -s -d "dmenu -l 10 -i -nb '#eee8d5' -nf '
 #bindsym $mod+Shift+t exec "dict -d fd-fra-eng $(xclip -o) | tail +4 | dmenu -i -nb '#eee8d5' -nf '#002b36' -sb '#859900' -fn '$dmenuFont' -h $dmenuHeight"
 bindsym $mod+y exec dmenu-firefox-bookmark
 bindsym $mod+i exec dmenu-ssh
-bindsym $capsLock+a exec dmenu-emoticon
 bindsym $mod+Shift+i exec work-file
 bindsym $mod+Shift+f exec filemanager
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -250,6 +252,7 @@ workspace_auto_back_and_forth yes
 #generic
 for_window [class="_popup-notitle-medium-sticky"] border pixel 1, floating enable, resize set $wfL_width $wfL_height, move position center, sticky enable
 for_window [class="_popup-notitle-medium"] border pixel 1, floating enable, resize set $wfL_width $wfL_height, move position center
+for_window [class="_popup-notitle-small"] border pixel 1, floating enable, resize set $wfS_width $wfS_height, move position center
 for_window [class="_popup-notitle"] border pixel 1, floating enable
 for_window [class="_popup"] floating enable
 
@@ -471,17 +474,18 @@ mode "$mode_usbmount" {
 
 
 # system mode, hit power button to halt, suspend, reboot or shutdown
-set $mode_system System [l] lock, [e] logout, [s] suspend, [h] hibernate, [r] reboot, [Shift]+[s] shutdown
-bindsym Pause mode "$mode_system"
-bindsym XF86Sleep "$mode_system"
-bindsym XF86PowerOff mode "$mode_system"
+set $mode_system System [l] lock, [e] logout, [s] suspend, [r] reboot, [Shift]+[s] shutdown
+bindsym $capsLock+l mode "$mode_system"
+#bindsym Pause mode "$mode_system"
+#bindsym XF86Sleep "$mode_system"
+#bindsym XF86PowerOff mode "$mode_system"
 
 mode "$mode_system" {
 
     bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    #bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
@@ -542,11 +546,13 @@ bindsym $capsLock+Shift+k exec stig-i3
 bindsym $capsLock+p exec [ $( ps -eo cmd | grep -c '[a]lacritty --title scratchpad_vimwikiperso' ) -eq 2 ] && (alacritty --title scratchpad_vimwikiperso -e vim ~/share/vimwiki_perso/index.wiki) || (i3-msg '[title=scratchpad_vimwikiperso] scratchpad show');
 bindsym $capsLock+Shift+p exec [ -z $( ps h -C gpodder -o comm=Command ) ] && gpodder || i3-msg '[title=gPodder floating] scratchpad show';
 bindsym $capsLock+r exec popup -h -t radio pyradio
-bindsym $capsLock+e exec popup -t cal pal -m
+bindsym $capsLock+Shift+c exec popup -t cal pal -m
+bindsym $capsLock+e exec dmenu-emoticon
 bindsym $capsLock+n exec i3-msg '[class="VirtualBox Machine"] scratchpad show' && i3-msg '[class="VirtualBox Machine"] fullscreen enable';
 bindsym $capsLock+s exec [ $(pgrep -f "mattermost-desktop") ] && mattermost-desktop || (i3-msg '[class="Mattermost"] scratchpad show' && i3-msg '[class="Mattermost"] move position center');
 bindsym $capsLock+Shift+s exec [ $(pgrep -f "teams-for-linux") ] && (teams-for-linux  --enableDesktopNotificationsHack) || (i3-msg '[class="teams-for-linux"] scratchpad show' && i3-msg '[class="teams-for-linux"] move position center');
 bindsym $capsLock+q exec qrcode
+bindsym $capsLock+a exec gpt-i3
 #bindsym $capsLock+w exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimwiki' ) -eq 2 ] && termite --title scratchpad_vimwiki -e 'vim -c VimwikiIndex' || i3-msg kill;
 #bindsym $capsLock+i exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimdiary' ) -eq 2 ] && termite --title scratchpad_vimdiary -e 'vim -c VimwikiDiaryIndex' || i3-msg kill;
 #bindsym $capsLock+v exec [ $( ps -eo cmd | grep -c '[t]ermite --title scratchpad_vimb' ) -eq 2 ] && termite --title scratchpad_vimb -e 'vim .config/vimb/config' || i3-msg kill;

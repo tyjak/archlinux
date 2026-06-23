@@ -136,14 +136,14 @@ status.register(
 #    graph_width=20,
 #)
 
-#status.register(
-#    "syncthing",
-#    color_up=green,
-#    color_down=red,
-#    format_up="\uf311",
-#    format_down="\uf311",
-#    on_leftclick="vimb http://127.0.0.1:8384",
-#)
+status.register(
+    "syncthing",
+    color_up=green,
+    color_down=red,
+    format_up="\uf311",
+    format_down="\uf311",
+    on_leftclick="vimb http://127.0.0.1:8384",
+)
 
 #status.register("openvpn", vpn_name="peold", use_new_service_name="true")
 
@@ -174,13 +174,23 @@ status.register(
 
 # NOTE : noto-fonts and noto-fonts-emoji to work
 status.register("shell",
-                command="curl -Ls 'wttr.in/"+city+"?format=%c+%t+%w+%h'",
+                command="curl -Ls -f 'wttr.in/"+city+"?format=%c+%t+%w+%h'",
                 ignore_empty_stdout=True,
                 #format="\uf1b2",
                 #color=green,
                 #error_color=grey,
                 interval=7200,
                 on_leftclick='wego-i3')
+
+# check fuel price
+status.register("shell_ansi",
+                command="price_check.sh prix-essence 'à Magnac'",
+                format="{output}€",
+                ignore_empty_stdout=True,
+                #format="\uf1b2",
+                #color=green,
+                #error_color=grey,
+                interval=7200)
 
 ## Show weather => need ttf-weather-icons
 #color_icon_values = {
@@ -235,7 +245,7 @@ status.register(
 )
 
 status.register("shell",
-                command="curl -Ls 'ifconfig.me' 2>/dev/null",
+                command="curl -Ls -f 'ifconfig.me'",
                 ignore_empty_stdout=True,
                 # format="\uf1b2",
                 # color=green,
