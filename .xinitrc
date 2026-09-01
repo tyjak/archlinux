@@ -32,7 +32,7 @@ export OLLAMA_MODEL="codellama:34b"
 xset -b & #disable beep
 #xss-lock -- /usr/bin/i3lock -c 002B36 &
 #dunst &
-syndaemon -t -k -i 2 &
+#syndaemon -t -k -i 2 & # gestion desactivation trackpad - Pas nécessairz sur HP
 unclutter -idle 1 -jitter 2 -root &
 stty -ixon
 setxkbmap -layout fr

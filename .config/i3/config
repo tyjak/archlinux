@@ -160,13 +160,13 @@ set $vimIcon 
 set $menu1 1: terminal
 set $menu2 2:🤖 toad
 set $menu3 3:
-set $menu4 4:󰊫 gmail
+set $menu4 4:riseup
 set $menu5 5:<span font=\"icomoon 13\"></span>
 #set $menu6 6:
 set $menu7 7:
 set $menu8 8:vmware
 set $menu9 9: ssh
-set $menu10 10: PE
+set $menu10 10:perso
 
 
 # switch to workspace
@@ -176,7 +176,8 @@ bindsym $mod+2 workspace $menu2; exec toad-work;  move workspace to output $scre
 bindsym $mod+$capsLock+2 workspace $menu2; exec toad;  move workspace to output $screen2
 bindsym $mod+3 workspace $menu3; exec pgrep -f "^alacritty --title uvim -e vim" >/dev/null || alacritty --title uvim -e vim
 #bindsym $mod+4 workspace $menu4; layout tabbed; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title muttgmail -e mutt' ) -eq 2 ] && urxvt -title muttgmail -e mutt -e "source ~/.mutt/gmail.com"
-bindsym $mod+4 workspace $menu4; exec pgrep -f '^alacritty --title mail-gmail' >/dev/null || alacritty --title mail-gmail -e /usr/bin/mutt -e "source ~/.mutt/gmail.com"
+#bindsym $mod+4 workspace $menu4; exec pgrep -f '^alacritty --title mail-gmail' >/dev/null || alacritty --title mail-gmail -e /usr/bin/mutt -e "source ~/.mutt/gmail.com"
+bindsym $mod+4 workspace $menu4; exec ~/share/bin/i3/riseup
 bindsym $mod+5 workspace $menu5; exec ~/share/bin/i3/firefox; move workspace to output $screen2
 bindsym $mod+6 workspace $menu6; exec pgrep -f '^/opt/brave-bin/brave' >/dev/null || /usr/bin/brave; move workspace to output $screen2
 bindsym $mod+7 workspace $menu7; exec ~/share/bin/i3/photos
@@ -185,7 +186,7 @@ bindsym $mod+7 workspace $menu7; exec ~/share/bin/i3/photos
 #bindsym $mod+7 workspace $menu7; exec [ $( ps -eo cmd | grep -c '[u]rxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat' ) -eq 2 ] && urxvt -title tmux-weechat -e ssh -t david@do.tyjak.net LANG=fr_FR.UTF-8 tmux a -t weechat
 bindsym $mod+8 workspace $menu8; exec pgrep -f '/usr/bin/vmware-view' >/dev/null || alacritty --title -e USER=david /usr/bin/vmware-view
 bindsym $mod+9 workspace $menu9
-bindsym $mod+0 workspace $menu10; exec pgrep -f "^peoutlook" >/dev/null || ~/share/bin/i3/peoutlook; move workspace to output $screen2
+bindsym $mod+0 workspace $menu10; exec ~/share/bin/i3/firefox-perso; move workspace to output $screen2
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $menu1
@@ -310,7 +311,7 @@ assign [class="Navigator"] $menu5
 assign [class="Brave-browser"] $menu6
 for_window [class="(Brave-browser|firefox)"] border pixel 1
 assign [class="Shotwell"] $menu7
-assign [class="Evolution"] $menu10
+assign [class="Firefox"] $menu10
 assign [class="trefle"] trèfle
 assign [class="Vmware-view"] $menu8
 for_window [class="trefle"] output $screen1
@@ -320,7 +321,7 @@ for_window [class="Vimb" con_mark="(?!(mamot|simplyread))"] layout tabbed; focus
 #for_window [class="Urxvt"] layout splith; focus
 
 #second screen
-for_window [class="Caprine|Evolution|Brave-browser|Navigator"] output $screen2
+for_window [class="Caprine|Firefox|Brave-browser|Navigator"] output $screen2
 
 
 #vimb with title starting by "scratchpad_" are moved to the scratch pad and show
@@ -415,7 +416,7 @@ bindsym $mod+p mode "$mode_launcher"
 
 mode "$mode_launcher" {
 
-    bindsym h exec gmail-mail, exec news, exec ~/share/bin/i3/firefox, mode "default"
+    bindsym h exec ~/share/bin/i3/riseup, exec news, exec ~/share/bin/i3/firefox, mode "default"
     bindsym f exec firefox, mode "default"
     bindsym t exec teams-for-linux, mode "default"
     bindsym m exec mattermost-desktop, mode "default"
@@ -428,7 +429,7 @@ mode "$mode_launcher" {
 }
 
 # Press $mod+Shift+c s or f to take a screen shot
-set $mode_screenshot Screenshot [s]election [f]ullscreen
+set $mode_screenshot Screenshot [s]election [f]ullscreen [o]cr
 set $screenshotCmdSel maim -s ~/Images/screenshot-$(date +%F-%H%M%S).png
 set $screenshotCmdFull maim ~/Images/screenshot-$(date +%F-%H%M%S).png
 bindsym $mod+Shift+c mode "$mode_screenshot"
@@ -440,6 +441,7 @@ mode "$mode_screenshot" {
     #bindsym s exec maim --opengl --magnify -s ~/Desktop/screenshot-$(date +%F-%H%M%S).png, mode "default"
     bindsym s exec maim -s ~/Images/screenshot-$(date +%F-%H%M%S).png, mode "default"
     bindsym f exec maim ~/Images/screenshot-$(date +%F-%H%M%S).png, mode "default"
+    bindsym o exec normcap, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -576,3 +578,7 @@ bindsym $mod+XF86Favorites exec ~/share/bin/gmi-add-note
 # time reporting
 exec aw-qt
 exec nm-applet
+exec blueberry-tray
+exec --no-startup-id ~/share/bin/xidlehook-screensaver
+#exec --no-startup-id xfce4-power-manager
+
